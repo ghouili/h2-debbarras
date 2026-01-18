@@ -1,0 +1,329 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ============================================
+     H2DEBARRAS DESIGN TOKENS v3.0
+     New Palette: Royal Blue → Ocean → Sky
+     ============================================ */
+  
+  /* ----------------------------------------
+     PRIMARY BRAND SCALE (Blue Gradient Family)
+     #134BF2 (Royal) → #0C87F2 (Ocean) → #1BA0F2 (Sky)
+     ---------------------------------------- */
+  --primary-50: oklch(0.97 0.02 250);    /* #F0F4FF - Lightest blue tint */
+  --primary-100: oklch(0.94 0.04 250);   /* #E0EAFF */
+  --primary-200: oklch(0.88 0.08 250);   /* #C2D6FF */
+  --primary-300: oklch(0.78 0.14 240);   /* #1BA0F2 - Sky Blue */
+  --primary-400: oklch(0.68 0.16 235);   /* #0C87F2 - Ocean Blue */
+  --primary-500: oklch(0.58 0.18 255);   /* #2B6DF2 - Mid Royal */
+  --primary-600: oklch(0.50 0.20 260);   /* #134BF2 - Royal Blue (MAIN) */
+  --primary-700: oklch(0.42 0.18 260);   /* #0F3DC7 - Dark Royal */
+  --primary-800: oklch(0.35 0.15 260);   /* #0B2F9C */
+  --primary-900: oklch(0.28 0.12 260);   /* #082371 */
+  --primary-950: oklch(0.20 0.08 260);   /* #051746 */
+  
+  /* ----------------------------------------
+     NEUTRAL SCALE (Cool Gray #B8BBBF based)
+     ---------------------------------------- */
+  --neutral-50: oklch(0.97 0.003 250);   /* #F2F2F2 - Background */
+  --neutral-100: oklch(0.95 0.005 250);  /* #EAEAEC */
+  --neutral-200: oklch(0.90 0.008 250);  /* #D8DADC */
+  --neutral-300: oklch(0.80 0.01 250);   /* #B8BBBF - Cool Gray */
+  --neutral-400: oklch(0.65 0.015 250);  /* #8A8D92 */
+  --neutral-500: oklch(0.50 0.02 250);   /* #5C6066 */
+  --neutral-600: oklch(0.40 0.02 250);   /* #45494E */
+  --neutral-700: oklch(0.30 0.015 250);  /* #2F3338 */
+  --neutral-800: oklch(0.22 0.01 250);   /* #1F2226 */
+  --neutral-900: oklch(0.15 0.008 250);  /* #121518 */
+  
+  /* ----------------------------------------
+     SEMANTIC TOKENS (shadcn/ui compatible)
+     ---------------------------------------- */
+  
+  /* Backgrounds */
+  --background: var(--neutral-50);        /* #F2F2F2 */
+  --foreground: var(--neutral-900);       /* Deep dark */
+  
+  /* Cards & Surfaces */
+  --card: oklch(1 0 0);                   /* #FFFFFF */
+  --card-foreground: var(--neutral-800);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--neutral-800);
+  
+  /* Primary (Royal Blue anchor) */
+  --primary: var(--primary-600);          /* #134BF2 */
+  --primary-foreground: oklch(1 0 0);     /* White text */
+  
+  /* Secondary (soft blue tint) */
+  --secondary: var(--primary-50);
+  --secondary-foreground: var(--primary-700);
+  
+  /* Muted (cool gray based) */
+  --muted: var(--neutral-100);
+  --muted-foreground: var(--neutral-500);
+  
+  /* Accent (Ocean Blue) */
+  --accent: var(--primary-400);           /* #0C87F2 */
+  --accent-foreground: oklch(1 0 0);
+  
+  /* Destructive (functional, minimal use) */
+  --destructive: oklch(0.55 0.20 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  
+  /* Borders & Inputs (cool gray) */
+  --border: var(--neutral-200);
+  --input: var(--neutral-200);
+  --ring: var(--primary-400);             /* Ocean Blue focus ring */
+  
+  /* ----------------------------------------
+     FUNCTIONAL COLORS
+     ---------------------------------------- */
+  --success: oklch(0.55 0.15 155);
+  --success-foreground: oklch(0.98 0 0);
+  --success-muted: oklch(0.94 0.03 155);
+  
+  --warning: var(--primary-400);          /* Ocean Blue for warnings */
+  --warning-foreground: oklch(0.98 0 0);
+  --warning-muted: var(--primary-100);
+  
+  --info: var(--primary-100);
+  --info-foreground: var(--primary-800);
+  
+  /* ----------------------------------------
+     GLASS TOKENS (for premium effects)
+     ---------------------------------------- */
+  --glass-bg: oklch(1 0 0 / 0.85);
+  --glass-border: var(--neutral-300);
+  --glass-blur: 12px;
+  --glow-primary: oklch(0.50 0.20 260 / 0.30);  /* Royal blue glow */
+  --glow-soft: oklch(0.68 0.16 235 / 0.20);     /* Ocean blue glow */
+  
+  /* ----------------------------------------
+     GRADIENT TOKENS
+     Royal Blue → Ocean Blue → Sky Blue
+     ---------------------------------------- */
+  --gradient-start: var(--primary-600);   /* #134BF2 - Royal */
+  --gradient-mid: var(--primary-400);     /* #0C87F2 - Ocean */
+  --gradient-end: var(--primary-300);     /* #1BA0F2 - Sky */
+  
+  /* Hero/Section backgrounds (subtle) */
+  --gradient-hero-from: var(--primary-50);
+  --gradient-hero-via: var(--background);
+  --gradient-hero-to: var(--primary-100);
+  
+  /* CTA/Button gradients (bold) */
+  --gradient-primary-from: var(--gradient-start);
+  --gradient-primary-via: var(--gradient-mid);
+  --gradient-primary-to: var(--gradient-end);
+  
+  /* ----------------------------------------
+     SIDEBAR (light mode)
+     ---------------------------------------- */
+  --sidebar: oklch(0.98 0.005 220);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--primary-100);
+  --sidebar-accent-foreground: var(--primary-700);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  
+  /* Chart colors (blue-family harmonious) */
+  --chart-1: var(--primary-600);
+  --chart-2: var(--primary-400);
+  --chart-3: var(--primary-300);
+  --chart-4: var(--primary-800);
+  --chart-5: var(--primary-200);
+  
+  /* Radius */
+  --radius: 0.625rem;
+}
+
+.dark {
+  /* ============================================
+     DARK MODE - H2DEBARRAS
+     ============================================ */
+  
+  /* Backgrounds */
+  --background: oklch(0.13 0.02 220);    /* #0A1A26 */
+  --foreground: oklch(0.96 0.008 220);   /* #EEF4F7 */
+  
+  /* Cards & Surfaces */
+  --card: oklch(0.17 0.018 220);         /* #132633 */
+  --card-foreground: oklch(0.96 0.008 220);
+  --popover: oklch(0.17 0.018 220);
+  --popover-foreground: oklch(0.96 0.008 220);
+  
+  /* Primary (brighter for dark mode) */
+  --primary: var(--primary-400);
+  --primary-foreground: oklch(0.12 0.02 220);
+  
+  /* Secondary */
+  --secondary: oklch(0.22 0.02 220);
+  --secondary-foreground: oklch(0.88 0.02 220);
+  
+  /* Muted */
+  --muted: oklch(0.20 0.015 220);
+  --muted-foreground: oklch(0.70 0.02 220);
+  
+  /* Accent */
+  --accent: oklch(0.25 0.03 220);
+  --accent-foreground: var(--primary-300);
+  
+  /* Destructive */
+  --destructive: oklch(0.50 0.18 25);
+  --destructive-foreground: oklch(0.97 0.01 0);
+  
+  /* Borders & Inputs */
+  --border: oklch(0.28 0.02 220);
+  --input: oklch(0.28 0.02 220);
+  --ring: var(--primary-400);
+  
+  /* Functional (dark mode) */
+  --success: oklch(0.60 0.14 155);
+  --success-foreground: oklch(0.12 0.02 220);
+  --success-muted: oklch(0.22 0.04 155);
+  
+  --warning: var(--primary-400);
+  --warning-foreground: oklch(0.12 0.02 220);
+  --warning-muted: oklch(0.22 0.03 220);
+  
+  /* Glass (dark mode) */
+  --glass-bg: oklch(0.15 0.02 220 / 0.85);
+  --glass-border: oklch(0.30 0.02 220 / 0.5);
+  
+  /* Sidebar */
+  --sidebar: oklch(0.15 0.018 220);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: oklch(0.22 0.025 220);
+  --sidebar-accent-foreground: var(--primary-300);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  
+  /* Chart colors (brighter for dark) */
+  --chart-1: var(--primary-400);
+  --chart-2: var(--primary-300);
+  --chart-3: var(--primary-200);
+  --chart-4: var(--primary-500);
+  --chart-5: var(--primary-100);
+}
+
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  
+  /* Primary scale colors */
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+  
+  /* Semantic colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  /* Functional colors */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-muted: var(--success-muted);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-muted: var(--warning-muted);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  
+  /* Glass tokens */
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --blur-glass: var(--glass-blur);
+  --color-glow-primary: var(--glow-primary);
+  --color-glow-soft: var(--glow-soft);
+  
+  /* Gradient tokens */
+  --color-gradient-hero-from: var(--gradient-hero-from);
+  --color-gradient-hero-to: var(--gradient-hero-to);
+  --color-gradient-primary-from: var(--gradient-primary-from);
+  --color-gradient-primary-via: var(--gradient-primary-via);
+  --color-gradient-primary-to: var(--gradient-primary-to);
+  
+  /* Chart colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  /* Add smooth scrolling and better text rendering */
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+/* Add custom utilities for premium design */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
