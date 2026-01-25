@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  STAFF
+}
+
+enum ContactStatus {
+  NEW
+  IN_PROGRESS
+  CLOSED
+}
+
+enum QuoteStatus {
+  NEW
+  QUALIFIED
+  SCHEDULED
+  DONE
+  LOST
+}
+
+enum ServiceType {
+  MAISON
+  APPARTEMENT
+  CAVE_GRENIER
+  SUCCESSION
+  AUTRE
+}
+
+model User {
+  id          String         @id @default(uuid())
+  email       String         @unique
+  passwordHash String
+  fullName    String
+  role        Role           @default(ADMIN)
+  isActive    Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  lastLoginAt DateTime?
+  refreshTokens RefreshToken[]
+}
+
+model Contact {
+  id        String         @id @default(uuid())
+  fullName  String
+  email     String?
+  phone     String?
+  source    String?
+  message   String?
+  status    ContactStatus  @default(NEW)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@index([status])
+}
+
+model QuoteRequest {
+  id             String       @id @default(uuid())
+  fullName       String
+  phone          String
+  email          String?
+  postalCode     String
+  departmentCode String?
+  city           String?
+  serviceType    ServiceType
+  volumeEstimate String?
+  accessNotes    String?
+  preferredDate  DateTime?
+  status         QuoteStatus  @default(NEW)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([postalCode])
+  @@index([status])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  tokenHash String
+  revokedAt DateTime?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}

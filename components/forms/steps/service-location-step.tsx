@@ -7,16 +7,18 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent } from "@/components/ui/card"
-import { Building2, Home, Store, Warehouse, HardHat, Sparkles } from "lucide-react"
+import { Building2, Home, Store, Warehouse, HardHat, Truck } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
 
 const services = [
   { id: "commerces-entrepots", label: "Commerce / Entrepôt", icon: Store, category: "pro" },
   { id: "bureaux-locaux", label: "Bureau / Local pro", icon: Building2, category: "pro" },
-  { id: "maison-appartement", label: "Maison / Appartement", icon: Home, category: "particulier" },
+  { id: "debarras-maison", label: "Débarras maison", icon: Home, category: "particulier" },
+  { id: "debarras-appartement", label: "Débarras appartement", icon: Home, category: "particulier" },
   { id: "cave-grenier", label: "Cave / Grenier / Garage", icon: Warehouse, category: "particulier" },
-  { id: "demenagement-entreprise", label: "Déménagement entreprise", icon: HardHat, category: "pro" },
-  { id: "nettoyage-professionnel", label: "Nettoyage professionnel", icon: Sparkles, category: "pro" },
+  { id: "gravats", label: "Gravats / chantier", icon: HardHat, category: "pro" },
+  { id: "demenagement-particulier", label: "Déménagement", icon: Truck, category: "particulier" },
+  { id: "demenagement-entreprise", label: "Déménagement entreprise", icon: Truck, category: "pro" },
 ]
 
 const timingOptions = [

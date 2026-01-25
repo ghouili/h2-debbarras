@@ -11,20 +11,20 @@ export function TrustBadges() {
   }))
 
   return (
-    <Section className="border-b border-border bg-white py-8 md:py-12">
-      <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+    <Section className="border-b border-border bg-white py-5 sm:py-6 md:py-8">
+      <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4" role="list" aria-label="Nos garanties">
         {badges.map((badge) => {
           const Icon = badge.icon
           return (
-            <div key={badge.label} className="flex flex-col items-center gap-3 text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Icon className="h-6 w-6 text-primary" />
+            <li key={badge.label} className="flex flex-col items-center gap-1.5 sm:gap-2 text-center">
+              <div className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-primary/10">
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" aria-hidden="true" />
               </div>
-              <p className="text-sm font-medium text-foreground">{badge.label}</p>
-            </div>
+              <p className="text-xs sm:text-sm font-medium text-foreground">{badge.label}</p>
+            </li>
           )
         })}
-      </div>
+      </ul>
     </Section>
   )
 }

@@ -10,8 +10,8 @@ import { CookieBanner } from "@/components/seo/cookie-banner"
 import { JsonLd } from "@/components/seo/json-ld"
 import { siteConfig } from "@/lib/config"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const geistSans = Geist({ subsets: ["latin"] })
+const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
@@ -62,7 +62,7 @@ export default function RootLayout({
       <head>
         <JsonLd type="organization" />
       </head>
-      <body className={`font-sans antialiased relative`} suppressHydrationWarning>
+      <body className={`${geistSans.className} ${geistMono.className} font-sans antialiased relative`} suppressHydrationWarning>
         <Header />
         <main className="min-h-screen w-full pt-16 md:pt-20 pb-20 md:pb-0">{children}</main>
         <Footer />

@@ -1,14 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useId } from "react";
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { homeCopy } from "@/lib/content/home-copy";
 import { Section } from "../layout/section";
+import { cn } from "@/lib/utils"; // adjust import if your cn is elsewhere
+
+
+
+type Toggle = "before" | "after";
 
 export function BeforeAfter() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageToggle, setImageToggle] = useState<Toggle>("after"); // default: reveal result
+  const uid = useId();
 
   const examples = [
     {
@@ -37,82 +45,239 @@ export function BeforeAfter() {
     },
   ];
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? examples.length - 1 : prev - 1));
-  };
+    setImageToggle("after");
+  }, [examples.length]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === examples.length - 1 ? 0 : prev + 1));
-  };
+    setImageToggle("after");
+  }, [examples.length]);
+
+  const handleDotClick = useCallback((index: number) => {
+    setCurrentIndex(index);
+    setImageToggle("after");
+  }, []);
 
   const current = examples[currentIndex];
   const copy = homeCopy.beforeAfter;
 
+  const tabBeforeId = `ba-tab-before-${uid}`;
+  const tabAfterId = `ba-tab-after-${uid}`;
+  const panelId = `ba-panel-${uid}`;
+
   return (
     <Section>
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-3xl font-bold tracking-tight md:text-4xl">
+        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
           {copy.title}
         </h2>
-        <p className="mt-4 text-pretty text-lg text-muted-foreground">
+        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
           {copy.subtitle}
         </p>
       </div>
 
-      <div className="mx-auto mt-12 max-w-5xl">
+      <div className="mx-auto mt-10 max-w-5xl">
         <Card>
-          <CardContent className="p-6">
-            <h3 className="mb-4 text-center text-xl font-semibold">
+          <CardContent className="p-0 sm:p-6">
+            <h3 className="pb-6 text-center text-base font-semibold sm:text-xl">
               {current.title}
             </h3>
-            <div className="grid gap-4 md:grid-cols-2">
+
+            {/* <= md: Hero-style overlay toggle */}
+            <div className="md:block lg:hidden">
+              <div className="relative  border-border/50 bg-card shadow-2xl shadow-black/10">
+                {/* Toggle */}
+                <div
+                  className="absolute -top-4 left-1/2 z-10 flex -translate-x-1/2 overflow-hidden rounded-full border border-border bg-background shadow-lg"
+                  role="tablist"
+                  aria-label="Sélection avant/après"
+                >
+                  <button
+                    type="button"
+                    role="tab"
+                    id={tabBeforeId}
+                    aria-controls={panelId}
+                    aria-selected={imageToggle === "before"}
+                    onClick={() => setImageToggle("before")}
+                    className={cn(
+                      "px-4 sm:px-5 py-1 sm:py-1.5 text-xs sm:text-sm md:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                      imageToggle === "before"
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+                    )}
+                  >
+                    Avant
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    id={tabAfterId}
+                    aria-controls={panelId}
+                    aria-selected={imageToggle === "after"}
+                    onClick={() => setImageToggle("after")}
+                    className={cn(
+                      "px-4 sm:px-5 py-1 sm:py-1.5 text-xs sm:text-sm sm:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                      imageToggle === "after"
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
+                    )}
+                  >
+                    Après
+                  </button>
+                </div>
+                <div className="sm:hidden absolute z-10 top-[40%] w-full flex flex-row items-center justify-between px-4 ">
+                  <button
+                    onClick={handlePrevious}
+                    className=" p-1 backdrop-blur-md rounded-sm flex items-center justify-center border border-gray-300/50"
+                    aria-label="Exemple précédent"
+                  >
+                    <ChevronLeft className="h-6 [420px]:w-8 w-6 [420px]:h-8 text-primary" aria-hidden="true" />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className=" p-1 backdrop-blur-md rounded-sm flex items-center justify-center border border-gray-300/50"
+                    aria-label="Exemple suivant"
+                  >
+                    <ChevronRight className="h-6 [420px]:w-8 w-6 [420px]:h-8 text-primary" aria-hidden="true" />
+                  </button>
+                </div>
+
+                {/* Image panel (fixed aspect => CLS-safe) */}
+                <div
+                  id={panelId}
+                  role="tabpanel"
+                  aria-labelledby={
+                    imageToggle === "before" ? tabBeforeId : tabAfterId
+                  }
+                  className="relative aspect-video w-full overflow-hidden sm:rounded-xl bg-muted"
+                >
+                  <Image
+                    src={current.after}
+                    alt={`Après intervention - ${current.title}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 700px"
+                    className={cn(
+                      "object-cover transition-opacity duration-200",
+                      imageToggle === "after" ? "opacity-100" : "opacity-0",
+                    )}
+                    aria-hidden={imageToggle !== "after"}
+                    loading="lazy"
+                  />
+                  <Image
+                    src={current.before}
+                    alt={`Avant intervention - ${current.title}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 700px"
+                    className={cn(
+                      "object-cover transition-opacity duration-200",
+                      imageToggle === "before" ? "opacity-100" : "opacity-0",
+                    )}
+                    aria-hidden={imageToggle !== "before"}
+                    loading="lazy"
+                  />
+
+                  {/* Optional badge (kept subtle) */}
+                  <div className="hidden sm:absolute bottom-3 right-3 rounded-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg border border-border/50">
+                    <p className="text-xs font-medium text-muted-foreground">
+                      Résultat
+                    </p>
+                    <p className="text-sm font-bold text-primary">
+                      Espace libéré
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* lg+: side-by-side (your original) */}
+            <div className="hidden lg:grid gap-4 lg:grid-cols-2 mt-4">
               <div>
                 <p className="mb-2 text-center text-sm font-medium text-muted-foreground">
                   Avant
                 </p>
-                <img
-                  src={current.before || "/placeholder.svg"}
-                  alt={`Avant - ${current.title}`}
-                  className="aspect-video w-full rounded-lg object-cover"
-                />
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+                  <Image
+                    src={current.before}
+                    alt={`Avant intervention - ${current.title}`}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 520px"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </div>
               </div>
               <div>
                 <p className="mb-2 text-center text-sm font-medium text-muted-foreground">
                   Après
                 </p>
-                <img
-                  src={current.after || "/placeholder.svg"}
-                  alt={`Après - ${current.title}`}
-                  className="aspect-video w-full rounded-lg object-cover"
-                />
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+                  <Image
+                    src={current.after}
+                    alt={`Après intervention - ${current.title}`}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 520px"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
-            <p className="mt-4 text-center text-muted-foreground">
+
+            <p className="mt-4 text-center text-sm text-muted-foreground sm:text-base">
               {current.description}
             </p>
-
             <p className="mt-2 text-center text-xs text-muted-foreground">
               {copy.caption}
             </p>
 
-            <div className="mt-6 flex items-center justify-center gap-4">
-              <Button variant="outline" size="icon" onClick={handlePrevious}>
-                <ChevronLeft className="h-4 w-4" />
+            {/* Navigation controls (keep 44px+ targets) */}
+            <div className="mt-4 sm:mt-5 flex items-center justify-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handlePrevious}
+                className="h-11 w-11 hidden sm:flex"
+                aria-label="Exemple précédent"
+              >
+                <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </Button>
-              <div className="flex gap-2">
+
+              <div
+                className="flex gap-1"
+                role="tablist"
+                aria-label="Sélection d'exemples"
+              >
                 {examples.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`h-2 w-2 rounded-full transition-colors ${
-                      index === currentIndex ? "bg-primary" : "bg-border"
-                    }`}
-                    aria-label={`Aller à l'exemple ${index + 1}`}
-                  />
+                    type="button"
+                    onClick={() => handleDotClick(index)}
+                    className="flex h-11 w-11 items-center justify-center"
+                    aria-label={`Exemple ${index + 1}`}
+                    aria-selected={index === currentIndex}
+                    role="tab"
+                  >
+                    <span
+                      className={cn(
+                        "h-2.5 w-2.5 rounded-full transition-colors",
+                        index === currentIndex ? "bg-primary" : "bg-border",
+                      )}
+                      aria-hidden="true"
+                    />
+                  </button>
                 ))}
               </div>
-              <Button variant="outline" size="icon" onClick={handleNext}>
-                <ChevronRight className="h-4 w-4" />
+
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleNext}
+                className="h-11 w-11 hidden sm:flex"
+                aria-label="Exemple suivant"
+              >
+                <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </Button>
             </div>
           </CardContent>

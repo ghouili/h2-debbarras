@@ -53,15 +53,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/mentions-legales`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
+    },
+    {
+      url: `${baseUrl}/politique-confidentialite`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
+    },
   ]
 
   const allServices = [
     ...siteConfig.services.particulier.debarras,
     ...siteConfig.services.particulier.demenagement,
-    // ...siteConfig.services.particulier.nettoyage, // Commented out in config
     ...siteConfig.services.professionnel.debarras,
     ...siteConfig.services.professionnel.demenagement,
-    ...siteConfig.services.professionnel.nettoyage,
   ]
 
   const servicePages = allServices.map((service) => ({

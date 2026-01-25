@@ -42,15 +42,20 @@ export function JsonLd({ type, data }: JsonLdProps) {
         "@context": "https://schema.org",
         "@type": "Service",
         serviceType: data?.title || "Débarras de maison",
+        name: data?.title,
         provider: {
           "@type": "LocalBusiness",
           name: siteConfig.name,
+          url: siteConfig.url,
+          telephone: siteConfig.contact.phone,
         },
         areaServed: {
           "@type": "State",
           name: "Île-de-France",
         },
         description: data?.description,
+        url: data?.url,
+        mainEntityOfPage: data?.url,
       }
       break
 

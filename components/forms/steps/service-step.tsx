@@ -25,7 +25,6 @@ export function ServiceStep({ formData, updateFormData, nextStep }: Props) {
   const allServices = [
     ...siteConfig.services.particulier.debarras,
     ...siteConfig.services.particulier.demenagement,
-    ...siteConfig.services.particulier.nettoyage,
   ]
 
   return (

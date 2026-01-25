@@ -1,11 +1,14 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { siteConfig } from "@/lib/config"
-import { ServiceLandingPage, ServiceLandingProps } from "@/components/service-landing-page"
+import { ServiceLandingPage } from "@/components/service-landing-page"
+import { JsonLd } from "@/components/seo/json-ld"
 
 // Define the service type for type safety
 type Service = {
   id: string
+  campaignGroup?: string
+  campaignKey?: string
   title: string
   slug: string
   icon: string
@@ -16,7 +19,7 @@ type Service = {
 
 type ServiceInfo = {
   service: Service
-  category: "debarras" | "demenagement" | "nettoyage"
+  category: "debarras" | "demenagement"
   clientType: "particulier" | "professionnel"
 }
 
@@ -66,15 +69,6 @@ function getAllServices(): ServiceInfo[] {
     })
   }
   
-  // Professionnel Nettoyage
-  for (const service of professionnel.nettoyage) {
-    allServices.push({
-      service,
-      category: "nettoyage",
-      clientType: "professionnel",
-    })
-  }
-  
   return allServices
 }
 
@@ -84,13 +78,13 @@ function findServiceBySlug(slug: string): ServiceInfo | undefined {
 }
 
 // Get related services (same category, different service)
-function getRelatedServices(currentSlug: string, category: string): Array<{
+function getRelatedServices(currentSlug: string, category: ServiceInfo["category"], clientType: ServiceInfo["clientType"]): Array<{
   title: string
   slug: string
   shortDescription: string
 }> {
   return getAllServices()
-    .filter(s => s.category === category && s.service.slug !== currentSlug)
+    .filter(s => s.category === category && s.clientType === clientType && s.service.slug !== currentSlug)
     .slice(0, 3)
     .map(s => ({
       title: s.service.title,
@@ -121,13 +115,7 @@ export async function generateMetadata({
     }
   }
   
-  const { service, category, clientType } = serviceInfo
-  
-  const categoryLabels = {
-    debarras: "Débarras",
-    demenagement: "Déménagement",
-    nettoyage: "Nettoyage",
-  }
+  const { service, clientType } = serviceInfo
   
   const clientLabels = {
     particulier: "Particuliers",
@@ -135,21 +123,17 @@ export async function generateMetadata({
   }
   
   return {
-    title: `${service.title} | ${categoryLabels[category]} ${clientLabels[clientType]} | ${siteConfig.name}`,
+    title: `${service.title} en Île-de-France | ${clientLabels[clientType]} | ${siteConfig.name}`,
     description: service.description,
-    keywords: [
-      service.title.toLowerCase(),
-      categoryLabels[category].toLowerCase(),
-      "île-de-france",
-      "paris",
-      "devis gratuit",
-      ...service.features.map(f => f.toLowerCase()),
-    ],
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
     openGraph: {
       title: `${service.title} - ${siteConfig.name}`,
       description: service.description,
       type: "website",
       locale: "fr_FR",
+      url: `/services/${service.slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -173,14 +157,35 @@ export default async function ServicePage({
   }
   
   const { service, category, clientType } = serviceInfo
-  const relatedServices = getRelatedServices(slug, category)
+  const relatedServices = getRelatedServices(slug, category, clientType)
+
+  const categoryLabel = category === "debarras" ? "Débarras" : "Déménagement"
+  const clientLabel = clientType === "particulier" ? "Particuliers" : "Professionnels"
   
   return (
-    <ServiceLandingPage
-      service={service}
-      category={category}
-      clientType={clientType}
-      relatedServices={relatedServices}
-    />
+    <>
+      <JsonLd
+        type="breadcrumb"
+        data={{
+          items: [
+            { label: "Accueil", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: `${categoryLabel} ${clientLabel}`, href: "/services" },
+            { label: service.title, href: `/services/${service.slug}` },
+          ],
+        }}
+      />
+      <JsonLd
+        type="service"
+        data={{
+          title: service.title,
+          description: service.description,
+          url: `${siteConfig.url}/services/${service.slug}`,
+          category: categoryLabel,
+          audience: clientLabel,
+        }}
+      />
+      <ServiceLandingPage service={service} category={category} clientType={clientType} relatedServices={relatedServices} />
+    </>
   )
 }

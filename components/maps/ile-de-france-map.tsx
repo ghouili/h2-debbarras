@@ -123,7 +123,7 @@ export default function IleDeFranceMap({
 
   if (!mounted) {
     return (
-      <div className="flex h-[400px] w-full items-center justify-center rounded-xl bg-muted/50">
+      <div className="flex h-full w-full items-center justify-center bg-muted/50">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
           <span className="text-sm text-muted-foreground">Chargement de la carte...</span>
@@ -139,8 +139,8 @@ export default function IleDeFranceMap({
     <MapContainer
       center={center}
       zoom={zoom}
-      className="h-[400px] w-full rounded-xl"
-      style={{ background: "#f0f4ff" }}
+      className="h-full w-full"
+      style={{ background: "#f0f4ff", minHeight: "100%" }}
       scrollWheelZoom={true}
       zoomControl={true}
     >

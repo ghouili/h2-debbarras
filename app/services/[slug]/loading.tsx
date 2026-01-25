@@ -5,7 +5,7 @@ export default function ServiceLoading() {
     <div className="bg-background">
       {/* Hero skeleton */}
       <section className="bg-primary/10 py-16 md:py-24">
-        <div className="container mx-auto px-4">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-5xl">
             <div className="grid gap-12 lg:grid-cols-2">
               <div className="space-y-6">
@@ -36,7 +36,7 @@ export default function ServiceLoading() {
 
       {/* Features skeleton */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-5xl">
             <div className="text-center">
               <Skeleton className="mx-auto h-6 w-32" />
@@ -53,7 +53,7 @@ export default function ServiceLoading() {
 
       {/* Process skeleton */}
       <section className="bg-muted/30 py-16">
-        <div className="container mx-auto px-4">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-5xl">
             <div className="text-center">
               <Skeleton className="mx-auto h-6 w-40" />

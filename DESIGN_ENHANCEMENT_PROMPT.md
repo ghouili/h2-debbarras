@@ -29,31 +29,35 @@
 
 #### 🏠 DÉBARRAS (Junk Removal)
 
-1. **Maisons & Appartements** (`debarras-maison-appartement`)
-   - Complete house and apartment clearance with professional sorting
-   - Features: 24-48h intervention, selective sorting, post-clearance cleaning, free quote
+1. **Débarras maison (vide maison)** (`debarras-maison`)
+   - Complete house clearance with professional sorting
+   - Features: 24-48h intervention, selective sorting, complete evacuation, free quote
+
+2. **Débarras appartement (vide appartement)** (`debarras-appartement`)
+   - Complete apartment clearance with professional sorting
+   - Features: 24-48h intervention, selective sorting, complete evacuation, free quote
    
-2. **Garages, Caves & Greniers** (`debarras-cave-grenier`)
+3. **Garages, Caves & Greniers** (`debarras-cave-grenier`)
    - Evacuation of cellars, attics, garages and cluttered spaces
    - Features: Difficult access, rapid evacuation, recyclable sorting, competitive prices
    
-3. **Après Décès & Succession** (`debarras-succession`)
+4. **Après Décès & Succession** (`debarras-succession`)
    - Delicate support for estate clearance
    - Features: Compassionate approach, valuable items identification, guaranteed discretion, administrative support
    
-4. **Meubles & Canapés** (`enlevement-meubles-canapes`)
+5. **Meubles & Canapés** (`enlevement-meubles-canapes`)
    - Bulky furniture removal and evacuation
    - Features: Disassembly if needed, secure transport, recycling, express intervention
    
-5. **Électroménagers** (`enlevement-electromenager`)
+6. **Électroménagers** (`enlevement-electromenager`)
    - Appliance collection and recycling
    - Features: WEEE recycling, disconnection, secure evacuation, free depending on volume
    
-6. **Encombrants Divers** (`enlevement-encombrants`)
+7. **Encombrants Divers** (`enlevement-encombrants`)
    - Collection of all types of bulky items
    - Features: All object types, source sorting, valorization, rapid intervention
    
-7. **Débarras Écoresponsable** (`debarras-ecoresponsable`)
+8. **Débarras Écoresponsable** (`debarras-ecoresponsable`)
    - Clearance with maximum valorization and recycling
    - Features: Selective sorting, donations to charities, maximum recycling, traceability
 
@@ -100,20 +104,6 @@
 1. **Déménagement d'Entreprises** (`demenagement-entreprise`)
    - Professional company moving
    - Features: Adapted planning, weekend/night service, IT & telephony, service restoration
-
-#### 🧹 NETTOYAGE (Cleaning)
-
-1. **Après Travaux** (`nettoyage-apres-travaux`)
-   - Post-construction site cleaning
-   - Features: Construction dust removal, finishing touches, windows, ready to use
-   
-2. **Bureaux & Commerces** (`nettoyage-bureaux-commerces`)
-   - Regular maintenance of professional premises
-   - Features: Recurring contracts, after-hours, professional products, trained staff
-   
-3. **Syndrome de Diogène** (`nettoyage-syndrome-diogene`)
-   - Specialized intervention for Diogene cases
-   - Features: Absolute discretion, PPE equipment, complete disinfection, support
 
 ---
 
@@ -221,12 +211,12 @@
    - Service: Déménagement entreprise | 1 semaine ago
 
 5. **Isabelle R.** - Montreuil (93)
-   - "Nettoyage impeccable après sinistre. Équipe réactive et très professionnelle. Merci pour votre aide précieuse."
-   - Service: Nettoyage après sinistre | 2 mois ago
-
-6. **Philippe K.** - Évry (91)
    - "Débarras de garage effectué en moins de 3 heures. Très bon rapport qualité-prix, je recommande sans hésiter."
    - Service: Débarras garage | 5 jours ago
+
+6. **Philippe K.** - Évry (91)
+   - "Enlèvement d'encombrants rapide et soigné. Communication claire du début à la fin."
+   - Service: Enlèvement d'encombrants | 10 jours ago
 
 ---
 
@@ -271,8 +261,8 @@ A: Nous adoptons une démarche écoresponsable : les objets en bon état sont do
 **Q: Fournissez-vous un certificat de destruction ?**  
 A: Oui, nous pouvons fournir un certificat de destruction ou d'évacuation, particulièrement utile pour les professionnels, les syndics ou dans le cadre de successions.
 
-**Q: Proposez-vous le nettoyage après débarras ?**  
-A: Oui, nous proposons systématiquement un nettoyage de finition après débarras (balayage, dépoussiérage). Pour un nettoyage plus approfondi, nous pouvons établir un devis complémentaire.
+**Q: Proposez-vous le tri, le recyclage et la valorisation ?**  
+A: Oui. Nous effectuons un tri sur place et orientons les objets vers les filières adaptées : don, réemploi, recyclage, déchetterie. Notre objectif est de minimiser le déchet ultime.
 
 ### Urgences
 

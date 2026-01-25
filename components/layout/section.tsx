@@ -10,7 +10,7 @@ interface SectionProps {
 }
 
 export function Section({ children, className, bleed = false, containerClassName }: SectionProps) {
-  const basePadding = "py-12 md:py-16"
+  const basePadding = "py-10 sm:py-12 lg:py-16"
 
   if (bleed) {
     return (

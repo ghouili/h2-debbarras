@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle2, Phone, Home } from "lucide-react"
 import { siteConfig } from "@/lib/config"
 import type { Metadata } from "next"
+import { Section } from "@/components/layout/section"
 
 export const metadata: Metadata = {
   title: "Merci pour votre demande",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function MerciPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <Section>
       <div className="mx-auto max-w-2xl">
         <Card>
           <CardContent className="p-8 text-center">
@@ -75,6 +76,6 @@ export default function MerciPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </Section>
   )
 }

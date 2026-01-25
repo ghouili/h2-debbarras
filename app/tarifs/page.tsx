@@ -23,9 +23,9 @@ export default function TarifsPage() {
     <Section>
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
-          <Calculator className="mx-auto h-12 w-12 text-primary" />
-          <h1 className="mt-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">Nos Tarifs</h1>
-          <p className="mt-4 text-pretty text-lg text-muted-foreground">
+          <Calculator className="mx-auto h-10 w-10 text-primary" />
+          <h1 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">Nos Tarifs</h1>
+          <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
             Des tarifs transparents et compétitifs pour tous vos besoins de débarras
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function TarifsPage() {
 
             <div className="rounded-lg bg-primary/10 p-6 text-center">
               <p className="text-sm text-muted-foreground">Prix estimé</p>
-              <p className="text-4xl font-bold text-primary">{estimatedPrice}€</p>
+              <p className="text-3xl font-bold text-primary sm:text-4xl">{estimatedPrice}€</p>
               <p className="mt-2 text-xs text-muted-foreground">
                 * Prix indicatif, un devis personnalisé vous sera fourni
               </p>
@@ -179,7 +179,6 @@ export default function TarifsPage() {
                 "Transport et évacuation",
                 "Tri et recyclage",
                 "Protection des sols et murs",
-                "Nettoyage final",
                 "Assurance décennale",
                 "Devis gratuit",
                 "Aucun frais caché",

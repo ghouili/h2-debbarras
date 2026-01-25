@@ -6,16 +6,18 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent } from "@/components/ui/card"
-import { Building2, Home, Store, Warehouse, HardHat, Sparkles } from "lucide-react"
+import { Building2, Home, Store, Warehouse, HardHat, Truck } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
 
 const services = [
-  { id: "maison-appartement", label: "Maison / Appartement", icon: Home },
+  { id: "debarras-maison", label: "Débarras maison", icon: Home },
+  { id: "debarras-appartement", label: "Débarras appartement", icon: Home },
   { id: "cave-grenier", label: "Cave / Grenier", icon: Warehouse },
   { id: "commerces-entrepots", label: "Commerce / Entrepôt", icon: Store },
   { id: "bureaux-locaux", label: "Bureau / Local", icon: Building2 },
-  { id: "demenagement-entreprise", label: "Déménagement", icon: HardHat },
-  { id: "nettoyage-professionnel", label: "Nettoyage", icon: Sparkles },
+  { id: "gravats", label: "Gravats / chantier", icon: HardHat },
+  { id: "demenagement-particulier", label: "Déménagement", icon: Truck },
+  { id: "demenagement-entreprise", label: "Déménagement entreprise", icon: Truck },
 ]
 
 const timingOptions = [

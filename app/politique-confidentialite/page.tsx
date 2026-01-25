@@ -1,84 +1,128 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { siteConfig } from "@/lib/config"
 import type { Metadata } from "next"
+import { Section } from "@/components/layout/section"
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité",
-  description: "Politique de confidentialité et de protection des données personnelles de H2 Débarras Maison.",
-  robots: {
-    index: false,
+  title: "Politique de confidentialité | H2 Débarras Maison",
+  description:
+    "Politique de confidentialité RGPD de H2 Débarras Maison : données collectées, finalités, bases légales, droits et cookies.",
+  alternates: {
+    canonical: `${siteConfig.url}/politique-confidentialite`,
   },
 }
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <Section>
       <div className="mx-auto max-w-4xl">
-        <h1 className="mb-8 text-4xl font-bold">Politique de confidentialité</h1>
+        <h1 className="mb-6 text-3xl font-bold sm:text-4xl">Politique de confidentialité</h1>
 
         <Card className="mb-6">
           <CardContent className="prose prose-sm max-w-none p-6">
-            <h2 className="text-2xl font-semibold">1. Collecte des données</h2>
+            <h2 className="text-2xl font-semibold">1. Responsable du traitement</h2>
             <p>
-              {siteConfig.name} collecte des données personnelles lorsque vous remplissez notre formulaire de devis ou
-              nous contactez. Les données collectées incluent : nom, prénom, email, téléphone, adresse.
+              {siteConfig.name} est responsable du traitement des données personnelles collectées via ce site.
+              <br />
+              Contact RGPD : <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
+              <br />
+              DPO : ---------------------------------
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">2. Utilisation des données</h2>
-            <p>Vos données sont utilisées pour :</p>
+            <h2 className="mt-6 text-2xl font-semibold">2. Données collectées</h2>
             <ul>
-              <li>Répondre à vos demandes de devis</li>
-              <li>Vous contacter concernant nos services</li>
-              <li>Améliorer nos services</li>
-              <li>Respecter nos obligations légales</li>
+              <li>Données d'identité et de contact (nom, prénom, email, téléphone)</li>
+              <li>Données liées à la demande (adresse, code postal, message, informations de devis)</li>
+              <li>Données de navigation (adresse IP, user-agent, logs techniques)</li>
+              <li>Événements de navigation (ex. clics sur les appels) si la mesure est activée</li>
             </ul>
 
-            <h2 className="mt-6 text-2xl font-semibold">3. Conservation des données</h2>
+            <h2 className="mt-6 text-2xl font-semibold">3. Finalités</h2>
+            <ul>
+              <li>Répondre aux demandes de devis et de contact</li>
+              <li>Gestion commerciale et suivi des demandes</li>
+              <li>Amélioration du site et des services</li>
+              <li>Sécurité et prévention des abus</li>
+              <li>Mesure d'audience, si activée</li>
+            </ul>
+
+            <h2 className="mt-6 text-2xl font-semibold">4. Bases légales</h2>
+            <ul>
+              <li>Mesures précontractuelles (réponse à une demande de devis)</li>
+              <li>Intérêt légitime (sécurité, amélioration du site)</li>
+              <li>Consentement lorsque requis (cookies non essentiels)</li>
+              <li>Obligations légales, le cas échéant</li>
+            </ul>
+
+            <h2 className="mt-6 text-2xl font-semibold">5. Destinataires</h2>
             <p>
-              Vos données sont conservées pendant 3 ans à compter de notre dernier contact. Passé ce délai, elles sont
-              supprimées de nos systèmes.
+              Vos données sont accessibles par l'équipe interne habilitée et nos sous-traitants techniques.
+              <br />
+              Hébergeur : ----------------------
+              <br />
+              Autres sous-traitants (email, CRM, analytics) : -----------------------
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">4. Vos droits</h2>
+            <h2 className="mt-6 text-2xl font-semibold">6. Durées de conservation</h2>
+            <ul>
+              <li>Leads / devis : ----------------------</li>
+              <li>Logs techniques : ----------------------</li>
+              <li>Mesure d'audience : ----------------------</li>
+            </ul>
+
+            <h2 className="mt-6 text-2xl font-semibold">7. Vos droits</h2>
             <p>Conformément au RGPD, vous disposez des droits suivants :</p>
             <ul>
-              <li>Droit d'accès à vos données</li>
+              <li>Droit d'accès</li>
               <li>Droit de rectification</li>
               <li>Droit à l'effacement</li>
-              <li>Droit à la limitation du traitement</li>
+              <li>Droit à la limitation</li>
               <li>Droit d'opposition</li>
               <li>Droit à la portabilité</li>
+              <li>Retrait du consentement lorsque applicable</li>
             </ul>
             <p>
-              Pour exercer ces droits, contactez-nous à :{" "}
-              <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
+              Pour exercer vos droits, contactez-nous à :{" "}
+              <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>. Nous répondons dans les
+              meilleurs délais.
+            </p>
+            <p>
+              Vous pouvez également déposer une réclamation auprès de la CNIL : <a href="https://www.cnil.fr">www.cnil.fr</a>.
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">5. Cookies</h2>
+            <h2 className="mt-6 text-2xl font-semibold">8. Cookies et traceurs</h2>
             <p>
-              Notre site utilise des cookies pour améliorer votre expérience et analyser notre trafic. Vous pouvez gérer
-              vos préférences de cookies via le banner affiché lors de votre première visite.
+              Des cookies peuvent être utilisés pour le fonctionnement du site, la mesure d'audience et, le cas échéant,
+              des finalités marketing. Les cookies non essentiels nécessitent votre consentement. Certaines mesures
+              d'audience peuvent être exemptées de consentement sous conditions (référentiel CNIL).
+            </p>
+            <p>
+              Paramétrage des cookies : ----------------------
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">6. Sécurité</h2>
+            <h2 className="mt-6 text-2xl font-semibold">9. Transferts hors UE</h2>
             <p>
-              Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données
-              contre tout accès non autorisé, modification, divulgation ou destruction.
-            </p>
-
-            <h2 className="mt-6 text-2xl font-semibold">7. Contact</h2>
-            <p>
-              Pour toute question concernant cette politique de confidentialité, contactez-nous :
+              Certains sous-traitants peuvent traiter des données hors de l'Union européenne. Le cas échéant, des
+              garanties appropriées (ex. clauses contractuelles types) sont mises en place.
               <br />
-              Email : <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
-              <br />
-              Téléphone : {siteConfig.contact.phone}
+              ----------------------
             </p>
 
-            <p className="mt-6 text-sm text-muted-foreground">Dernière mise à jour : Décembre 2024</p>
+            <h2 className="mt-6 text-2xl font-semibold">10. Sécurité</h2>
+            <p>
+              Nous mettons en œuvre des mesures techniques et organisationnelles proportionnées pour protéger vos données
+              (contrôles d'accès, minimisation, sauvegardes, etc.).
+            </p>
+
+            <h2 className="mt-6 text-2xl font-semibold">11. Contact</h2>
+            <p>
+              Pour toute question, contactez-nous via la page <a href="/contact">Contact</a> ou par téléphone au {siteConfig.contact.phone}.
+            </p>
+
+            <p className="mt-6 text-sm text-muted-foreground">Dernière mise à jour : 20 janvier 2026</p>
           </CardContent>
         </Card>
       </div>
-    </div>
+    </Section>
   )
 }

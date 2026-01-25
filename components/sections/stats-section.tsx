@@ -6,14 +6,14 @@ export function StatsSection() {
 
   return (
     <Section bleed className="bg-primary text-primary-foreground">
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4" role="list" aria-label="Nos chiffres clés">
         {stats.map((stat) => (
-          <div key={stat.label} className="text-center">
-            <div className="text-4xl font-bold md:text-5xl">{stat.value}</div>
-            <div className="mt-2 text-sm opacity-90 md:text-base">{stat.label}</div>
-          </div>
+          <li key={stat.label} className="text-center">
+            <div className="text-2xl font-bold sm:text-3xl lg:text-4xl">{stat.value}</div>
+            <div className="mt-1 text-xs opacity-90 sm:text-sm">{stat.label}</div>
+          </li>
         ))}
-      </div>
+      </ul>
     </Section>
   )
 }
