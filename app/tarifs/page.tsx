@@ -8,6 +8,8 @@ import { Slider } from "@/components/ui/slider"
 import { Calculator, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 import { Section } from "@/components/layout/section"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 export default function TarifsPage() {
   const [rooms, setRooms] = useState([2])
@@ -24,7 +26,14 @@ export default function TarifsPage() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <Calculator className="mx-auto h-10 w-10 text-primary" />
-          <h1 className="mt-3 text-balance text-3xl font-bold tracking-tight sm:text-4xl">Nos Tarifs</h1>
+          <h1
+            className={cn(
+              designTokens.typography.h1,
+              "mt-3 text-balance text-3xl sm:text-4xl",
+            )}
+          >
+            Nos Tarifs
+          </h1>
           <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
             Des tarifs transparents et compétitifs pour tous vos besoins de débarras
           </p>
@@ -63,7 +72,9 @@ export default function TarifsPage() {
 
         {/* Price Grid */}
         <div className="mt-12">
-          <h2 className="mb-6 text-2xl font-bold">Grille tarifaire indicative</h2>
+          <h2 className={cn(designTokens.typography.h2, "mb-6 text-2xl")}>
+            Grille tarifaire indicative
+          </h2>
           <div className="grid gap-6 md:grid-cols-2">
             <Card>
               <CardHeader>

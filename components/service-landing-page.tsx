@@ -128,7 +128,7 @@ export function ServiceLandingPage({
       },
       {
         icon: Recycle,
-        title: "Tri écoresponsable",
+        title: "Tri éco-responsable",
         text: "Recyclage et don aux associations",
       },
       {
@@ -194,8 +194,7 @@ export function ServiceLandingPage({
                 src={"/optimized/icons/special-icon-w40.png"}
                 width={24}
                 height={24}
-                alt=""
-                aria-hidden="true"
+                alt="Icône plus de 500 interventions"
                 className="h-4 w-4 sm:h-6 sm:w-6"
               />
               <span>
@@ -207,7 +206,12 @@ export function ServiceLandingPage({
             </div>
 
             {/* Title - Responsive typography */}
-            <h1 className="text-balance text-xl font-bold tracking-tight leading-tight sm:text-3xl lg:text-4xl">
+            <h1
+              className={cn(
+                designTokens.typography.h1,
+                "text-balance text-xl leading-tight sm:text-3xl lg:text-4xl",
+              )}
+            >
               {service.title}{" "}
               <span className="text-primary">en Île-de-France</span>
             </h1>
@@ -311,7 +315,7 @@ export function ServiceLandingPage({
                     <CheckCircle2 className="h-3.5 w-3.5 text-green-600 sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Devis gratuit & sans engagement</p>
+                    <p className="font-medium text-xs sm:text-base">Devis gratuit et sans engagement</p>
                     <p className="text-[10px] text-muted-foreground sm:text-sm">Réponse sous 2h</p>
                   </div>
                 </div>
@@ -320,7 +324,7 @@ export function ServiceLandingPage({
                     <Clock className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Intervention rapide 24-48h</p>
+                    <p className="font-medium text-xs sm:text-base">Intervention rapide 24 à 48 h</p>
                     <p className="text-[10px] text-muted-foreground sm:text-sm">Selon disponibilité</p>
                   </div>
                 </div>
@@ -330,7 +334,7 @@ export function ServiceLandingPage({
                   </div>
                   <div className="min-w-0">
                     <p className="font-medium text-xs sm:text-base">Entreprise assurée</p>
-                    <p className="text-[10px] text-muted-foreground sm:text-sm">RC Pro & garantie</p>
+                    <p className="text-[10px] text-muted-foreground sm:text-sm">RC Pro et garantie</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
@@ -338,8 +342,8 @@ export function ServiceLandingPage({
                     <Recycle className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Tri écoresponsable</p>
-                    <p className="text-[10px] text-muted-foreground sm:text-sm">Recyclage & dons</p>
+                    <p className="font-medium text-xs sm:text-base">Tri éco-responsable</p>
+                    <p className="text-[10px] text-muted-foreground sm:text-sm">Recyclage et dons</p>
                   </div>
                 </div>
               </div>
@@ -351,7 +355,7 @@ export function ServiceLandingPage({
                   <div className="min-w-0">
                     <p className="font-medium text-xs sm:text-base">Zone d'intervention</p>
                     <p className="text-[10px] text-muted-foreground sm:text-sm">
-                      Paris & Île-de-France (75, 77, 78, 91, 92, 93, 94, 95)
+                      Paris et Île-de-France (75, 77, 78, 91, 92, 93, 94, 95)
                     </p>
                     <Link
                       href="/zones"
@@ -371,7 +375,12 @@ export function ServiceLandingPage({
       {/* Benefits Section - 2x2 on mobile, 4 cols on lg */}
       <Section>
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             Pourquoi nous choisir ?
           </h2>
           <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
@@ -389,7 +398,14 @@ export function ServiceLandingPage({
                 <div className="mb-1.5 flex h-8 w-8 items-center justify-center rounded-md bg-primary/10 transition-colors group-hover:bg-primary/20 sm:mb-3 sm:h-12 sm:w-12 sm:rounded-lg">
                   <benefit.icon className="h-4 w-4 text-primary sm:h-6 sm:w-6" />
                 </div>
-                <CardTitle className="text-xs font-semibold sm:text-base lg:text-lg">{benefit.title}</CardTitle>
+                <CardTitle
+                  className={cn(
+                    designTokens.typography.h4,
+                    "text-xs sm:text-base lg:text-lg",
+                  )}
+                >
+                  {benefit.title}
+                </CardTitle>
                 <CardDescription className="text-[10px] sm:text-sm">{benefit.text}</CardDescription>
               </CardHeader>
             </Card>
@@ -400,7 +416,12 @@ export function ServiceLandingPage({
       {/* Features Section - Ce qui est inclus */}
       <Section bleed className="bg-secondary">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             Ce qui est inclus
           </h2>
           <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
@@ -428,7 +449,12 @@ export function ServiceLandingPage({
       {/* Process Section - Vertical on mobile, grid on larger screens */}
       <Section>
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             Comment ça marche ?
           </h2>
           <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
@@ -444,7 +470,14 @@ export function ServiceLandingPage({
                 {step.step}
               </div>
               <div className="flex-1 pt-0.5">
-                <h3 className="text-sm font-semibold">{step.title}</h3>
+                <h3
+                  className={cn(
+                    designTokens.typography.h4,
+                    "text-sm",
+                  )}
+                >
+                  {step.title}
+                </h3>
                 <p className="mt-0.5 text-xs text-muted-foreground">
                   {step.description}
                 </p>
@@ -464,7 +497,14 @@ export function ServiceLandingPage({
                 <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-xl font-bold text-primary-foreground lg:mb-4 lg:h-14 lg:w-14 lg:text-2xl">
                   {step.step}
                 </div>
-                <h3 className="mb-1.5 text-base font-semibold lg:mb-2 lg:text-lg">{step.title}</h3>
+                <h3
+                  className={cn(
+                    designTokens.typography.h4,
+                    "mb-1.5 text-base lg:mb-2 lg:text-lg",
+                  )}
+                >
+                  {step.title}
+                </h3>
                 <p className="text-sm text-muted-foreground">
                   {step.description}
                 </p>
@@ -477,7 +517,12 @@ export function ServiceLandingPage({
       {/* Testimonials Section - Stacked on mobile, grid on md+ */}
       <Section bleed className="bg-secondary">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             Ils nous font confiance
           </h2>
           <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
@@ -544,7 +589,12 @@ export function ServiceLandingPage({
       {/* FAQ Section */}
       <Section>
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             Questions fréquentes
           </h2>
           <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
@@ -571,7 +621,12 @@ export function ServiceLandingPage({
       {/* Related Services + Internal links */}
       <Section bleed className="bg-secondary">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             Explorer nos services
           </h2>
           <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
@@ -587,7 +642,14 @@ export function ServiceLandingPage({
                 className="group h-full transition-shadow hover:shadow-lg"
               >
                 <CardHeader className="p-3 sm:p-6">
-                  <CardTitle className="text-sm font-semibold sm:text-lg lg:text-xl">{related.title}</CardTitle>
+                  <CardTitle
+                    className={cn(
+                      designTokens.typography.h4,
+                      "text-sm sm:text-lg lg:text-xl",
+                    )}
+                  >
+                    {related.title}
+                  </CardTitle>
                   <CardDescription className="text-xs line-clamp-2 sm:text-sm sm:line-clamp-none">
                     {related.shortDescription}
                   </CardDescription>
@@ -629,7 +691,12 @@ export function ServiceLandingPage({
         className="bg-linear-to-b from-primary-100 via-primary-50/50 to-background"
       >
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             Prêt à démarrer ?
           </h2>
           <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
@@ -647,7 +714,7 @@ export function ServiceLandingPage({
                   src="/optimized/icons/devis-icon-white-w32.png"
                   width={16}
                   height={16}
-                  alt=""
+                  alt="Icône demande de devis gratuit"
                   className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5"
                 />
                 Devis gratuit

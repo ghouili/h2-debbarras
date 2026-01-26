@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ColumnDef } from '@tanstack/react-table'
+import type { ColumnDef } from '@tanstack/react-table'
 import { toast } from 'sonner'
 import type { User } from '../../../shared/schemas'
 import { userCreateSchema, userUpdateSchema } from '../../../shared/schemas'
@@ -143,6 +143,10 @@ export const UsersPage = () => {
         })
         toast.success('Utilisateur mis à jour.')
       } else {
+        if (!values.password) {
+          toast.error('Mot de passe requis.')
+          return
+        }
         await createMutation.mutateAsync({
           email: values.email,
           fullName: values.fullName,

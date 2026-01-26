@@ -68,7 +68,7 @@ export function Step4ContactConsent({
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Contact Info */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">
+        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">
           Vos coordonnées
         </h2>
         <p className="mb-4 text-sm text-muted-foreground">
@@ -163,7 +163,7 @@ export function Step4ContactConsent({
                   htmlFor="consent" 
                   className="cursor-pointer text-sm leading-relaxed text-muted-foreground"
                 >
-                  J'accepte d'être contacté par H2 Débarras Maison concernant ma demande de devis et je consens au traitement de mes données personnelles conformément à la{" "}
+                  J'accepte d'être contacté par Débarras Aurea concernant ma demande de devis et je consens au traitement de mes données personnelles conformément à la{" "}
                   <a
                     href="/politique-confidentialite"
                     className="font-medium text-primary underline-offset-2 hover:underline"
@@ -236,7 +236,7 @@ export function Step4ContactConsent({
                   htmlFor="consent"
                   className="block cursor-pointer text-sm leading-relaxed text-foreground/80 text-pretty"
                 >
-                  J'accepte d'être contacté par H2 Débarras Maison concernant ma
+                  J'accepte d'être contacté par Débarras Aurea concernant ma
                   demande de devis et je consens au traitement de mes données
                   personnelles conformément à la{" "}
                   <a
@@ -295,7 +295,7 @@ export function Step4ContactConsent({
 
           <div className="min-w-0 flex-1 space-y-2">
             <p className="text-sm leading-relaxed text-muted-foreground">
-              J&apos;accepte d&apos;être contacté par H2 Débarras Maison
+              J&apos;accepte d&apos;être contacté par Débarras Aurea
               concernant ma demande de devis et je consens au traitement de mes
               données personnelles conformément à la{" "}
               <a

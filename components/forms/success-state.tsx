@@ -19,7 +19,12 @@ export function SuccessState() {
           </div>
 
           {/* Heading */}
-          <h2 className="mb-2 sm:mb-3 text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "mb-2 sm:mb-3 text-xl sm:text-2xl md:text-3xl text-foreground",
+            )}
+          >
             Demande envoyée avec succès !
           </h2>
 
@@ -32,7 +37,14 @@ export function SuccessState() {
           {/* What's Next Card */}
           <Card className="mb-5 sm:mb-6 w-full max-w-md border-primary/20 bg-primary/5">
             <CardContent className="p-4 sm:p-5">
-              <h3 className="mb-3 text-sm font-semibold text-foreground">Que se passe-t-il maintenant ?</h3>
+              <h3
+                className={cn(
+                  designTokens.typography.h4,
+                  "mb-3 text-sm text-foreground",
+                )}
+              >
+                Que se passe-t-il maintenant ?
+              </h3>
               <ul className="space-y-2.5 text-left text-sm text-muted-foreground">
                 <li className="flex items-start gap-2.5">
                   <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />

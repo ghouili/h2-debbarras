@@ -25,3 +25,8 @@
    - npx lighthouse https://localhost:3000 --preset=mobile
 
 > Fill in the “after” metrics above once runs complete.
+
+## CHANGELOG (UX + a11y + SEO)
+- Added a premium, accessible 404 page using App Router not-found, matching the home hero style.
+- Inline SVG illustration for zero extra requests and fast rendering.
+- Noindex metadata on 404, with recovery CTAs and helpful links.

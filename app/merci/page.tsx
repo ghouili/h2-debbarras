@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle2, Phone, Home } from "lucide-react"
 import { siteConfig } from "@/lib/config"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
 
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
   description: "Votre demande de devis a été reçue. Nous vous contactons sous 2 heures.",
   robots: {
     index: false,
+    follow: true,
   },
 }
 
@@ -24,7 +27,9 @@ export default function MerciPage() {
               <CheckCircle2 className="h-10 w-10 text-primary" />
             </div>
 
-            <h1 className="mb-4 text-3xl font-bold">Demande envoyée avec succès !</h1>
+            <h1 className={cn(designTokens.typography.h1, "mb-4 text-3xl")}>
+              Demande envoyée avec succès !
+            </h1>
 
             <p className="mb-8 text-pretty text-lg text-muted-foreground">
               Merci pour votre confiance. Nous avons bien reçu votre demande de devis et nous vous contacterons dans les{" "}
@@ -32,7 +37,9 @@ export default function MerciPage() {
             </p>
 
             <div className="mb-8 space-y-4 rounded-lg border border-border bg-secondary p-6">
-              <h2 className="font-semibold">Prochaines étapes :</h2>
+              <h2 className={cn(designTokens.typography.h4, "font-semibold")}>
+                Prochaines étapes :
+              </h2>
               <ol className="space-y-2 text-left text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">

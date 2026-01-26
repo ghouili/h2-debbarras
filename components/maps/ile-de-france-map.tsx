@@ -195,7 +195,7 @@ export default function IleDeFranceMap({
                   <div className="text-center">
                     <strong className="text-primary">{dept.name}</strong>
                     <p className="mt-1 text-xs text-muted-foreground">Département {dept.code}</p>
-                    <p className="mt-1 text-xs font-medium text-green-600">✓ Intervention 24-48h</p>
+                    <p className="mt-1 text-xs font-medium text-green-600">✓ Intervention 24 à 48 h</p>
                   </div>
                 </Popup>
               </Marker>

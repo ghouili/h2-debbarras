@@ -41,8 +41,8 @@ import { cn } from "@/lib/utils";
 // Trust badges for the contact page
 const trustBadges = [
   { icon: MapPin, label: "Île-de-France", subtext: "8 départements" },
-  { icon: Clock, label: "Intervention 24-48h", subtext: "selon urgence" },
-  { icon: Recycle, label: "Tri & recyclage", subtext: "écoresponsable" },
+  { icon: Clock, label: "Intervention 24 à 48 h", subtext: "selon urgence" },
+  { icon: Recycle, label: "Tri et recyclage", subtext: "éco-responsable" },
   { icon: Shield, label: "Devis gratuit", subtext: "sans engagement" },
 ];
 
@@ -122,7 +122,12 @@ function ContactSuccessState() {
           <div className="mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-green-500">
             <CheckCircle2 className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
           </div>
-          <h2 className="mb-2 text-xl font-bold text-green-800 sm:text-2xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "mb-2 text-xl text-green-800 sm:text-2xl",
+            )}
+          >
             Message envoyé !
           </h2>
           <p className="mb-5 sm:mb-6 max-w-md text-sm text-green-700 sm:text-base">
@@ -132,7 +137,12 @@ function ContactSuccessState() {
 
           <Card className="mb-5 sm:mb-6 w-full max-w-md border-green-300 bg-white">
             <CardContent className="p-4">
-              <h3 className="mb-3 text-sm font-semibold text-foreground">
+              <h3
+                className={cn(
+                  designTokens.typography.h4,
+                  "mb-3 text-sm text-foreground",
+                )}
+              >
                 Ce qui se passe ensuite
               </h3>
               <ul className="space-y-2 text-left text-sm text-muted-foreground">
@@ -319,11 +329,21 @@ export default function ContactPageClient() {
             <Breadcrumbs items={breadcrumbItems} />
 
             <div className="mx-auto max-w-4xl text-center">
-              <h1 className="text-balance text-xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+              <h1
+                className={cn(
+                  designTokens.typography.h1,
+                  "text-balance text-xl sm:text-3xl md:text-4xl",
+                )}
+              >
                 Contact
               </h1>
-              <p className="text-balance text-xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-                Débarras & Déménagement
+              <p
+                className={cn(
+                  designTokens.typography.h1,
+                  "text-balance text-xl sm:text-3xl md:text-4xl",
+                )}
+              >
+                Débarras et Déménagement
               </p>
               <p className="mx-auto mt-2 max-w-2xl text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base md:text-lg">
                 Notre équipe vous répond{" "}
@@ -365,7 +385,7 @@ export default function ContactPageClient() {
                       src="/optimized/icons/special-icon-w40.png"
                       width={20}
                       height={20}
-                      alt=""
+                      alt="Icône plus de 500 interventions"
                       className="h-4 w-4 sm:h-5 sm:w-5"
                     />
                     Devis gratuit
@@ -376,7 +396,7 @@ export default function ContactPageClient() {
               {/* Trust line */}
               <p className="mt-3 text-[10px] text-muted-foreground sm:mt-4 sm:text-sm">
                 <CheckCircle2 className="mr-0.5 inline h-3 w-3 text-green-600 sm:mr-1 sm:h-3.5 sm:w-3.5" />
-                Devis gratuit • Réponse 2h • Intervention 24–48h
+                Devis gratuit • Réponse 2h • Intervention 24 à 48 h
               </p>
             </div>
           </div>
@@ -422,7 +442,14 @@ export default function ContactPageClient() {
                       <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-primary shadow-lg shadow-primary/25">
                         <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
-                      <h2 className="mb-2 text-base sm:text-lg font-bold">Appelez-nous</h2>
+                      <h2
+                        className={cn(
+                          designTokens.typography.h4,
+                          "mb-2 text-base sm:text-lg",
+                        )}
+                      >
+                        Appelez-nous
+                      </h2>
                     </div>
                     <a
                       href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
@@ -448,7 +475,14 @@ export default function ContactPageClient() {
                       <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-md sm:rounded-lg bg-primary/10">
                         <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
-                      <h3 className="mb-2 text-sm sm:text-base font-semibold">Email</h3>
+                      <h3
+                        className={cn(
+                          designTokens.typography.h4,
+                          "mb-2 text-sm sm:text-base",
+                        )}
+                      >
+                        Email
+                      </h3>
                     </div>
                     <a
                       href={`mailto:${siteConfig.contact.email}`}
@@ -471,7 +505,12 @@ export default function ContactPageClient() {
                         <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-md sm:rounded-lg bg-primary/10">
                           <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                         </div>
-                        <h3 className="mb-2 text-sm sm:text-base font-semibold">
+                        <h3
+                          className={cn(
+                            designTokens.typography.h4,
+                            "mb-2 text-sm sm:text-base",
+                          )}
+                        >
                           Horaires
                         </h3>
                       </div>
@@ -506,7 +545,12 @@ export default function ContactPageClient() {
                       <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-md sm:rounded-lg bg-primary/10">
                         <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
-                      <h3 className="mb-2 text-sm sm:text-base font-semibold">
+                      <h3
+                        className={cn(
+                          designTokens.typography.h4,
+                          "mb-2 text-sm sm:text-base",
+                        )}
+                      >
                         Zone d'intervention
                       </h3>
                     </div>
@@ -546,7 +590,12 @@ export default function ContactPageClient() {
                           <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                         </div>
                         <div>
-                          <h2 className="text-base sm:text-xl font-bold">
+                          <h2
+                            className={cn(
+                              designTokens.typography.h3,
+                              "text-base sm:text-xl",
+                            )}
+                          >
                             Envoyez un message
                           </h2>
                           <p className="text-xs sm:text-sm text-muted-foreground">
@@ -807,7 +856,12 @@ export default function ContactPageClient() {
                 {!isSuccess && (
                   <Card className="mt-4 sm:mt-6 border-primary/20 bg-primary/5">
                     <CardContent className="px-3 py-1 sm:px-5">
-                      <h3 className="mb-3 sm:mb-4 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base font-semibold">
+                      <h3
+                        className={cn(
+                          designTokens.typography.h4,
+                          "mb-3 sm:mb-4 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base",
+                        )}
+                      >
                         <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                         Ce qui se passe ensuite
                       </h3>
@@ -860,7 +914,12 @@ export default function ContactPageClient() {
         <Section className="bg-muted/30">
           <div className="mx-auto max-w-3xl px-3 sm:px-6">
             <div className="mb-3 sm:mb-6 text-center">
-              <h2 className="text-lg font-bold sm:text-2xl md:text-3xl">
+              <h2
+                className={cn(
+                  designTokens.typography.h2,
+                  "text-lg sm:text-2xl md:text-3xl",
+                )}
+              >
                 Questions fréquentes
               </h2>
               <p className="mt-1.5 sm:mt-2 text-xs text-muted-foreground sm:text-base">
@@ -909,10 +968,15 @@ export default function ContactPageClient() {
               <CardContent className="relative p-4 sm:p-6 md:p-10 text-center">
                 <div className="mb-2.5 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/20 px-2.5 py-1 sm:px-4 sm:py-2 text-[10px] sm:text-sm font-medium text-white">
                   <Truck className="h-3 w-3 sm:h-4 sm:w-4" />
-                  <span>Intervention 24-48h</span>
+                  <span>Intervention 24 à 48 h</span>
                 </div>
 
-                <h2 className="text-lg font-bold text-white sm:text-2xl lg:text-3xl">
+                <h2
+                  className={cn(
+                    designTokens.typography.h2,
+                    "text-lg text-white sm:text-2xl lg:text-3xl",
+                  )}
+                >
                   Prêt à débarrasser ?
                 </h2>
                 <p className="mx-auto mt-1.5 sm:mt-2 max-w-xl text-xs text-white/90 sm:text-base">
@@ -930,7 +994,7 @@ export default function ContactPageClient() {
                         src="/optimized/icons/special-icon-w40.png"
                         width={20}
                         height={20}
-                        alt=""
+                        alt="Icône plus de 500 interventions"
                         className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5"
                       />
                       Devis gratuit

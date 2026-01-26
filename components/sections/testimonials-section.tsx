@@ -3,6 +3,8 @@ import { Star } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { homeCopy } from "@/lib/content/home-copy";
 import { Section } from "@/components/layout/section";
+import { designTokens } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
 
 export function TestimonialsSection() {
   const copy = homeCopy.reviewsTeaser;
@@ -10,7 +12,12 @@ export function TestimonialsSection() {
   return (
     <Section bleed className="bg-secondary">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            "text-balance text-2xl sm:text-3xl",
+          )}
+        >
           {copy.title}
         </h2>
         <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">

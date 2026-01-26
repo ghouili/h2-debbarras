@@ -37,7 +37,7 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Local Type */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Type de bien</h2>
+        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Type de bien</h2>
         <p className="mb-4 text-sm text-muted-foreground">Précisez la nature du lieu</p>
 
         <RadioGroup value={formData.localType} onValueChange={(value) => updateFormData({ localType: value })}>
@@ -72,7 +72,7 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
 
       {/* Floor and Elevator */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Accès</h2>
+        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Accès</h2>
         <p className="mb-4 text-sm text-muted-foreground">Informations pratiques pour l'intervention</p>
 
         <div className="grid w-full gap-4 sm:grid-cols-1">

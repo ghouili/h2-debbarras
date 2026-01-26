@@ -15,7 +15,14 @@ export function ZonesTeaser() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <MapPin className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-primary" aria-hidden="true" />
-          <h2 className="mt-4 text-balance text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">{copy.title}</h2>
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "mt-4 text-balance text-2xl sm:text-3xl md:text-4xl",
+            )}
+          >
+            {copy.title}
+          </h2>
           <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">{copy.subtitle}</p>
         </div>
 

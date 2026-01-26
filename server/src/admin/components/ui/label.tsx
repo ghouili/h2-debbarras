@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
 import type { LabelHTMLAttributes } from 'react'
 import { cn } from '../../lib/utils'
 

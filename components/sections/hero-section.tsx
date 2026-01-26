@@ -58,8 +58,7 @@ export function HeroSection() {
                 src="/optimized/icons/devis-icon-w32.png"
                 width={16}
                 height={16}
-                alt=""
-                aria-hidden="true"
+                alt="Icône demande de devis gratuit"
               />
               <span>{heroCopy.badge}</span>
             </div>
@@ -68,7 +67,7 @@ export function HeroSection() {
             <h1
               className={cn(
                 designTokens.typography.h1,
-                "text-balance leading-tight text-[clamp(1.75rem,5.4vw,3rem)] sm:text-4xl lg:text-5xl",
+                "text-balance leading-tight text-[clamp(1.75rem,5.4vw,3rem)] sm:text-4xl lg:text-5xl font-noto-georgian",
               )}
             >
               {heroCopy.title}{" "}
@@ -150,7 +149,7 @@ export function HeroSection() {
               </div>
               <div className="flex items-center gap-1.5 text-muted-foreground">
                 <Image
-                  alt="intervention-icon"
+                  alt="Icône plus de 500 interventions"
                   src="/optimized/icons/special-icon-w40.png"
                   width={20}
                   height={20}
@@ -164,7 +163,7 @@ export function HeroSection() {
               aria-hidden="true"
             /> */}
                 <Image
-                  alt="intervention-icon"
+                  alt="Icône 8 départements couverts"
                   src="/optimized/icons/departement-icon-w40.png"
                   width={20}
                   height={20}
@@ -230,7 +229,7 @@ export function HeroSection() {
                 {/* Both images rendered, visibility controlled via CSS for instant switch */}
                 <Image
                   src={HERO_AFTER_SRC}
-                  alt="Espace libéré après intervention de débarras"
+                  alt="Espace libéré après intervention de débarras Aurea"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                   className={cn(
@@ -319,7 +318,7 @@ export function HeroSection() {
           </div>
           <div className="flex items-center gap-1.5 text-muted-foreground">
             <Image
-              alt="intervention-icon"
+              alt="Icône plus de 500 interventions"
               src="/optimized/icons/special-icon-w40.png"
               width={20}
               height={20}
@@ -333,7 +332,7 @@ export function HeroSection() {
               aria-hidden="true"
             /> */}
             <Image
-              alt="intervention-icon"
+              alt="Icône 8 départements couverts"
               src="/optimized/icons/departement-icon-w40.png"
               width={20}
               height={20}

@@ -1,5 +1,7 @@
 import { homeCopy } from "@/lib/content/home-copy"
 import { Section } from "@/components/layout/section"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 export function HowItWorks() {
   const copy = homeCopy.howItWorks
@@ -7,7 +9,14 @@ export function HowItWorks() {
   return (
     <Section bleed className="bg-secondary">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">{copy.title}</h2>
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            "text-balance text-2xl sm:text-3xl",
+          )}
+        >
+          {copy.title}
+        </h2>
         <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">{copy.subtitle}</p>
       </div>
 
@@ -24,7 +33,14 @@ export function HowItWorks() {
               >
                 {index + 1}
               </div>
-              <h3 className="mb-1.5 text-base font-semibold sm:text-lg">{item.title}</h3>
+              <h3
+                className={cn(
+                  designTokens.typography.h4,
+                  "mb-1.5 text-base sm:text-lg",
+                )}
+              >
+                {item.title}
+              </h3>
               <p className="text-pretty text-sm text-muted-foreground">{item.description}</p>
             </div>
           </li>

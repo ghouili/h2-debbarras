@@ -32,7 +32,7 @@ export function VolumeStep({ formData, updateFormData, nextStep, prevStep }: Pro
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold">Volume à débarrasser</h2>
+      <h2 className="mb-6 text-2xl font-semibold font-heading">Volume à débarrasser</h2>
       <div className="space-y-3">
         <RadioGroup value={formData.volume} onValueChange={(value) => updateFormData({ volume: value })}>
           {volumeOptions.map((option) => (

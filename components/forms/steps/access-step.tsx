@@ -26,7 +26,7 @@ export function AccessStep({ formData, updateFormData, nextStep, prevStep }: Pro
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold">Accessibilité</h2>
+      <h2 className="mb-6 text-2xl font-semibold font-heading">Accessibilité</h2>
       <div className="space-y-4">
         <div>
           <Label htmlFor="floor">Étage *</Label>

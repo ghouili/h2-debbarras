@@ -1,9 +1,9 @@
-// Centralized configuration for H2 Débarras Maison
+// Centralized configuration for Débarras Aurea
 
 export const siteConfig = {
-  name: "H2 Débarras Maison",
+  name: "Débarras Aurea",
   description:
-    "Service professionnel de débarras de maison en Île-de-France. Intervention rapide 24-48h, tri et recyclage, devis gratuit.",
+    "Service professionnel de débarras et déménagement en Île-de-France. Intervention rapide sous 24 à 48 h, tri et recyclage, devis gratuit.",
   url: "https://debarras-aurea.fr",
 
   contact: {
@@ -26,7 +26,7 @@ export const siteConfig = {
           icon: "home",
           description: "Débarras de maison en Île-de-France : vide maison complet, tri, évacuation et valorisation.",
           shortDescription: "Vider une maison rapidement, sans stress",
-          features: ["Intervention rapide 24-48h", "Tri sélectif", "Évacuation complète", "Devis gratuit"],
+          features: ["Intervention rapide 24 à 48 h", "Tri sélectif", "Évacuation complète", "Devis gratuit"],
         },
         {
           id: "debarras-appartement",
@@ -39,7 +39,7 @@ export const siteConfig = {
           icon: "home",
           description: "Débarras d'appartement en Île-de-France : vide appartement, tri, évacuation et recyclage.",
           shortDescription: "Vider un appartement efficacement",
-          features: ["Intervention rapide 24-48h", "Tri sélectif", "Évacuation complète", "Devis gratuit"],
+          features: ["Intervention rapide 24 à 48 h", "Tri sélectif", "Évacuation complète", "Devis gratuit"],
         },
         {
           id: "cave-grenier",
@@ -47,7 +47,7 @@ export const siteConfig = {
           campaignKey: "debarras_cave_grenier_garage",
           intentKeywords: ["débarras cave", "débarras grenier", "débarras garage", "vider cave", "vider grenier"],
           negativeKeywords: ["mots fléchés", "jeu", "définition", "vin", "aménagement"],
-          title: "Garages, Caves & Greniers",
+          title: "Garages, Caves et Greniers",
           slug: "debarras-cave-grenier",
           icon: "warehouse",
           description: "Évacuation de cave, grenier, garage et espaces encombrés",
@@ -60,7 +60,7 @@ export const siteConfig = {
           campaignKey: "debarras_succession",
           intentKeywords: ["débarras succession", "vide maison décès", "débarras après décès", "succession débarras"],
           negativeKeywords: ["notaire", "avocat", "héritage impôt", "droits succession"],
-          title: "Après Décès & Succession",
+          title: "Après Décès et Succession",
           slug: "debarras-succession",
           icon: "heart",
           description: "Accompagnement délicat dans le débarras après succession",
@@ -78,7 +78,7 @@ export const siteConfig = {
           campaignKey: "enlevement_meubles_canapes",
           intentKeywords: ["enlèvement meubles", "débarras meubles", "enlèvement canapé", "enlever vieux meubles"],
           negativeKeywords: ["achat", "vente", "occasion", "ikea", "conforama"],
-          title: "Meubles & Canapés",
+          title: "Meubles et Canapés",
           slug: "enlevement-meubles-canapes",
           icon: "armchair",
           description: "Enlèvement et évacuation de meubles encombrants",
@@ -115,9 +115,9 @@ export const siteConfig = {
           id: "ecoresponsable",
           campaignGroup: "debarras_valorisation",
           campaignKey: "debarras_ecoresponsable",
-          intentKeywords: ["débarras écologique", "débarras recyclage", "vide maison écoresponsable", "débarras gratuit don"],
+          intentKeywords: ["débarras écologique", "débarras recyclage", "vide maison éco-responsable", "débarras gratuit don"],
           negativeKeywords: ["mots fléchés", "jeu", "définition"],
-          title: "Débarras Écoresponsable",
+          title: "Débarras Éco-responsable",
           slug: "debarras-ecoresponsable",
           icon: "leaf",
           description: "Débarras avec valorisation maximale et recyclage",
@@ -145,7 +145,7 @@ export const siteConfig = {
           campaignKey: "transport_mobilier_objets_lourds",
           intentKeywords: ["transport meuble", "transport objet lourd", "transport piano", "livraison meuble"],
           negativeKeywords: ["gratuit", "location", "colissimo"],
-          title: "Transport Mobilier & Objets Lourds",
+          title: "Transport Mobilier et Objets Lourds",
           slug: "transport-mobilier-objets-lourds",
           icon: "package-check",
           description: "Transport sécurisé de meubles et objets volumineux",
@@ -158,7 +158,7 @@ export const siteConfig = {
           campaignKey: "demenagement_regional_national",
           intentKeywords: ["déménagement longue distance", "déménagement national", "déménagement régional", "déménager province"],
           negativeKeywords: ["gratuit", "international", "europe"],
-          title: "Déménagements Nationaux & Régionaux",
+          title: "Déménagements Nationaux et Régionaux",
           slug: "demenagement-national-regional",
           icon: "map",
           description: "Déménagement longue distance en France",
@@ -171,12 +171,12 @@ export const siteConfig = {
           campaignKey: "demenagement_urgent",
           intentKeywords: ["déménagement urgent", "déménagement express", "déménagement rapide", "déménager vite"],
           negativeKeywords: ["gratuit", "seul"],
-          title: "Déménagements Express & Urgents",
+          title: "Déménagements Express et Urgents",
           slug: "demenagement-express-urgent",
           icon: "zap",
           description: "Service de déménagement en urgence",
-          shortDescription: "Déménagement sous 24-48h",
-          features: ["24-48h", "Disponibilité immédiate", "Organisation rapide", "Efficacité garantie"],
+          shortDescription: "Déménagement sous 24 à 48 h",
+          features: ["24 à 48 h", "Disponibilité immédiate", "Organisation rapide", "Efficacité garantie"],
         },
         {
           id: "garde-meuble",
@@ -201,7 +201,7 @@ export const siteConfig = {
           campaignKey: "debarras_bureaux_locaux",
           intentKeywords: ["débarras bureaux", "vider bureau", "débarras local commercial", "vidage bureau"],
           negativeKeywords: ["meubles bureau achat", "location bureau"],
-          title: "Bureaux & Locaux Commerciaux",
+          title: "Bureaux et Locaux Commerciaux",
           slug: "debarras-bureaux-locaux",
           icon: "building-2",
           description: "Débarras professionnel de bureaux et locaux",
@@ -214,7 +214,7 @@ export const siteConfig = {
           campaignKey: "debarras_commerces_entrepots",
           intentKeywords: ["débarras entrepôt", "débarras commerce", "vider entrepôt", "vidage local commercial"],
           negativeKeywords: ["location", "achat", "vente entrepôt"],
-          title: "Commerces & Entrepôts",
+          title: "Commerces et Entrepôts",
           slug: "debarras-commerces-entrepots",
           icon: "store",
           description: "Évacuation de commerces et entrepôts",
@@ -227,7 +227,7 @@ export const siteConfig = {
           campaignKey: "evacuation_gravats",
           intentKeywords: ["évacuation gravats", "enlèvement gravats", "déchets chantier", "benne gravats"],
           negativeKeywords: ["gratuit", "mairie", "déchèterie"],
-          title: "Gravats & Déchets de Chantier",
+          title: "Gravats et Déchets de Chantier",
           slug: "evacuation-gravats-dechets-chantier",
           icon: "hard-hat",
           description: "Évacuation de déchets de chantier",
@@ -247,7 +247,7 @@ export const siteConfig = {
           icon: "briefcase",
           description: "Déménagement professionnel d'entreprise",
           shortDescription: "Déménagement sans interruption d'activité",
-          features: ["Planning adapté", "Week-end/nuit", "IT & téléphonie", "Remise en service"],
+          features: ["Planning adapté", "Week-end/nuit", "IT et téléphonie", "Remise en service"],
         },
       ],
     },
@@ -267,9 +267,9 @@ export const siteConfig = {
   },
 
   guarantees: [
-    { text: "Intervention 24-48h", subtext: "selon urgence" },
-    { text: "Devis gratuit", subtext: "& sans engagement" },
-    { text: "Tri & recyclage", subtext: "écoresponsable" },
+    { text: "Intervention 24 à 48 h", subtext: "selon urgence" },
+    { text: "Devis gratuit", subtext: "et sans engagement" },
+    { text: "Tri et recyclage", subtext: "éco-responsable" },
   ],
 
   testimonials: [
@@ -321,19 +321,27 @@ export const siteConfig = {
       questions: [
         {
           q: "Quels types de biens débarrassez-vous ?",
-          a: "Nous débarrassons tous types de biens : meubles, électroménager, vêtements, livres, objets divers, encombrants, gravats, etc. Notre équipe est équipée pour gérer tous types de volumes et matériaux.",
+          a: "Nous débarrassons tous types d'objets et encombrants : meubles, électroménager, vêtements, livres, cartons, déchets verts... Nous excluons uniquement les matériaux dangereux (amiante, produits chimiques).",
         },
         {
           q: "Intervenez-vous le week-end ?",
-          a: "Oui, nous pouvons intervenir le week-end selon les disponibilités. Pour les entreprises, nous proposons également des interventions en soirée ou de nuit pour ne pas perturber votre activité.",
+          a: "Oui, nous intervenons 7 jours sur 7, y compris les week-ends et jours fériés, pour nous adapter à votre planning.",
         },
         {
           q: "Faut-il être présent pendant le débarras ?",
-          a: "Votre présence n'est pas obligatoire si vous nous fournissez un accès (clés, code). Cependant, nous recommandons votre présence au début pour les instructions et à la fin pour valider le travail effectué.",
+          a: "Non, ce n'est pas obligatoire. Nous sommes assurés et pouvons travailler avec un jeu de clés confié. Votre présence est toutefois recommandée pour toute validation spécifique.",
         },
         {
           q: "Êtes-vous assurés ?",
-          a: "Oui, nous disposons d'une assurance responsabilité civile professionnelle et d'une assurance décennale. Tous nos intervenants sont formés et équipés selon les normes de sécurité.",
+          a: "Oui, nous disposons d'une assurance responsabilité civile professionnelle complète qui couvre tous les risques pendant l'intervention.",
+        },
+        {
+          q: "Combien coûte un débarras ?",
+          a: "Le prix dépend du volume, de l'accessibilité et du type de biens à évacuer. Nous fournissons toujours un devis gratuit et détaillé après évaluation.",
+        },
+        {
+          q: "Que faites-vous des objets en bon état ?",
+          a: "Nous privilégions le don aux associations et le recyclage. Les objets valorisables sont triés et réemployés, seul le déchet ultime part en déchetterie.",
         },
       ],
     },
@@ -367,7 +375,7 @@ export const siteConfig = {
         },
         {
           q: "Que faites-vous des objets récupérés ?",
-          a: "Nous adoptons une démarche écoresponsable : les objets en bon état sont donnés à des associations (Emmaüs, Secours Populaire), les matériaux recyclables sont triés et valorisés, seul le déchet ultime part en déchetterie.",
+          a: "Nous adoptons une démarche éco-responsable : les objets en bon état sont donnés à des associations (Emmaüs, Secours Populaire), les matériaux recyclables sont triés et valorisés, seul le déchet ultime part en déchetterie.",
         },
         {
           q: "Fournissez-vous un certificat de destruction ?",
@@ -380,7 +388,7 @@ export const siteConfig = {
       questions: [
         {
           q: "Pouvez-vous intervenir en urgence ?",
-          a: "Oui, nous proposons un service d'intervention rapide sous 24-48h selon votre urgence et nos disponibilités. Contactez-nous par téléphone pour une réponse immédiate.",
+          a: "Oui, nous proposons un service d'intervention rapide sous 24 à 48 h selon votre urgence et nos disponibilités. Contactez-nous par téléphone pour une réponse immédiate.",
         },
         {
           q: "Intervenez-vous en cas d'encombrement extrême ?",

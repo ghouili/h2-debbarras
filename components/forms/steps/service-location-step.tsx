@@ -46,7 +46,7 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="mb-4 text-xl font-bold">Type de service</h2>
+        <h2 className="mb-4 text-xl font-bold font-heading">Type de service</h2>
         <RadioGroup value={formData.service} onValueChange={(value) => updateFormData({ service: value })}>
           <div className="grid gap-3 sm:grid-cols-2">
             {services.map((service) => {

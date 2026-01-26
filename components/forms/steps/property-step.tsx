@@ -40,7 +40,7 @@ export function PropertyStep({ formData, updateFormData, nextStep, prevStep }: P
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold">Type de bien</h2>
+      <h2 className="mb-6 text-2xl font-semibold font-heading">Type de bien</h2>
       <div className="space-y-6">
         <div>
           <Label className="mb-3 block">Type de propriété *</Label>

@@ -1,15 +1,2 @@
-version: '3.9'
-services:
-  postgres:
-    image: postgres:16
-    container_name: h2debarras_admin_db
-    ports:
-      - '5432:5432'
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: h2debarras_admin
-    volumes:
-      - h2debarras_admin_db:/var/lib/postgresql/data
-volumes:
-  h2debarras_admin_db:
+# Deprecated: Docker is no longer used in this repository.
+# Use a local or managed PostgreSQL instance and configure api-server/.env instead.

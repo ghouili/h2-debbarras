@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Sans_Georgian } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
@@ -10,8 +10,12 @@ import { CookieBanner } from "@/components/seo/cookie-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
-const geistSans = Geist({ subsets: ["latin"] });
-const geistMono = Geist_Mono({ subsets: ["latin"] });
+const notoSansGeorgian = Noto_Sans_Georgian({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-noto-georgian",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -73,10 +77,17 @@ export default function RootLayout({
           name="google-site-verification"
           content="OsCAUbqCBXdTlYGiG324nqiW2UONStmLcIWdcg2N8xM"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&display=swap"
+          rel="stylesheet"
+        />
+        
         <JsonLd type="organization" />
       </head>
       <body
-        className={`${geistSans.className} ${geistMono.className} font-sans antialiased relative`}
+        className={`${notoSansGeorgian.variable} font-body antialiased text-foreground bg-background relative`}
         suppressHydrationWarning
       >
         <Header />

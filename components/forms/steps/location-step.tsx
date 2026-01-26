@@ -25,7 +25,7 @@ export function LocationStep({ formData, updateFormData, nextStep, prevStep }: P
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold">Où se situe le bien à débarrasser ?</h2>
+      <h2 className="mb-6 text-2xl font-semibold font-heading">Où se situe le bien à débarrasser ?</h2>
       <div className="space-y-4">
         <div>
           <Label htmlFor="postalCode">Code postal *</Label>

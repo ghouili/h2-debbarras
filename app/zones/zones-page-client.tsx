@@ -81,7 +81,7 @@ const FEATURED_SERVICES = [
   {
     slug: "debarras-appartement-vide-appartement",
     title: "Appartement",
-    benefit: "Gestion étages & accès",
+    benefit: "Gestion étages et accès",
     icon: Building2,
   },
   {
@@ -92,8 +92,8 @@ const FEATURED_SERVICES = [
   },
   {
     slug: "debarras-cave-grenier",
-    title: "Cave & Grenier",
-    benefit: "Objets encombrants & cartons",
+    title: "Cave et Grenier",
+    benefit: "Objets encombrants et cartons",
     icon: Package,
   },
 ];
@@ -101,7 +101,7 @@ const FEATURED_SERVICES = [
 const TRUST_BADGES = [
   { icon: Shield, label: "Assuré" },
   { icon: FileText, label: "Devis gratuit" },
-  { icon: Clock, label: "24–48h" },
+  { icon: Clock, label: "24 à 48 h" },
   { icon: Recycle, label: "Recyclage" },
 ];
 
@@ -113,7 +113,7 @@ const CLUSTER_TABS: { id: DepartmentCluster; label: string; depts: string }[] =
   ];
 
 const DEPT_BULLETS = [
-  { icon: Clock, text: "Délai typique : 24–48h" },
+  { icon: Clock, text: "Délai typique : 24 à 48 h" },
   { icon: Layers, text: "Accès/étages : gérés sur place" },
   { icon: Recycle, text: "Tri + recyclage/valorisation" },
 ];
@@ -154,11 +154,21 @@ const HeroSection = memo(function HeroSection() {
 
         <div className="mx-auto mt-3 max-w-2xl text-center sm:mt-4">
           {/* Title - Responsive typography */}
-          <h1 className="text-balance text-xl font-bold tracking-tight leading-tight sm:text-3xl lg:text-4xl">
+          <h1
+            className={cn(
+              designTokens.typography.h1,
+              "text-balance text-xl leading-tight sm:text-3xl lg:text-4xl",
+            )}
+          >
             Débarras professionnel
           </h1>
-          <p className="text-balance text-xl font-bold tracking-tight leading-tight sm:text-3xl lg:text-4xl pt-0.5 sm:pt-2 bg-linear-to-r from-primary-600 via-primary-400 to-primary-300 bg-clip-text text-transparent">
-            Paris & Île-de-France
+          <p
+            className={cn(
+              designTokens.typography.h1,
+              "text-balance text-xl leading-tight sm:text-3xl lg:text-4xl pt-0.5 sm:pt-2 bg-linear-to-r from-primary-600 via-primary-400 to-primary-300 bg-clip-text text-transparent",
+            )}
+          >
+            Paris et Île-de-France
           </p>
 
           <p className="mx-auto mt-2 max-w-xl text-pretty text-xs text-muted-foreground sm:mt-4 sm:text-base lg:text-lg">
@@ -185,7 +195,7 @@ const HeroSection = memo(function HeroSection() {
                   src="/optimized/icons/devis-icon-white-w32.png"
                   width={20}
                   height={20}
-                  alt=""
+                  alt="Icône demande de devis gratuit"
                   className="mr-1 h-3.5 w-3.5 sm:mr-1.5 sm:h-5 sm:w-5"
                 />
                 Devis gratuit
@@ -256,7 +266,9 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
       <div id="verifier" className="mx-auto max-w-xl scroll-mt-20 px-3 sm:px-4">
         {/* Section heading */}
         <div className="text-center mb-3 sm:mb-6">
-          <h2 className="text-lg font-bold sm:text-2xl lg:text-3xl">Vérifier votre zone</h2>
+          <h2 className={cn(designTokens.typography.h2, "text-lg sm:text-2xl lg:text-3xl")}>
+            Vérifier votre zone
+          </h2>
           <p className="mt-1.5 text-xs text-muted-foreground sm:mt-2 sm:text-base">
             Entrez votre code postal pour un devis.
           </p>
@@ -433,7 +445,7 @@ const DepartmentDetailsPanel = memo(function DepartmentDetailsPanel({
 }: DepartmentDetailsPanelProps) {
   return (
     <div className="rounded-xl border-2 border-primary/20 bg-linear-to-br from-primary-50/60 to-white p-4 sm:p-5 animate-in fade-in slide-in-from-right-3 duration-200">
-      <h3 className="text-base font-bold text-foreground sm:text-lg">
+      <h3 className={cn(designTokens.typography.h3, "text-base text-foreground sm:text-lg")}>
         Débarras dans le {dept.name}
       </h3>
 
@@ -525,11 +537,13 @@ const ZoneSelector = memo(function ZoneSelector({
     <Section className="bg-muted/30">
       <div className="mx-auto max-w-5xl">
         <div className="text-center mb-2">
-          <h2 className="text-2xl font-bold sm:text-3xl">Choisir votre zone</h2>
+          <h2 className={cn(designTokens.typography.h2, "text-2xl sm:text-3xl")}>
+            Choisir votre zone
+          </h2>
         </div>
         <p className="mx-auto max-w-xl text-center text-sm text-muted-foreground mb-6">
           Toutes les communes des départements listés sont couvertes.
-          Intervention typique 24–48h.
+          Intervention typique 24 à 48 h.
         </p>
 
         {/* Tabs */}
@@ -625,7 +639,9 @@ const MapSectionLazy = memo(function MapSectionLazy({
   return (
     <Section className="bg-background">
       <div className="mx-auto max-w-6xl text-center mb-4 sm:mb-6 lg:mb-8">
-        <h2 className="text-xl font-bold sm:text-2xl lg:text-3xl">Carte interactive</h2>
+        <h2 className={cn(designTokens.typography.h2, "text-xl sm:text-2xl lg:text-3xl")}>
+          Carte interactive
+        </h2>
         <p className="mt-2 text-sm text-muted-foreground sm:text-base">
           Visualisez nos zones de couverture en Île-de-France
         </p>
@@ -690,7 +706,7 @@ const ServicesTeaser = memo(function ServicesTeaser({ id }: { id: string }) {
     <Section className="bg-slate-50/80">
       <div id={id} className="mx-auto max-w-5xl scroll-mt-24">
         <div className="text-center mb-4 sm:mb-6">
-          <h2 className="text-xl font-bold sm:text-2xl lg:text-3xl">
+          <h2 className={cn(designTokens.typography.h2, "text-xl sm:text-2xl lg:text-3xl")}>
             Que souhaitez-vous débarrasser ?
           </h2>
           <p className="mt-2 text-sm text-muted-foreground sm:text-base">
@@ -745,7 +761,7 @@ const FAQTeaser = memo(function FAQTeaser() {
     <Section className="bg-background">
       <div className="mx-auto max-w-3xl">
         <div className="text-center mb-4 sm:mb-6">
-          <h2 className="text-xl font-bold sm:text-2xl lg:text-3xl">
+          <h2 className={cn(designTokens.typography.h2, "text-xl sm:text-2xl lg:text-3xl")}>
             Questions fréquentes
           </h2>
           <p className="mt-2 text-sm text-muted-foreground sm:text-base">
@@ -807,7 +823,7 @@ const BottomCTA = memo(function BottomCTA() {
           <div className="absolute -bottom-16 -left-16 h-40 w-40 sm:h-56 sm:w-56 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
           <CardContent className="relative p-4 sm:p-6 md:p-10 text-center">
-            <h2 className="text-lg font-bold text-white sm:text-2xl lg:text-3xl">
+            <h2 className={cn(designTokens.typography.h2, "text-lg text-white sm:text-2xl lg:text-3xl")}>
               Libérez votre espace
             </h2>
             <p className="mt-1.5 text-white/90 text-xs sm:mt-2 sm:text-base max-w-md mx-auto">
@@ -825,7 +841,7 @@ const BottomCTA = memo(function BottomCTA() {
                     src="/optimized/icons/special-icon-w40.png"
                     width={20}
                     height={20}
-                    alt=""
+                    alt="Icône plus de 500 interventions"
                     className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5"
                   />
                   Devis gratuit

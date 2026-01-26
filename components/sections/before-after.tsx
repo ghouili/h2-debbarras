@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { homeCopy } from "@/lib/content/home-copy";
 import { Section } from "../layout/section";
 import { cn } from "@/lib/utils"; // adjust import if your cn is elsewhere
+import { designTokens } from "@/lib/design-tokens";
 
 const GALLERY_BLUR_DATA_URL =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjciIGZpbGw9IiNlZWVlZWUiLz48L3N2Zz4=";
@@ -26,12 +27,16 @@ export function BeforeAfter() {
       title: "Appartement F3 - Paris 15e",
       before: "/optimized/before-after/before-paris-arrart-01-w1024.webp",
       after: "/optimized/before-after/after-paris-arrart-01-w1024.webp",
+      altBefore: "Avant intervention - Appartement F3 débarras Paris 15e",
+      altAfter: "Après intervention - Appartement propre Paris 15e",
       description: "Débarras complet en 3 heures",
     },
     {
       title: "Appartement F3 - Paris 15e",
       before: "/optimized/before-after/top-appar-before-w1024.webp",
       after: "/optimized/before-after/top-appar-after-w1024.webp",
+      altBefore: "Avant intervention - Appartement débarras Île-de-France",
+      altAfter: "Après intervention - Appartement débarrassé Île-de-France",
       description: "Débarras complet en 3 heures",
     },
     {
@@ -40,6 +45,8 @@ export function BeforeAfter() {
         "/optimized/before-after/clean-empty-basement-before-clearance-w1024.webp",
       after:
         "/optimized/before-after/clean-empty-basement-after-clearance-w1024.webp",
+      altBefore: "Avant intervention - Cave encombrée débarras Versailles",
+      altAfter: "Après intervention - Cave dégagée débarras Versailles",
       description: "Évacuation de 15m³ d'objets",
     },
     {
@@ -48,6 +55,8 @@ export function BeforeAfter() {
         "/optimized/before-after/clean-empty-house-before-clearance-w1024.webp",
       after:
         "/optimized/before-after/clean-empty-house-after-clearance-w1024.webp",
+      altBefore: "Avant intervention - Maison encombrée débarras Créteil",
+      altAfter: "Après intervention - Maison dégagée débarras Créteil",
       description: "Débarras complet en 1 journée",
     },
   ];
@@ -77,7 +86,12 @@ export function BeforeAfter() {
   return (
     <Section>
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            "text-balance text-2xl sm:text-3xl md:text-4xl",
+          )}
+        >
           {copy.title}
         </h2>
         <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
@@ -88,7 +102,12 @@ export function BeforeAfter() {
       <div className="mx-auto mt-10 max-w-5xl">
         <Card>
           <CardContent className="p-0 sm:p-6">
-            <h3 className="pb-6 text-center text-base font-semibold sm:text-xl">
+            <h3
+              className={cn(
+                designTokens.typography.h4,
+                "pb-6 text-center text-base sm:text-xl",
+              )}
+            >
               {current.title}
             </h3>
 
@@ -162,7 +181,7 @@ export function BeforeAfter() {
                 >
                   <Image
                     src={current.after}
-                    alt={`Après intervention - ${current.title}`}
+                    alt={current.altAfter}
                     fill
                     sizes="(max-width: 768px) 100vw, 700px"
                     className={cn(
@@ -176,7 +195,7 @@ export function BeforeAfter() {
                   />
                   <Image
                     src={current.before}
-                    alt={`Avant intervention - ${current.title}`}
+                    alt={current.altBefore}
                     fill
                     sizes="(max-width: 768px) 100vw, 700px"
                     className={cn(
@@ -211,7 +230,7 @@ export function BeforeAfter() {
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
                   <Image
                     src={current.before}
-                    alt={`Avant intervention - ${current.title}`}
+                    alt={current.altBefore}
                     fill
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"
@@ -228,7 +247,7 @@ export function BeforeAfter() {
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
                   <Image
                     src={current.after}
-                    alt={`Après intervention - ${current.title}`}
+                    alt={current.altAfter}
                     fill
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"

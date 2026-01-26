@@ -11,6 +11,8 @@ import { Home, Warehouse, Heart, Truck } from "lucide-react";
 import { homeCopy } from "@/lib/content/home-copy";
 import { Section } from "@/components/layout/section";
 import Image from "next/image";
+import { designTokens } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
 
 const iconMap = {
   home: Home,
@@ -49,7 +51,12 @@ export function ServicesGrid() {
   return (
     <Section>
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            "text-balance text-2xl sm:text-3xl",
+          )}
+        >
           {serviceCardsCopy.title}
         </h2>
         <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
@@ -70,7 +77,12 @@ export function ServicesGrid() {
                 <div className=" mb-0  flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
                   <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl">
+                <CardTitle
+                  className={cn(
+                    designTokens.typography.h4,
+                    "text-lg sm:text-xl",
+                  )}
+                >
                   {copyCard?.title}
                 </CardTitle>
                 <CardDescription className="text-pretty text-sm sm:text-base">
@@ -109,7 +121,7 @@ export function ServicesGrid() {
               src="/optimized/icons/devis-icon-white-w32.png"
               width={16}
               height={16}
-              alt=""
+              alt="Icône demande de devis gratuit"
               className="mr-0.5 h-4 w-4 sm:h-5 sm:w-5"
             />
             <Link href="/devis">{serviceCardsCopy.sectionCta}</Link>

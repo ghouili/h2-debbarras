@@ -14,7 +14,14 @@ export function FaqSection() {
   return (
     <Section>
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">{copy.title}</h2>
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            "text-balance text-2xl sm:text-3xl",
+          )}
+        >
+          {copy.title}
+        </h2>
         <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">{copy.subtitle}</p>
       </div>
 

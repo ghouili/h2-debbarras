@@ -208,7 +208,7 @@ export function Header() {
                 {/* <div className="mt-5 rounded-2xl border border-border/60 bg-muted/30 p-4">
                   <p className="text-sm font-semibold">Besoin d’une réponse rapide ?</p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Intervention sous 24–48h en Île-de-France.
+                    Intervention sous 24 à 48 h en Île-de-France.
                   </p>
                 </div> */}
               </nav>

@@ -158,7 +158,7 @@ export function QuoteFunnel() {
         <form onSubmit={handleSubmit} className="w-full space-y-5 sm:space-y-6">
           {/* Service Selection */}
           <div className="w-full">
-            <h2 className="mb-2 text-base font-bold text-foreground sm:text-lg">
+            <h2 className="mb-2 text-base font-bold text-foreground sm:text-lg font-heading">
               Type de service <span className="text-destructive">*</span>
             </h2>
             <RadioGroup
@@ -240,7 +240,7 @@ export function QuoteFunnel() {
 
           {/* Contact Info */}
           <div className="w-full space-y-4">
-            <h2 className="text-base font-bold text-foreground sm:text-lg">
+            <h2 className="text-base font-bold text-foreground sm:text-lg font-heading">
               Vos coordonnées
             </h2>
 
@@ -348,7 +348,7 @@ export function QuoteFunnel() {
 
               <div className="min-w-0 flex-1 space-y-2">
                 <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-                  J&apos;accepte d&apos;être contacté par H2 Débarras Maison
+                  J&apos;accepte d&apos;être contacté par Débarras Aurea
                   concernant ma demande de devis et je consens au traitement de
                   mes données personnelles conformément à la{" "}
                   <a

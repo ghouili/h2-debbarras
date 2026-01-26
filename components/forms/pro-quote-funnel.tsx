@@ -65,7 +65,7 @@ export function ProQuoteFunnel() {
   }, [])
 
   useEffect(() => {
-    const stepNames = ["Localisation & Timing", "Coordonnées"]
+    const stepNames = ["Localisation et timing", "Coordonnées"]
     trackQuoteStep(currentStep, stepNames[currentStep - 1])
   }, [currentStep])
 
@@ -186,7 +186,7 @@ export function ProQuoteFunnel() {
         {currentStep === 1 && (
           <div className="space-y-6">
             <div>
-              <h3 className="mb-4 text-xl font-semibold">Votre projet</h3>
+              <h3 className="mb-4 text-xl font-semibold font-heading">Votre projet</h3>
             </div>
 
             {/* Postal Code & City */}
@@ -344,7 +344,7 @@ export function ProQuoteFunnel() {
         {currentStep === 2 && (
           <div className="space-y-6">
             <div>
-              <h3 className="mb-1 text-xl font-semibold">Vos coordonnées</h3>
+              <h3 className="mb-1 text-xl font-semibold font-heading">Vos coordonnées</h3>
               <p className="text-sm text-muted-foreground">Pour recevoir votre devis gratuitement</p>
             </div>
 

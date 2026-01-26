@@ -32,7 +32,7 @@ export function TimingStep({ formData, updateFormData, nextStep, prevStep }: Pro
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold">Quand souhaitez-vous intervenir ?</h2>
+      <h2 className="mb-6 text-2xl font-semibold font-heading">Quand souhaitez-vous intervenir ?</h2>
       <div className="space-y-3">
         <RadioGroup value={formData.timing} onValueChange={(value) => updateFormData({ timing: value })}>
           {timingOptions.map((option) => (

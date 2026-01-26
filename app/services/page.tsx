@@ -52,14 +52,14 @@ export default function ServicesPage() {
     professionnels: [
       {
         id: "commerces-entrepots",
-        title: "Débarras Commerces & Entrepôts",
+        title: "Débarras Commerces et Entrepôts",
         description:
           "Solution complète pour vider boutiques, entrepôts et locaux commerciaux en Île-de-France",
         icon: Store,
         featured: true,
         family: "debarras",
         benefits: [
-          "Intervention rapide 24-48h",
+          "Intervention rapide 24 à 48 h",
           "Équipe professionnelle",
           "Gros volumes",
           "Planning flexible",
@@ -69,7 +69,7 @@ export default function ServicesPage() {
       },
       {
         id: "bureaux",
-        title: "Débarras Bureaux & Locaux",
+        title: "Débarras Bureaux et Locaux",
         description:
           "Vidage de bureaux, locaux professionnels avec destruction de documents confidentiels",
         icon: Building2,
@@ -91,8 +91,8 @@ export default function ServicesPage() {
         family: "demenagement",
         benefits: [
           "Planning sur mesure",
-          "Week-end & nuit possible",
-          "IT & téléphonie",
+          "Week-end et nuit possible",
+          "IT et téléphonie",
           "Remise en service",
         ],
         subservices: siteConfig.services.professionnel.demenagement,
@@ -102,14 +102,14 @@ export default function ServicesPage() {
     particuliers: [
       {
         id: "debarras-logement",
-        title: "Débarras Maison & Appartement",
+        title: "Débarras Maison et Appartement",
         description:
           "Vidage complet de logements avec tri et évacuation en Île-de-France",
         icon: Home,
         featured: true,
         family: "debarras",
         benefits: [
-          "Intervention 24-48h",
+          "Intervention 24 à 48 h",
           "Tri sélectif inclus",
           "Évacuation complète",
           "Devis gratuit",
@@ -124,7 +124,7 @@ export default function ServicesPage() {
       },
       {
         id: "cave-grenier",
-        title: "Caves, Greniers & Garages",
+        title: "Caves, Greniers et Garages",
         description: "Évacuation d'espaces encombrés avec accès difficile",
         icon: Warehouse,
         family: "debarras",
@@ -200,16 +200,20 @@ export default function ServicesPage() {
               src="/optimized/icons/devis-icon-w32.png"
               width={16}
               height={16}
-              alt=""
-              aria-hidden="true"
+              alt="Icône demande de devis gratuit"
               className="h-3.5 w-3.5 sm:h-4 sm:w-4"
             />
             <span>Devis gratuit en 2 min</span>
           </div>
           
           {/* H1 - Responsive typography */}
-          <h1 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
-            Nos Services de Débarras & Déménagement
+          <h1
+            className={cn(
+              designTokens.typography.h1,
+              "text-balance text-2xl sm:text-3xl lg:text-4xl",
+            )}
+          >
+            Nos Services de Débarras et Déménagement
           </h1>
           <p className="mt-3 text-pretty text-sm text-muted-foreground sm:text-base lg:text-lg">
             Solutions professionnelles et rapides en Île-de-France pour particuliers et entreprises
@@ -279,7 +283,14 @@ export default function ServicesPage() {
               {/* Débarras Services */}
               <div>
                 <div className="mb-3 sm:mb-6">
-                  <h2 className="text-lg font-bold sm:text-2xl lg:text-3xl">Débarras</h2>
+                  <h2
+                    className={cn(
+                      designTokens.typography.h2,
+                      "text-lg sm:text-2xl lg:text-3xl",
+                    )}
+                  >
+                    Débarras
+                  </h2>
                   <p className="mt-1 text-xs text-muted-foreground sm:text-base">
                     Solutions rapides pour vider vos espaces en Île-de-France.
                   </p>
@@ -377,7 +388,12 @@ export default function ServicesPage() {
               {/* Déménagement Services */}
               <div>
                 <div className="mb-3 sm:mb-6">
-                  <h2 className="text-lg font-bold sm:text-2xl lg:text-3xl">
+                  <h2
+                    className={cn(
+                      designTokens.typography.h2,
+                      "text-lg sm:text-2xl lg:text-3xl",
+                    )}
+                  >
                     Déménagement
                   </h2>
                   <p className="mt-1 text-xs text-muted-foreground sm:text-base">
@@ -473,14 +489,16 @@ export default function ServicesPage() {
 
         {/* Quick Access - Mobile-friendly tappable cards */}
         <div className="mt-10 sm:mt-12">
-          <h3 className="text-lg font-bold sm:text-xl">Accès rapide aux services</h3>
+          <h3 className={cn(designTokens.typography.h3, "text-lg sm:text-xl")}>
+            Accès rapide aux services
+          </h3>
           <p className="mt-1 text-sm text-muted-foreground">
             Liens directs vers chaque service pour un choix immédiat.
           </p>
           <div className="mt-4 grid gap-6 sm:mt-6 sm:grid-cols-2">
             {/* Débarras Quick Links */}
             <div className="rounded-xl border bg-card p-4 shadow-sm">
-              <h4 className="mb-3 text-base font-semibold text-foreground">Débarras</h4>
+              <h4 className={cn(designTokens.typography.h4, "mb-3 text-base")}>Débarras</h4>
               <div className="space-y-2">
                 {(activeTab === "particuliers"
                   ? siteConfig.services.particulier.debarras
@@ -503,7 +521,7 @@ export default function ServicesPage() {
             
             {/* Déménagement Quick Links */}
             <div className="rounded-xl border bg-card p-4 shadow-sm">
-              <h4 className="mb-3 text-base font-semibold text-foreground">Déménagement</h4>
+              <h4 className={cn(designTokens.typography.h4, "mb-3 text-base")}>Déménagement</h4>
               <div className="space-y-2">
                 {(activeTab === "particuliers"
                   ? siteConfig.services.particulier.demenagement
@@ -530,7 +548,12 @@ export default function ServicesPage() {
       {/* Why Choose Us Section */}
       <Section bleed className="border-y bg-linear-to-b from-primary-50/50 via-background to-background">
         <div>
-          <h2 className="mb-5 text-center text-lg font-bold sm:mb-8 sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "mb-5 text-center text-lg sm:mb-8 sm:text-2xl lg:text-3xl",
+            )}
+          >
             {activeTab === "professionnels"
               ? "Pourquoi les entreprises nous choisissent"
               : "Pourquoi nous choisir"}
@@ -542,25 +565,25 @@ export default function ServicesPage() {
               <div className="mb-1.5 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:mb-3 sm:h-14 sm:w-14">
                 <Clock className="h-4 w-4 text-primary sm:h-7 sm:w-7" />
               </div>
-              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base">Rapide</h3>
+              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base font-heading">Rapide</h3>
               <p className="text-[10px] leading-tight text-muted-foreground sm:text-sm">
-                Devis 2h, RDV 24-48h
+                Devis 2h, RDV 24 à 48 h
               </p>
             </div>
             <div className="flex flex-col items-center rounded-xl border bg-card p-3 text-center shadow-sm sm:p-4">
               <div className="mb-1.5 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:mb-3 sm:h-14 sm:w-14">
                 <Recycle className="h-4 w-4 text-primary sm:h-7 sm:w-7" />
               </div>
-              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base">Éco</h3>
+              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base font-heading">Éco</h3>
               <p className="text-[10px] leading-tight text-muted-foreground sm:text-sm">
-                Tri & recyclage
+                Tri et recyclage
               </p>
             </div>
             <div className="flex flex-col items-center rounded-xl border bg-card p-3 text-center shadow-sm sm:p-4">
               <div className="mb-1.5 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:mb-3 sm:h-14 sm:w-14">
                 <Shield className="h-4 w-4 text-primary sm:h-7 sm:w-7" />
               </div>
-              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base">Gratuit</h3>
+              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base font-heading">Gratuit</h3>
               <p className="text-[10px] leading-tight text-muted-foreground sm:text-sm">
                 Devis sans engagement
               </p>
@@ -569,7 +592,7 @@ export default function ServicesPage() {
               <div className="mb-1.5 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 sm:mb-3 sm:h-14 sm:w-14">
                 <Users className="h-4 w-4 text-primary sm:h-7 sm:w-7" />
               </div>
-              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base">Pro</h3>
+              <h3 className="mb-0.5 text-xs font-semibold sm:mb-1 sm:text-base font-heading">Pro</h3>
               <p className="text-[10px] leading-tight text-muted-foreground sm:text-sm">
                 Équipe assurée
               </p>
@@ -599,7 +622,12 @@ export default function ServicesPage() {
       {/* Bottom CTA Section - Matches home page style */}
       <Section bleed className="bg-linear-to-b from-primary-100 via-primary-50/50 to-background">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-lg font-bold tracking-tight sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-balance text-lg sm:text-2xl lg:text-3xl",
+            )}
+          >
             {activeTab === "professionnels"
               ? "Devis entreprise"
               : "Prêt à commencer ?"}
@@ -629,7 +657,7 @@ export default function ServicesPage() {
                   src="/optimized/icons/devis-icon-white-w32.png"
                   width={16}
                   height={16}
-                  alt=""
+                  alt="Icône demande de devis gratuit"
                   className="mr-1 h-3.5 w-3.5 sm:mr-2 sm:h-5 sm:w-5"
                 />
                 Devis gratuit

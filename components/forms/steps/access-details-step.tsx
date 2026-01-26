@@ -52,7 +52,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="mb-4 text-xl font-bold">Détails du local</h2>
+        <h2 className="mb-4 text-xl font-bold font-heading">Détails du local</h2>
 
         <div className="mb-4">
           <Label className="mb-2 block">Type de local</Label>

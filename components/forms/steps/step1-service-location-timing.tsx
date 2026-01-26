@@ -41,7 +41,7 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Service Selection */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Type de service</h2>
+        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Type de service</h2>
         <p className="mb-4 text-sm text-muted-foreground">Sélectionnez le type d'intervention</p>
         
         <RadioGroup value={formData.service} onValueChange={(value) => updateFormData({ service: value })}>
@@ -75,7 +75,7 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
 
       {/* Location Inputs */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Localisation</h2>
+        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Localisation</h2>
         <p className="mb-4 text-sm text-muted-foreground">Où se situe le bien ?</p>
         
         <div className="grid w-full gap-4 sm:grid-cols-2">

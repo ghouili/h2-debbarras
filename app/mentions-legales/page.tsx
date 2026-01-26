@@ -1,12 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { siteConfig } from "@/lib/config"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
 
 export const metadata: Metadata = {
-  title: "Mentions légales | H2 Débarras Maison",
+  title: "Mentions légales | Débarras Aurea",
   description:
-    "Mentions légales du site H2 Débarras Maison : éditeur, hébergeur, propriété intellectuelle et contact.",
+    "Mentions légales du site Débarras Aurea : éditeur, hébergeur, propriété intellectuelle et contact.",
   alternates: {
     canonical: `${siteConfig.url}/mentions-legales`,
   },
@@ -16,11 +18,13 @@ export default function MentionsLegalesPage() {
   return (
     <Section>
       <div className="mx-auto max-w-4xl">
-        <h1 className="mb-6 text-3xl font-bold sm:text-4xl">Mentions légales</h1>
+        <h1 className={cn(designTokens.typography.h1, "mb-6 text-3xl sm:text-4xl")}>
+          Mentions légales
+        </h1>
 
         <Card className="mb-6">
           <CardContent className="prose prose-sm max-w-none p-6">
-            <h2 className="text-2xl font-semibold">1. Éditeur du site</h2>
+            <h2 className={cn(designTokens.typography.h3, "text-2xl")}>1. Éditeur du site</h2>
             <p>
               Le site {siteConfig.url} est édité par {siteConfig.name}.
             </p>
@@ -54,10 +58,12 @@ export default function MentionsLegalesPage() {
               </li>
             </ul>
 
-            <h2 className="mt-6 text-2xl font-semibold">2. Directeur de publication</h2>
+            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>
+              2. Directeur de publication
+            </h2>
             <p>[TODO : nom et prénom du directeur de publication]</p>
 
-            <h2 className="mt-6 text-2xl font-semibold">3. Hébergeur</h2>
+            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>3. Hébergeur</h2>
             <p>
               Le site est hébergé par ---------------------- (hébergeur).
               <br />
@@ -70,26 +76,30 @@ export default function MentionsLegalesPage() {
               </span>
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">4. Propriété intellectuelle</h2>
+            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>
+              4. Propriété intellectuelle
+            </h2>
             <p>
               L'ensemble du contenu de ce site (textes, images, logos) est la propriété exclusive de {siteConfig.name}
               ou de ses partenaires. Toute reproduction, même partielle, est interdite sans autorisation préalable.
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">5. Données personnelles</h2>
+            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>
+              5. Données personnelles
+            </h2>
             <p>
               Les informations collectées via ce site sont traitées pour répondre à vos demandes et assurer le suivi
               commercial. Pour plus d'informations, consultez notre <a href="/politique-confidentialite">politique de confidentialité</a>.
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">6. Responsabilité</h2>
+            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>6. Responsabilité</h2>
             <p>
               {siteConfig.name} s'efforce d'assurer l'exactitude des informations diffusées sur ce site. Toutefois, nous
               ne pouvons garantir l'absence d'erreurs ou d'omissions. Les informations fournies le sont à titre
               indicatif.
             </p>
 
-            <h2 className="mt-6 text-2xl font-semibold">7. Contact</h2>
+            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>7. Contact</h2>
             <p>
               Pour toute question, vous pouvez nous contacter via la page <a href="/contact">Contact</a> ou par email
               à <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.

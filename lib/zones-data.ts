@@ -49,7 +49,7 @@ export const zoneClusters: ZoneCluster[] = [
     description:
       "La petite couronne (92, 93, 94) représente notre zone d'intervention privilégiée. Proches de Paris, ces départements présentent une grande diversité d'habitats : pavillons, HLM, résidences récentes. Nous y intervenons quotidiennement avec des délais très courts.",
     departments: ["92", "93", "94"],
-    interventionTime: "24-48h",
+    interventionTime: "24 à 48 h",
     features: [
       "Connaissance des réseaux locaux",
       "Partenariats avec syndics et bailleurs",
@@ -326,7 +326,7 @@ export const zonesFaqs = [
   },
   {
     q: "Quels sont vos délais d'intervention selon les zones ?",
-    a: "Paris et petite couronne (92, 93, 94) : intervention possible sous 24-48h. Grande couronne (77, 78, 91, 95) : comptez 48-72h pour l'organisation logistique. En cas d'urgence, contactez-nous par téléphone.",
+    a: "Paris et petite couronne (92, 93, 94) : intervention possible sous 24 à 48 h. Grande couronne (77, 78, 91, 95) : comptez 48 à 72 h pour l'organisation logistique. En cas d'urgence, contactez-nous par téléphone.",
   },
   {
     q: "Comment estimez-vous le volume à débarrasser ?",

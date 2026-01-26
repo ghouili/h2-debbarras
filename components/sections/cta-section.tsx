@@ -17,7 +17,12 @@ export function CtaSection() {
       className="bg-linear-to-b from-primary-100 via-primary-50/50 to-background"
     >
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            "text-balance text-2xl sm:text-3xl",
+          )}
+        >
           {copy.title}
         </h2>
         <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
@@ -35,7 +40,7 @@ export function CtaSection() {
                 src="/optimized/icons/devis-icon-white-w32.png"
                 width={16}
                 height={16}
-                alt=""
+                alt="Icône demande de devis gratuit"
                 className="mr-0.5 sm:mr-1 h-4 w-4 sm:h-5 sm:w-5"
               />
               <Link href="/devis">{copy.primaryCta}</Link>

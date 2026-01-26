@@ -57,7 +57,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Photo Upload */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Photos</h2>
+        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Photos</h2>
         <p className="mb-4 text-sm text-muted-foreground">
           Ajoutez jusqu'à 6 photos pour un devis plus précis (optionnel)
         </p>
@@ -134,7 +134,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
 
       {/* Message */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Message</h2>
+        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Message</h2>
         <p className="mb-4 text-sm text-muted-foreground">
           Des détails spécifiques à nous communiquer ? (optionnel)
         </p>

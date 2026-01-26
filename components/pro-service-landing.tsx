@@ -21,14 +21,16 @@ import Link from "next/link"
 import { siteConfig } from "@/lib/config"
 import { ProQuoteFunnel } from "./forms/pro-quote-funnel"
 import { Suspense } from "react"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 const WHAT_WE_REMOVE = [
   { icon: Package, title: "Mobilier professionnel", desc: "Bureaux, rayonnages, étagères" },
-  { icon: Boxes, title: "Cartons & emballages", desc: "Volumes importants acceptés" },
-  { icon: FileText, title: "Archives & papiers", desc: "Destruction certifiée" },
+  { icon: Boxes, title: "Cartons et emballages", desc: "Volumes importants acceptés" },
+  { icon: FileText, title: "Archives et papiers", desc: "Destruction certifiée" },
   { icon: Trash2, title: "Encombrants divers", desc: "Équipements obsolètes" },
   { icon: Recycle, title: "Déchets triables", desc: "Valorisation maximale" },
-  { icon: Package, title: "Stock invendu", desc: "Liquidation & don" },
+  { icon: Package, title: "Stock invendu", desc: "Liquidation et don" },
 ]
 
 const HOW_IT_WORKS = [
@@ -40,23 +42,23 @@ const HOW_IT_WORKS = [
   },
   {
     step: 2,
-    title: "Estimation & planification",
+    title: "Estimation et planification",
     desc: "Devis gratuit sous 2h, planning adapté",
     icon: FileText,
   },
   {
     step: 3,
-    title: "Intervention & tri/recyclage",
+    title: "Intervention et tri/recyclage",
     desc: "Équipe pro, tri sur place, certificats fournis",
     icon: Recycle,
   },
 ]
 
 const TRUST_POINTS = [
-  { icon: Clock, text: "Intervention 24-48h", subtext: "selon urgence" },
+  { icon: Clock, text: "Intervention 24 à 48 h", subtext: "selon urgence" },
   { icon: Shield, text: "Devis gratuit", subtext: "sans engagement" },
-  { icon: Recycle, text: "Tri & recyclage", subtext: "certifié" },
-  { icon: Users, text: "Équipe professionnelle", subtext: "formée & assurée" },
+  { icon: Recycle, text: "Tri et recyclage", subtext: "certifié" },
+  { icon: Users, text: "Équipe professionnelle", subtext: "formée et assurée" },
 ]
 
 export function ProServiceLanding() {
@@ -70,11 +72,16 @@ export function ProServiceLanding() {
               <MapPin className="mr-1 h-3 w-3" />
               Île-de-France
             </Badge>
-            <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Débarras de commerces & entrepôts en Île-de-France
+            <h1
+              className={cn(
+                designTokens.typography.h1,
+                "text-balance text-4xl md:text-5xl lg:text-6xl",
+              )}
+            >
+              Débarras de commerces et entrepôts en Île-de-France
             </h1>
             <p className="mt-4 text-pretty text-lg text-muted-foreground md:text-xl">
-              Évacuation rapide des encombrants & déchets professionnels. Tri, recyclage, dons.
+              Évacuation rapide des encombrants et déchets professionnels. Tri, recyclage, dons.
             </p>
 
             {/* CTAs */}
@@ -126,7 +133,9 @@ export function ProServiceLanding() {
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <h2 className="mb-8 text-center text-3xl font-bold md:text-4xl">Ce que nous évacuons</h2>
+            <h2 className={cn(designTokens.typography.h2, "mb-8 text-center text-3xl md:text-4xl")}>
+              Ce que nous évacuons
+            </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {WHAT_WE_REMOVE.map((item, idx) => {
                 const Icon = item.icon
@@ -136,7 +145,9 @@ export function ProServiceLanding() {
                       <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                         <Icon className="h-6 w-6 text-primary" />
                       </div>
-                      <h3 className="mb-1 font-semibold">{item.title}</h3>
+                      <h3 className={cn(designTokens.typography.h4, "mb-1")}>
+                        {item.title}
+                      </h3>
                       <p className="text-sm text-muted-foreground">{item.desc}</p>
                     </CardContent>
                   </Card>
@@ -151,7 +162,9 @@ export function ProServiceLanding() {
       <section className="border-y bg-muted/30 py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">Comment ça marche ?</h2>
+            <h2 className={cn(designTokens.typography.h2, "mb-12 text-center text-3xl md:text-4xl")}>
+              Comment ça marche ?
+            </h2>
             <div className="grid gap-8 md:grid-cols-3">
               {HOW_IT_WORKS.map((step) => {
                 const Icon = step.icon
@@ -164,7 +177,9 @@ export function ProServiceLanding() {
                     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="mb-2 text-lg font-semibold">{step.title}</h3>
+                    <h3 className={cn(designTokens.typography.h4, "mb-2 text-lg")}>
+                      {step.title}
+                    </h3>
                     <p className="text-sm text-muted-foreground">{step.desc}</p>
                   </div>
                 )
@@ -178,7 +193,9 @@ export function ProServiceLanding() {
       <section id="devis" className="scroll-mt-20 py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Demandez votre devis gratuit</h2>
+            <h2 className={cn(designTokens.typography.h2, "mb-4 text-3xl md:text-4xl")}>
+              Demandez votre devis gratuit
+            </h2>
             <p className="mb-8 text-muted-foreground">Remplissez le formulaire ci-dessous en 2 minutes</p>
           </div>
 
@@ -192,21 +209,25 @@ export function ProServiceLanding() {
       <section className="border-t bg-muted/30 py-12">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <h2 className="mb-8 text-center text-2xl font-bold md:text-3xl">Nos garanties professionnelles</h2>
+            <h2 className={cn(designTokens.typography.h2, "mb-8 text-center text-2xl md:text-3xl")}>
+              Nos garanties professionnelles
+            </h2>
             <div className="grid gap-6 md:grid-cols-3">
               <Card>
                 <CardContent className="p-6 text-center">
                   <Recycle className="mx-auto mb-3 h-10 w-10 text-primary" />
-                  <h3 className="mb-2 font-semibold">Tri & recyclage</h3>
+                  <h3 className={cn(designTokens.typography.h4, "mb-2")}>Tri et recyclage</h3>
                   <p className="text-sm text-muted-foreground">
-                    Démarche écoresponsable avec tri sur place, valorisation maximale et certificats de destruction
+                    Démarche éco-responsable avec tri sur place, valorisation maximale et certificats de destruction
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6 text-center">
                   <Clock className="mx-auto mb-3 h-10 w-10 text-primary" />
-                  <h3 className="mb-2 font-semibold">Intervention organisée</h3>
+                  <h3 className={cn(designTokens.typography.h4, "mb-2")}>
+                    Intervention organisée
+                  </h3>
                   <p className="text-sm text-muted-foreground">
                     Planning flexible, hors heures ouvrées possible, coordination sans interruption d'activité
                   </p>
@@ -215,7 +236,9 @@ export function ProServiceLanding() {
               <Card>
                 <CardContent className="p-6 text-center">
                   <Users className="mx-auto mb-3 h-10 w-10 text-primary" />
-                  <h3 className="mb-2 font-semibold">Équipe professionnelle</h3>
+                  <h3 className={cn(designTokens.typography.h4, "mb-2")}>
+                    Équipe professionnelle
+                  </h3>
                   <p className="text-sm text-muted-foreground">
                     Personnel formé, équipé selon normes de sécurité, assuré et respectueux de vos locaux
                   </p>
@@ -231,7 +254,9 @@ export function ProServiceLanding() {
         <div className="container mx-auto px-4">
           <Card className="mx-auto max-w-3xl border-primary/20 bg-primary/5">
             <CardContent className="p-8 text-center">
-              <h2 className="mb-4 text-2xl font-bold md:text-3xl">Une question ? Besoin d'un conseil ?</h2>
+              <h2 className={cn(designTokens.typography.h2, "mb-4 text-2xl md:text-3xl")}>
+                Une question ? Besoin d'un conseil ?
+              </h2>
               <p className="mb-6 text-muted-foreground">Notre équipe est à votre écoute du lundi au samedi</p>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <Button size="lg" variant="outline" asChild>
