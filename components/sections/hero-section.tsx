@@ -271,7 +271,8 @@ export function HeroSection() {
               {/* Testimonial snippet */}
               <div className="block mt-2.5 rounded-b-lg bg-secondary/50 p-2.5 sm:p-3 border border-border/30">
                 <div className="flex flex-col md:flex-row items-start gap-2.5">
-                  <div className="flex shrink-0" aria-label="5 étoiles">
+                  <div className="flex shrink-0">
+                    <span className="sr-only">Note : 5 sur 5</span>
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}

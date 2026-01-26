@@ -12,7 +12,7 @@ export function TrustBadges() {
 
   return (
     <Section className="border-b border-border bg-white py-5 sm:py-6 md:py-8">
-      <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4" role="list" aria-label="Nos garanties">
+      <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4" aria-label="Nos garanties">
         {badges.map((badge) => {
           const Icon = badge.icon
           return (

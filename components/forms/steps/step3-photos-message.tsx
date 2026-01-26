@@ -83,7 +83,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
                   className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-destructive text-destructive-foreground opacity-0 transition-opacity hover:bg-destructive/90 group-hover:opacity-100"
                   aria-label="Supprimer la photo"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-4 w-4" aria-hidden="true" />
                 </button>
               </div>
             ))}
@@ -99,10 +99,11 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
               accept="image/*"
               multiple
               max={6 - formData.photos.length}
+              aria-label="Ajouter des photos"
               className="sr-only"
               onChange={handlePhotoUpload}
             />
-            <label htmlFor="photos" className="block w-full">
+            <label htmlFor="photos" className="block w-full" aria-label="Ajouter des photos">
               <Card className="w-full cursor-pointer border-2 border-dashed transition-colors hover:border-primary/50">
                 <CardContent className="flex w-full flex-col items-center justify-center gap-2 p-8 text-center">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">

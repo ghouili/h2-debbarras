@@ -427,6 +427,7 @@ export function ProQuoteFunnel() {
                     type="file"
                     accept="image/*"
                     multiple
+                    aria-label="Ajouter des photos"
                     className="sr-only"
                     onChange={handlePhotoUpload}
                   />

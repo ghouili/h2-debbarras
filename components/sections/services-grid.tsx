@@ -85,6 +85,9 @@ export function ServicesGrid() {
                 >
                   <Link href={`/services/${service.slug}`}>
                     {serviceCardsCopy.ctaLabel}
+                    <span className="sr-only">
+                      {copyCard?.title ? ` — ${copyCard.title}` : ""}
+                    </span>
                     <span
                       className="transition-transform group-hover/btn:translate-x-1"
                       aria-hidden="true"

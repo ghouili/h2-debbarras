@@ -600,7 +600,11 @@ export function ServiceLandingPage({
                   >
                     <Link href={`/services/${related.slug}`}>
                       En savoir plus
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1 sm:h-4 sm:w-4" />
+                      <span className="sr-only"> — {related.title}</span>
+                      <ArrowRight
+                        className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1 sm:h-4 sm:w-4"
+                        aria-hidden="true"
+                      />
                     </Link>
                   </Button>
                 </CardContent>

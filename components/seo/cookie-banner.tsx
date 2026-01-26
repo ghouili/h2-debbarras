@@ -32,8 +32,14 @@ export function CookieBanner() {
         <div className="p-4">
           <div className="mb-3 flex items-start justify-between gap-2">
             <h3 className="font-semibold">Cookies et confidentialité</h3>
-            <Button variant="ghost" size="icon" className="h-6 w-6 shrink-0" onClick={rejectCookies}>
-              <X className="h-4 w-4" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 shrink-0"
+              onClick={rejectCookies}
+              aria-label="Fermer la bannière de cookies"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
           <p className="mb-4 text-pretty text-sm text-muted-foreground">
@@ -53,6 +59,7 @@ export function CookieBanner() {
             className="mt-3 block text-center text-xs text-muted-foreground underline"
           >
             En savoir plus
+            <span className="sr-only"> sur la politique de confidentialité</span>
           </Link>
         </div>
       </Card>

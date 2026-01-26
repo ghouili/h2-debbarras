@@ -6,7 +6,7 @@ export function StatsSection() {
 
   return (
     <Section bleed className="bg-primary text-primary-foreground">
-      <ul className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4" role="list" aria-label="Nos chiffres clés">
+      <ul className="grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4" aria-label="Nos chiffres clés">
         {stats.map((stat) => (
           <li key={stat.label} className="text-center">
             <div className="text-2xl font-bold sm:text-3xl lg:text-4xl">{stat.value}</div>

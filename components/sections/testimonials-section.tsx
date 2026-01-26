@@ -23,7 +23,8 @@ export function TestimonialsSection() {
           <Card key={index} className="w-full h-full">
             <CardContent className="px-5 sm:px-6 min-h-56 sm:min-h-64 flex flex-col justify-between">
               <div>
-                <div className="mb-3 flex gap-0.5" aria-label={`Note: ${testimonial.rating} sur 5`}>
+                <div className="mb-3 flex gap-0.5">
+                  <span className="sr-only">Note : {testimonial.rating} sur 5</span>
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star
                       key={i}

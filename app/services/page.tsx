@@ -343,7 +343,8 @@ export default function ServicesPage() {
                                   className="inline-flex items-center text-xs text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded sm:text-sm"
                                 >
                                   Voir le détail
-                                  <ArrowRight className="ml-1 h-3 w-3" />
+                                  <span className="sr-only"> — {category.title}</span>
+                                  <ArrowRight className="ml-1 h-3 w-3" aria-hidden="true" />
                                 </Link>
                               )}
                             </div>
@@ -436,7 +437,8 @@ export default function ServicesPage() {
                                   className="inline-flex items-center text-xs text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded sm:text-sm"
                                 >
                                   Voir le détail
-                                  <ArrowRight className="ml-1 h-3 w-3" />
+                                  <span className="sr-only"> — {category.title}</span>
+                                  <ArrowRight className="ml-1 h-3 w-3" aria-hidden="true" />
                                 </Link>
                               )}
                             </div>
