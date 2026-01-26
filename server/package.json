@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "db:migrate": "prisma migrate dev",
-    "db:seed": "prisma db seed"
+    "db:seed": "prisma db seed",
+    "db:generate": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.11.0",

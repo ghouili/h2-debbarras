@@ -19,7 +19,7 @@ This folder hosts the admin dashboard (React + Vite) and a colocated Node.js API
 ## Prerequisites
 
 - Node.js LTS
-- PostgreSQL (local or Docker)
+- PostgreSQL (local install) **or** a managed PostgreSQL instance (Supabase, Neon, RDS, etc.)
 
 ## Setup
 
@@ -27,20 +27,36 @@ This folder hosts the admin dashboard (React + Vite) and a colocated Node.js API
 
    - Create .env from .env.example
 
-2. Start PostgreSQL (optional Docker):
+2. Configure PostgreSQL (choose one):
 
-   - docker-compose up -d
+   - **Local PostgreSQL**
+     1. Install Postgres for your OS.
+     2. Create a database + user (example using psql):
+
+        - CREATE USER h2_admin WITH PASSWORD 'change_me';
+        - CREATE DATABASE h2debarras_admin OWNER h2_admin;
+
+     3. Set DATABASE_URL in .env.
+
+   - **Managed PostgreSQL**
+     1. Create a database in your provider (Supabase/Neon/RDS/etc.).
+     2. Copy the connection string into DATABASE_URL.
+     3. If required by the provider, add SSL mode to the URL (e.g. ?sslmode=require).
 
 3. Install dependencies:
 
    - npm install
 
-4. Run migrations + seed:
+4. Generate Prisma client (if needed):
+
+   - npm run db:generate
+
+5. Run migrations + seed:
 
    - npm run db:migrate
    - npm run db:seed
 
-5. Start admin + API:
+6. Start admin + API:
 
    - npm run dev
 
@@ -59,3 +75,10 @@ Default seed credentials (override in .env):
 - dev:api: Express API only
 - db:migrate: Prisma migrate
 - db:seed: Prisma seed
+- db:generate: Prisma client generate
+
+## Prisma + DATABASE_URL notes
+
+- URL format: postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public
+- If your password contains special characters, URL-encode it.
+- Some managed providers require SSL; append ?sslmode=require (or the provider’s recommended option).

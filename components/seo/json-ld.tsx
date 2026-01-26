@@ -27,6 +27,8 @@ export function JsonLd({ type, data }: JsonLdProps) {
         name: siteConfig.name,
         description: siteConfig.description,
         url: siteConfig.url,
+        logo: `${siteConfig.url}/logo-512.png`,
+        image: `${siteConfig.url}/logo-512.png`,
         telephone: siteConfig.contact.phone,
         email: siteConfig.contact.email,
         address: {
