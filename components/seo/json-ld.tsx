@@ -2,11 +2,22 @@ import { siteConfig } from "@/lib/config"
 
 type JsonLdProps = {
   type: "organization" | "service" | "breadcrumb" | "faq"
-  data?: any
+  data?: JsonLdData
 }
 
 export function JsonLd({ type, data }: JsonLdProps) {
-  let jsonLd: any = {}
+  let jsonLd: Record<string, unknown> = {}
+
+  const getBreadcrumbItems = (value?: JsonLdData): BreadcrumbItem[] =>
+    value && "items" in value && Array.isArray(value.items) ? value.items : []
+
+  const getFaqQuestions = (value?: JsonLdData): FaqQuestion[] =>
+    value && "questions" in value && Array.isArray(value.questions)
+      ? value.questions
+      : []
+
+  const getServiceData = (value?: JsonLdData): ServiceData =>
+    value && "title" in value ? value : {}
 
   switch (type) {
     case "organization":
@@ -37,12 +48,13 @@ export function JsonLd({ type, data }: JsonLdProps) {
       }
       break
 
-    case "service":
+    case "service": {
+      const serviceData = getServiceData(data)
       jsonLd = {
         "@context": "https://schema.org",
         "@type": "Service",
-        serviceType: data?.title || "Débarras de maison",
-        name: data?.title,
+        serviceType: serviceData.title || "Débarras de maison",
+        name: serviceData.title,
         provider: {
           "@type": "LocalBusiness",
           name: siteConfig.name,
@@ -53,17 +65,18 @@ export function JsonLd({ type, data }: JsonLdProps) {
           "@type": "State",
           name: "Île-de-France",
         },
-        description: data?.description,
-        url: data?.url,
-        mainEntityOfPage: data?.url,
+        description: serviceData.description,
+        url: serviceData.url,
+        mainEntityOfPage: serviceData.url,
       }
       break
+    }
 
     case "breadcrumb":
       jsonLd = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        itemListElement: data?.items?.map((item: any, index: number) => ({
+        itemListElement: getBreadcrumbItems(data).map((item, index) => ({
           "@type": "ListItem",
           position: index + 1,
           name: item.label,
@@ -76,7 +89,7 @@ export function JsonLd({ type, data }: JsonLdProps) {
       jsonLd = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: data?.questions?.map((q: any) => ({
+        mainEntity: getFaqQuestions(data).map((q) => ({
           "@type": "Question",
           name: q.q,
           acceptedAnswer: {
@@ -96,3 +109,29 @@ export function JsonLd({ type, data }: JsonLdProps) {
     />
   )
 }
+
+type ServiceData = {
+  title?: string
+  description?: string
+  url?: string
+}
+
+type BreadcrumbItem = {
+  label: string
+  href?: string
+}
+
+type BreadcrumbData = {
+  items?: BreadcrumbItem[]
+}
+
+type FaqQuestion = {
+  q: string
+  a: string
+}
+
+type FaqData = {
+  questions?: FaqQuestion[]
+}
+
+type JsonLdData = ServiceData | BreadcrumbData | FaqData

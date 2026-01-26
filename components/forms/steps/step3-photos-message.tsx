@@ -3,11 +3,11 @@
 import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Upload, X, Image as ImageIcon } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import Image from "next/image"
 
 interface Step3Props {
   formData: QuoteFormData
@@ -67,11 +67,14 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
           <div className="mb-4 grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
             {previews.map((preview, index) => (
               <div key={index} className="group relative w-full overflow-hidden rounded-lg border bg-muted">
-                <div className="aspect-square w-full">
-                  <img
+                <div className="relative aspect-square w-full">
+                  <Image
                     src={preview}
                     alt={`Aperçu ${index + 1}`}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(max-width: 640px) 50vw, 33vw"
+                    className="object-cover"
+                    unoptimized
                   />
                 </div>
                 <button

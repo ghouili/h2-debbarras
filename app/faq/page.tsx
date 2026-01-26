@@ -16,7 +16,6 @@ import {
   Phone,
   FileText,
   CheckCircle2,
-  ArrowRight,
   MapPin,
   Truck,
   Home,
@@ -216,12 +215,10 @@ const SearchAndCategories = memo(function SearchAndCategories({
 
 interface FAQAccordionListProps {
   faqs: FlatFAQ[];
-  searchQuery: string;
 }
 
 const FAQAccordionList = memo(function FAQAccordionList({
   faqs,
-  searchQuery,
 }: FAQAccordionListProps) {
   if (faqs.length === 0) {
     return (
@@ -446,7 +443,7 @@ export default function FaqPage() {
             onCategoryChange={handleCategoryChange}
             resultCount={filteredFaqs.length}
           />
-          <FAQAccordionList faqs={filteredFaqs} searchQuery={searchQuery} />
+          <FAQAccordionList faqs={filteredFaqs} />
         </div>
       </Section>
 

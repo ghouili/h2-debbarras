@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { MapContainer, TileLayer, Marker, Popup, Polygon, useMap } from "react-leaflet"
+import { useEffect } from "react"
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 
@@ -77,14 +77,6 @@ const departments = [
   { code: "95", name: "Val-d'Oise", lat: 49.0333, lng: 2.0667 },
 ]
 
-// Île-de-France approximate boundary for visual reference
-const idfBoundary: [number, number][] = [
-  [49.2500, 1.4500],
-  [49.2500, 3.5500],
-  [48.1200, 3.5500],
-  [48.1200, 1.4500],
-]
-
 interface MapProps {
   view: "paris" | "idf"
   hoveredZone: string | null
@@ -115,13 +107,9 @@ export default function IleDeFranceMap({
   onZoneHover,
   onZoneClick,
 }: MapProps) {
-  const [mounted, setMounted] = useState(false)
+  const isClient = typeof window !== "undefined"
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
+  if (!isClient) {
     return (
       <div className="flex h-full w-full items-center justify-center bg-muted/50">
         <div className="flex flex-col items-center gap-3">

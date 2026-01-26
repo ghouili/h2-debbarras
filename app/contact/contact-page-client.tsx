@@ -28,7 +28,6 @@ import {
   Loader2,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
   Truck,
   Recycle,
   Shield,

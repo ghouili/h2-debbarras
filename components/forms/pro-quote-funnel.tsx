@@ -149,7 +149,7 @@ export function ProQuoteFunnel() {
 
       trackLeadSubmit()
       router.push("/merci")
-    } catch (error) {
+    } catch {
       setErrors({ submit: "Une erreur est survenue. Veuillez réessayer." })
     } finally {
       setIsSubmitting(false)

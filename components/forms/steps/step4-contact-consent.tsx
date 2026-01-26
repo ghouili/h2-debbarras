@@ -6,10 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, AlertCircle } from "lucide-react";
 import type { QuoteFormData } from "../quote-funnel";
-import { useRouter } from "next/navigation";
 
 type Props = {
   formData: QuoteFormData;
@@ -26,7 +24,6 @@ export function Step4ContactConsent({
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConsentError, setShowConsentError] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

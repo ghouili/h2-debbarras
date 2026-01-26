@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { designTokens } from "@/lib/design-tokens"
 import { siteConfig } from "@/lib/config"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export function SuccessState() {
   return (
@@ -67,10 +68,10 @@ export function SuccessState() {
               size="lg"
               className={cn("min-h-11 w-full flex-1 gap-2", designTokens.button.secondary)}
             >
-              <a href="/">
+              <Link href="/">
                 <Home className="h-4 w-4" />
                 Retour à l'accueil
-              </a>
+              </Link>
             </Button>
           </div>
 

@@ -20,12 +20,6 @@ const services = [
   { id: "demenagement-entreprise", label: "Déménagement entreprise", icon: Truck },
 ]
 
-const timingOptions = [
-  { value: "urgent", label: "Urgent (< 48h)", emoji: "🔥" },
-  { value: "cette-semaine", label: "Cette semaine", emoji: "📅" },
-  { value: "flexible", label: "Flexible", emoji: "✨" },
-]
-
 interface Step1Props {
   formData: QuoteFormData
   updateFormData: (data: Partial<QuoteFormData>) => void

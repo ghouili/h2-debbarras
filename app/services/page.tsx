@@ -36,7 +36,6 @@ const isDefined = <T,>(value: T | null | undefined): value is T => Boolean(value
 
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState("professionnels");
-  const primaryCtaLabel = "Obtenir un devis gratuit";
   const tabs = [
     { id: "professionnels", label: "Professionnels" },
     { id: "particuliers", label: "Particuliers" },

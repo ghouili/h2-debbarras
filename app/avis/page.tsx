@@ -6,12 +6,9 @@ import { Button } from "@/components/ui/button";
 import {
   Star,
   Phone,
-  FileText,
   MapPin,
   Clock,
-  Shield,
   CheckCircle2,
-  ChevronRight,
   Users,
   Building2,
   Award,

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu } from "lucide-react";
 import { useState, useCallback, useMemo } from "react";
 
 import { Button } from "@/components/ui/button";
