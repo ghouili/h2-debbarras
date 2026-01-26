@@ -25,8 +25,3 @@
    - npx lighthouse https://localhost:3000 --preset=mobile
 
 > Fill in the “after” metrics above once runs complete.
-
-## SEO note (robots.txt validity)
-- If Lighthouse reports a non-standard `Content-Signal` directive in robots.txt, disable Cloudflare’s **Content Signals** feature for this zone.
-- Location: Cloudflare Dashboard → **SEO** → **Content Signals** → Off.
-- Our app serves robots.txt via Next MetadataRoute in app/robots.ts and should remain standard.

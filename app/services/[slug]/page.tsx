@@ -126,14 +126,14 @@ export async function generateMetadata({
     title: `${service.title} en Île-de-France | ${clientLabels[clientType]} | ${siteConfig.name}`,
     description: service.description,
     alternates: {
-      canonical: `${siteConfig.url}/services/${service.slug}`,
+      canonical: `/services/${service.slug}`,
     },
     openGraph: {
       title: `${service.title} - ${siteConfig.name}`,
       description: service.description,
       type: "website",
       locale: "fr_FR",
-      url: `${siteConfig.url}/services/${service.slug}`,
+      url: `/services/${service.slug}`,
     },
     twitter: {
       card: "summary_large_image",
