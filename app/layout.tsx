@@ -77,12 +77,6 @@ export default function RootLayout({
           name="google-site-verification"
           content="OsCAUbqCBXdTlYGiG324nqiW2UONStmLcIWdcg2N8xM"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&display=swap"
-          rel="stylesheet"
-        />
         
         <JsonLd type="organization" />
       </head>
