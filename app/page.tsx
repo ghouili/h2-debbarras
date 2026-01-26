@@ -3,13 +3,31 @@ import { HeroSection } from "@/components/sections/hero-section"
 import { TrustBadges } from "@/components/sections/trust-badges"
 import { ServicesGrid } from "@/components/sections/services-grid"
 import { HowItWorks } from "@/components/sections/how-it-works"
-import { BeforeAfter } from "@/components/sections/before-after"
 import { ZonesTeaser } from "@/components/sections/zones-teaser"
 import { TestimonialsSection } from "@/components/sections/testimonials-section"
 import { StatsSection } from "@/components/sections/stats-section"
 import { FaqSection } from "@/components/sections/faq-section"
 import { CtaSection } from "@/components/sections/cta-section"
 import { siteConfig } from "@/lib/config"
+import dynamic from "next/dynamic"
+
+const BeforeAfter = dynamic(
+  () => import("@/components/sections/before-after"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="py-12 md:py-16">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="h-8 w-2/3 mx-auto rounded-full bg-muted animate-pulse" />
+          <div className="mt-3 h-4 w-1/2 mx-auto rounded-full bg-muted animate-pulse" />
+        </div>
+        <div className="mx-auto mt-8 max-w-5xl">
+          <div className="h-64 sm:h-80 rounded-2xl bg-muted animate-pulse" />
+        </div>
+      </div>
+    ),
+  },
+)
 
 export const metadata: Metadata = {
   title:
