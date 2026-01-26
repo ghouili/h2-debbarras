@@ -84,14 +84,11 @@ touch "$ENV_FILE"
 log "Cleaning old build artifacts"
 rm -rf .next
 
-# Prefer npm ci if lockfile exists for reproducible builds
-if [[ -f "package-lock.json" ]]; then
-  log "Installing dependencies (npm ci)"
-  npm ci --legacy-peer-deps
-else
-  log "No lockfile found, installing dependencies (npm install)"
-  npm install --legacy-peer-deps
-fi
+# NOTE:
+# - npm ci is intentionally strict and fails if package-lock.json is not in sync with package.json.
+# - npm install will resolve dependencies and can update/sync the lockfile automatically.
+log "Installing dependencies (npm install)"
+npm install --legacy-peer-deps --no-audit --no-fund
 
 #############################################
 # BUILD PROJECT (Next.js)
@@ -110,7 +107,7 @@ export PORT="$APP_PORT"
 # Check if ecosystem config exists (preferred method)
 if [[ -f "ecosystem.config.cjs" ]]; then
   log "Using ecosystem.config.cjs for PM2"
-  
+
   if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
     log "Restarting existing PM2 process: $PM2_APP"
     pm2 restart ecosystem.config.cjs --env production
@@ -121,7 +118,7 @@ if [[ -f "ecosystem.config.cjs" ]]; then
 else
   # Fallback: run Next.js via npm start
   log "No ecosystem config found, using inline PM2 command"
-  
+
   if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
     log "Restarting existing PM2 process: $PM2_APP"
     pm2 restart "$PM2_APP"
@@ -134,5 +131,5 @@ fi
 # Persist PM2 process list for reboot survival
 pm2 save
 
-log "Deployment completed successfully 🎉"
+log "Deployment completed successfully"
 log "Next.js app '$PM2_APP' running on port $APP_PORT"
