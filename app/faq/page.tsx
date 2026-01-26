@@ -108,7 +108,7 @@ const HeroSection = memo(function HeroSection() {
           >
             <Link href="/devis">
               <Image
-                src="/special-icon.png"
+                src="/optimized/icons/special-icon-w40.png"
                 width={20}
                 height={20}
                 alt=""
@@ -321,7 +321,7 @@ const StillNeedHelpCTA = memo(function StillNeedHelpCTA() {
           >
             <Link href="/devis">
               <Image
-                src="/special-icon.png"
+                src="/optimized/icons/special-icon-w40.png"
                 width={20}
                 height={20}
                 alt=""

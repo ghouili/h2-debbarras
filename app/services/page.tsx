@@ -197,7 +197,7 @@ export default function ServicesPage() {
           {/* Badge */}
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary border border-primary/20 shadow-sm sm:px-4 sm:py-2 sm:text-sm">
             <Image
-              src="/devis-icon.png"
+              src="/optimized/icons/devis-icon-w32.png"
               width={16}
               height={16}
               alt=""
@@ -624,7 +624,7 @@ export default function ServicesPage() {
                 }
               >
                 <Image
-                  src="/devis-icon-white.png"
+                  src="/optimized/icons/devis-icon-white-w32.png"
                   width={16}
                   height={16}
                   alt=""

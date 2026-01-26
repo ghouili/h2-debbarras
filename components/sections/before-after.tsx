@@ -9,6 +9,9 @@ import { homeCopy } from "@/lib/content/home-copy";
 import { Section } from "../layout/section";
 import { cn } from "@/lib/utils"; // adjust import if your cn is elsewhere
 
+const GALLERY_BLUR_DATA_URL =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjciIGZpbGw9IiNlZWVlZWUiLz48L3N2Zz4=";
+
 
 
 type Toggle = "before" | "after";
@@ -21,26 +24,30 @@ export function BeforeAfter() {
   const examples = [
     {
       title: "Appartement F3 - Paris 15e",
-      before: "/before-paris-arrart-01.png",
-      after: "/after-paris-arrart-01.png",
+      before: "/optimized/before-after/before-paris-arrart-01-w1024.webp",
+      after: "/optimized/before-after/after-paris-arrart-01-w1024.webp",
       description: "Débarras complet en 3 heures",
     },
     {
       title: "Appartement F3 - Paris 15e",
-      before: "/top-appar-before.png",
-      after: "/top-appar-after.png",
+      before: "/optimized/before-after/top-appar-before-w1024.webp",
+      after: "/optimized/before-after/top-appar-after-w1024.webp",
       description: "Débarras complet en 3 heures",
     },
     {
       title: "Cave - Versailles",
-      before: "/clean-empty-basement-before-clearance.png",
-      after: "/clean-empty-basement-after-clearance.png",
+      before:
+        "/optimized/before-after/clean-empty-basement-before-clearance-w1024.webp",
+      after:
+        "/optimized/before-after/clean-empty-basement-after-clearance-w1024.webp",
       description: "Évacuation de 15m³ d'objets",
     },
     {
       title: "Maison - Créteil",
-      before: "/clean-empty-house-before-clearance.png",
-      after: "/clean-empty-house-after-clearance.jpg",
+      before:
+        "/optimized/before-after/clean-empty-house-before-clearance-w1024.webp",
+      after:
+        "/optimized/before-after/clean-empty-house-after-clearance-w1024.webp",
       description: "Débarras complet en 1 journée",
     },
   ];
@@ -164,6 +171,8 @@ export function BeforeAfter() {
                     )}
                     aria-hidden={imageToggle !== "after"}
                     loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
                   <Image
                     src={current.before}
@@ -176,6 +185,8 @@ export function BeforeAfter() {
                     )}
                     aria-hidden={imageToggle !== "before"}
                     loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
 
                   {/* Optional badge (kept subtle) */}
@@ -205,6 +216,8 @@ export function BeforeAfter() {
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"
                     loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
                 </div>
               </div>
@@ -220,6 +233,8 @@ export function BeforeAfter() {
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"
                     loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
                 </div>
               </div>

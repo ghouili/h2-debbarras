@@ -13,6 +13,11 @@ import { homeCopy } from "@/lib/content/home-copy";
 import { PageContainer } from "@/components/layout/page-container";
 import { Section } from "../layout/section";
 
+const HERO_AFTER_SRC = "/optimized/hero/hero-after-w1200.webp";
+const HERO_BEFORE_SRC = "/optimized/hero/hero-before-w1200.webp";
+const HERO_BLUR_DATA_URL =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjciIGZpbGw9IiNlYmVkZWYiLz48L3N2Zz4=";
+
 export function HeroSection() {
   const heroCopy = homeCopy.hero;
   const [imageToggle, setImageToggle] = useState<"before" | "after">("after");
@@ -50,7 +55,7 @@ export function HeroSection() {
             {/* Floating badge */}
             <div className="inline-flex items-center gap-2 self-start rounded-full bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-primary border border-primary/20 shadow-sm">
               <Image
-                src="/devis-icon.png"
+                src="/optimized/icons/devis-icon-w32.png"
                 width={16}
                 height={16}
                 alt=""
@@ -146,7 +151,7 @@ export function HeroSection() {
               <div className="flex items-center gap-1.5 text-muted-foreground">
                 <Image
                   alt="intervention-icon"
-                  src="/special-icon.png"
+                  src="/optimized/icons/special-icon-w40.png"
                   width={20}
                   height={20}
                   className="h-5 w-auto text-primary shrink-0"
@@ -160,7 +165,7 @@ export function HeroSection() {
             /> */}
                 <Image
                   alt="intervention-icon"
-                  src="/departement-icon.png"
+                  src="/optimized/icons/departement-icon-w40.png"
                   width={20}
                   height={20}
                   className="h-5 w-auto text-primary shrink-0"
@@ -224,7 +229,7 @@ export function HeroSection() {
               >
                 {/* Both images rendered, visibility controlled via CSS for instant switch */}
                 <Image
-                  src="/after.png"
+                  src={HERO_AFTER_SRC}
                   alt="Espace libéré après intervention de débarras"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
@@ -233,9 +238,12 @@ export function HeroSection() {
                     imageToggle === "after" ? "opacity-100" : "opacity-0",
                   )}
                   priority
+                  fetchPriority="high"
+                  placeholder="blur"
+                  blurDataURL={HERO_BLUR_DATA_URL}
                 />
                 <Image
-                  src="/hero-before.png"
+                  src={HERO_BEFORE_SRC}
                   alt="Espace encombré avant intervention de débarras"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
@@ -243,7 +251,10 @@ export function HeroSection() {
                     "object-cover transition-opacity duration-200",
                     imageToggle === "before" ? "opacity-100" : "opacity-0",
                   )}
-                  loading="eager"
+                  loading="lazy"
+                  fetchPriority="low"
+                  placeholder="blur"
+                  blurDataURL={HERO_BLUR_DATA_URL}
                 />
 
                 {/* Result badge - softer claim */}
@@ -308,7 +319,7 @@ export function HeroSection() {
           <div className="flex items-center gap-1.5 text-muted-foreground">
             <Image
               alt="intervention-icon"
-              src="/special-icon.png"
+              src="/optimized/icons/special-icon-w40.png"
               width={20}
               height={20}
               className="h-5 w-auto text-primary shrink-0"
@@ -322,7 +333,7 @@ export function HeroSection() {
             /> */}
             <Image
               alt="intervention-icon"
-              src="/departement-icon.png"
+              src="/optimized/icons/departement-icon-w40.png"
               width={20}
               height={20}
               className="h-5 w-auto text-primary shrink-0"

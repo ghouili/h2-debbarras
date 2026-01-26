@@ -191,7 +191,7 @@ export function ServiceLandingPage({
             {/* Badge */}
             <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium text-primary border border-primary/20 shadow-sm sm:gap-2 sm:px-4 sm:py-2 sm:text-sm">
               <Image
-                src={"/special-icon.png"}
+                src={"/optimized/icons/special-icon-w40.png"}
                 width={24}
                 height={24}
                 alt=""
@@ -640,7 +640,7 @@ export function ServiceLandingPage({
             >
               <Link href="/devis">
                 <Image
-                  src="/devis-icon-white.png"
+                  src="/optimized/icons/devis-icon-white-w32.png"
                   width={16}
                   height={16}
                   alt=""

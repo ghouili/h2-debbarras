@@ -32,7 +32,7 @@ export function CtaSection() {
           >
             <div className="flex flex-row items-center justify-center gap-1.5 sm:gap-2">
               <Image
-                src="/devis-icon-white.png"
+                src="/optimized/icons/devis-icon-white-w32.png"
                 width={16}
                 height={16}
                 alt=""

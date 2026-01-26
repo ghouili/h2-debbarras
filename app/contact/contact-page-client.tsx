@@ -362,7 +362,7 @@ export default function ContactPageClient() {
                 >
                   <Link href="/devis">
                     <Image
-                      src="/special-icon.png"
+                      src="/optimized/icons/special-icon-w40.png"
                       width={20}
                       height={20}
                       alt=""
@@ -927,7 +927,7 @@ export default function ContactPageClient() {
                   >
                     <Link href="/devis">
                       <Image
-                        src="/special-icon.png"
+                        src="/optimized/icons/special-icon-w40.png"
                         width={20}
                         height={20}
                         alt=""

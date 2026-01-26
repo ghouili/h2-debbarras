@@ -103,7 +103,7 @@ export function ServicesGrid() {
         <Button size="lg" className="min-h-11 h-10 sm:h-12 px-4 sm:px-8 text-xs sm:text-sm" asChild>
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
             <Image
-              src="/devis-icon-white.png"
+              src="/optimized/icons/devis-icon-white-w32.png"
               width={16}
               height={16}
               alt=""

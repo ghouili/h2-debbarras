@@ -4,7 +4,42 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+    deviceSizes: [320, 480, 640, 800, 1024, 1280, 1600],
+    imageSizes: [16, 20, 24, 32, 40, 48, 64],
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/optimized/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/_next/image",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, immutable",
+          },
+        ],
+      },
+    ]
   },
 
   async redirects() {
