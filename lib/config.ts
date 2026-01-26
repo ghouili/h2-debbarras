@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "H2 Débarras Maison",
   description:
     "Service professionnel de débarras de maison en Île-de-France. Intervention rapide 24-48h, tri et recyclage, devis gratuit.",
-  url: "https://h2debarrasmaison.fr",
+  url: "https://debarras-aurea.fr",
 
   contact: {
     phone: "+33 7 69 60 83 00",
