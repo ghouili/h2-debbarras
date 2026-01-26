@@ -134,7 +134,7 @@ export function ProQuoteFunnel() {
       const formDataToSend = new FormData()
       Object.entries(formData).forEach(([key, value]) => {
         if (key === "photos") {
-          ;(value as File[]).forEach((file) => formDataToSend.append("photos", file))
+          (value as File[]).forEach((file) => formDataToSend.append("photos", file))
         } else {
           formDataToSend.append(key, String(value))
         }

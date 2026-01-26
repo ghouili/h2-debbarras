@@ -9,6 +9,24 @@ export default [
     ignores: ["**/node_modules/**", "**/.next/**", "**/dist/**"],
   },
 
+  {
+    files: [
+      "**/*.config.{js,cjs,mjs}",
+      "**/scripts/**/*.{js,cjs,mjs}",
+      "**/ecosystem.config.js",
+    ],
+    languageOptions: {
+      globals: {
+        console: "readonly",
+        process: "readonly",
+        module: "readonly",
+        require: "readonly",
+        __dirname: "readonly",
+        __filename: "readonly",
+      },
+    },
+  },
+
   js.configs.recommended,
 
   // TypeScript (flat config)
