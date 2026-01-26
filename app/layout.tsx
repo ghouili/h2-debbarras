@@ -91,7 +91,9 @@ export default function RootLayout({
         <Footer />
         <MobileBar />
         <CookieBanner />
-        <Analytics />
+        {process.env.NEXT_PUBLIC_VERCEL_ANALYTICS === "true" ? (
+          <Analytics />
+        ) : null}
       </body>
     </html>
   );

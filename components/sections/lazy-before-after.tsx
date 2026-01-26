@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 const BeforeAfter = dynamic(
-  () => import("@/components/sections/before-after"),
+  () => import("@/components/sections/before-after").then((mod) => mod.BeforeAfter),
   {
     ssr: false,
     loading: () => (
