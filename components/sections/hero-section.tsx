@@ -151,8 +151,8 @@ export function HeroSection() {
                 <Image
                   alt="Icône plus de 500 interventions"
                   src="/optimized/icons/special-icon-w40.png"
-                  width={20}
-                  height={20}
+                  width={40}
+                  height={31}
                   className="h-5 w-auto text-primary shrink-0"
                 />
                 <span>{heroCopy.trust.interventions}</span>
@@ -165,8 +165,8 @@ export function HeroSection() {
                 <Image
                   alt="Icône 8 départements couverts"
                   src="/optimized/icons/departement-icon-w40.png"
-                  width={20}
-                  height={20}
+                  width={40}
+                  height={32}
                   className="h-5 w-auto text-primary shrink-0"
                 />
                 <span>{heroCopy.trust.departments}</span>
@@ -320,8 +320,8 @@ export function HeroSection() {
             <Image
               alt="Icône plus de 500 interventions"
               src="/optimized/icons/special-icon-w40.png"
-              width={20}
-              height={20}
+              width={40}
+              height={31}
               className="h-5 w-auto text-primary shrink-0"
             />
             <span>{heroCopy.trust.interventions}</span>
@@ -334,8 +334,8 @@ export function HeroSection() {
             <Image
               alt="Icône 8 départements couverts"
               src="/optimized/icons/departement-icon-w40.png"
-              width={20}
-              height={20}
+              width={40}
+              height={32}
               className="h-5 w-auto text-primary shrink-0"
             />
             <span>{heroCopy.trust.departments}</span>

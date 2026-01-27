@@ -192,10 +192,10 @@ export function ServiceLandingPage({
             <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium text-primary border border-primary/20 shadow-sm sm:gap-2 sm:px-4 sm:py-2 sm:text-sm">
               <Image
                 src={"/optimized/icons/special-icon-w40.png"}
-                width={24}
-                height={24}
+                width={40}
+                height={31}
                 alt="Icône plus de 500 interventions"
-                className="h-4 w-4 sm:h-6 sm:w-6"
+                className="h-4 w-auto sm:h-6"
               />
               <span>
                 {clientType === "particulier"

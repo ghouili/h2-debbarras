@@ -167,10 +167,10 @@ const HeroSection = memo(function HeroSection({
             <Link href="/devis">
               <Image
                 src="/optimized/icons/special-icon-w40.png"
-                width={20}
-                height={20}
+                width={40}
+                height={31}
                 alt="Icône plus de 500 interventions"
-                className="h-4 w-4 shrink-0 sm:h-5 sm:w-5"
+                className="h-4 w-auto shrink-0 sm:h-5"
               />
               Devis gratuit
             </Link>
@@ -427,10 +427,10 @@ const BottomCTA = memo(function BottomCTA() {
                 <Link href="/devis">
                   <Image
                     src="/optimized/icons/special-icon-w40.png"
-                    width={20}
-                    height={20}
+                    width={40}
+                    height={31}
                     alt="Icône plus de 500 interventions"
-                    className="mr-2"
+                    className="mr-2 h-4 w-auto sm:h-5"
                   />
                   <p className="hidden sm:block text-xs sm:text-sm md:text-base w-full ">Demander un devis gratuit</p>
                   <p className="block sm:hidden text-xs sm:text-sm md:text-base w-full ">Demander un devis</p>
