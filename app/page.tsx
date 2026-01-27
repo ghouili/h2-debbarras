@@ -41,6 +41,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="flex flex-col pb-0 md:pb-0">
+      {/* // Increased base mobile text size for readability while preserving desktop sizing */}
       <HeroSection />
       <TrustBadges />
       <ServicesGrid />

@@ -20,6 +20,7 @@ type Toggle = "before" | "after";
 export function BeforeAfter() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageToggle, setImageToggle] = useState<Toggle>("after"); // default: reveal result
+  const [loadedBeforeIndexes, setLoadedBeforeIndexes] = useState<number[]>([]);
   const uid = useId();
 
   const examples = [
@@ -76,7 +77,19 @@ export function BeforeAfter() {
     setImageToggle("after");
   }, []);
 
+  const handleToggleBefore = useCallback((index: number) => {
+    setLoadedBeforeIndexes((prev) =>
+      prev.includes(index) ? prev : [...prev, index],
+    );
+    setImageToggle("before");
+  }, []);
+
+  const handleToggleAfter = useCallback(() => {
+    setImageToggle("after");
+  }, []);
+
   const current = examples[currentIndex];
+  const hasLoadedBefore = loadedBeforeIndexes.includes(currentIndex);
   const copy = homeCopy.beforeAfter;
 
   const tabBeforeId = `ba-tab-before-${uid}`;
@@ -126,7 +139,7 @@ export function BeforeAfter() {
                     id={tabBeforeId}
                     aria-controls={panelId}
                     aria-selected={imageToggle === "before"}
-                    onClick={() => setImageToggle("before")}
+                    onClick={() => handleToggleBefore(currentIndex)}
                     className={cn(
                       "px-4 sm:px-5 py-1 sm:py-1.5 text-xs sm:text-sm md:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                       imageToggle === "before"
@@ -142,7 +155,7 @@ export function BeforeAfter() {
                     id={tabAfterId}
                     aria-controls={panelId}
                     aria-selected={imageToggle === "after"}
-                    onClick={() => setImageToggle("after")}
+                    onClick={handleToggleAfter}
                     className={cn(
                       "px-4 sm:px-5 py-1 sm:py-1.5 text-xs sm:text-sm sm:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                       imageToggle === "after"
@@ -194,21 +207,23 @@ export function BeforeAfter() {
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
-                  <Image
-                    src={current.before}
-                    alt={current.altBefore}
-                    fill
-                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 700px"
-                    className={cn(
-                      "object-cover transition-opacity duration-200",
-                      imageToggle === "before" ? "opacity-100" : "opacity-0",
-                    )}
-                    aria-hidden={imageToggle !== "before"}
-                    loading="lazy"
-                    quality={62}
-                    placeholder="blur"
-                    blurDataURL={GALLERY_BLUR_DATA_URL}
-                  />
+                  {hasLoadedBefore ? (
+                    <Image
+                      src={current.before}
+                      alt={current.altBefore}
+                      fill
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 700px"
+                      className={cn(
+                        "object-cover transition-opacity duration-200",
+                        imageToggle === "before" ? "opacity-100" : "opacity-0",
+                      )}
+                      aria-hidden={imageToggle !== "before"}
+                      loading="lazy"
+                      quality={62}
+                      placeholder="blur"
+                      blurDataURL={GALLERY_BLUR_DATA_URL}
+                    />
+                  ) : null}
 
                   {/* Optional badge (kept subtle) */}
                   <div className="hidden sm:absolute bottom-3 right-3 rounded-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg border border-border/50">
