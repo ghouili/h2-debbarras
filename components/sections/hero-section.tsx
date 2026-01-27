@@ -21,12 +21,8 @@ const HERO_BLUR_DATA_URL =
 export function HeroSection() {
   const heroCopy = homeCopy.hero;
   const [imageToggle, setImageToggle] = useState<"before" | "after">("after");
-  const [hasLoadedBefore, setHasLoadedBefore] = useState(false);
 
-  const handleToggleBefore = useCallback(() => {
-    setHasLoadedBefore(true);
-    setImageToggle("before");
-  }, []);
+  const handleToggleBefore = useCallback(() => setImageToggle("before"), []);
   const handleToggleAfter = useCallback(() => setImageToggle("after"), []);
 
   return (
@@ -235,34 +231,30 @@ export function HeroSection() {
                   src={HERO_AFTER_SRC}
                   alt="Espace libéré après intervention de débarras Aurea"
                   fill
-                  sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 600px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                   className={cn(
                     "object-cover transition-opacity duration-200",
                     imageToggle === "after" ? "opacity-100" : "opacity-0",
                   )}
                   priority
                   fetchPriority="high"
-                  quality={62}
                   placeholder="blur"
                   blurDataURL={HERO_BLUR_DATA_URL}
                 />
-                {hasLoadedBefore ? (
-                  <Image
-                    src={HERO_BEFORE_SRC}
-                    alt="Espace encombré avant intervention de débarras"
-                    fill
-                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 600px"
-                    className={cn(
-                      "object-cover transition-opacity duration-200",
-                      imageToggle === "before" ? "opacity-100" : "opacity-0",
-                    )}
-                    loading="lazy"
-                    fetchPriority="low"
-                    quality={62}
-                    placeholder="blur"
-                    blurDataURL={HERO_BLUR_DATA_URL}
-                  />
-                ) : null}
+                <Image
+                  src={HERO_BEFORE_SRC}
+                  alt="Espace encombré avant intervention de débarras"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  className={cn(
+                    "object-cover transition-opacity duration-200",
+                    imageToggle === "before" ? "opacity-100" : "opacity-0",
+                  )}
+                  loading="lazy"
+                  fetchPriority="low"
+                  placeholder="blur"
+                  blurDataURL={HERO_BLUR_DATA_URL}
+                />
 
                 {/* Result badge - softer claim */}
                 <div className="hidden sm:absolute bottom-3 right-3 rounded-t-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg border border-border/50">
