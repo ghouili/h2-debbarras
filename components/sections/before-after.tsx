@@ -183,13 +183,14 @@ export function BeforeAfter() {
                     src={current.after}
                     alt={current.altAfter}
                     fill
-                    sizes="(max-width: 768px) 100vw, 700px"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 700px"
                     className={cn(
                       "object-cover transition-opacity duration-200",
                       imageToggle === "after" ? "opacity-100" : "opacity-0",
                     )}
                     aria-hidden={imageToggle !== "after"}
                     loading="lazy"
+                    quality={62}
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
@@ -197,13 +198,14 @@ export function BeforeAfter() {
                     src={current.before}
                     alt={current.altBefore}
                     fill
-                    sizes="(max-width: 768px) 100vw, 700px"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 700px"
                     className={cn(
                       "object-cover transition-opacity duration-200",
                       imageToggle === "before" ? "opacity-100" : "opacity-0",
                     )}
                     aria-hidden={imageToggle !== "before"}
                     loading="lazy"
+                    quality={62}
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
@@ -235,6 +237,7 @@ export function BeforeAfter() {
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"
                     loading="lazy"
+                    quality={62}
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
                   />
@@ -252,6 +255,7 @@ export function BeforeAfter() {
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"
                     loading="lazy"
+                    quality={62}
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
                   />

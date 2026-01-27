@@ -12,7 +12,7 @@ import { siteConfig } from "@/lib/config";
 
 const notoSansGeorgian = Noto_Sans_Georgian({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
   display: "swap",
   variable: "--font-noto-georgian",
 });
