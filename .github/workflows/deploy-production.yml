@@ -48,15 +48,28 @@ jobs:
         run: |
           scp -P "$SSH_PORT" deploy.sh "$SSH_USERNAME@$SSH_HOST:/tmp/deploy.sh"
 
-      # ----------------------------
-      # OPTIONAL: Upload env payload
-      # Create a secret named DEBARRAS_ENV in Environment "deploy" if needed
-      # ----------------------------
-      # - name: Upload env payload
-      #   run: |
-      #     echo "${{ secrets.DEBARRAS_ENV }}" > env.payload
-      #     scp -P "$SSH_PORT" env.payload "$SSH_USERNAME@$SSH_HOST:/tmp/h2-debarras.env"
-      #     rm env.payload
+      - name: Create env payload
+        env:
+          SMTP_HOST: ${{ vars.SMTP_HOST || secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ vars.SMTP_PORT || secrets.SMTP_PORT }}
+          SMTP_USER: ${{ vars.SMTP_USER || secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS || vars.SMTP_PASS }}
+          SMTP_FROM: ${{ vars.SMTP_FROM || secrets.SMTP_FROM }}
+          SMTP_TO: ${{ vars.SMTP_TO || secrets.SMTP_TO }}
+        run: |
+          cat <<EOF > env.payload
+          SMTP_HOST=${SMTP_HOST}
+          SMTP_PORT=${SMTP_PORT}
+          SMTP_USER=${SMTP_USER}
+          SMTP_PASS=${SMTP_PASS}
+          SMTP_FROM=${SMTP_FROM}
+          SMTP_TO=${SMTP_TO}
+          EOF
+
+      - name: Upload env payload
+        run: |
+          scp -P "$SSH_PORT" env.payload "$SSH_USERNAME@$SSH_HOST:/tmp/debarras.env"
+          rm env.payload
 
       - name: Execute remote deployment
         run: |
@@ -67,6 +80,6 @@ jobs:
             export NVM_DIR='${{ vars.NVM_DIR }}' && \
             export PM2_APP='${PM2_APP}' && \
             export APP_PORT='${APP_PORT}' && \
-            export ENV_PAYLOAD_PATH='/tmp/h2-debarras.env' && \
+            export ENV_PAYLOAD_PATH='/tmp/debarras.env' && \
             bash /tmp/deploy.sh \
           "

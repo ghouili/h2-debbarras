@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Phone, Menu } from "lucide-react";
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -16,12 +16,7 @@ import { PageContainer } from "./page-container";
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleClose = useCallback(() => setOpen(false), []);
 
@@ -72,7 +67,7 @@ export function Header() {
           aria-label="Navigation principale"
         >
           {navigation.map((item) => {
-            const active = mounted && isActive(item.href);
+            const active = isActive(item.href);
             return (
               <Link
                 key={item.name}
@@ -167,7 +162,7 @@ export function Header() {
               >
                 <div className="flex flex-col gap-1 divide-y ">
                   {navigation.map((item) => {
-                    const active = mounted && isActive(item.href);
+                    const active = isActive(item.href);
                     return (
                       <Link
                         key={item.name}

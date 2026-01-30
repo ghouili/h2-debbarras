@@ -10,6 +10,10 @@ REPO_URL="${REPO_URL:-}"
 
 ENV_FILE="$APP_DIR/.env"
 ENV_PAYLOAD_PATH="${ENV_PAYLOAD_PATH:-/tmp/debarras.env}"
+ENV_EXAMPLE_FILE="$APP_DIR/.env.example"
+
+# Required env keys (space-separated). Override via SSH env if needed.
+ENV_REQUIRED_KEYS="${ENV_REQUIRED_KEYS:-SMTP_HOST SMTP_PORT SMTP_USER SMTP_PASS SMTP_FROM SMTP_TO}"
 
 PM2_APP="${PM2_APP:-debarras}"
 APP_PORT="${APP_PORT:-3000}"
@@ -68,15 +72,74 @@ cd "$APP_DIR"
 #############################################
 # ENV SYNC (optional)
 #############################################
+escape_regex() {
+  printf '%s' "$1" | sed 's/[][\\.^$*+?(){}|]/\\&/g'
+}
+
+has_env_key() {
+  local key="$1"
+  local escaped
+  escaped="$(escape_regex "$key")"
+  [[ -f "$ENV_FILE" ]] && grep -qE "^${escaped}=" "$ENV_FILE"
+}
+
+get_example_value() {
+  local key="$1"
+  [[ -f "$ENV_EXAMPLE_FILE" ]] || return 1
+  sed -n "s/^${key}=//p" "$ENV_EXAMPLE_FILE" | head -n 1
+}
+
+append_env_kv() {
+  local key="$1"
+  local value="$2"
+  printf '%s=%s\n' "$key" "$value" >> "$ENV_FILE"
+}
+
 if [[ -f "$ENV_PAYLOAD_PATH" ]]; then
   log "Applying .env updates"
   mv "$ENV_PAYLOAD_PATH" "$ENV_FILE"
 else
   log "No env file provided (skipped)"
+  if [[ ! -f "$ENV_FILE" ]]; then
+    if [[ -f "$ENV_EXAMPLE_FILE" ]]; then
+      log "Creating .env from .env.example"
+      cp "$ENV_EXAMPLE_FILE" "$ENV_FILE"
+    else
+      log "Creating empty .env"
+      touch "$ENV_FILE"
+    fi
+  fi
 fi
 
-# Ensure .env exists (Next.js may need it)
-touch "$ENV_FILE"
+# Ensure any missing keys are appended
+if [[ -f "$ENV_EXAMPLE_FILE" ]]; then
+  while IFS= read -r line; do
+    [[ -z "$line" || "$line" =~ ^# ]] && continue
+    key="${line%%=*}"
+    if ! has_env_key "$key"; then
+      log "Appending missing env key from example: $key"
+      if [[ -s "$ENV_FILE" && "$(tail -c1 "$ENV_FILE")" != $'\n' ]]; then
+        printf '\n' >> "$ENV_FILE"
+      fi
+      printf '%s\n' "$line" >> "$ENV_FILE"
+    fi
+  done < "$ENV_EXAMPLE_FILE"
+fi
+
+for key in $ENV_REQUIRED_KEYS; do
+  if ! has_env_key "$key"; then
+    value="${!key:-}"
+    if [[ -z "$value" ]]; then
+      value="$(get_example_value "$key" || true)"
+    fi
+
+    log "Appending missing required env key: $key"
+    if [[ -s "$ENV_FILE" && "$(tail -c1 "$ENV_FILE")" != $'\n' ]]; then
+      printf '\n' >> "$ENV_FILE"
+    fi
+    append_env_kv "$key" "$value"
+  fi
+done
 
 #############################################
 # INSTALL DEPENDENCIES
