@@ -22,14 +22,20 @@ export function SuccessState() {
           <h2
             className={cn(
               designTokens.typography.h2,
-              "mb-2 sm:mb-3 text-xl sm:text-2xl md:text-3xl text-foreground",
+              designTokens.textScale.xl3xl4xl,
+              "mb-2 sm:mb-3 text-foreground",
             )}
           >
             Demande envoyée avec succès !
           </h2>
 
           {/* Description */}
-          <p className="mb-5 sm:mb-6 max-w-md text-sm sm:text-base text-muted-foreground leading-relaxed">
+          <p
+            className={cn(
+              designTokens.textScale.smBase,
+              "mb-5 sm:mb-6 max-w-md text-muted-foreground leading-relaxed",
+            )}
+          >
             Nous avons bien reçu votre demande de devis. Notre équipe vous contactera dans les{" "}
             <span className="font-semibold text-foreground">2 prochaines heures</span> pour établir votre devis personnalisé.
           </p>
@@ -40,12 +46,18 @@ export function SuccessState() {
               <h3
                 className={cn(
                   designTokens.typography.h4,
-                  "mb-3 text-sm text-foreground",
+                  designTokens.textScale.sm,
+                  "mb-3 text-foreground",
                 )}
               >
                 Que se passe-t-il maintenant ?
               </h3>
-              <ul className="space-y-2.5 text-left text-sm text-muted-foreground">
+              <ul
+                className={cn(
+                  designTokens.textScale.sm,
+                  "space-y-2.5 text-left text-muted-foreground",
+                )}
+              >
                 <li className="flex items-start gap-2.5">
                   <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <span>Vérification de votre demande</span>
@@ -88,7 +100,7 @@ export function SuccessState() {
           </div>
 
           {/* Availability note */}
-          <p className="mt-4 text-xs text-muted-foreground">
+          <p className={cn(designTokens.textScale.xs, "mt-4 text-muted-foreground")}>
             Disponible 7j/7 de 8h à 20h
           </p>
         </div>

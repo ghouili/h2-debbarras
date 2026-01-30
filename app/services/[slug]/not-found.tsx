@@ -8,8 +8,16 @@ export default function ServiceNotFound() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center px-4">
       <div className="text-center">
-        <p className="text-6xl font-bold text-primary">404</p>
-        <h1 className={cn(designTokens.typography.h2, "mt-4 text-2xl")}>
+        <p className={cn(designTokens.textScale["6xl"], "font-bold text-primary")}>
+          404
+        </p>
+        <h1
+          className={cn(
+            designTokens.typography.h2,
+            designTokens.textScale["2xl"],
+            "mt-4",
+          )}
+        >
           Service non trouvé
         </h1>
         <p className="mt-2 text-muted-foreground">

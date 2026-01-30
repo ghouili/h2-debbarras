@@ -8,7 +8,7 @@ export const siteConfig = {
 
   contact: {
     phone: "+33 7 69 60 83 00",
-    email: "contact@h2debarrasmaison.com",
+    email: "contact@debarras-aurea.fr",
     address: "Île-de-France",
   },
 

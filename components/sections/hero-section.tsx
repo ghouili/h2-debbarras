@@ -53,7 +53,12 @@ export function HeroSection() {
           {/* Left: Content */}
           <div className="flex flex-col gap-4 sm:gap-6">
             {/* Floating badge */}
-            <div className="inline-flex items-center gap-2 self-start rounded-full bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-primary border border-primary/20 shadow-sm">
+            <div
+              className={cn(
+                designTokens.textScale.xsSm,
+                "inline-flex items-center gap-2 self-start rounded-full bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 font-medium text-primary border border-primary/20 shadow-sm",
+              )}
+            >
               <Image
                 src="/optimized/icons/devis-icon-w32.png"
                 width={16}
@@ -67,16 +72,17 @@ export function HeroSection() {
             <h1
               className={cn(
                 designTokens.typography.h1,
-                "text-balance leading-tight text-[clamp(1.75rem,5.4vw,3rem)] sm:text-4xl lg:text-5xl font-noto-georgian",
+                designTokens.textScale.heroClamp,
+                "text-balance ",
               )}
             >
               {heroCopy.title}{" "}
-              <span className="text-primary">{heroCopy.titleHighlight}</span>
+              <span className="text-primary italic">{heroCopy.titleHighlight}</span>
             </h1>
             <p
               className={cn(
                 designTokens.typography.lead,
-                "text-pretty max-w-lg text-sm sm:text-base lg:text-lg",
+                "text-pretty text-muted-foreground",
               )}
             >
               {heroCopy.subtitle}
@@ -88,11 +94,16 @@ export function HeroSection() {
                 <li key={item} className="flex items-center gap-2">
                   <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 shrink-0">
                     <CheckCircle2
-                      className="h-3.5 w-3.5 text-primary"
+                      className="h-6 w-6 text-primary"
                       aria-hidden="true"
                     />
                   </div>
-                  <span className="text-sm sm:text-base font-medium text-foreground">
+                  <span
+                    className={cn(
+                      designTokens.textScale.baseLg2xl,
+                      "font-medium text-foreground",
+                    )}
+                  >
                     {item}
                   </span>
                 </li>
@@ -105,14 +116,18 @@ export function HeroSection() {
                 size="lg"
                 className={cn(
                   designTokens.button.primary,
-                  "min-h-11 h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-sm font-semibold w-full sm:w-auto whitespace-nowrap inline-flex items-center justify-center gap-1.5 sm:gap-2",
+                  designTokens.textScale.xsSm,
+                  "min-h-11 h-10 sm:h-12 px-3 sm:px-6 font-semibold w-full sm:w-auto whitespace-nowrap inline-flex items-center justify-center gap-1.5 sm:gap-2",
                 )}
                 asChild
                 onClick={() => trackStartDevis()}
               >
                 <Link href="/devis">
                   {heroCopy.primaryCta}
-                  <ArrowRight className="ml-1.5 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
+                  <ArrowRight
+                    className="ml-1.5 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4"
+                    aria-hidden="true"
+                  />
                 </Link>
               </Button>
               <Button
@@ -120,19 +135,28 @@ export function HeroSection() {
                 size="lg"
                 className={cn(
                   designTokens.button.secondary,
-                  "min-h-11 h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-sm bg-background w-full sm:w-auto whitespace-nowrap inline-flex items-center justify-center gap-1.5 sm:gap-2",
+                  designTokens.textScale.xsSm,
+                  "min-h-11 h-10 sm:h-12 px-3 sm:px-6 bg-background w-full sm:w-auto whitespace-nowrap inline-flex items-center justify-center gap-1.5 sm:gap-2",
                 )}
                 asChild
                 onClick={() => trackClickCall()}
               >
                 <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>
-                  <Phone className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
+                  <Phone
+                    className="mr-1.5 sm:mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4"
+                    aria-hidden="true"
+                  />
                   {heroCopy.secondaryCta}
                 </a>
               </Button>
             </div>
             {/* Trust strip */}
-            <div className="lg:hidden flex w-full flex-wrap items-center justify-center gap-3 sm:gap-5 mt-4 border-t border-border/50 pt-4 text-xs sm:text-sm">
+            <div
+              className={cn(
+                designTokens.textScale.base,
+                "lg:hidden flex w-full flex-wrap items-center justify-center gap-3 sm:gap-5 mt-4 border-t border-border/50 pt-4",
+              )}
+            >
               <div className="flex items-center gap-2">
                 <Star
                   className="h-4 w-4 fill-yellow-500 text-yellow-500"
@@ -191,7 +215,8 @@ export function HeroSection() {
                   aria-selected={imageToggle === "before"}
                   onClick={handleToggleBefore}
                   className={cn(
-                    "px-4 sm:px-5 py-1 md:py-2 text-xs md:text-sm md:font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                    designTokens.textScale.xsSm,
+                    "px-4 sm:px-5 py-1 md:py-2 md:font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                     imageToggle === "before"
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
@@ -207,7 +232,8 @@ export function HeroSection() {
                   aria-selected={imageToggle === "after"}
                   onClick={handleToggleAfter}
                   className={cn(
-                    "px-4 sm:px-5 py-1 md:py-2 text-xs md:text-sm md:font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                    designTokens.textScale.xsSm,
+                    "px-4 sm:px-5 py-1 md:py-2 md:font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                     imageToggle === "after"
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
@@ -258,10 +284,10 @@ export function HeroSection() {
 
                 {/* Result badge - softer claim */}
                 <div className="hidden sm:absolute bottom-3 right-3 rounded-t-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg border border-border/50">
-                  <p className="text-xs font-medium text-muted-foreground">
+                  <p className={cn(designTokens.textScale.xs, "font-medium text-muted-foreground")}>
                     Résultat
                   </p>
-                  <p className="text-sm sm:text-base font-bold text-primary">
+                  <p className={cn(designTokens.textScale.smBase, "font-bold text-primary")}>
                     Espace libéré
                   </p>
                 </div>
@@ -280,12 +306,17 @@ export function HeroSection() {
                       />
                     ))}
                   </div>
-                   <div className="flex-1 min-w-0">
-                    <p className="text-xs sm:text-sm text-foreground italic leading-snug">
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className={cn(
+                        designTokens.textScale.base,
+                        "text-foreground italic leading-snug",
+                      )}
+                    >
                       "Service impeccable, rapide et professionnel. Je
                       recommande !"
                     </p>
-                    <p className="mt-1 text-xs text-muted-foreground">
+                    <p className={cn(designTokens.textScale.xs, "mt-1 text-muted-foreground")}>
                       — Marie L., Paris 15e
                     </p>
                   </div>
@@ -301,7 +332,12 @@ export function HeroSection() {
           </div>
         </div>
         {/* Trust strip */}
-        <div className="hidden lg:flex w-fit flex-wrap items-center justify-center gap-4 sm:gap-5 mt-4 border-t border-border/50 pt-4 text-sm">
+        <div
+          className={cn(
+            designTokens.textScale.sm,
+            "hidden lg:flex w-fit flex-wrap items-center justify-center gap-4 sm:gap-5 mt-4 border-t border-border/50 pt-4",
+          )}
+        >
           <div className="flex items-center gap-2">
             <Star
               className="h-4 w-4 fill-yellow-500 text-yellow-500"

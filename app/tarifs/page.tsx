@@ -29,12 +29,18 @@ export default function TarifsPage() {
           <h1
             className={cn(
               designTokens.typography.h1,
-              "mt-3 text-balance text-3xl sm:text-4xl",
+              designTokens.textScale["3xl4xl"],
+              "mt-3 text-balance",
             )}
           >
             Nos Tarifs
           </h1>
-          <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.baseLg,
+              "mt-3 text-pretty text-muted-foreground",
+            )}
+          >
             Des tarifs transparents et compétitifs pour tous vos besoins de débarras
           </p>
         </div>
@@ -57,9 +63,13 @@ export default function TarifsPage() {
             </div>
 
             <div className="rounded-lg bg-primary/10 p-6 text-center">
-              <p className="text-sm text-muted-foreground">Prix estimé</p>
-              <p className="text-3xl font-bold text-primary sm:text-4xl">{estimatedPrice}€</p>
-              <p className="mt-2 text-xs text-muted-foreground">
+              <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                Prix estimé
+              </p>
+              <p className={cn(designTokens.textScale["3xl4xl"], "font-bold text-primary")}>
+                {estimatedPrice}€
+              </p>
+              <p className={cn(designTokens.textScale.xs, "mt-2 text-muted-foreground")}>
                 * Prix indicatif, un devis personnalisé vous sera fourni
               </p>
             </div>
@@ -72,7 +82,13 @@ export default function TarifsPage() {
 
         {/* Price Grid */}
         <div className="mt-12">
-          <h2 className={cn(designTokens.typography.h2, "mb-6 text-2xl")}>
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              designTokens.textScale["2xl"],
+              "mb-6",
+            )}
+          >
             Grille tarifaire indicative
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
@@ -82,7 +98,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm">
+                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Studio</span>
                     <span className="font-semibold">150-250€</span>
@@ -109,7 +125,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm">
+                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Petite maison</span>
                     <span className="font-semibold">600-1000€</span>
@@ -136,7 +152,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm">
+                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Petit volume</span>
                     <span className="font-semibold">100-200€</span>
@@ -159,7 +175,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm">
+                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Appartement</span>
                     <span className="font-semibold">300-800€</span>
@@ -196,7 +212,7 @@ export default function TarifsPage() {
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
-                  <span className="text-sm">{item}</span>
+                  <span className={cn(designTokens.textScale.sm)}>{item}</span>
                 </div>
               ))}
             </div>
@@ -209,7 +225,7 @@ export default function TarifsPage() {
             <CardTitle>Suppléments éventuels</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className={cn(designTokens.textScale.sm, "space-y-2 text-muted-foreground")}>
               <li>• Étage élevé sans ascenseur : +10-20% selon l'étage</li>
               <li>• Accès difficile (rue étroite, etc.) : selon situation</li>
               <li>• Intervention urgente (moins de 24h) : +20%</li>

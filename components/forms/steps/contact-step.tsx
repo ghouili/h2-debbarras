@@ -9,6 +9,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Loader2 } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
 import { useRouter } from "next/navigation"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type Props = {
   formData: QuoteFormData
@@ -54,12 +56,21 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="mb-4 text-xl font-bold font-heading">Vos coordonnées</h2>
+        <h2
+          className={cn(
+            designTokens.textScale.xl,
+            "mb-4 font-bold font-heading",
+          )}
+        >
+          Vos coordonnées
+        </h2>
 
         <div className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <Label htmlFor="firstName">Prénom *</Label>
+              <Label htmlFor="firstName" className={designTokens.textScale.sm}>
+                Prénom *
+              </Label>
               <Input
                 id="firstName"
                 type="text"
@@ -70,7 +81,9 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
               />
             </div>
             <div>
-              <Label htmlFor="lastName">Nom *</Label>
+              <Label htmlFor="lastName" className={designTokens.textScale.sm}>
+                Nom *
+              </Label>
               <Input
                 id="lastName"
                 type="text"
@@ -83,7 +96,9 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
           </div>
 
           <div>
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email" className={designTokens.textScale.sm}>
+              Email *
+            </Label>
             <Input
               id="email"
               type="email"
@@ -95,7 +110,9 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
           </div>
 
           <div>
-            <Label htmlFor="phone">Téléphone *</Label>
+            <Label htmlFor="phone" className={designTokens.textScale.sm}>
+              Téléphone *
+            </Label>
             <Input
               id="phone"
               type="tel"
@@ -114,7 +131,13 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
               required
               className="mt-0.5"
             />
-            <Label htmlFor="consent" className="cursor-pointer text-sm leading-relaxed text-muted-foreground">
+            <Label
+              htmlFor="consent"
+              className={cn(
+                designTokens.textScale.sm,
+                "cursor-pointer leading-relaxed text-muted-foreground",
+              )}
+            >
               J'accepte d'être contacté par Débarras Aurea concernant ma demande de devis et je consens au
               traitement de mes données personnelles conformément à la{" "}
               <a

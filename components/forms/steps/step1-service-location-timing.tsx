@@ -8,6 +8,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent } from "@/components/ui/card"
 import { Building2, Home, Store, Warehouse, HardHat, Truck } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 const services = [
   { id: "debarras-maison", label: "Débarras maison", icon: Home },
@@ -41,8 +43,17 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Service Selection */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Type de service</h2>
-        <p className="mb-4 text-sm text-muted-foreground">Sélectionnez le type d'intervention</p>
+        <h2
+          className={cn(
+            designTokens.textScale.lgXl,
+            "mb-1 font-bold text-foreground font-heading",
+          )}
+        >
+          Type de service
+        </h2>
+        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+          Sélectionnez le type d'intervention
+        </p>
         
         <RadioGroup value={formData.service} onValueChange={(value) => updateFormData({ service: value })}>
           <div className="grid w-full grid-cols-1 gap-2.5 sm:grid-cols-2">
@@ -62,7 +73,13 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
                   <CardContent className="flex w-full min-w-0 items-center gap-3 px-2.5">
                     <RadioGroupItem value={service.id} id={service.id} className="shrink-0" />
                     <Icon className="h-5 w-5 shrink-0 text-primary" />
-                    <Label htmlFor={service.id} className="min-w-0 flex-1 cursor-pointer text-sm font-medium leading-tight">
+                    <Label
+                      htmlFor={service.id}
+                      className={cn(
+                        designTokens.textScale.sm,
+                        "min-w-0 flex-1 cursor-pointer font-medium leading-tight",
+                      )}
+                    >
                       {service.label}
                     </Label>
                   </CardContent>
@@ -75,12 +92,21 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
 
       {/* Location Inputs */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl font-heading">Localisation</h2>
-        <p className="mb-4 text-sm text-muted-foreground">Où se situe le bien ?</p>
+        <h2
+          className={cn(
+            designTokens.textScale.lgXl,
+            "mb-1 font-bold text-foreground font-heading",
+          )}
+        >
+          Localisation
+        </h2>
+        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+          Où se situe le bien ?
+        </p>
         
         <div className="grid w-full gap-4 sm:grid-cols-2">
           <div className="w-full min-w-0">
-            <Label htmlFor="postalCode" className="text-sm font-medium">
+            <Label htmlFor="postalCode" className={cn(designTokens.textScale.sm, "font-medium")}>
               Code postal <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -96,7 +122,7 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
             />
           </div>
           <div className="w-full min-w-0">
-            <Label htmlFor="city" className="text-sm font-medium">
+            <Label htmlFor="city" className={cn(designTokens.textScale.sm, "font-medium")}>
               Ville
             </Label>
             <Input

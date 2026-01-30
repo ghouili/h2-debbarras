@@ -54,12 +54,18 @@ export function ServicesGrid() {
         <h2
           className={cn(
             designTokens.typography.h2,
-            "text-balance text-2xl sm:text-3xl",
+            designTokens.textScale["2xl3xl"],
+            "text-balance",
           )}
         >
           {serviceCardsCopy.title}
         </h2>
-        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
+        <p
+          className={cn(
+            designTokens.textScale.baseLg,
+            "mt-3 text-pretty text-muted-foreground",
+          )}
+        >
           {serviceCardsCopy.subtitle}
         </p>
       </div>
@@ -80,12 +86,17 @@ export function ServicesGrid() {
                 <CardTitle
                   className={cn(
                     designTokens.typography.h4,
-                    "text-lg sm:text-xl",
+                    designTokens.textScale.lgXl, " min-h-16 "
                   )}
                 >
                   {copyCard?.title}
                 </CardTitle>
-                <CardDescription className="text-pretty text-sm sm:text-base">
+                <CardDescription
+                  className={cn(
+                    designTokens.textScale.base,
+                    "text-pretty",
+                  )}
+                >
                   {copyCard?.description}
                 </CardDescription>
               </CardHeader>
@@ -93,7 +104,10 @@ export function ServicesGrid() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="group/btn w-full justify-between min-h-11 h-10 sm:h-11 text-xs sm:text-sm px-2 sm:px-4"
+                  className={cn(
+                    designTokens.textScale.xsSm,
+                    "group/btn w-full justify-between min-h-11 h-10 sm:h-11 px-2 sm:px-4",
+                  )}
                 >
                   <Link href={`/services/${service.slug}`}>
                     {serviceCardsCopy.ctaLabel}
@@ -115,7 +129,14 @@ export function ServicesGrid() {
       </div>
 
       <div className="mt-8 sm:mt-10 text-center">
-        <Button size="lg" className="min-h-11 h-10 sm:h-12 px-4 sm:px-8 text-xs sm:text-sm" asChild>
+        <Button
+          size="lg"
+          className={cn(
+            designTokens.textScale.base,
+            "min-h-11 h-10 sm:h-12 px-4 sm:px-8",
+          )}
+          asChild
+        >
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
             <Image
               src="/optimized/icons/devis-icon-white-w32.png"

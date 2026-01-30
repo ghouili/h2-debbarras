@@ -5,6 +5,8 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 import { X } from "lucide-react"
 import Link from "next/link"
 
@@ -50,7 +52,12 @@ export function CookieBanner() {
               <X className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
-          <p className="mb-4 text-pretty text-sm text-muted-foreground">
+          <p
+            className={cn(
+              designTokens.textScale.sm,
+              "mb-4 text-pretty text-muted-foreground",
+            )}
+          >
             Nous utilisons des cookies pour améliorer votre expérience et analyser notre trafic. En continuant, vous
             acceptez notre utilisation des cookies.
           </p>
@@ -64,7 +71,10 @@ export function CookieBanner() {
           </div>
           <Link
             href="/politique-confidentialite"
-            className="mt-3 block text-center text-xs text-muted-foreground underline"
+            className={cn(
+              designTokens.textScale.xs,
+              "mt-3 block text-center text-muted-foreground underline",
+            )}
           >
             En savoir plus
             <span className="sr-only"> sur la politique de confidentialité</span>

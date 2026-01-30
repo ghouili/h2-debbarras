@@ -75,24 +75,35 @@ export function ProServiceLanding() {
             <h1
               className={cn(
                 designTokens.typography.h1,
-                "text-balance text-4xl md:text-5xl lg:text-6xl",
+                designTokens.textScale["4xl5xl6xl"],
+                "text-balance",
               )}
             >
               Débarras de commerces et entrepôts en Île-de-France
             </h1>
-            <p className="mt-4 text-pretty text-lg text-muted-foreground md:text-xl">
+            <p
+              className={cn(
+                designTokens.textScale.lgXl,
+                "mt-4 text-pretty text-muted-foreground",
+              )}
+            >
               Évacuation rapide des encombrants et déchets professionnels. Tri, recyclage, dons.
             </p>
 
             {/* CTAs */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <Button size="lg" asChild className="text-base">
+              <Button size="lg" asChild className={designTokens.textScale.base}>
                 <a href="#devis">
                   Devis gratuit
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
-              <Button size="lg" variant="outline" asChild className="text-base bg-transparent">
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className={cn(designTokens.textScale.base, "bg-transparent")}
+              >
                 <Link href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>
                   <Phone className="mr-2 h-5 w-5" />
                   Appeler maintenant
@@ -101,7 +112,7 @@ export function ProServiceLanding() {
             </div>
 
             {/* Reassurance */}
-            <p className="mt-6 text-sm text-muted-foreground">
+            <p className={cn(designTokens.textScale.sm, "mt-6 text-muted-foreground")}>
               <CheckCircle2 className="mr-1 inline h-4 w-4 text-primary" />
               Réponse rapide • Sans engagement
             </p>
@@ -118,8 +129,12 @@ export function ProServiceLanding() {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <div className="text-left">
-                      <div className="text-sm font-semibold">{point.text}</div>
-                      <div className="text-xs text-muted-foreground">{point.subtext}</div>
+                      <div className={cn(designTokens.textScale.sm, "font-semibold")}>
+                        {point.text}
+                      </div>
+                      <div className={cn(designTokens.textScale.xs, "text-muted-foreground")}>
+                        {point.subtext}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -133,7 +148,13 @@ export function ProServiceLanding() {
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <h2 className={cn(designTokens.typography.h2, "mb-8 text-center text-3xl md:text-4xl")}>
+            <h2
+              className={cn(
+                designTokens.typography.h2,
+                designTokens.textScale["3xl4xl5xl"],
+                "mb-8 text-center",
+              )}
+            >
               Ce que nous évacuons
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -148,7 +169,9 @@ export function ProServiceLanding() {
                       <h3 className={cn(designTokens.typography.h4, "mb-1")}>
                         {item.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                      <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                        {item.desc}
+                      </p>
                     </CardContent>
                   </Card>
                 )
@@ -162,7 +185,13 @@ export function ProServiceLanding() {
       <section className="border-y bg-muted/30 py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <h2 className={cn(designTokens.typography.h2, "mb-12 text-center text-3xl md:text-4xl")}>
+            <h2
+              className={cn(
+                designTokens.typography.h2,
+                designTokens.textScale["3xl4xl5xl"],
+                "mb-12 text-center",
+              )}
+            >
               Comment ça marche ?
             </h2>
             <div className="grid gap-8 md:grid-cols-3">
@@ -171,16 +200,29 @@ export function ProServiceLanding() {
                 return (
                   <div key={step.step} className="relative text-center">
                     {/* Step number */}
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground">
+                    <div
+                      className={cn(
+                        designTokens.textScale["2xl"],
+                        "mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground",
+                      )}
+                    >
                       {step.step}
                     </div>
                     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className={cn(designTokens.typography.h4, "mb-2 text-lg")}>
+                    <h3
+                      className={cn(
+                        designTokens.typography.h4,
+                        designTokens.textScale.lg,
+                        "mb-2",
+                      )}
+                    >
                       {step.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
+                    <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                      {step.desc}
+                    </p>
                   </div>
                 )
               })}
@@ -193,13 +235,23 @@ export function ProServiceLanding() {
       <section id="devis" className="scroll-mt-20 py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className={cn(designTokens.typography.h2, "mb-4 text-3xl md:text-4xl")}>
+            <h2
+              className={cn(
+                designTokens.typography.h2,
+                designTokens.textScale["3xl4xl5xl"],
+                "mb-4",
+              )}
+            >
               Demandez votre devis gratuit
             </h2>
-            <p className="mb-8 text-muted-foreground">Remplissez le formulaire ci-dessous en 2 minutes</p>
+            <p className={cn(designTokens.textScale.base, "mb-8 text-muted-foreground")}>
+              Remplissez le formulaire ci-dessous en 2 minutes
+            </p>
           </div>
 
-          <Suspense fallback={<div className="text-center">Chargement...</div>}>
+          <Suspense
+            fallback={<div className={cn(designTokens.textScale.base, "text-center")}>Chargement...</div>}
+          >
             <ProQuoteFunnel />
           </Suspense>
         </div>
@@ -209,7 +261,13 @@ export function ProServiceLanding() {
       <section className="border-t bg-muted/30 py-12">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-4xl">
-            <h2 className={cn(designTokens.typography.h2, "mb-8 text-center text-2xl md:text-3xl")}>
+            <h2
+              className={cn(
+                designTokens.typography.h2,
+                designTokens.textScale["2xl3xl"],
+                "mb-8 text-center",
+              )}
+            >
               Nos garanties professionnelles
             </h2>
             <div className="grid gap-6 md:grid-cols-3">
@@ -217,7 +275,7 @@ export function ProServiceLanding() {
                 <CardContent className="p-6 text-center">
                   <Recycle className="mx-auto mb-3 h-10 w-10 text-primary" />
                   <h3 className={cn(designTokens.typography.h4, "mb-2")}>Tri et recyclage</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
                     Démarche éco-responsable avec tri sur place, valorisation maximale et certificats de destruction
                   </p>
                 </CardContent>
@@ -228,7 +286,7 @@ export function ProServiceLanding() {
                   <h3 className={cn(designTokens.typography.h4, "mb-2")}>
                     Intervention organisée
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
                     Planning flexible, hors heures ouvrées possible, coordination sans interruption d'activité
                   </p>
                 </CardContent>
@@ -239,7 +297,7 @@ export function ProServiceLanding() {
                   <h3 className={cn(designTokens.typography.h4, "mb-2")}>
                     Équipe professionnelle
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
                     Personnel formé, équipé selon normes de sécurité, assuré et respectueux de vos locaux
                   </p>
                 </CardContent>
@@ -254,10 +312,18 @@ export function ProServiceLanding() {
         <div className="container mx-auto px-4">
           <Card className="mx-auto max-w-3xl border-primary/20 bg-primary/5">
             <CardContent className="p-8 text-center">
-              <h2 className={cn(designTokens.typography.h2, "mb-4 text-2xl md:text-3xl")}>
+              <h2
+                className={cn(
+                  designTokens.typography.h2,
+                  designTokens.textScale["2xl3xl"],
+                  "mb-4",
+                )}
+              >
                 Une question ? Besoin d'un conseil ?
               </h2>
-              <p className="mb-6 text-muted-foreground">Notre équipe est à votre écoute du lundi au samedi</p>
+              <p className={cn(designTokens.textScale.base, "mb-6 text-muted-foreground")}>
+                Notre équipe est à votre écoute du lundi au samedi
+              </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <Button size="lg" variant="outline" asChild>
                   <Link href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>

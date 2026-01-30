@@ -89,12 +89,18 @@ export function BeforeAfter() {
         <h2
           className={cn(
             designTokens.typography.h2,
-            "text-balance text-2xl sm:text-3xl md:text-4xl",
+            designTokens.textScale["2xl3xl4xl"],
+            "text-balance",
           )}
         >
           {copy.title}
         </h2>
-        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
+        <p
+          className={cn(
+            designTokens.textScale.baseLg,
+            "mt-3 text-pretty text-muted-foreground",
+          )}
+        >
           {copy.subtitle}
         </p>
       </div>
@@ -105,7 +111,8 @@ export function BeforeAfter() {
             <h3
               className={cn(
                 designTokens.typography.h4,
-                "pb-6 text-center text-base sm:text-xl",
+                designTokens.textScale.base,
+                "pb-6 text-center",
               )}
             >
               {current.title}
@@ -128,7 +135,8 @@ export function BeforeAfter() {
                     aria-selected={imageToggle === "before"}
                     onClick={() => setImageToggle("before")}
                     className={cn(
-                      "px-4 sm:px-5 py-1 sm:py-1.5 text-xs sm:text-sm md:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                      designTokens.textScale.xs,
+                      "px-4 sm:px-5 py-1 sm:py-1.5 md:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                       imageToggle === "before"
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
@@ -144,7 +152,8 @@ export function BeforeAfter() {
                     aria-selected={imageToggle === "after"}
                     onClick={() => setImageToggle("after")}
                     className={cn(
-                      "px-4 sm:px-5 py-1 sm:py-1.5 text-xs sm:text-sm sm:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
+                      designTokens.textScale.xsSm,
+                      "px-4 sm:px-5 py-1 sm:py-1.5 sm:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                       imageToggle === "after"
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
@@ -210,10 +219,10 @@ export function BeforeAfter() {
 
                   {/* Optional badge (kept subtle) */}
                   <div className="hidden sm:absolute bottom-3 right-3 rounded-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg border border-border/50">
-                    <p className="text-xs font-medium text-muted-foreground">
+                    <p className={cn(designTokens.textScale.xs, "font-medium text-muted-foreground")}>
                       Résultat
                     </p>
-                    <p className="text-sm font-bold text-primary">
+                    <p className={cn(designTokens.textScale.sm, "font-bold text-primary")}>
                       Espace libéré
                     </p>
                   </div>
@@ -224,7 +233,7 @@ export function BeforeAfter() {
             {/* lg+: side-by-side (your original) */}
             <div className="hidden lg:grid gap-4 lg:grid-cols-2 mt-4">
               <div>
-                <p className="mb-2 text-center text-sm font-medium text-muted-foreground">
+                <p className={cn(designTokens.textScale.sm, "mb-2 text-center font-medium text-muted-foreground")}>
                   Avant
                 </p>
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
@@ -241,7 +250,7 @@ export function BeforeAfter() {
                 </div>
               </div>
               <div>
-                <p className="mb-2 text-center text-sm font-medium text-muted-foreground">
+                <p className={cn(designTokens.textScale.sm, "mb-2 text-center font-medium text-muted-foreground")}>
                   Après
                 </p>
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
@@ -259,10 +268,10 @@ export function BeforeAfter() {
               </div>
             </div>
 
-            <p className="mt-4 text-center text-sm text-muted-foreground sm:text-base">
+            <p className={cn(designTokens.textScale.base, "mt-4 text-center text-muted-foreground")}>
               {current.description}
             </p>
-            <p className="mt-2 text-center text-xs text-muted-foreground">
+            <p className={cn(designTokens.textScale.xs, "mt-2 text-center text-muted-foreground")}>
               {copy.caption}
             </p>
 

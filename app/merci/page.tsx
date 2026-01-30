@@ -27,11 +27,22 @@ export default function MerciPage() {
               <CheckCircle2 className="h-10 w-10 text-primary" />
             </div>
 
-            <h1 className={cn(designTokens.typography.h1, "mb-4 text-3xl")}>
+            <h1
+              className={cn(
+                designTokens.typography.h1,
+                designTokens.textScale["3xl4xl"],
+                "mb-4",
+              )}
+            >
               Demande envoyée avec succès !
             </h1>
 
-            <p className="mb-8 text-pretty text-lg text-muted-foreground">
+            <p
+              className={cn(
+                designTokens.textScale.lg,
+                "mb-8 text-pretty text-muted-foreground",
+              )}
+            >
               Merci pour votre confiance. Nous avons bien reçu votre demande de devis et nous vous contacterons dans les{" "}
               <strong className="text-foreground">2 heures</strong> pour vous fournir une estimation personnalisée.
             </p>
@@ -40,21 +51,41 @@ export default function MerciPage() {
               <h2 className={cn(designTokens.typography.h4, "font-semibold")}>
                 Prochaines étapes :
               </h2>
-              <ol className="space-y-2 text-left text-sm text-muted-foreground">
+              <ol
+                className={cn(
+                  designTokens.textScale.sm,
+                  "space-y-2 text-left text-muted-foreground",
+                )}
+              >
                 <li className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                  <span
+                    className={cn(
+                      designTokens.textScale.xs,
+                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground",
+                    )}
+                  >
                     1
                   </span>
                   <span>Vous recevrez un email de confirmation</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                  <span
+                    className={cn(
+                      designTokens.textScale.xs,
+                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground",
+                    )}
+                  >
                     2
                   </span>
                   <span>Un conseiller vous contactera pour finaliser votre devis</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
+                  <span
+                    className={cn(
+                      designTokens.textScale.xs,
+                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground",
+                    )}
+                  >
                     3
                   </span>
                   <span>Nous planifierons ensemble votre intervention</span>
@@ -77,7 +108,7 @@ export default function MerciPage() {
               </Button>
             </div>
 
-            <p className="mt-6 text-sm text-muted-foreground">
+            <p className={cn(designTokens.textScale.sm, "mt-6 text-muted-foreground")}>
               Besoin d'une réponse immédiate ? Appelez-nous au {siteConfig.contact.phone}
             </p>
           </CardContent>

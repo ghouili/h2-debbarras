@@ -14,6 +14,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { trackStartDevis, trackQuoteStep, trackLeadSubmit } from "@/lib/analytics"
 import { ArrowRight, ArrowLeft, Upload, Loader2, CheckCircle2 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type ProQuoteFormData = {
   service: string
@@ -168,7 +170,12 @@ export function ProQuoteFunnel() {
       <CardContent className="p-6 md:p-8">
         {/* Progress */}
         <div className="mb-6">
-          <div className="mb-2 flex items-center justify-between text-sm">
+          <div
+            className={cn(
+              designTokens.textScale.sm,
+              "mb-2 flex items-center justify-between",
+            )}
+          >
             <span className="font-medium">
               Étape {currentStep} sur {totalSteps}
             </span>
@@ -186,7 +193,9 @@ export function ProQuoteFunnel() {
         {currentStep === 1 && (
           <div className="space-y-6">
             <div>
-              <h3 className="mb-4 text-xl font-semibold font-heading">Votre projet</h3>
+              <h3 className={cn(designTokens.textScale.xl, "mb-4 font-semibold font-heading")}>
+                Votre projet
+              </h3>
             </div>
 
             {/* Postal Code & City */}
@@ -204,7 +213,11 @@ export function ProQuoteFunnel() {
                   onChange={(e) => updateFormData({ postalCode: e.target.value })}
                   className={errors.postalCode ? "border-destructive" : ""}
                 />
-                {errors.postalCode && <p className="mt-1 text-sm text-destructive">{errors.postalCode}</p>}
+                {errors.postalCode && (
+                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                    {errors.postalCode}
+                  </p>
+                )}
               </div>
               <div>
                 <Label htmlFor="city">
@@ -218,7 +231,11 @@ export function ProQuoteFunnel() {
                   onChange={(e) => updateFormData({ city: e.target.value })}
                   className={errors.city ? "border-destructive" : ""}
                 />
-                {errors.city && <p className="mt-1 text-sm text-destructive">{errors.city}</p>}
+                {errors.city && (
+                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                    {errors.city}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -241,7 +258,11 @@ export function ProQuoteFunnel() {
                   </div>
                 ))}
               </RadioGroup>
-              {errors.localType && <p className="mt-1 text-sm text-destructive">{errors.localType}</p>}
+              {errors.localType && (
+                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  {errors.localType}
+                </p>
+              )}
             </div>
 
             {/* Timing */}
@@ -267,7 +288,11 @@ export function ProQuoteFunnel() {
                   </div>
                 ))}
               </RadioGroup>
-              {errors.timing && <p className="mt-1 text-sm text-destructive">{errors.timing}</p>}
+              {errors.timing && (
+                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  {errors.timing}
+                </p>
+              )}
             </div>
 
             {/* Access details */}
@@ -275,7 +300,10 @@ export function ProQuoteFunnel() {
               <Label>Accès (optionnel)</Label>
               <div className="grid gap-3 sm:grid-cols-2">
                 <div>
-                  <Label htmlFor="floor" className="text-sm text-muted-foreground">
+                  <Label
+                    htmlFor="floor"
+                    className={cn(designTokens.textScale.sm, "text-muted-foreground")}
+                  >
                     Étage
                   </Label>
                   <Input
@@ -287,7 +315,10 @@ export function ProQuoteFunnel() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="surface" className="text-sm text-muted-foreground">
+                  <Label
+                    htmlFor="surface"
+                    className={cn(designTokens.textScale.sm, "text-muted-foreground")}
+                  >
                     Surface (m²)
                   </Label>
                   <Input
@@ -305,7 +336,10 @@ export function ProQuoteFunnel() {
                   checked={formData.elevator}
                   onCheckedChange={(checked) => updateFormData({ elevator: checked as boolean })}
                 />
-                <Label htmlFor="elevator" className="cursor-pointer text-sm font-normal">
+                <Label
+                  htmlFor="elevator"
+                  className={cn(designTokens.textScale.sm, "cursor-pointer font-normal")}
+                >
                   Ascenseur disponible
                 </Label>
               </div>
@@ -315,7 +349,10 @@ export function ProQuoteFunnel() {
                   checked={formData.truckAccess}
                   onCheckedChange={(checked) => updateFormData({ truckAccess: checked as boolean })}
                 />
-                <Label htmlFor="truckAccess" className="cursor-pointer text-sm font-normal">
+                <Label
+                  htmlFor="truckAccess"
+                  className={cn(designTokens.textScale.sm, "cursor-pointer font-normal")}
+                >
                   Accès camion possible
                 </Label>
               </div>
@@ -344,8 +381,12 @@ export function ProQuoteFunnel() {
         {currentStep === 2 && (
           <div className="space-y-6">
             <div>
-              <h3 className="mb-1 text-xl font-semibold font-heading">Vos coordonnées</h3>
-              <p className="text-sm text-muted-foreground">Pour recevoir votre devis gratuitement</p>
+              <h3 className={cn(designTokens.textScale.xl, "mb-1 font-semibold font-heading")}>
+                Vos coordonnées
+              </h3>
+              <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                Pour recevoir votre devis gratuitement
+              </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -360,7 +401,11 @@ export function ProQuoteFunnel() {
                   onChange={(e) => updateFormData({ firstName: e.target.value })}
                   className={errors.firstName ? "border-destructive" : ""}
                 />
-                {errors.firstName && <p className="mt-1 text-sm text-destructive">{errors.firstName}</p>}
+                {errors.firstName && (
+                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                    {errors.firstName}
+                  </p>
+                )}
               </div>
               <div>
                 <Label htmlFor="lastName">
@@ -373,7 +418,11 @@ export function ProQuoteFunnel() {
                   onChange={(e) => updateFormData({ lastName: e.target.value })}
                   className={errors.lastName ? "border-destructive" : ""}
                 />
-                {errors.lastName && <p className="mt-1 text-sm text-destructive">{errors.lastName}</p>}
+                {errors.lastName && (
+                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                    {errors.lastName}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -388,7 +437,11 @@ export function ProQuoteFunnel() {
                 onChange={(e) => updateFormData({ email: e.target.value })}
                 className={errors.email ? "border-destructive" : ""}
               />
-              {errors.email && <p className="mt-1 text-sm text-destructive">{errors.email}</p>}
+              {errors.email && (
+                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  {errors.email}
+                </p>
+              )}
             </div>
 
             <div>
@@ -403,7 +456,11 @@ export function ProQuoteFunnel() {
                 onChange={(e) => updateFormData({ phone: e.target.value })}
                 className={errors.phone ? "border-destructive" : ""}
               />
-              {errors.phone && <p className="mt-1 text-sm text-destructive">{errors.phone}</p>}
+              {errors.phone && (
+                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  {errors.phone}
+                </p>
+              )}
             </div>
 
             {/* Photos */}
@@ -416,7 +473,7 @@ export function ProQuoteFunnel() {
                 >
                   <div className="text-center">
                     <Upload className="mx-auto h-8 w-8 text-muted-foreground" />
-                    <p className="mt-2 text-sm text-muted-foreground">
+                    <p className={cn(designTokens.textScale.sm, "mt-2 text-muted-foreground")}>
                       {formData.photos.length > 0
                         ? `${formData.photos.length} photo(s) sélectionnée(s)`
                         : "Cliquez pour ajouter des photos"}
@@ -443,7 +500,13 @@ export function ProQuoteFunnel() {
                 onCheckedChange={(checked) => updateFormData({ consent: checked as boolean })}
                 className={errors.consent ? "border-destructive" : ""}
               />
-              <Label htmlFor="consent" className="cursor-pointer text-sm font-normal leading-tight">
+              <Label
+                htmlFor="consent"
+                className={cn(
+                  designTokens.textScale.sm,
+                  "cursor-pointer font-normal leading-tight",
+                )}
+              >
                 J'accepte que mes données soient utilisées pour me recontacter concernant ma demande de devis (
                 <a href="/politique-confidentialite" className="text-primary hover:underline">
                   Politique de confidentialité
@@ -451,7 +514,11 @@ export function ProQuoteFunnel() {
                 ) <span className="text-destructive">*</span>
               </Label>
             </div>
-            {errors.consent && <p className="text-sm text-destructive">{errors.consent}</p>}
+            {errors.consent && (
+              <p className={cn(designTokens.textScale.sm, "text-destructive")}>
+                {errors.consent}
+              </p>
+            )}
 
             {errors.submit && (
               <Alert variant="destructive">

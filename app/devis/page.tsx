@@ -21,16 +21,22 @@ export default function DevisPage() {
           <h1
             className={cn(
               designTokens.typography.h1,
-              "text-balance text-2xl sm:text-3xl md:text-4xl",
+              designTokens.textScale["2xl3xl4xl"],
+              "text-balance",
             )}
           >
             Demander un devis gratuit
           </h1>
-          <p className="mx-auto mt-2 max-w-xl text-pretty text-sm text-muted-foreground sm:text-base">
+          <p
+            className={cn(
+              designTokens.textScale.smBase,
+              "mx-auto mt-2 max-w-xl text-pretty text-muted-foreground",
+            )}
+          >
             Débarras, Déménagement et Ménage en Île-de-France
           </p>
           {/* Trust line */}
-          <p className="mt-3 text-xs text-muted-foreground sm:text-sm">
+          <p className={cn(designTokens.textScale.xsSm, "mt-3 text-muted-foreground")}>
             <CheckCircle2 className="mr-1 inline h-3.5 w-3.5 text-green-600" />
             Réponse sous 2h • Intervention 24 à 48 h • Sans engagement
           </p>

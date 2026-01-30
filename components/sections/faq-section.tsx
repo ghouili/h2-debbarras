@@ -17,26 +17,51 @@ export function FaqSection() {
         <h2
           className={cn(
             designTokens.typography.h2,
-            "text-balance text-2xl sm:text-3xl",
+            designTokens.textScale["2xl3xl"],
+            "text-balance",
           )}
         >
           {copy.title}
         </h2>
-        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">{copy.subtitle}</p>
+        <p
+          className={cn(
+            designTokens.textScale.baseLg,
+            "mt-3 text-pretty text-muted-foreground",
+          )}
+        >
+          {copy.subtitle}
+        </p>
       </div>
 
       <div className="mx-auto mt-8 sm:mt-10 max-w-3xl">
         <Accordion type="single" collapsible className="w-full">
           {displayQuestions.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-sm sm:text-base">{faq.q}</AccordionTrigger>
-              <AccordionContent className="text-pretty text-sm text-muted-foreground sm:text-base">{faq.a}</AccordionContent>
+              <AccordionTrigger className={cn(designTokens.textScale.xs, "text-left")}>
+                {faq.q}
+              </AccordionTrigger>
+              <AccordionContent
+                className={cn(
+                  designTokens.textScale.xs,
+                  "text-pretty text-muted-foreground",
+                )}
+              >
+                {faq.a}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
 
         <div className="mt-6 sm:mt-8 text-center">
-          <Button variant="outline" asChild className={cn(designTokens.button.secondary, "min-h-11 h-10 sm:h-12 px-4 sm:px-6 text-xs sm:text-sm")}>
+          <Button
+            variant="outline"
+            asChild
+            className={cn(
+              designTokens.button.secondary,
+              designTokens.textScale.xs,
+              "min-h-11 h-10 sm:h-12 px-4 sm:px-6",
+            )}
+          >
             <Link href="/faq">{copy.cta}</Link>
           </Button>
         </div>

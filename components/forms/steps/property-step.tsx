@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ChevronLeft } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type Props = {
   formData: QuoteFormData
@@ -40,10 +42,19 @@ export function PropertyStep({ formData, updateFormData, nextStep, prevStep }: P
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold font-heading">Type de bien</h2>
+      <h2
+        className={cn(
+          designTokens.textScale["2xl"],
+          "mb-6 font-semibold font-heading",
+        )}
+      >
+        Type de bien
+      </h2>
       <div className="space-y-6">
         <div>
-          <Label className="mb-3 block">Type de propriété *</Label>
+          <Label className={cn(designTokens.textScale.sm, "mb-3 block")}>
+            Type de propriété *
+          </Label>
           <RadioGroup value={formData.propertyType} onValueChange={(value) => updateFormData({ propertyType: value })}>
             <div className="grid gap-3 md:grid-cols-2">
               {propertyTypes.map((type) => (
@@ -62,7 +73,9 @@ export function PropertyStep({ formData, updateFormData, nextStep, prevStep }: P
         </div>
 
         <div>
-          <Label className="mb-3 block">Nombre de pièces *</Label>
+          <Label className={cn(designTokens.textScale.sm, "mb-3 block")}>
+            Nombre de pièces *
+          </Label>
           <RadioGroup value={formData.rooms} onValueChange={(value) => updateFormData({ rooms: value })}>
             <div className="grid gap-3 md:grid-cols-3">
               {roomOptions.map((option) => (

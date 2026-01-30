@@ -18,13 +18,21 @@ export default function MentionsLegalesPage() {
   return (
     <Section>
       <div className="mx-auto max-w-4xl">
-        <h1 className={cn(designTokens.typography.h1, "mb-6 text-3xl sm:text-4xl")}>
+        <h1
+          className={cn(
+            designTokens.typography.h1,
+            designTokens.textScale["3xl4xl"],
+            "mb-6",
+          )}
+        >
           Mentions légales
         </h1>
 
         <Card className="mb-6">
           <CardContent className="prose prose-sm max-w-none p-6">
-            <h2 className={cn(designTokens.typography.h3, "text-2xl")}>1. Éditeur du site</h2>
+            <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"])}>
+              1. Éditeur du site
+            </h2>
             <p>
               Le site {siteConfig.url} est édité par {siteConfig.name}.
             </p>
@@ -58,12 +66,14 @@ export default function MentionsLegalesPage() {
               </li>
             </ul>
 
-            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>
+            <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
               2. Directeur de publication
             </h2>
             <p>[TODO : nom et prénom du directeur de publication]</p>
 
-            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>3. Hébergeur</h2>
+            <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
+              3. Hébergeur
+            </h2>
             <p>
               Le site est hébergé par ---------------------- (hébergeur).
               <br />
@@ -76,7 +86,7 @@ export default function MentionsLegalesPage() {
               </span>
             </p>
 
-            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>
+            <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
               4. Propriété intellectuelle
             </h2>
             <p>
@@ -84,7 +94,7 @@ export default function MentionsLegalesPage() {
               ou de ses partenaires. Toute reproduction, même partielle, est interdite sans autorisation préalable.
             </p>
 
-            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>
+            <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
               5. Données personnelles
             </h2>
             <p>
@@ -92,20 +102,26 @@ export default function MentionsLegalesPage() {
               commercial. Pour plus d'informations, consultez notre <a href="/politique-confidentialite">politique de confidentialité</a>.
             </p>
 
-            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>6. Responsabilité</h2>
+            <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
+              6. Responsabilité
+            </h2>
             <p>
               {siteConfig.name} s'efforce d'assurer l'exactitude des informations diffusées sur ce site. Toutefois, nous
               ne pouvons garantir l'absence d'erreurs ou d'omissions. Les informations fournies le sont à titre
               indicatif.
             </p>
 
-            <h2 className={cn(designTokens.typography.h3, "mt-6 text-2xl")}>7. Contact</h2>
+            <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
+              7. Contact
+            </h2>
             <p>
               Pour toute question, vous pouvez nous contacter via la page <a href="/contact">Contact</a> ou par email
               à <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
             </p>
 
-            <p className="mt-6 text-sm text-muted-foreground">Dernière mise à jour : 20 janvier 2026</p>
+            <p className={cn(designTokens.textScale.sm, "mt-6 text-muted-foreground")}>
+              Dernière mise à jour : 20 janvier 2026
+            </p>
           </CardContent>
         </Card>
       </div>

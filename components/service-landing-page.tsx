@@ -189,7 +189,12 @@ export function ServiceLandingPage({
           {/* Left: Content */}
           <div className="flex flex-col gap-3 sm:gap-6">
             {/* Badge */}
-            <div className="inline-flex items-center gap-1.5 self-start rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium text-primary border border-primary/20 shadow-sm sm:gap-2 sm:px-4 sm:py-2 sm:text-sm">
+            <div
+              className={cn(
+                designTokens.textScale.fineSm,
+                "inline-flex items-center gap-1.5 self-start rounded-full bg-primary/10 px-2.5 py-1 font-medium text-primary border border-primary/20 shadow-sm sm:gap-2 sm:px-4 sm:py-2",
+              )}
+            >
               <Image
                 src={"/optimized/icons/special-icon-w40.png"}
                 width={40}
@@ -209,14 +214,20 @@ export function ServiceLandingPage({
             <h1
               className={cn(
                 designTokens.typography.h1,
-                "text-balance text-xl leading-tight sm:text-3xl lg:text-4xl",
+                designTokens.textScale.xl3xl4xlLg,
+                "text-balance leading-tight",
               )}
             >
               {service.title}{" "}
               <span className="text-primary">en Île-de-France</span>
             </h1>
 
-            <p className="text-pretty text-xs text-muted-foreground sm:text-base lg:text-lg max-w-xl">
+            <p
+              className={cn(
+                designTokens.textScale.xsBaseLg,
+                "text-pretty text-muted-foreground max-w-xl",
+              )}
+            >
               {service.description}
             </p>
 
@@ -227,7 +238,12 @@ export function ServiceLandingPage({
                   <div className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary/10 sm:h-6 sm:w-6">
                     <CheckCircle2 className="h-2.5 w-2.5 text-primary sm:h-4 sm:w-4" />
                   </div>
-                  <span className="text-xs font-medium text-foreground sm:text-base">
+                  <span
+                    className={cn(
+                      designTokens.textScale.xsBase,
+                      "font-medium text-foreground",
+                    )}
+                  >
                     {feature}
                   </span>
                 </div>
@@ -240,7 +256,10 @@ export function ServiceLandingPage({
                 size="lg"
                 className={cn(
                   designTokens.button.primary,
-                  "min-h-11 w-full px-3 text-xs sm:w-auto sm:px-6 sm:text-sm",
+                  cn(
+                    designTokens.textScale.xsSm,
+                    "min-h-11 w-full px-3 sm:w-auto sm:px-6",
+                  ),
                 )}
                 asChild
               >
@@ -254,7 +273,10 @@ export function ServiceLandingPage({
                 variant="outline"
                 className={cn(
                   designTokens.button.secondary,
-                  "min-h-11 w-full px-3 text-xs bg-background sm:w-auto sm:px-6 sm:text-sm",
+                  cn(
+                    designTokens.textScale.xsSm,
+                    "min-h-11 w-full px-3 bg-background sm:w-auto sm:px-6",
+                  ),
                 )}
                 asChild
               >
@@ -266,7 +288,12 @@ export function ServiceLandingPage({
             </div>
 
             {/* Trust strip - Full width, wraps properly */}
-            <div className="flex w-full flex-wrap items-center justify-center gap-2.5 border-t border-border/50 pt-3 text-[10px] sm:justify-start sm:gap-6 sm:pt-6 sm:text-sm">
+            <div
+              className={cn(
+                designTokens.textScale.fineSm,
+                "flex w-full flex-wrap items-center justify-center gap-2.5 border-t border-border/50 pt-3 sm:justify-start sm:gap-6 sm:pt-6",
+              )}
+            >
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
@@ -301,8 +328,20 @@ export function ServiceLandingPage({
                   <Icon className="h-5 w-5 text-primary sm:h-7 sm:w-7" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-sm leading-tight sm:text-lg">{service.title}</p>
-                  <p className="text-xs text-muted-foreground line-clamp-2 sm:text-sm">
+                  <p
+                    className={cn(
+                      designTokens.textScale.smLg,
+                      "font-semibold leading-tight",
+                    )}
+                  >
+                    {service.title}
+                  </p>
+                  <p
+                    className={cn(
+                      designTokens.textScale.xsSm,
+                      "text-muted-foreground line-clamp-2",
+                    )}
+                  >
                     {service.shortDescription}
                   </p>
                 </div>
@@ -315,8 +354,12 @@ export function ServiceLandingPage({
                     <CheckCircle2 className="h-3.5 w-3.5 text-green-600 sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Devis gratuit et sans engagement</p>
-                    <p className="text-[10px] text-muted-foreground sm:text-sm">Réponse sous 2h</p>
+                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                      Devis gratuit et sans engagement
+                    </p>
+                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                      Réponse sous 2h
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
@@ -324,8 +367,12 @@ export function ServiceLandingPage({
                     <Clock className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Intervention rapide 24 à 48 h</p>
-                    <p className="text-[10px] text-muted-foreground sm:text-sm">Selon disponibilité</p>
+                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                      Intervention rapide 24 à 48 h
+                    </p>
+                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                      Selon disponibilité
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
@@ -333,8 +380,12 @@ export function ServiceLandingPage({
                     <Shield className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Entreprise assurée</p>
-                    <p className="text-[10px] text-muted-foreground sm:text-sm">RC Pro et garantie</p>
+                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                      Entreprise assurée
+                    </p>
+                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                      RC Pro et garantie
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2 sm:gap-3">
@@ -342,24 +393,33 @@ export function ServiceLandingPage({
                     <Recycle className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Tri éco-responsable</p>
-                    <p className="text-[10px] text-muted-foreground sm:text-sm">Recyclage et dons</p>
+                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                      Tri éco-responsable
+                    </p>
+                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                      Recyclage et dons
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Zone */}
               <div className="mt-3 pt-3 border-t border-border sm:mt-6 sm:pt-6">
-                <div className="flex items-start gap-2 text-sm sm:gap-3">
+                <div className={cn(designTokens.textScale.sm, "flex items-start gap-2 sm:gap-3")}>
                   <MapPin className="h-4 w-4 shrink-0 text-primary mt-0.5 sm:h-5 sm:w-5" />
                   <div className="min-w-0">
-                    <p className="font-medium text-xs sm:text-base">Zone d'intervention</p>
-                    <p className="text-[10px] text-muted-foreground sm:text-sm">
+                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                      Zone d'intervention
+                    </p>
+                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
                       Paris et Île-de-France (75, 77, 78, 91, 92, 93, 94, 95)
                     </p>
                     <Link
                       href="/zones"
-                      className="inline-flex items-center text-xs text-primary hover:underline mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded min-h-8 sm:text-sm"
+                      className={cn(
+                        designTokens.textScale.xsSm,
+                        "inline-flex items-center text-primary hover:underline mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded min-h-8",
+                      )}
                     >
                       Voir zones
                       <ArrowRight className="ml-1 h-3 w-3" />
@@ -378,12 +438,18 @@ export function ServiceLandingPage({
           <h2
             className={cn(
               designTokens.typography.h2,
-              "text-balance text-lg sm:text-2xl lg:text-3xl",
+              designTokens.textScale.lg2xl3xlLg,
+              "text-balance",
             )}
           >
             Pourquoi nous choisir ?
           </h2>
-          <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mt-2 text-pretty text-muted-foreground sm:mt-3",
+            )}
+          >
             Service professionnel et adapté à vos besoins
           </p>
         </div>
@@ -401,12 +467,14 @@ export function ServiceLandingPage({
                 <CardTitle
                   className={cn(
                     designTokens.typography.h4,
-                    "text-xs sm:text-base lg:text-lg",
+                    designTokens.textScale.xsBaseLg,
                   )}
                 >
                   {benefit.title}
                 </CardTitle>
-                <CardDescription className="text-[10px] sm:text-sm">{benefit.text}</CardDescription>
+                <CardDescription className={designTokens.textScale.fineSm}>
+                  {benefit.text}
+                </CardDescription>
               </CardHeader>
             </Card>
           ))}
@@ -419,12 +487,18 @@ export function ServiceLandingPage({
           <h2
             className={cn(
               designTokens.typography.h2,
-              "text-balance text-lg sm:text-2xl lg:text-3xl",
+              designTokens.textScale.lg2xl3xlLg,
+              "text-balance",
             )}
           >
             Ce qui est inclus
           </h2>
-          <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mt-2 text-pretty text-muted-foreground sm:mt-3",
+            )}
+          >
             {service.shortDescription}
           </p>
         </div>
@@ -439,7 +513,9 @@ export function ServiceLandingPage({
                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 sm:h-8 sm:w-8">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                 </div>
-                <span className="text-xs font-medium sm:text-base">{feature}</span>
+                <span className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                  {feature}
+                </span>
               </div>
             ))}
           </div>
@@ -452,12 +528,18 @@ export function ServiceLandingPage({
           <h2
             className={cn(
               designTokens.typography.h2,
-              "text-balance text-lg sm:text-2xl lg:text-3xl",
+              designTokens.textScale.lg2xl3xlLg,
+              "text-balance",
             )}
           >
             Comment ça marche ?
           </h2>
-          <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mt-2 text-pretty text-muted-foreground sm:mt-3",
+            )}
+          >
             Un processus simple en 4 étapes
           </p>
         </div>
@@ -466,19 +548,24 @@ export function ServiceLandingPage({
         <div className="mt-4 space-y-3 sm:hidden">
           {siteConfig.process.map((step) => (
             <div key={step.step} className="flex items-start gap-3">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+              <div
+                className={cn(
+                  designTokens.textScale.sm,
+                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground",
+                )}
+              >
                 {step.step}
               </div>
               <div className="flex-1 pt-0.5">
                 <h3
                   className={cn(
                     designTokens.typography.h4,
-                    "text-sm",
+                    designTokens.textScale.sm,
                   )}
                 >
                   {step.title}
                 </h3>
-                <p className="mt-0.5 text-xs text-muted-foreground">
+                <p className={cn(designTokens.textScale.xs, "mt-0.5 text-muted-foreground")}>
                   {step.description}
                 </p>
               </div>
@@ -494,18 +581,24 @@ export function ServiceLandingPage({
                 <div className="absolute top-6 left-1/2 hidden h-0.5 w-full bg-border lg:block" />
               )}
               <div className="relative flex flex-col items-center text-center">
-                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-xl font-bold text-primary-foreground lg:mb-4 lg:h-14 lg:w-14 lg:text-2xl">
+                <div
+                  className={cn(
+                    designTokens.textScale.xl2xlLg,
+                    "mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground lg:mb-4 lg:h-14 lg:w-14",
+                  )}
+                >
                   {step.step}
                 </div>
                 <h3
                   className={cn(
                     designTokens.typography.h4,
-                    "mb-1.5 text-base lg:mb-2 lg:text-lg",
+                    designTokens.textScale.baseLg,
+                    "mb-1.5 lg:mb-2",
                   )}
                 >
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
                   {step.description}
                 </p>
               </div>
@@ -520,12 +613,18 @@ export function ServiceLandingPage({
           <h2
             className={cn(
               designTokens.typography.h2,
-              "text-balance text-lg sm:text-2xl lg:text-3xl",
+              designTokens.textScale.lg2xl3xlLg,
+              "text-balance",
             )}
           >
             Ils nous font confiance
           </h2>
-          <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mt-2 text-pretty text-muted-foreground sm:mt-3",
+            )}
+          >
             Découvrez les avis de nos clients
           </p>
         </div>
@@ -555,25 +654,47 @@ export function ServiceLandingPage({
                         <Star className="h-3.5 w-3.5 fill-yellow-500/50 text-yellow-500 sm:h-5 sm:w-5" />
                       )}
                     </div>
-                    <span className="text-[10px] font-medium text-muted-foreground sm:text-sm">
+                    <span
+                      className={cn(
+                        designTokens.textScale.fineSm,
+                        "font-medium text-muted-foreground",
+                      )}
+                    >
                       {formatRating(rating)}
                     </span>
                   </div>
 
                   {/* Quote - Line clamp on mobile */}
-                  <p className="text-xs text-muted-foreground line-clamp-4 sm:text-base sm:line-clamp-none">
+                  <p
+                    className={cn(
+                      designTokens.textScale.xsBase,
+                      "text-muted-foreground line-clamp-4 sm:line-clamp-none",
+                    )}
+                  >
                     "{testimonial.text}"
                   </p>
 
                   {/* Author */}
                   <div className="mt-3 flex items-center gap-2 border-t border-border pt-2.5 sm:mt-6 sm:gap-3 sm:pt-4">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary sm:h-10 sm:w-10 sm:text-sm">
+                    <div
+                      className={cn(
+                        designTokens.textScale.xsSm,
+                        "flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary sm:h-10 sm:w-10",
+                      )}
+                    >
                       {testimonial.name.charAt(0)}
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-semibold sm:text-base">{testimonial.name}</p>
+                      <p className={cn(designTokens.textScale.xsBase, "font-semibold")}>
+                        {testimonial.name}
+                      </p>
                       {testimonial.location ? (
-                        <p className="text-[10px] text-muted-foreground sm:text-sm truncate">
+                        <p
+                          className={cn(
+                            designTokens.textScale.fineSm,
+                            "text-muted-foreground truncate",
+                          )}
+                        >
                           {testimonial.location}
                         </p>
                       ) : null}
@@ -592,12 +713,18 @@ export function ServiceLandingPage({
           <h2
             className={cn(
               designTokens.typography.h2,
-              "text-balance text-lg sm:text-2xl lg:text-3xl",
+              designTokens.textScale.lg2xl3xlLg,
+              "text-balance",
             )}
           >
             Questions fréquentes
           </h2>
-          <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mt-2 text-pretty text-muted-foreground sm:mt-3",
+            )}
+          >
             Trouvez les réponses à vos questions
           </p>
         </div>
@@ -606,10 +733,20 @@ export function ServiceLandingPage({
           <Accordion type="single" collapsible className="w-full">
             {categoryFaqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="min-h-10 py-2.5 text-left text-xs font-medium sm:min-h-11 sm:py-4 sm:text-base [&>svg]:h-3.5 [&>svg]:w-3.5 sm:[&>svg]:h-4 sm:[&>svg]:w-4 [&>svg]:shrink-0">
+                <AccordionTrigger
+                  className={cn(
+                    designTokens.textScale.xsBase,
+                    "min-h-10 py-2.5 text-left font-medium sm:min-h-11 sm:py-4 [&>svg]:h-3.5 [&>svg]:w-3.5 sm:[&>svg]:h-4 sm:[&>svg]:w-4 [&>svg]:shrink-0",
+                  )}
+                >
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-xs text-muted-foreground sm:text-base">
+                <AccordionContent
+                  className={cn(
+                    designTokens.textScale.xsBase,
+                    "text-muted-foreground",
+                  )}
+                >
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -624,12 +761,18 @@ export function ServiceLandingPage({
           <h2
             className={cn(
               designTokens.typography.h2,
-              "text-balance text-lg sm:text-2xl lg:text-3xl",
+              designTokens.textScale.lg2xl3xlLg,
+              "text-balance",
             )}
           >
             Explorer nos services
           </h2>
-          <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mt-2 text-pretty text-muted-foreground sm:mt-3",
+            )}
+          >
             Découvrez nos prestations
           </p>
         </div>
@@ -645,12 +788,17 @@ export function ServiceLandingPage({
                   <CardTitle
                     className={cn(
                       designTokens.typography.h4,
-                      "text-sm sm:text-lg lg:text-xl",
+                      designTokens.textScale.smLgXl,
                     )}
                   >
                     {related.title}
                   </CardTitle>
-                  <CardDescription className="text-xs line-clamp-2 sm:text-sm sm:line-clamp-none">
+                  <CardDescription
+                    className={cn(
+                      designTokens.textScale.xsSm,
+                      "line-clamp-2 sm:line-clamp-none",
+                    )}
+                  >
                     {related.shortDescription}
                   </CardDescription>
                 </CardHeader>
@@ -658,7 +806,10 @@ export function ServiceLandingPage({
                   <Button
                     variant="outline"
                     asChild
-                    className="group/btn min-h-10 w-full justify-between text-xs sm:min-h-11 sm:text-sm"
+                    className={cn(
+                      designTokens.textScale.xsSm,
+                      "group/btn min-h-10 w-full justify-between sm:min-h-11",
+                    )}
                   >
                     <Link href={`/services/${related.slug}`}>
                       En savoir plus
@@ -676,10 +827,24 @@ export function ServiceLandingPage({
         )}
 
         <div className="mt-4 flex flex-col items-center justify-center gap-2 sm:mt-8 sm:flex-row sm:gap-3">
-          <Button variant="outline" asChild className="min-h-10 w-full text-xs sm:min-h-11 sm:w-auto sm:text-sm">
+          <Button
+            variant="outline"
+            asChild
+            className={cn(
+              designTokens.textScale.xsSm,
+              "min-h-10 w-full sm:min-h-11 sm:w-auto",
+            )}
+          >
             <Link href="/services">Tous les services</Link>
           </Button>
-          <Button variant="outline" asChild className="min-h-10 w-full text-xs sm:min-h-11 sm:w-auto sm:text-sm">
+          <Button
+            variant="outline"
+            asChild
+            className={cn(
+              designTokens.textScale.xsSm,
+              "min-h-10 w-full sm:min-h-11 sm:w-auto",
+            )}
+          >
             <Link href="/zones">Zones d'intervention</Link>
           </Button>
         </div>
@@ -694,19 +859,29 @@ export function ServiceLandingPage({
           <h2
             className={cn(
               designTokens.typography.h2,
-              "text-balance text-lg sm:text-2xl lg:text-3xl",
+              designTokens.textScale.lg2xl3xlLg,
+              "text-balance",
             )}
           >
             Prêt à démarrer ?
           </h2>
-          <p className="mt-2 text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mt-2 text-pretty text-muted-foreground sm:mt-3",
+            )}
+          >
             Devis gratuit en quelques minutes. Réponse sous 2h.
           </p>
 
           <div className="mt-4 flex flex-col items-center justify-center gap-2 sm:mt-6 sm:flex-row sm:gap-4">
             <Button
               size="lg"
-              className={cn(designTokens.button.primary, "min-h-11 w-full px-3 text-xs sm:w-auto sm:px-6 sm:text-sm")}
+              className={cn(
+                designTokens.button.primary,
+                designTokens.textScale.xsSm,
+                "min-h-11 w-full px-3 sm:w-auto sm:px-6",
+              )}
               asChild
             >
               <Link href="/devis">
@@ -726,7 +901,8 @@ export function ServiceLandingPage({
               variant="outline"
               className={cn(
                 designTokens.button.secondary,
-                "min-h-11 w-full px-3 text-xs sm:w-auto sm:px-6 sm:text-sm",
+                designTokens.textScale.xsSm,
+                "min-h-11 w-full px-3 sm:w-auto sm:px-6",
               )}
               asChild
             >
@@ -737,7 +913,12 @@ export function ServiceLandingPage({
             </Button>
           </div>
 
-          <p className="mt-3 text-[10px] text-muted-foreground sm:mt-6 sm:text-sm">
+          <p
+            className={cn(
+              designTokens.textScale.fineSm,
+              "mt-3 text-muted-foreground sm:mt-6",
+            )}
+          >
             ✓ Devis gratuit • ✓ Réponse 2h • ✓ Intervention rapide
           </p>
         </div>

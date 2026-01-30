@@ -128,7 +128,10 @@ const TrustRow = memo(function TrustRow() {
       {TRUST_BADGES.map(({ icon: Icon, label }) => (
         <span
           key={label}
-          className="inline-flex items-center gap-1.5 rounded-full bg-white/90 border border-primary/10 px-2.5 py-1 text-xs font-medium text-foreground shadow-sm"
+          className={cn(
+            designTokens.textScale.xs,
+            "inline-flex items-center gap-1.5 rounded-full bg-white/90 border border-primary/10 px-2.5 py-1 font-medium text-foreground shadow-sm",
+          )}
         >
           <Icon className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
           {label}
@@ -157,7 +160,8 @@ const HeroSection = memo(function HeroSection() {
           <h1
             className={cn(
               designTokens.typography.h1,
-              "text-balance text-xl leading-tight sm:text-3xl lg:text-4xl",
+              designTokens.textScale.xl3xl4xlLg,
+              "text-balance leading-tight",
             )}
           >
             Débarras professionnel
@@ -165,13 +169,19 @@ const HeroSection = memo(function HeroSection() {
           <p
             className={cn(
               designTokens.typography.h1,
-              "text-balance text-xl leading-tight sm:text-3xl lg:text-4xl pt-0.5 sm:pt-2 bg-linear-to-r from-primary-600 via-primary-400 to-primary-300 bg-clip-text text-transparent",
+              designTokens.textScale.xl3xl4xlLg,
+              "text-balance leading-tight pt-0.5 sm:pt-2 bg-linear-to-r from-primary-600 via-primary-400 to-primary-300 bg-clip-text text-transparent",
             )}
           >
             Paris et Île-de-France
           </p>
 
-          <p className="mx-auto mt-2 max-w-xl text-pretty text-xs text-muted-foreground sm:mt-4 sm:text-base lg:text-lg">
+          <p
+            className={cn(
+              designTokens.textScale.xsBaseLg,
+              "mx-auto mt-2 max-w-xl text-pretty text-muted-foreground sm:mt-4",
+            )}
+          >
             Intervention rapide dans les 8 départements. Devis gratuit, sans engagement.
           </p>
 
@@ -186,7 +196,8 @@ const HeroSection = memo(function HeroSection() {
               asChild
               size="lg"
               className={cn(
-                "min-h-11 w-full px-3 text-xs font-semibold sm:w-auto sm:px-7 sm:text-sm",
+                designTokens.textScale.xsSm,
+                "min-h-11 w-full px-3 font-semibold sm:w-auto sm:px-7",
                 designTokens.button.primary,
               )}
             >
@@ -205,7 +216,10 @@ const HeroSection = memo(function HeroSection() {
               asChild
               variant="outline"
               size="lg"
-              className="min-h-11 w-full px-3 text-xs font-medium sm:w-auto sm:px-6 sm:text-sm"
+              className={cn(
+                designTokens.textScale.xsSm,
+                "min-h-11 w-full px-3 font-medium sm:w-auto sm:px-6",
+              )}
             >
               <a href="#verifier">
                 <MapPin className="mr-1.5 h-3.5 w-3.5 sm:mr-2 sm:h-4 sm:w-4" />
@@ -217,7 +231,10 @@ const HeroSection = memo(function HeroSection() {
           {/* Phone link */}
           <a
             href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-            className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors sm:mt-6 sm:text-sm"
+            className={cn(
+              designTokens.textScale.xsSm,
+              "mt-3 inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-primary transition-colors sm:mt-6",
+            )}
           >
             <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             {siteConfig.contact.phone}
@@ -266,10 +283,20 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
       <div id="verifier" className="mx-auto max-w-xl scroll-mt-20 px-3 sm:px-4">
         {/* Section heading */}
         <div className="text-center mb-3 sm:mb-6">
-          <h2 className={cn(designTokens.typography.h2, "text-lg sm:text-2xl lg:text-3xl")}>
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              designTokens.textScale.lg2xl3xlLg,
+            )}
+          >
             Vérifier votre zone
           </h2>
-          <p className="mt-1.5 text-xs text-muted-foreground sm:mt-2 sm:text-base">
+          <p
+            className={cn(
+              designTokens.textScale.xsBase,
+              "mt-1.5 text-muted-foreground sm:mt-2",
+            )}
+          >
             Entrez votre code postal pour un devis.
           </p>
         </div>
@@ -291,14 +318,18 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
                 onChange={handleInput}
                 onKeyDown={handleKeyDown}
                 maxLength={5}
-                className="min-h-11 h-11 w-full text-center text-sm font-mono tracking-widest border-2 focus:border-primary sm:flex-1 sm:text-lg"
+                className={cn(
+                  designTokens.textScale.smLg,
+                  "min-h-11 h-11 w-full text-center font-mono tracking-widest border-2 focus:border-primary sm:flex-1",
+                )}
                 aria-describedby="postal-section-hint"
               />
               <Button
                 onClick={onCheck}
                 disabled={postalCode.length < 5}
                 className={cn(
-                  "min-h-11 h-11 w-full px-4 text-xs font-semibold sm:w-auto sm:px-5 sm:text-sm",
+                  designTokens.textScale.xsSm,
+                  "min-h-11 h-11 w-full px-4 font-semibold sm:w-auto sm:px-5",
                   designTokens.button.primary,
                 )}
                 aria-label="Vérifier"
@@ -308,7 +339,10 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
             </div>
             <p
               id="postal-section-hint"
-              className="mt-1.5 text-center text-[10px] text-muted-foreground sm:mt-2 sm:text-xs"
+              className={cn(
+                designTokens.textScale.fine,
+                "mt-1.5 text-center text-muted-foreground sm:mt-2",
+              )}
             >
               Ex : 75001, 92100, 94200…
             </p>
@@ -318,14 +352,22 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
               {eligibility === "covered" && coveredDeptCode && (
                 <div className="mt-3 animate-in slide-in-from-top-2 duration-200 sm:mt-5">
                   <div className="flex flex-col items-stretch gap-2 rounded-lg border border-green-200 bg-green-50 px-2.5 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-4 sm:py-3">
-                    <span className="flex items-center justify-center gap-1.5 text-xs font-medium text-green-800 sm:justify-start sm:gap-2 sm:text-sm">
+                    <span
+                      className={cn(
+                        designTokens.textScale.xsSm,
+                        "flex items-center justify-center gap-1.5 font-medium text-green-800 sm:justify-start sm:gap-2",
+                      )}
+                    >
                       <CheckCircle2 className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" />
                       Zone couverte ({coveredDeptCode})
                     </span>
                     <Button
                       asChild
                       size="sm"
-                      className="min-h-10 shrink-0 bg-green-600 hover:bg-green-700 text-white px-3 text-xs font-semibold sm:px-4 sm:text-sm"
+                      className={cn(
+                        designTokens.textScale.xsSm,
+                        "min-h-10 shrink-0 bg-green-600 hover:bg-green-700 text-white px-3 font-semibold sm:px-4",
+                      )}
                     >
                       <Link href={`/devis?postalCode=${postalCode}`}>
                         Mon devis
@@ -334,7 +376,10 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
                   </div>
                   <a
                     href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-                    className="mt-1.5 flex items-center justify-center gap-1 text-[10px] text-green-700 hover:underline sm:mt-2 sm:text-xs"
+                    className={cn(
+                      designTokens.textScale.fine,
+                      "mt-1.5 flex items-center justify-center gap-1 text-green-700 hover:underline sm:mt-2",
+                    )}
                   >
                     <Phone className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                     ou appelez-nous
@@ -344,7 +389,12 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
 
               {eligibility === "unknown" && (
                 <div className="mt-3 animate-in slide-in-from-top-2 duration-200 sm:mt-5">
-                  <div className="flex items-start gap-1.5 rounded-lg border border-muted bg-muted/50 px-2.5 py-2.5 text-left text-xs text-muted-foreground sm:gap-2 sm:px-4 sm:py-3 sm:text-sm">
+                  <div
+                    className={cn(
+                      designTokens.textScale.xsSm,
+                      "flex items-start gap-1.5 rounded-lg border border-muted bg-muted/50 px-2.5 py-2.5 text-left text-muted-foreground sm:gap-2 sm:px-4 sm:py-3",
+                    )}
+                  >
                     <AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5 sm:h-4 sm:w-4" />
                     <span>
                       Zone non reconnue —{" "}
@@ -403,7 +453,8 @@ const DepartmentList = memo(function DepartmentList({
           >
             <span
               className={cn(
-                "flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-sm font-bold transition-colors",
+                designTokens.textScale.sm,
+                "flex h-10 w-10 shrink-0 items-center justify-center rounded-md font-bold transition-colors",
                 isSelected
                   ? "bg-primary text-white"
                   : "bg-primary/10 text-primary",
@@ -412,8 +463,20 @@ const DepartmentList = memo(function DepartmentList({
               {dept.code}
             </span>
             <div className="min-w-0 flex-1">
-              <div className="font-medium text-foreground text-sm sm:text-base">{dept.name}</div>
-              <div className="text-xs text-muted-foreground truncate">
+              <div
+                className={cn(
+                  designTokens.textScale.smBase,
+                  "font-medium text-foreground",
+                )}
+              >
+                {dept.name}
+              </div>
+              <div
+                className={cn(
+                  designTokens.textScale.xs,
+                  "text-muted-foreground truncate",
+                )}
+              >
                 {dept.mainCities.slice(0, 3).join(", ")}
               </div>
             </div>
@@ -445,7 +508,13 @@ const DepartmentDetailsPanel = memo(function DepartmentDetailsPanel({
 }: DepartmentDetailsPanelProps) {
   return (
     <div className="rounded-xl border-2 border-primary/20 bg-linear-to-br from-primary-50/60 to-white p-4 sm:p-5 animate-in fade-in slide-in-from-right-3 duration-200">
-      <h3 className={cn(designTokens.typography.h3, "text-base text-foreground sm:text-lg")}>
+      <h3
+        className={cn(
+          designTokens.typography.h3,
+          designTokens.textScale.baseLg,
+          "text-foreground",
+        )}
+      >
         Débarras dans le {dept.name}
       </h3>
 
@@ -453,7 +522,10 @@ const DepartmentDetailsPanel = memo(function DepartmentDetailsPanel({
         {DEPT_BULLETS.map(({ icon: Icon, text }) => (
           <li
             key={text}
-            className="flex items-center gap-2 text-sm text-muted-foreground"
+            className={cn(
+              designTokens.textScale.sm,
+              "flex items-center gap-2 text-muted-foreground",
+            )}
           >
             <Icon className="h-4 w-4 text-primary shrink-0" />
             {text}
@@ -470,7 +542,10 @@ const DepartmentDetailsPanel = memo(function DepartmentDetailsPanel({
         </Button>
         <a
           href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-          className="inline-flex items-center justify-center gap-2 min-h-11 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+          className={cn(
+            designTokens.textScale.sm,
+            "inline-flex items-center justify-center gap-2 min-h-11 font-medium text-muted-foreground hover:text-primary transition-colors",
+          )}
         >
           <Phone className="h-4 w-4" />
           Appeler
@@ -479,7 +554,10 @@ const DepartmentDetailsPanel = memo(function DepartmentDetailsPanel({
 
       <a
         href={`#${servicesAnchorId}`}
-        className="mt-4 inline-flex items-center gap-1 text-xs text-primary hover:underline min-h-8"
+        className={cn(
+          designTokens.textScale.xs,
+          "mt-4 inline-flex items-center gap-1 text-primary hover:underline min-h-8",
+        )}
       >
         <ArrowDown className="h-3 w-3" />
         Voir nos services
@@ -537,11 +615,11 @@ const ZoneSelector = memo(function ZoneSelector({
     <Section className="bg-muted/30">
       <div className="mx-auto max-w-5xl">
         <div className="text-center mb-2">
-          <h2 className={cn(designTokens.typography.h2, "text-2xl sm:text-3xl")}>
+                <h2 className={cn(designTokens.typography.h2, designTokens.textScale["2xl3xl"])}>
             Choisir votre zone
           </h2>
         </div>
-        <p className="mx-auto max-w-xl text-center text-sm text-muted-foreground mb-6">
+              <p className={cn(designTokens.textScale.sm, "mx-auto max-w-xl text-center text-muted-foreground mb-6")}>
           Toutes les communes des départements listés sont couvertes.
           Intervention typique 24 à 48 h.
         </p>
@@ -558,14 +636,15 @@ const ZoneSelector = memo(function ZoneSelector({
                 key={tab.id}
                 value={tab.id}
                 className={cn(
-                  "flex-1 min-w-30 rounded-lg border-2 px-3 py-2.5 text-sm font-medium transition-all",
+                  designTokens.textScale.sm,
+                  "flex-1 min-w-30 rounded-lg border-2 px-3 py-2.5 font-medium transition-all",
                   "data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary",
                   "data-[state=inactive]:border-border data-[state=inactive]:bg-white",
                   "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                 )}
               >
                 <span className="block">{tab.label}</span>
-                <span className="block text-xs opacity-70 mt-0.5">
+                      <span className={cn(designTokens.textScale.xs, "block opacity-70 mt-0.5")}>
                   {tab.depts}
                 </span>
               </TabsTrigger>
@@ -590,7 +669,7 @@ const ZoneSelector = memo(function ZoneSelector({
             ) : (
               <div className="rounded-xl border-2 border-dashed border-primary/20 bg-primary-50/30 p-8 text-center">
                 <MapPin className="mx-auto h-9 w-9 text-primary/40" />
-                <p className="mt-3 text-sm text-muted-foreground">
+                      <p className={cn(designTokens.textScale.sm, "mt-3 text-muted-foreground")}>
                   Sélectionnez un département pour voir les détails
                 </p>
               </div>
@@ -639,10 +718,20 @@ const MapSectionLazy = memo(function MapSectionLazy({
   return (
     <Section className="bg-background">
       <div className="mx-auto max-w-6xl text-center mb-4 sm:mb-6 lg:mb-8">
-        <h2 className={cn(designTokens.typography.h2, "text-xl sm:text-2xl lg:text-3xl")}>
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            designTokens.textScale.xl2xl3xlLg,
+          )}
+        >
           Carte interactive
         </h2>
-        <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+        <p
+          className={cn(
+            designTokens.textScale.smBase,
+            "mt-2 text-muted-foreground",
+          )}
+        >
           Visualisez nos zones de couverture en Île-de-France
         </p>
       </div>
@@ -657,8 +746,22 @@ const MapSectionLazy = memo(function MapSectionLazy({
               <Map className="h-8 w-8 text-primary/60 sm:h-10 sm:w-10" />
             </div>
             <div className="text-center px-4">
-              <p className="text-sm font-medium text-foreground sm:text-base">Carte de nos zones</p>
-              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">8 départements couverts</p>
+              <p
+                className={cn(
+                  designTokens.textScale.smBase,
+                  "font-medium text-foreground",
+                )}
+              >
+                Carte de nos zones
+              </p>
+              <p
+                className={cn(
+                  designTokens.textScale.xsSm,
+                  "mt-1 text-muted-foreground",
+                )}
+              >
+                8 départements couverts
+              </p>
             </div>
             <Button
               size="lg"
@@ -706,10 +809,20 @@ const ServicesTeaser = memo(function ServicesTeaser({ id }: { id: string }) {
     <Section className="bg-slate-50/80">
       <div id={id} className="mx-auto max-w-5xl scroll-mt-24">
         <div className="text-center mb-4 sm:mb-6">
-          <h2 className={cn(designTokens.typography.h2, "text-xl sm:text-2xl lg:text-3xl")}>
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              designTokens.textScale.xl2xl3xlLg,
+            )}
+          >
             Que souhaitez-vous débarrasser ?
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+          <p
+            className={cn(
+              designTokens.textScale.smBase,
+              "mt-2 text-muted-foreground",
+            )}
+          >
             Nos services les plus demandés en Île-de-France
           </p>
         </div>
@@ -726,10 +839,20 @@ const ServicesTeaser = memo(function ServicesTeaser({ id }: { id: string }) {
                 <div className="mb-2 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary transition-colors shrink-0">
                   <Icon className="h-5 w-5 text-primary group-hover:text-white" />
                 </div>
-                <span className="font-semibold text-foreground text-xs sm:text-sm leading-tight">
+                <span
+                  className={cn(
+                    designTokens.textScale.xsSm,
+                    "font-semibold text-foreground leading-tight",
+                  )}
+                >
                   {svc.title}
                 </span>
-                <span className="mt-0.5 text-[10px] sm:text-xs text-muted-foreground leading-tight line-clamp-2">
+                <span
+                  className={cn(
+                    designTokens.textScale.fine,
+                    "mt-0.5 text-muted-foreground leading-tight line-clamp-2",
+                  )}
+                >
                   {svc.benefit}
                 </span>
               </Link>
@@ -761,10 +884,20 @@ const FAQTeaser = memo(function FAQTeaser() {
     <Section className="bg-background">
       <div className="mx-auto max-w-3xl">
         <div className="text-center mb-4 sm:mb-6">
-          <h2 className={cn(designTokens.typography.h2, "text-xl sm:text-2xl lg:text-3xl")}>
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              designTokens.textScale.xl2xl3xlLg,
+            )}
+          >
             Questions fréquentes
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+          <p
+            className={cn(
+              designTokens.textScale.smBase,
+              "mt-2 text-muted-foreground",
+            )}
+          >
             Tout savoir sur nos interventions en Île-de-France
           </p>
         </div>
@@ -772,10 +905,20 @@ const FAQTeaser = memo(function FAQTeaser() {
         <Accordion type="single" collapsible className="w-full">
           {topFaqs.map((faq, i) => (
             <AccordionItem key={i} value={`faq-${i}`}>
-              <AccordionTrigger className="text-left text-sm sm:text-base min-h-11 py-3 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:shrink-0">
+              <AccordionTrigger
+                className={cn(
+                  designTokens.textScale.smBase,
+                  "text-left min-h-11 py-3 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:shrink-0",
+                )}
+              >
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+              <AccordionContent
+                className={cn(
+                  designTokens.textScale.sm,
+                  "text-muted-foreground leading-relaxed",
+                )}
+              >
                 {faq.a}
               </AccordionContent>
             </AccordionItem>
@@ -784,7 +927,7 @@ const FAQTeaser = memo(function FAQTeaser() {
 
         {/* Lightweight conversion nudge */}
         <div className="mt-5 sm:mt-6 rounded-xl border border-primary/20 bg-primary-50/40 p-4 sm:p-5 text-center">
-          <p className="text-sm text-muted-foreground sm:text-base">
+          <p className={cn(designTokens.textScale.smBase, "text-muted-foreground")}>
             Vous avez un doute sur votre zone ? Demandez un devis — réponse
             rapide.
           </p>
@@ -798,7 +941,12 @@ const FAQTeaser = memo(function FAQTeaser() {
         </div>
 
         <div className="mt-4 text-center">
-          <Button asChild variant="link" size="sm" className="min-h-11 text-sm sm:text-base">
+          <Button
+            asChild
+            variant="link"
+            size="sm"
+            className={cn(designTokens.textScale.smBase, "min-h-11")}
+          >
             <Link href="/faq">
               Voir toutes les questions
               <ArrowRight className="ml-1 h-4 w-4" />
@@ -823,10 +971,21 @@ const BottomCTA = memo(function BottomCTA() {
           <div className="absolute -bottom-16 -left-16 h-40 w-40 sm:h-56 sm:w-56 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
           <CardContent className="relative p-4 sm:p-6 md:p-10 text-center">
-            <h2 className={cn(designTokens.typography.h2, "text-lg text-white sm:text-2xl lg:text-3xl")}>
+            <h2
+              className={cn(
+                designTokens.typography.h2,
+                designTokens.textScale.lg2xl3xlLg,
+                "text-white",
+              )}
+            >
               Libérez votre espace
             </h2>
-            <p className="mt-1.5 text-white/90 text-xs sm:mt-2 sm:text-base max-w-md mx-auto">
+            <p
+              className={cn(
+                designTokens.textScale.xsBase,
+                "mt-1.5 text-white/90 sm:mt-2 max-w-md mx-auto",
+              )}
+            >
               Devis gratuit en 2 min. Réponse sous 24h.
             </p>
 
@@ -834,7 +993,10 @@ const BottomCTA = memo(function BottomCTA() {
               <Button
                 asChild
                 size="lg"
-                className="min-h-11 h-11 w-full sm:w-auto px-4 text-xs sm:px-7 sm:text-sm bg-white text-primary font-semibold hover:bg-white/90 shadow-lg"
+                className={cn(
+                  designTokens.textScale.xsSm,
+                  "min-h-11 h-11 w-full sm:w-auto px-4 sm:px-7 bg-white text-primary font-semibold hover:bg-white/90 shadow-lg",
+                )}
               >
                 <Link href="/devis">
                   <Image
@@ -849,7 +1011,10 @@ const BottomCTA = memo(function BottomCTA() {
               </Button>
               <a
                 href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-                className="inline-flex items-center justify-center gap-1.5 min-h-11 px-3 text-xs font-medium text-white/90 hover:text-white transition-colors sm:gap-2 sm:px-4 sm:text-sm"
+                className={cn(
+                  designTokens.textScale.xsSm,
+                  "inline-flex items-center justify-center gap-1.5 min-h-11 px-3 font-medium text-white/90 hover:text-white transition-colors sm:gap-2 sm:px-4",
+                )}
               >
                 <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>{siteConfig.contact.phone}</span>
@@ -857,7 +1022,12 @@ const BottomCTA = memo(function BottomCTA() {
             </div>
 
             {/* Reassurance microcopy */}
-            <p className="mt-3 text-[10px] text-white/70 sm:mt-4 sm:text-sm">
+            <p
+              className={cn(
+                designTokens.textScale.fineSm,
+                "mt-3 text-white/70 sm:mt-4",
+              )}
+            >
               ✓ Sans engagement · ✓ Gratuit · ✓ Réponse rapide
             </p>
           </CardContent>
@@ -879,7 +1049,10 @@ const StickyMobileCTA = memo(function StickyMobileCTA() {
           <Button
             variant="outline"
             size="lg"
-            className="col-span-2 h-12 text-sm font-semibold"
+            className={cn(
+              designTokens.textScale.sm,
+              "col-span-2 h-12 font-semibold",
+            )}
             asChild
           >
             <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>
@@ -890,7 +1063,8 @@ const StickyMobileCTA = memo(function StickyMobileCTA() {
           <Button
             size="lg"
             className={cn(
-              "col-span-3 h-12 text-sm font-semibold",
+              designTokens.textScale.sm,
+              "col-span-3 h-12 font-semibold",
               designTokens.button.primary,
             )}
             asChild

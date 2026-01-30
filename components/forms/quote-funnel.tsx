@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
-import { trackStartDevis, trackLeadSubmit } from "@/lib/analytics";
+import { trackLeadSubmit, trackStartDevis } from "@/lib/analytics";
 import { SuccessState } from "./success-state";
 import { designTokens } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
@@ -78,7 +78,11 @@ const services = [
   { id: "bureaux-locaux", label: "Bureau / Local", icon: Building2 },
   { id: "gravats", label: "Gravats / chantier", icon: HardHat },
   { id: "demenagement-particulier", label: "Déménagement", icon: Truck },
-  { id: "demenagement-entreprise", label: "Déménagement entreprise", icon: Truck },
+  {
+    id: "demenagement-entreprise",
+    label: "Déménagement entreprise",
+    icon: Truck,
+  },
 ];
 
 export function QuoteFunnel() {
@@ -115,7 +119,10 @@ export function QuoteFunnel() {
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          source: "devis_form",
+          ...formData,
+        }),
       });
 
       if (response.ok) {
@@ -150,15 +157,25 @@ export function QuoteFunnel() {
       <CardContent className="w-full max-w-full p-4 sm:p-5 md:p-6 lg:p-8">
         {/* Reassurance banner */}
         <div className="mb-5 sm:mb-6 w-full rounded-xl bg-primary/5 p-3 sm:p-4 text-center border border-primary/10">
-          <p className="text-xs sm:text-sm font-medium text-foreground">
-            🕐 Réponse sous 2h • ✓ Devis gratuit, sans engagement
+          <p
+            className={cn(
+              designTokens.textScale.xsSm,
+              "font-medium text-foreground",
+            )}
+          >
+            Réponse 2h • Devis gratuit
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="w-full space-y-5 sm:space-y-6">
           {/* Service Selection */}
           <div className="w-full">
-            <h2 className="mb-2 text-base font-bold text-foreground sm:text-lg font-heading">
+            <h2
+              className={cn(
+                designTokens.textScale.baseLg,
+                "mb-2 font-bold text-foreground font-heading",
+              )}
+            >
               Type de service <span className="text-destructive">*</span>
             </h2>
             <RadioGroup
@@ -176,7 +193,7 @@ export function QuoteFunnel() {
                         "w-full cursor-pointer transition-all min-h-11",
                         isSelected
                           ? "border-primary bg-primary/5 ring-2 ring-primary/20 shadow-md"
-                          : "hover:border-primary/50 hover:shadow-sm"
+                          : "hover:border-primary/50 hover:shadow-sm",
                       )}
                       onClick={() => updateFormData({ service: service.id })}
                     >
@@ -189,7 +206,10 @@ export function QuoteFunnel() {
                         <Icon className="h-4 w-4 shrink-0 text-primary" />
                         <Label
                           htmlFor={service.id}
-                          className="cursor-pointer text-xs font-medium leading-tight sm:text-sm flex-1"
+                          className={cn(
+                            designTokens.textScale.xsSm,
+                            "cursor-pointer font-medium leading-tight flex-1",
+                          )}
                         >
                           {service.label}
                         </Label>
@@ -204,7 +224,13 @@ export function QuoteFunnel() {
           {/* Location */}
           <div className="grid w-full gap-4 md:grid-cols-2">
             <div className="w-full">
-              <Label htmlFor="postalCode" className="text-sm font-medium mb-1.5 block">
+              <Label
+                htmlFor="postalCode"
+                className={cn(
+                  designTokens.textScale.sm,
+                  "font-medium mb-1.5 block",
+                )}
+              >
                 Code postal <span className="text-destructive">*</span>
               </Label>
               <Input
@@ -213,7 +239,11 @@ export function QuoteFunnel() {
                 inputMode="numeric"
                 placeholder="75001"
                 value={formData.postalCode}
-                onChange={(e) => updateFormData({ postalCode: e.target.value.replace(/\D/g, "").slice(0, 5) })}
+                onChange={(e) =>
+                  updateFormData({
+                    postalCode: e.target.value.replace(/\D/g, "").slice(0, 5),
+                  })
+                }
                 maxLength={5}
                 required
                 className="min-h-11 h-11 w-full"
@@ -222,7 +252,13 @@ export function QuoteFunnel() {
               <div className="min-h-5" />
             </div>
             <div className="w-full">
-              <Label htmlFor="city" className="text-sm font-medium mb-1.5 block">
+              <Label
+                htmlFor="city"
+                className={cn(
+                  designTokens.textScale.sm,
+                  "font-medium mb-1.5 block",
+                )}
+              >
                 Ville <span className="text-muted-foreground">(optionnel)</span>
               </Label>
               <Input
@@ -240,13 +276,24 @@ export function QuoteFunnel() {
 
           {/* Contact Info */}
           <div className="w-full space-y-4">
-            <h2 className="text-base font-bold text-foreground sm:text-lg font-heading">
+            <h2
+              className={cn(
+                designTokens.textScale.baseLg,
+                "font-bold text-foreground font-heading",
+              )}
+            >
               Vos coordonnées
             </h2>
 
             <div className="grid w-full gap-4 md:grid-cols-2">
               <div className="w-full">
-                <Label htmlFor="firstName" className="text-sm font-medium mb-1.5 block">
+                <Label
+                  htmlFor="firstName"
+                  className={cn(
+                    designTokens.textScale.sm,
+                    "font-medium mb-1.5 block",
+                  )}
+                >
                   Prénom <span className="text-destructive">*</span>
                 </Label>
                 <Input
@@ -264,7 +311,13 @@ export function QuoteFunnel() {
                 <div className="min-h-5" />
               </div>
               <div className="w-full">
-                <Label htmlFor="lastName" className="text-sm font-medium mb-1.5 block">
+                <Label
+                  htmlFor="lastName"
+                  className={cn(
+                    designTokens.textScale.sm,
+                    "font-medium mb-1.5 block",
+                  )}
+                >
                   Nom <span className="text-destructive">*</span>
                 </Label>
                 <Input
@@ -282,7 +335,13 @@ export function QuoteFunnel() {
             </div>
             <div className="grid w-full gap-4 md:grid-cols-2">
               <div className="w-full">
-                <Label htmlFor="email" className="text-sm font-medium mb-1.5 block">
+                <Label
+                  htmlFor="email"
+                  className={cn(
+                    designTokens.textScale.sm,
+                    "font-medium mb-1.5 block",
+                  )}
+                >
                   Email <span className="text-destructive">*</span>
                 </Label>
                 <Input
@@ -300,7 +359,13 @@ export function QuoteFunnel() {
               </div>
 
               <div className="w-full">
-                <Label htmlFor="phone" className="text-sm font-medium mb-1.5 block">
+                <Label
+                  htmlFor="phone"
+                  className={cn(
+                    designTokens.textScale.sm,
+                    "font-medium mb-1.5 block",
+                  )}
+                >
                   Téléphone <span className="text-destructive">*</span>
                 </Label>
                 <Input
@@ -327,7 +392,7 @@ export function QuoteFunnel() {
                 "group flex w-full items-start gap-3 rounded-xl border-2 p-3 sm:p-4",
                 "transition-colors hover:bg-muted/40 cursor-pointer",
                 "has-aria-checked:border-primary/50 has-aria-checked:bg-primary/5",
-                showConsentError ? "border-destructive" : "border-border"
+                showConsentError ? "border-destructive" : "border-border",
               )}
             >
               <Checkbox
@@ -347,7 +412,12 @@ export function QuoteFunnel() {
               />
 
               <div className="min-w-0 flex-1 space-y-2">
-                <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                <p
+                  className={cn(
+                    designTokens.textScale.xsSm,
+                    "leading-relaxed text-muted-foreground",
+                  )}
+                >
                   J&apos;accepte d&apos;être contacté par Débarras Aurea
                   concernant ma demande de devis et je consens au traitement de
                   mes données personnelles conformément à la{" "}
@@ -368,7 +438,10 @@ export function QuoteFunnel() {
                   {showConsentError && (
                     <div
                       id="consent-error"
-                      className="flex items-center gap-1.5 text-xs text-destructive"
+                      className={cn(
+                        designTokens.textScale.xs,
+                        "flex items-center gap-1.5 text-destructive",
+                      )}
                       role="alert"
                     >
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" />
@@ -404,21 +477,35 @@ export function QuoteFunnel() {
           </Button>
 
           {/* Privacy note */}
-          <p className="text-center text-xs text-muted-foreground">
-            Vos informations restent confidentielles et ne seront jamais partagées.
+          <p
+            className={cn(
+              designTokens.textScale.xs,
+              "text-center text-muted-foreground",
+            )}
+          >
+            Vos informations restent confidentielles et ne seront jamais
+            partagées.
           </p>
         </form>
 
         {/* Help CTA */}
         <div className="mt-5 sm:mt-6 w-full text-center border-t border-border pt-4 sm:pt-5">
-          <p className="text-sm text-muted-foreground mb-2">
+          <p
+            className={cn(
+              designTokens.textScale.sm,
+              "text-muted-foreground mb-2",
+            )}
+          >
             Besoin d'aide ? Appelez-nous directement
           </p>
           <Button
             asChild
             variant="outline"
             size="lg"
-            className={cn("min-h-11 w-full sm:w-auto gap-2", designTokens.button.secondary)}
+            className={cn(
+              "min-h-11 w-full sm:w-auto gap-2",
+              designTokens.button.secondary,
+            )}
           >
             <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>
               <Phone className="h-4 w-4" />

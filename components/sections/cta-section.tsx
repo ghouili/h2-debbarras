@@ -20,19 +20,28 @@ export function CtaSection() {
         <h2
           className={cn(
             designTokens.typography.h2,
-            "text-balance text-2xl sm:text-3xl",
+            designTokens.textScale["2xl3xl"],
+            "text-balance",
           )}
         >
           {copy.title}
         </h2>
-        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
+        <p
+          className={cn(
+            designTokens.textScale.baseLg,
+            "mt-3 text-pretty text-muted-foreground",
+          )}
+        >
           {copy.subtitle}
         </p>
 
         <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:gap-4">
           <Button
             size="lg"
-            className="min-h-11 h-10 sm:h-12 px-4 sm:px-8 text-xs sm:text-sm w-full sm:w-auto"
+            className={cn(
+              designTokens.textScale.base,
+              "min-h-11 h-10 sm:h-12 px-4 sm:px-8 w-full sm:w-auto",
+            )}
             asChild
           >
             <div className="flex flex-row items-center justify-center gap-1.5 sm:gap-2">
@@ -52,7 +61,8 @@ export function CtaSection() {
             size="lg"
             className={cn(
               designTokens.button.secondary,
-              "min-h-11 h-10 sm:h-12 px-4 sm:px-6 text-xs sm:text-sm w-full sm:w-auto",
+              designTokens.textScale.base,
+              "min-h-11 h-10 sm:h-12 px-4 sm:px-6 w-full sm:w-auto",
             )}
             asChild
           >
@@ -63,7 +73,9 @@ export function CtaSection() {
           </Button>
         </div>
 
-        <p className="mt-5 text-sm text-muted-foreground">{copy.microcopy}</p>
+        <p className={cn(designTokens.textScale.xsSm, "mt-5 text-muted-foreground")}>
+          {copy.microcopy}
+        </p>
       </div>
     </Section>
   );

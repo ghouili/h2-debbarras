@@ -11,6 +11,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent } from "@/components/ui/card"
 import { Upload } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 const localTypes = [
   { value: "boutique", label: "Boutique" },
@@ -52,10 +54,19 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="mb-4 text-xl font-bold font-heading">Détails du local</h2>
+        <h2
+          className={cn(
+            designTokens.textScale.xl,
+            "mb-4 font-bold font-heading",
+          )}
+        >
+          Détails du local
+        </h2>
 
         <div className="mb-4">
-          <Label className="mb-2 block">Type de local</Label>
+          <Label className={cn(designTokens.textScale.sm, "mb-2 block")}>
+            Type de local
+          </Label>
           <RadioGroup value={formData.localType} onValueChange={(value) => updateFormData({ localType: value })}>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {localTypes.map((type) => (
@@ -68,7 +79,13 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
                 >
                   <CardContent className="flex items-center justify-center p-3">
                     <RadioGroupItem value={type.value} id={type.value} className="sr-only" />
-                    <Label htmlFor={type.value} className="cursor-pointer text-center text-sm font-medium">
+                    <Label
+                      htmlFor={type.value}
+                      className={cn(
+                        designTokens.textScale.sm,
+                        "cursor-pointer text-center font-medium",
+                      )}
+                    >
                       {type.label}
                     </Label>
                   </CardContent>
@@ -80,7 +97,9 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <Label htmlFor="floor">Étage</Label>
+            <Label htmlFor="floor" className={designTokens.textScale.sm}>
+              Étage
+            </Label>
             <Input
               id="floor"
               type="text"
@@ -90,7 +109,10 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
             />
           </div>
           <div className="flex items-center justify-between rounded-lg border p-4">
-            <Label htmlFor="elevator" className="cursor-pointer font-medium">
+            <Label
+              htmlFor="elevator"
+              className={cn(designTokens.textScale.sm, "cursor-pointer font-medium")}
+            >
               Ascenseur disponible
             </Label>
             <Switch
@@ -103,7 +125,9 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
       </div>
 
       <div>
-        <Label className="mb-2 block">Estimation du volume (optionnel)</Label>
+        <Label className={cn(designTokens.textScale.sm, "mb-2 block")}>
+          Estimation du volume (optionnel)
+        </Label>
         <RadioGroup
           value={formData.volumeEstimate}
           onValueChange={(value) => updateFormData({ volumeEstimate: value })}
@@ -119,7 +143,13 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
               >
                 <CardContent className="flex items-center gap-3 p-3">
                   <RadioGroupItem value={option.value} id={`volume-${option.value}`} />
-                  <Label htmlFor={`volume-${option.value}`} className="flex-1 cursor-pointer text-sm font-medium">
+                  <Label
+                    htmlFor={`volume-${option.value}`}
+                    className={cn(
+                      designTokens.textScale.sm,
+                      "flex-1 cursor-pointer font-medium",
+                    )}
+                  >
                     {option.label}
                   </Label>
                 </CardContent>
@@ -130,14 +160,16 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
       </div>
 
       <div>
-        <Label htmlFor="photos">Photos (optionnel, max 6)</Label>
+        <Label htmlFor="photos" className={designTokens.textScale.sm}>
+          Photos (optionnel, max 6)
+        </Label>
         <div className="mt-2">
           <label
             htmlFor="photos"
             className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-muted-foreground/25 p-6 transition-colors hover:border-primary/50"
           >
             <Upload className="h-5 w-5 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">
+            <span className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
               {formData.photos.length > 0 ? `${formData.photos.length} photo(s) sélectionnée(s)` : "Choisir des photos"}
             </span>
           </label>
@@ -154,7 +186,9 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
       </div>
 
       <div>
-        <Label htmlFor="message">Message complémentaire (optionnel)</Label>
+        <Label htmlFor="message" className={designTokens.textScale.sm}>
+          Message complémentaire (optionnel)
+        </Label>
         <Textarea
           id="message"
           placeholder="Décrivez vos besoins spécifiques..."

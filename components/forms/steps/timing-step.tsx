@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ChevronLeft } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type Props = {
   formData: QuoteFormData
@@ -32,7 +34,14 @@ export function TimingStep({ formData, updateFormData, nextStep, prevStep }: Pro
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold font-heading">Quand souhaitez-vous intervenir ?</h2>
+      <h2
+        className={cn(
+          designTokens.textScale["2xl"],
+          "mb-6 font-semibold font-heading",
+        )}
+      >
+        Quand souhaitez-vous intervenir ?
+      </h2>
       <div className="space-y-3">
         <RadioGroup value={formData.timing} onValueChange={(value) => updateFormData({ timing: value })}>
           {timingOptions.map((option) => (
@@ -40,7 +49,10 @@ export function TimingStep({ formData, updateFormData, nextStep, prevStep }: Pro
               <RadioGroupItem value={option.value} id={`timing-${option.value}`} className="peer sr-only" />
               <Label
                 htmlFor={`timing-${option.value}`}
-                className="flex cursor-pointer items-center rounded-lg border-2 border-border p-4 transition-all hover:border-primary peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
+                className={cn(
+                  designTokens.textScale.base,
+                  "flex cursor-pointer items-center rounded-lg border-2 border-border p-4 transition-all hover:border-primary peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5",
+                )}
               >
                 {option.label}
               </Label>

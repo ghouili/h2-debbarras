@@ -9,8 +9,8 @@ export default {
     extend: {
       fontFamily: {
         heading: [
-            "Noto Sans Georgian",
-          "var(--font-noto-georgian)",
+          "var(--font-noto-serif)",
+          "Noto Serif",
           "ui-serif",
           "Georgia",
           "Cambria",
@@ -19,8 +19,8 @@ export default {
           "serif",
         ],
         body: [
-            "Noto Sans Georgian",
-          "var(--font-noto-georgian)",
+          "var(--font-source-code-pro)",
+          "Source Code Pro",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",

@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { ChevronRight, Home } from "lucide-react"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type BreadcrumbItem = {
   label: string
@@ -13,7 +15,12 @@ type BreadcrumbsProps = {
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+      <ol
+        className={cn(
+          designTokens.textScale.sm,
+          "flex flex-wrap items-center gap-2 text-muted-foreground",
+        )}
+      >
         <li className="flex items-center gap-2">
           <Link href="/" className="-m-2 flex h-10 w-10 items-center justify-center rounded-md transition-colors hover:bg-muted hover:text-foreground">
             <Home className="h-4 w-4" />

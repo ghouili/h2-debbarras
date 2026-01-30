@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Noto_Sans_Georgian } from "next/font/google";
+import { Noto_Serif, Source_Code_Pro } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
@@ -10,11 +10,18 @@ import { CookieBanner } from "@/components/seo/cookie-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
-const notoSansGeorgian = Noto_Sans_Georgian({
+const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["200", "300", "400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-noto-georgian",
+  variable: "--font-source-code-pro",
+});
+
+const notoSerif = Noto_Serif({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-noto-serif",
 });
 
 export const metadata: Metadata = {
@@ -81,7 +88,7 @@ export default function RootLayout({
         <JsonLd type="organization" />
       </head>
       <body
-        className={`${notoSansGeorgian.variable} font-body antialiased text-foreground bg-background relative`}
+        className={`${sourceCodePro.variable} ${notoSerif.variable} font-body antialiased text-foreground bg-background relative`}
         suppressHydrationWarning
       >
         <Header />

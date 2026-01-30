@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ChevronLeft } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type Props = {
   formData: QuoteFormData
@@ -25,10 +27,19 @@ export function LocationStep({ formData, updateFormData, nextStep, prevStep }: P
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold font-heading">Où se situe le bien à débarrasser ?</h2>
+      <h2
+        className={cn(
+          designTokens.textScale["2xl"],
+          "mb-6 font-semibold font-heading",
+        )}
+      >
+        Où se situe le bien à débarrasser ?
+      </h2>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="postalCode">Code postal *</Label>
+          <Label htmlFor="postalCode" className={designTokens.textScale.sm}>
+            Code postal *
+          </Label>
           <Input
             id="postalCode"
             type="text"
@@ -41,7 +52,9 @@ export function LocationStep({ formData, updateFormData, nextStep, prevStep }: P
           />
         </div>
         <div>
-          <Label htmlFor="city">Ville *</Label>
+          <Label htmlFor="city" className={designTokens.textScale.sm}>
+            Ville *
+          </Label>
           <Input
             id="city"
             type="text"
