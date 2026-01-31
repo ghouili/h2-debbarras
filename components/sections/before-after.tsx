@@ -198,6 +198,7 @@ export function BeforeAfter() {
                       imageToggle === "after" ? "opacity-100" : "opacity-0",
                     )}
                     aria-hidden={imageToggle !== "after"}
+                    quality={70}
                     loading="lazy"
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
@@ -212,6 +213,7 @@ export function BeforeAfter() {
                       imageToggle === "before" ? "opacity-100" : "opacity-0",
                     )}
                     aria-hidden={imageToggle !== "before"}
+                    quality={70}
                     loading="lazy"
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
@@ -243,6 +245,7 @@ export function BeforeAfter() {
                     fill
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"
+                    quality={70}
                     loading="lazy"
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}
@@ -260,6 +263,7 @@ export function BeforeAfter() {
                     fill
                     sizes="(max-width: 1024px) 50vw, 520px"
                     className="object-cover"
+                    quality={70}
                     loading="lazy"
                     placeholder="blur"
                     blurDataURL={GALLERY_BLUR_DATA_URL}

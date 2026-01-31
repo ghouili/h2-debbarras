@@ -19,7 +19,7 @@ const sourceCodePro = Source_Code_Pro({
 
 const notoSerif = Noto_Serif({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700"],
   display: "swap",
   variable: "--font-noto-serif",
 });

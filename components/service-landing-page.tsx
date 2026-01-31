@@ -200,6 +200,7 @@ export function ServiceLandingPage({
                 width={40}
                 height={31}
                 alt="Icône plus de 500 interventions"
+                sizes="40px"
                 className="h-4 w-auto sm:h-6"
               />
               <span>
@@ -890,6 +891,7 @@ export function ServiceLandingPage({
                   width={16}
                   height={16}
                   alt="Icône demande de devis gratuit"
+                  sizes="16px"
                   className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5"
                 />
                 Devis gratuit

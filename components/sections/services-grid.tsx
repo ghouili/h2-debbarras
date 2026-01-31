@@ -143,6 +143,7 @@ export function ServicesGrid() {
               width={16}
               height={16}
               alt="Icône demande de devis gratuit"
+              sizes="16px"
               className="mr-0.5 h-4 w-4 sm:h-5 sm:w-5"
             />
             <Link href="/devis">{serviceCardsCopy.sectionCta}</Link>

@@ -56,6 +56,8 @@ export function Header() {
             alt={`${siteConfig.name} - Accueil`}
             width={160}
             height={40}
+            sizes="(max-width: 768px) 144px, 176px"
+            quality={70}
             className="h-9 md:h-11 w-auto"
             priority
           />
@@ -148,6 +150,8 @@ export function Header() {
                       alt={siteConfig.name}
                       width={160}
                       height={40}
+                      sizes="144px"
+                      quality={70}
                       className="h-9 w-auto"
                       priority={false}
                     />

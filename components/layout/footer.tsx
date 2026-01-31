@@ -17,7 +17,15 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
-            <Image src="/logo.png" alt={siteConfig.name} width={140} height={35} className="h-12 sm:h-14 md:h-16 w-auto" />
+            <Image
+              src="/logo.png"
+              alt={siteConfig.name}
+              width={140}
+              height={35}
+              sizes="(max-width: 768px) 192px, 256px"
+              quality={70}
+              className="h-12 sm:h-14 md:h-16 w-auto"
+            />
             <p className={cn(designTokens.textScale.base, "text-pretty text-muted-foreground")}>
               Votre partenaire de confiance pour tous vos besoins de débarras en Île-de-France.
             </p>

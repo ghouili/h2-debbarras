@@ -64,6 +64,7 @@ export function HeroSection() {
                 width={16}
                 height={16}
                 alt="Icône demande de devis gratuit"
+                sizes="16px"
               />
               <span>{heroCopy.badge}</span>
             </div>
@@ -177,6 +178,7 @@ export function HeroSection() {
                   src="/optimized/icons/special-icon-w40.png"
                   width={40}
                   height={31}
+                  sizes="40px"
                   className="h-5 w-auto text-primary shrink-0"
                 />
                 <span>{heroCopy.trust.interventions}</span>
@@ -191,6 +193,7 @@ export function HeroSection() {
                   src="/optimized/icons/departement-icon-w40.png"
                   width={40}
                   height={32}
+                  sizes="40px"
                   className="h-5 w-auto text-primary shrink-0"
                 />
                 <span>{heroCopy.trust.departments}</span>
@@ -257,7 +260,7 @@ export function HeroSection() {
                   src={HERO_AFTER_SRC}
                   alt="Espace libéré après intervention de débarras Aurea"
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  sizes="(max-width: 768px) 92vw, (max-width: 1024px) 50vw, 600px"
                   className={cn(
                     "object-cover transition-opacity duration-200",
                     imageToggle === "after" ? "opacity-100" : "opacity-0",
@@ -271,7 +274,7 @@ export function HeroSection() {
                   src={HERO_BEFORE_SRC}
                   alt="Espace encombré avant intervention de débarras"
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  sizes="(max-width: 768px) 92vw, (max-width: 1024px) 50vw, 600px"
                   className={cn(
                     "object-cover transition-opacity duration-200",
                     imageToggle === "before" ? "opacity-100" : "opacity-0",
@@ -358,6 +361,7 @@ export function HeroSection() {
               src="/optimized/icons/special-icon-w40.png"
               width={40}
               height={31}
+              sizes="40px"
               className="h-5 w-auto text-primary shrink-0"
             />
             <span>{heroCopy.trust.interventions}</span>
@@ -372,6 +376,7 @@ export function HeroSection() {
               src="/optimized/icons/departement-icon-w40.png"
               width={40}
               height={32}
+              sizes="40px"
               className="h-5 w-auto text-primary shrink-0"
             />
             <span>{heroCopy.trust.departments}</span>

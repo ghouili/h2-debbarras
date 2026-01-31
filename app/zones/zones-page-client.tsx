@@ -207,6 +207,7 @@ const HeroSection = memo(function HeroSection() {
                   width={20}
                   height={20}
                   alt="Icône demande de devis gratuit"
+                  sizes="20px"
                   className="mr-1 h-3.5 w-3.5 sm:mr-1.5 sm:h-5 sm:w-5"
                 />
                 Devis gratuit
