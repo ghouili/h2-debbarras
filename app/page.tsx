@@ -1,15 +1,44 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/sections/hero-section"
 import { TrustBadges } from "@/components/sections/trust-badges"
 import { ServicesGrid } from "@/components/sections/services-grid"
-import { HowItWorks } from "@/components/sections/how-it-works"
-import { ZonesTeaser } from "@/components/sections/zones-teaser"
-import { TestimonialsSection } from "@/components/sections/testimonials-section"
-import { StatsSection } from "@/components/sections/stats-section"
-import { FaqSection } from "@/components/sections/faq-section"
-import { CtaSection } from "@/components/sections/cta-section"
-import { LazyBeforeAfter } from "@/components/sections/lazy-before-after"
 import { siteConfig } from "@/lib/config"
+
+const HowItWorks = dynamic(
+  () => import("@/components/sections/how-it-works").then((m) => m.HowItWorks),
+  { ssr: true },
+)
+const LazyBeforeAfter = dynamic(
+  () =>
+    import("@/components/sections/lazy-before-after").then(
+      (m) => m.LazyBeforeAfter,
+    ),
+  { ssr: true },
+)
+const StatsSection = dynamic(
+  () => import("@/components/sections/stats-section").then((m) => m.StatsSection),
+  { ssr: true },
+)
+const ZonesTeaser = dynamic(
+  () => import("@/components/sections/zones-teaser").then((m) => m.ZonesTeaser),
+  { ssr: true },
+)
+const TestimonialsSection = dynamic(
+  () =>
+    import("@/components/sections/testimonials-section").then(
+      (m) => m.TestimonialsSection,
+    ),
+  { ssr: true },
+)
+const FaqSection = dynamic(
+  () => import("@/components/sections/faq-section").then((m) => m.FaqSection),
+  { ssr: true },
+)
+const CtaSection = dynamic(
+  () => import("@/components/sections/cta-section").then((m) => m.CtaSection),
+  { ssr: true },
+)
 
 export const metadata: Metadata = {
   title:

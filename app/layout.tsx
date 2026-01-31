@@ -1,18 +1,22 @@
 import type React from "react";
 import type { Metadata } from "next";
 import { Noto_Serif, Source_Code_Pro } from "next/font/google";
+import dynamic from "next/dynamic";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileBar } from "@/components/layout/mobile-bar";
-import { CookieBanner } from "@/components/seo/cookie-banner";
+const CookieBanner = dynamic(
+  () => import("@/components/seo/cookie-banner").then((m) => m.CookieBanner),
+  { ssr: false },
+);
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
   variable: "--font-source-code-pro",
 });
