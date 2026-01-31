@@ -181,7 +181,7 @@ export default async function ServicePage({
           title: service.title,
           description: service.description,
           url: `${siteConfig.url}/services/${service.slug}`,
-          category: categoryLabel,
+          category: categoryLabel, 
           audience: clientLabel,
         }}
       />
