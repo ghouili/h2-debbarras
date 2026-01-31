@@ -64,7 +64,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
         </h2>
 
         <div className="mb-4">
-          <Label className={cn(designTokens.textScale.sm, "mb-2 block")}>
+          <Label className={cn(designTokens.textScale.base, "mb-2 block")}>
             Type de local
           </Label>
           <RadioGroup value={formData.localType} onValueChange={(value) => updateFormData({ localType: value })}>
@@ -82,7 +82,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
                     <Label
                       htmlFor={type.value}
                       className={cn(
-                        designTokens.textScale.sm,
+                        designTokens.textScale.base,
                         "cursor-pointer text-center font-medium",
                       )}
                     >
@@ -97,7 +97,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <Label htmlFor="floor" className={designTokens.textScale.sm}>
+            <Label htmlFor="floor" className={designTokens.textScale.base}>
               Étage
             </Label>
             <Input
@@ -111,7 +111,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
           <div className="flex items-center justify-between rounded-lg border p-4">
             <Label
               htmlFor="elevator"
-              className={cn(designTokens.textScale.sm, "cursor-pointer font-medium")}
+              className={cn(designTokens.textScale.base, "cursor-pointer font-medium")}
             >
               Ascenseur disponible
             </Label>
@@ -125,7 +125,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
       </div>
 
       <div>
-        <Label className={cn(designTokens.textScale.sm, "mb-2 block")}>
+        <Label className={cn(designTokens.textScale.base, "mb-2 block")}>
           Estimation du volume (optionnel)
         </Label>
         <RadioGroup
@@ -146,7 +146,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
                   <Label
                     htmlFor={`volume-${option.value}`}
                     className={cn(
-                      designTokens.textScale.sm,
+                      designTokens.textScale.base,
                       "flex-1 cursor-pointer font-medium",
                     )}
                   >
@@ -160,7 +160,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
       </div>
 
       <div>
-        <Label htmlFor="photos" className={designTokens.textScale.sm}>
+        <Label htmlFor="photos" className={designTokens.textScale.base}>
           Photos (optionnel, max 6)
         </Label>
         <div className="mt-2">
@@ -169,7 +169,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
             className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-muted-foreground/25 p-6 transition-colors hover:border-primary/50"
           >
             <Upload className="h-5 w-5 text-muted-foreground" />
-            <span className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+            <span className={cn(designTokens.textScale.base, "text-muted-foreground")}>
               {formData.photos.length > 0 ? `${formData.photos.length} photo(s) sélectionnée(s)` : "Choisir des photos"}
             </span>
           </label>
@@ -186,7 +186,7 @@ export function AccessDetailsStep({ formData, updateFormData, nextStep, prevStep
       </div>
 
       <div>
-        <Label htmlFor="message" className={designTokens.textScale.sm}>
+        <Label htmlFor="message" className={designTokens.textScale.base}>
           Message complémentaire (optionnel)
         </Label>
         <Textarea

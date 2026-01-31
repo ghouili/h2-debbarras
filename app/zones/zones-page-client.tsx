@@ -178,7 +178,7 @@ const HeroSection = memo(function HeroSection() {
 
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mx-auto mt-2 max-w-xl text-pretty text-muted-foreground sm:mt-4",
             )}
           >
@@ -196,7 +196,7 @@ const HeroSection = memo(function HeroSection() {
               asChild
               size="lg"
               className={cn(
-                designTokens.textScale.xsSm,
+                designTokens.textScale.base,
                 "min-h-11 w-full px-3 font-semibold sm:w-auto sm:px-7",
                 designTokens.button.primary,
               )}
@@ -217,7 +217,7 @@ const HeroSection = memo(function HeroSection() {
               variant="outline"
               size="lg"
               className={cn(
-                designTokens.textScale.xsSm,
+                designTokens.textScale.base,
                 "min-h-11 w-full px-3 font-medium sm:w-auto sm:px-6",
               )}
             >
@@ -232,7 +232,7 @@ const HeroSection = memo(function HeroSection() {
           <a
             href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
             className={cn(
-              designTokens.textScale.xsSm,
+              designTokens.textScale.base,
               "mt-3 inline-flex items-center gap-1.5 font-medium text-muted-foreground hover:text-primary transition-colors sm:mt-6",
             )}
           >
@@ -293,7 +293,7 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBase,
+              designTokens.textScale.base,
               "mt-1.5 text-muted-foreground sm:mt-2",
             )}
           >
@@ -319,7 +319,7 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
                 onKeyDown={handleKeyDown}
                 maxLength={5}
                 className={cn(
-                  designTokens.textScale.smLg,
+                  designTokens.textScale.baseLg,
                   "min-h-11 h-11 w-full text-center font-mono tracking-widest border-2 focus:border-primary sm:flex-1",
                 )}
                 aria-describedby="postal-section-hint"
@@ -328,7 +328,7 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
                 onClick={onCheck}
                 disabled={postalCode.length < 5}
                 className={cn(
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "min-h-11 h-11 w-full px-4 font-semibold sm:w-auto sm:px-5",
                   designTokens.button.primary,
                 )}
@@ -354,7 +354,7 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
                   <div className="flex flex-col items-stretch gap-2 rounded-lg border border-green-200 bg-green-50 px-2.5 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-4 sm:py-3">
                     <span
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "flex items-center justify-center gap-1.5 font-medium text-green-800 sm:justify-start sm:gap-2",
                       )}
                     >
@@ -365,7 +365,7 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
                       asChild
                       size="sm"
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "min-h-10 shrink-0 bg-green-600 hover:bg-green-700 text-white px-3 font-semibold sm:px-4",
                       )}
                     >
@@ -391,7 +391,7 @@ const PostalCheckerSection = memo(function PostalCheckerSection({
                 <div className="mt-3 animate-in slide-in-from-top-2 duration-200 sm:mt-5">
                   <div
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "flex items-start gap-1.5 rounded-lg border border-muted bg-muted/50 px-2.5 py-2.5 text-left text-muted-foreground sm:gap-2 sm:px-4 sm:py-3",
                     )}
                   >
@@ -453,7 +453,7 @@ const DepartmentList = memo(function DepartmentList({
           >
             <span
               className={cn(
-                designTokens.textScale.sm,
+                designTokens.textScale.base,
                 "flex h-10 w-10 shrink-0 items-center justify-center rounded-md font-bold transition-colors",
                 isSelected
                   ? "bg-primary text-white"
@@ -465,7 +465,7 @@ const DepartmentList = memo(function DepartmentList({
             <div className="min-w-0 flex-1">
               <div
                 className={cn(
-                  designTokens.textScale.smBase,
+                  designTokens.textScale.baseBase,
                   "font-medium text-foreground",
                 )}
               >
@@ -523,7 +523,7 @@ const DepartmentDetailsPanel = memo(function DepartmentDetailsPanel({
           <li
             key={text}
             className={cn(
-              designTokens.textScale.sm,
+              designTokens.textScale.base,
               "flex items-center gap-2 text-muted-foreground",
             )}
           >
@@ -543,7 +543,7 @@ const DepartmentDetailsPanel = memo(function DepartmentDetailsPanel({
         <a
           href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
           className={cn(
-            designTokens.textScale.sm,
+            designTokens.textScale.base,
             "inline-flex items-center justify-center gap-2 min-h-11 font-medium text-muted-foreground hover:text-primary transition-colors",
           )}
         >
@@ -619,7 +619,7 @@ const ZoneSelector = memo(function ZoneSelector({
             Choisir votre zone
           </h2>
         </div>
-              <p className={cn(designTokens.textScale.sm, "mx-auto max-w-xl text-center text-muted-foreground mb-6")}>
+              <p className={cn(designTokens.textScale.base, "mx-auto max-w-xl text-center text-muted-foreground mb-6")}>
           Toutes les communes des départements listés sont couvertes.
           Intervention typique 24 à 48 h.
         </p>
@@ -636,7 +636,7 @@ const ZoneSelector = memo(function ZoneSelector({
                 key={tab.id}
                 value={tab.id}
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "flex-1 min-w-30 rounded-lg border-2 px-3 py-2.5 font-medium transition-all",
                   "data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary",
                   "data-[state=inactive]:border-border data-[state=inactive]:bg-white",
@@ -669,7 +669,7 @@ const ZoneSelector = memo(function ZoneSelector({
             ) : (
               <div className="rounded-xl border-2 border-dashed border-primary/20 bg-primary-50/30 p-8 text-center">
                 <MapPin className="mx-auto h-9 w-9 text-primary/40" />
-                      <p className={cn(designTokens.textScale.sm, "mt-3 text-muted-foreground")}>
+                      <p className={cn(designTokens.textScale.base, "mt-3 text-muted-foreground")}>
                   Sélectionnez un département pour voir les détails
                 </p>
               </div>
@@ -728,7 +728,7 @@ const MapSectionLazy = memo(function MapSectionLazy({
         </h2>
         <p
           className={cn(
-            designTokens.textScale.smBase,
+            designTokens.textScale.baseBase,
             "mt-2 text-muted-foreground",
           )}
         >
@@ -748,7 +748,7 @@ const MapSectionLazy = memo(function MapSectionLazy({
             <div className="text-center px-4">
               <p
                 className={cn(
-                  designTokens.textScale.smBase,
+                  designTokens.textScale.baseBase,
                   "font-medium text-foreground",
                 )}
               >
@@ -756,7 +756,7 @@ const MapSectionLazy = memo(function MapSectionLazy({
               </p>
               <p
                 className={cn(
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "mt-1 text-muted-foreground",
                 )}
               >
@@ -819,7 +819,7 @@ const ServicesTeaser = memo(function ServicesTeaser({ id }: { id: string }) {
           </h2>
           <p
             className={cn(
-              designTokens.textScale.smBase,
+              designTokens.textScale.baseBase,
               "mt-2 text-muted-foreground",
             )}
           >
@@ -841,7 +841,7 @@ const ServicesTeaser = memo(function ServicesTeaser({ id }: { id: string }) {
                 </div>
                 <span
                   className={cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "font-semibold text-foreground leading-tight",
                   )}
                 >
@@ -894,7 +894,7 @@ const FAQTeaser = memo(function FAQTeaser() {
           </h2>
           <p
             className={cn(
-              designTokens.textScale.smBase,
+              designTokens.textScale.baseBase,
               "mt-2 text-muted-foreground",
             )}
           >
@@ -907,7 +907,7 @@ const FAQTeaser = memo(function FAQTeaser() {
             <AccordionItem key={i} value={`faq-${i}`}>
               <AccordionTrigger
                 className={cn(
-                  designTokens.textScale.smBase,
+                  designTokens.textScale.baseBase,
                   "text-left min-h-11 py-3 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:shrink-0",
                 )}
               >
@@ -915,7 +915,7 @@ const FAQTeaser = memo(function FAQTeaser() {
               </AccordionTrigger>
               <AccordionContent
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "text-muted-foreground leading-relaxed",
                 )}
               >
@@ -927,7 +927,7 @@ const FAQTeaser = memo(function FAQTeaser() {
 
         {/* Lightweight conversion nudge */}
         <div className="mt-5 sm:mt-6 rounded-xl border border-primary/20 bg-primary-50/40 p-4 sm:p-5 text-center">
-          <p className={cn(designTokens.textScale.smBase, "text-muted-foreground")}>
+          <p className={cn(designTokens.textScale.baseBase, "text-muted-foreground")}>
             Vous avez un doute sur votre zone ? Demandez un devis — réponse
             rapide.
           </p>
@@ -945,7 +945,7 @@ const FAQTeaser = memo(function FAQTeaser() {
             asChild
             variant="link"
             size="sm"
-            className={cn(designTokens.textScale.smBase, "min-h-11")}
+            className={cn(designTokens.textScale.baseBase, "min-h-11")}
           >
             <Link href="/faq">
               Voir toutes les questions
@@ -982,7 +982,7 @@ const BottomCTA = memo(function BottomCTA() {
             </h2>
             <p
               className={cn(
-                designTokens.textScale.xsBase,
+                designTokens.textScale.base,
                 "mt-1.5 text-white/90 sm:mt-2 max-w-md mx-auto",
               )}
             >
@@ -994,7 +994,7 @@ const BottomCTA = memo(function BottomCTA() {
                 asChild
                 size="lg"
                 className={cn(
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "min-h-11 h-11 w-full sm:w-auto px-4 sm:px-7 bg-white text-primary font-semibold hover:bg-white/90 shadow-lg",
                 )}
               >
@@ -1012,7 +1012,7 @@ const BottomCTA = memo(function BottomCTA() {
               <a
                 href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
                 className={cn(
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "inline-flex items-center justify-center gap-1.5 min-h-11 px-3 font-medium text-white/90 hover:text-white transition-colors sm:gap-2 sm:px-4",
                 )}
               >
@@ -1024,7 +1024,7 @@ const BottomCTA = memo(function BottomCTA() {
             {/* Reassurance microcopy */}
             <p
               className={cn(
-                designTokens.textScale.fineSm,
+                designTokens.textScale.xsSm,
                 "mt-3 text-white/70 sm:mt-4",
               )}
             >
@@ -1050,7 +1050,7 @@ const StickyMobileCTA = memo(function StickyMobileCTA() {
             variant="outline"
             size="lg"
             className={cn(
-              designTokens.textScale.sm,
+              designTokens.textScale.base,
               "col-span-2 h-12 font-semibold",
             )}
             asChild
@@ -1063,7 +1063,7 @@ const StickyMobileCTA = memo(function StickyMobileCTA() {
           <Button
             size="lg"
             className={cn(
-              designTokens.textScale.sm,
+              designTokens.textScale.base,
               "col-span-3 h-12 font-semibold",
               designTokens.button.primary,
             )}

@@ -55,7 +55,7 @@ export function ServiceStep({ formData, updateFormData, nextStep }: Props) {
               </div>
               <div>
                 <h3 className="font-semibold font-heading">{service.title}</h3>
-                <p className={cn(designTokens.textScale.sm, "text-pretty text-muted-foreground")}>
+                <p className={cn(designTokens.textScale.base, "text-pretty text-muted-foreground")}>
                   {service.shortDescription}
                 </p>
               </div>

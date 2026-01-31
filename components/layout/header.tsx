@@ -213,7 +213,7 @@ export function Header() {
                   <Button
                     className={cn(
                       designTokens.button.primary,
-                      designTokens.textScale.smBase,
+                      designTokens.textScale.baseBase,
                       "w-full h-11 sm:h-12 rounded-xl",
                     )}
                     asChild
@@ -229,7 +229,7 @@ export function Header() {
                     variant="outline"
                     className={cn(
                       designTokens.button.secondary,
-                      designTokens.textScale.smBase,
+                      designTokens.textScale.baseBase,
                       "w-full h-11 sm:h-12 rounded-xl",
                     )}
                     asChild

@@ -119,7 +119,7 @@ export default function MentionsLegalesPage() {
               à <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
             </p>
 
-            <p className={cn(designTokens.textScale.sm, "mt-6 text-muted-foreground")}>
+            <p className={cn(designTokens.textScale.base, "mt-6 text-muted-foreground")}>
               Dernière mise à jour : 20 janvier 2026
             </p>
           </CardContent>

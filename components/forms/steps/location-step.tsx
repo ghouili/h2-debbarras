@@ -37,7 +37,7 @@ export function LocationStep({ formData, updateFormData, nextStep, prevStep }: P
       </h2>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="postalCode" className={designTokens.textScale.sm}>
+          <Label htmlFor="postalCode" className={designTokens.textScale.base}>
             Code postal *
           </Label>
           <Input
@@ -52,7 +52,7 @@ export function LocationStep({ formData, updateFormData, nextStep, prevStep }: P
           />
         </div>
         <div>
-          <Label htmlFor="city" className={designTokens.textScale.sm}>
+          <Label htmlFor="city" className={designTokens.textScale.base}>
             Ville *
           </Label>
           <Input

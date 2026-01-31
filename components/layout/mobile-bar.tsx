@@ -23,7 +23,7 @@ export function MobileBar() {
               variant="outline"
               size="lg"
               className={cn(
-                designTokens.textScale.xsSm,
+                designTokens.textScale.base,
                 "w-full min-h-[44px] h-10 sm:h-12 font-semibold px-2 sm:px-4 whitespace-nowrap",
                 designTokens.button.secondary
               )}
@@ -38,7 +38,7 @@ export function MobileBar() {
             <Button
               size="lg"
               className={cn(
-                designTokens.textScale.xsSm,
+                designTokens.textScale.base,
                 "w-full min-h-[44px] h-10 sm:h-12 font-semibold px-2 sm:px-4 whitespace-nowrap",
                 designTokens.button.primary
               )}

@@ -13,6 +13,55 @@ export async function POST(request: Request) {
         : data.name
     const location = `${data.postalCode ?? ""} ${data.city ?? ""}`.trim()
 
+    const devisApiUrl = process.env.API_URL
+    if (!devisApiUrl) {
+      throw new Error("DEVIS_API_URL (or API_URL) is not configured")
+    }
+
+    const devisPayload = {
+      source,
+      service: data.service ?? data.serviceType,
+      fullName: data.fullName ?? contactName ?? data.name,
+      email: data.email,
+      phone: data.phone,
+      consent: data.consent ?? false,
+      postalCode: data.postalCode ?? null,
+      city: data.city ?? null,
+      timing: data.timing ?? null,
+      localType: data.localType ?? null,
+      propertyType: data.propertyType ?? null,
+      rooms: data.rooms ?? null,
+      volume: data.volume ?? null,
+      volumeEstimate: data.volumeEstimate ?? null,
+      floor: data.floor ?? null,
+      elevator: data.elevator ?? null,
+      truckAccess: data.truckAccess ?? null,
+      surfaceArea: data.surfaceArea ?? null,
+      message: data.message ?? null,
+      status: data.status ?? "new",
+    }
+
+    const devisEndpoint = `${devisApiUrl.replace(/\/$/, "")}/devis`
+    const payloadForDb = {
+      ...devisPayload,
+      body: devisPayload,
+    }
+
+    const dbResponse = await fetch(devisEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payloadForDb),
+    })
+
+    if (!dbResponse.ok) {
+      const errorBody = await dbResponse.text()
+      throw new Error(
+        `Database save failed: ${dbResponse.status} ${dbResponse.statusText} ${errorBody}`,
+      )
+    }
+
     // Log the lead for demo purposes
     console.log(" New lead received:", {
       source: titleFromDelims(source),
@@ -24,16 +73,9 @@ export async function POST(request: Request) {
       message: data.message,
     })
 
-    // In production, you would:
-    // 1. Store in database (API/ORM)
-    // 2. Send email notification to debarras.aurea@gmail.com
-    // 3. Integrate with CRM (Make/Zapier webhook)
-    // 4. Send confirmation email to customer
-
-    // TODO: Enregistrer le lead en base de données
-    // - Table: leads
-    // - Champs suggérés: source, service, postalCode, city, name, email, phone, message, createdAt
-    // - Exemple (à implémenter plus tard): await db.leads.create({ data: { ... } })
+    // In production, you could also:
+    // 1. Integrate with CRM (Make/Zapier webhook)
+    // 2. Send confirmation email to customer
 
     const smtpHost = process.env.SMTP_HOST
     const smtpPort = Number(process.env.SMTP_PORT ?? 0)

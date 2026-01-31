@@ -74,7 +74,7 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
                     <Label
                       htmlFor={service.id}
                       className={cn(
-                        designTokens.textScale.sm,
+                        designTokens.textScale.base,
                         "flex-1 cursor-pointer font-medium",
                       )}
                     >
@@ -90,7 +90,7 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <Label htmlFor="postalCode" className={designTokens.textScale.sm}>
+          <Label htmlFor="postalCode" className={designTokens.textScale.base}>
             Code postal *
           </Label>
           <Input
@@ -105,7 +105,7 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
           />
         </div>
         <div>
-          <Label htmlFor="city" className={designTokens.textScale.sm}>
+          <Label htmlFor="city" className={designTokens.textScale.base}>
             Ville
           </Label>
           <Input
@@ -119,7 +119,7 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
       </div>
 
       <div>
-        <Label className={cn(designTokens.textScale.sm, "mb-3 block")}>
+        <Label className={cn(designTokens.textScale.base, "mb-3 block")}>
           Quand souhaitez-vous intervenir ? *
         </Label>
         <RadioGroup value={formData.timing} onValueChange={(value) => updateFormData({ timing: value })}>
@@ -137,7 +137,7 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
                   <Label
                     htmlFor={option.value}
                     className={cn(
-                      designTokens.textScale.sm,
+                      designTokens.textScale.base,
                       "flex-1 cursor-pointer font-medium",
                     )}
                   >

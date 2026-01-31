@@ -105,7 +105,7 @@ export function ServicesGrid() {
                   variant="ghost"
                   asChild
                   className={cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "group/btn w-full justify-between min-h-11 h-10 sm:h-11 px-2 sm:px-4",
                   )}
                 >

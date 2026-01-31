@@ -191,7 +191,7 @@ export function ServiceLandingPage({
             {/* Badge */}
             <div
               className={cn(
-                designTokens.textScale.fineSm,
+                designTokens.textScale.xsSm,
                 "inline-flex items-center gap-1.5 self-start rounded-full bg-primary/10 px-2.5 py-1 font-medium text-primary border border-primary/20 shadow-sm sm:gap-2 sm:px-4 sm:py-2",
               )}
             >
@@ -224,7 +224,7 @@ export function ServiceLandingPage({
 
             <p
               className={cn(
-                designTokens.textScale.xsBaseLg,
+                designTokens.textScale.baseLg,
                 "text-pretty text-muted-foreground max-w-xl",
               )}
             >
@@ -240,7 +240,7 @@ export function ServiceLandingPage({
                   </div>
                   <span
                     className={cn(
-                      designTokens.textScale.xsBase,
+                      designTokens.textScale.base,
                       "font-medium text-foreground",
                     )}
                   >
@@ -257,7 +257,7 @@ export function ServiceLandingPage({
                 className={cn(
                   designTokens.button.primary,
                   cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "min-h-11 w-full px-3 sm:w-auto sm:px-6",
                   ),
                 )}
@@ -274,7 +274,7 @@ export function ServiceLandingPage({
                 className={cn(
                   designTokens.button.secondary,
                   cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "min-h-11 w-full px-3 bg-background sm:w-auto sm:px-6",
                   ),
                 )}
@@ -290,7 +290,7 @@ export function ServiceLandingPage({
             {/* Trust strip - Full width, wraps properly */}
             <div
               className={cn(
-                designTokens.textScale.fineSm,
+                designTokens.textScale.xsSm,
                 "flex w-full flex-wrap items-center justify-center gap-2.5 border-t border-border/50 pt-3 sm:justify-start sm:gap-6 sm:pt-6",
               )}
             >
@@ -330,7 +330,7 @@ export function ServiceLandingPage({
                 <div className="min-w-0 flex-1">
                   <p
                     className={cn(
-                      designTokens.textScale.smLg,
+                      designTokens.textScale.baseLg,
                       "font-semibold leading-tight",
                     )}
                   >
@@ -338,7 +338,7 @@ export function ServiceLandingPage({
                   </p>
                   <p
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "text-muted-foreground line-clamp-2",
                     )}
                   >
@@ -354,10 +354,10 @@ export function ServiceLandingPage({
                     <CheckCircle2 className="h-3.5 w-3.5 text-green-600 sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                    <p className={cn(designTokens.textScale.base, "font-medium")}>
                       Devis gratuit et sans engagement
                     </p>
-                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                    <p className={cn(designTokens.textScale.xsSm, "text-muted-foreground")}>
                       Réponse sous 2h
                     </p>
                   </div>
@@ -367,10 +367,10 @@ export function ServiceLandingPage({
                     <Clock className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                    <p className={cn(designTokens.textScale.base, "font-medium")}>
                       Intervention rapide 24 à 48 h
                     </p>
-                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                    <p className={cn(designTokens.textScale.xsSm, "text-muted-foreground")}>
                       Selon disponibilité
                     </p>
                   </div>
@@ -380,10 +380,10 @@ export function ServiceLandingPage({
                     <Shield className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                    <p className={cn(designTokens.textScale.base, "font-medium")}>
                       Entreprise assurée
                     </p>
-                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                    <p className={cn(designTokens.textScale.xsSm, "text-muted-foreground")}>
                       RC Pro et garantie
                     </p>
                   </div>
@@ -393,10 +393,10 @@ export function ServiceLandingPage({
                     <Recycle className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                    <p className={cn(designTokens.textScale.base, "font-medium")}>
                       Tri éco-responsable
                     </p>
-                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                    <p className={cn(designTokens.textScale.xsSm, "text-muted-foreground")}>
                       Recyclage et dons
                     </p>
                   </div>
@@ -405,19 +405,19 @@ export function ServiceLandingPage({
 
               {/* Zone */}
               <div className="mt-3 pt-3 border-t border-border sm:mt-6 sm:pt-6">
-                <div className={cn(designTokens.textScale.sm, "flex items-start gap-2 sm:gap-3")}>
+                <div className={cn(designTokens.textScale.base, "flex items-start gap-2 sm:gap-3")}>
                   <MapPin className="h-4 w-4 shrink-0 text-primary mt-0.5 sm:h-5 sm:w-5" />
                   <div className="min-w-0">
-                    <p className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                    <p className={cn(designTokens.textScale.base, "font-medium")}>
                       Zone d'intervention
                     </p>
-                    <p className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+                    <p className={cn(designTokens.textScale.xsSm, "text-muted-foreground")}>
                       Paris et Île-de-France (75, 77, 78, 91, 92, 93, 94, 95)
                     </p>
                     <Link
                       href="/zones"
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "inline-flex items-center text-primary hover:underline mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded min-h-8",
                       )}
                     >
@@ -446,7 +446,7 @@ export function ServiceLandingPage({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
@@ -467,12 +467,12 @@ export function ServiceLandingPage({
                 <CardTitle
                   className={cn(
                     designTokens.typography.h4,
-                    designTokens.textScale.xsBaseLg,
+                    designTokens.textScale.baseLg,
                   )}
                 >
                   {benefit.title}
                 </CardTitle>
-                <CardDescription className={designTokens.textScale.fineSm}>
+                <CardDescription className={designTokens.textScale.xsSm}>
                   {benefit.text}
                 </CardDescription>
               </CardHeader>
@@ -495,7 +495,7 @@ export function ServiceLandingPage({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
@@ -513,7 +513,7 @@ export function ServiceLandingPage({
                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 sm:h-8 sm:w-8">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary sm:h-5 sm:w-5" />
                 </div>
-                <span className={cn(designTokens.textScale.xsBase, "font-medium")}>
+                <span className={cn(designTokens.textScale.base, "font-medium")}>
                   {feature}
                 </span>
               </div>
@@ -536,7 +536,7 @@ export function ServiceLandingPage({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
@@ -550,7 +550,7 @@ export function ServiceLandingPage({
             <div key={step.step} className="flex items-start gap-3">
               <div
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground",
                 )}
               >
@@ -560,7 +560,7 @@ export function ServiceLandingPage({
                 <h3
                   className={cn(
                     designTokens.typography.h4,
-                    designTokens.textScale.sm,
+                    designTokens.textScale.base,
                   )}
                 >
                   {step.title}
@@ -598,7 +598,7 @@ export function ServiceLandingPage({
                 >
                   {step.title}
                 </h3>
-                <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                   {step.description}
                 </p>
               </div>
@@ -621,7 +621,7 @@ export function ServiceLandingPage({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
@@ -656,7 +656,7 @@ export function ServiceLandingPage({
                     </div>
                     <span
                       className={cn(
-                        designTokens.textScale.fineSm,
+                        designTokens.textScale.xsSm,
                         "font-medium text-muted-foreground",
                       )}
                     >
@@ -667,7 +667,7 @@ export function ServiceLandingPage({
                   {/* Quote - Line clamp on mobile */}
                   <p
                     className={cn(
-                      designTokens.textScale.xsBase,
+                      designTokens.textScale.base,
                       "text-muted-foreground line-clamp-4 sm:line-clamp-none",
                     )}
                   >
@@ -678,20 +678,20 @@ export function ServiceLandingPage({
                   <div className="mt-3 flex items-center gap-2 border-t border-border pt-2.5 sm:mt-6 sm:gap-3 sm:pt-4">
                     <div
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary sm:h-10 sm:w-10",
                       )}
                     >
                       {testimonial.name.charAt(0)}
                     </div>
                     <div className="min-w-0">
-                      <p className={cn(designTokens.textScale.xsBase, "font-semibold")}>
+                      <p className={cn(designTokens.textScale.base, "font-semibold")}>
                         {testimonial.name}
                       </p>
                       {testimonial.location ? (
                         <p
                           className={cn(
-                            designTokens.textScale.fineSm,
+                            designTokens.textScale.xsSm,
                             "text-muted-foreground truncate",
                           )}
                         >
@@ -721,7 +721,7 @@ export function ServiceLandingPage({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
@@ -735,7 +735,7 @@ export function ServiceLandingPage({
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger
                   className={cn(
-                    designTokens.textScale.xsBase,
+                    designTokens.textScale.base,
                     "min-h-10 py-2.5 text-left font-medium sm:min-h-11 sm:py-4 [&>svg]:h-3.5 [&>svg]:w-3.5 sm:[&>svg]:h-4 sm:[&>svg]:w-4 [&>svg]:shrink-0",
                   )}
                 >
@@ -743,7 +743,7 @@ export function ServiceLandingPage({
                 </AccordionTrigger>
                 <AccordionContent
                   className={cn(
-                    designTokens.textScale.xsBase,
+                    designTokens.textScale.base,
                     "text-muted-foreground",
                   )}
                 >
@@ -769,7 +769,7 @@ export function ServiceLandingPage({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
@@ -788,14 +788,14 @@ export function ServiceLandingPage({
                   <CardTitle
                     className={cn(
                       designTokens.typography.h4,
-                      designTokens.textScale.smLgXl,
+                      designTokens.textScale.baseLgXl,
                     )}
                   >
                     {related.title}
                   </CardTitle>
                   <CardDescription
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "line-clamp-2 sm:line-clamp-none",
                     )}
                   >
@@ -807,7 +807,7 @@ export function ServiceLandingPage({
                     variant="outline"
                     asChild
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "group/btn min-h-10 w-full justify-between sm:min-h-11",
                     )}
                   >
@@ -831,7 +831,7 @@ export function ServiceLandingPage({
             variant="outline"
             asChild
             className={cn(
-              designTokens.textScale.xsSm,
+              designTokens.textScale.base,
               "min-h-10 w-full sm:min-h-11 sm:w-auto",
             )}
           >
@@ -841,7 +841,7 @@ export function ServiceLandingPage({
             variant="outline"
             asChild
             className={cn(
-              designTokens.textScale.xsSm,
+              designTokens.textScale.base,
               "min-h-10 w-full sm:min-h-11 sm:w-auto",
             )}
           >
@@ -867,7 +867,7 @@ export function ServiceLandingPage({
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBaseLg,
+              designTokens.textScale.baseLg,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
@@ -879,7 +879,7 @@ export function ServiceLandingPage({
               size="lg"
               className={cn(
                 designTokens.button.primary,
-                designTokens.textScale.xsSm,
+                designTokens.textScale.base,
                 "min-h-11 w-full px-3 sm:w-auto sm:px-6",
               )}
               asChild
@@ -901,7 +901,7 @@ export function ServiceLandingPage({
               variant="outline"
               className={cn(
                 designTokens.button.secondary,
-                designTokens.textScale.xsSm,
+                designTokens.textScale.base,
                 "min-h-11 w-full px-3 sm:w-auto sm:px-6",
               )}
               asChild
@@ -915,7 +915,7 @@ export function ServiceLandingPage({
 
           <p
             className={cn(
-              designTokens.textScale.fineSm,
+              designTokens.textScale.xsSm,
               "mt-3 text-muted-foreground sm:mt-6",
             )}
           >

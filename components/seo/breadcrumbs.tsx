@@ -17,7 +17,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
     <nav aria-label="Breadcrumb" className="mb-6">
       <ol
         className={cn(
-          designTokens.textScale.sm,
+          designTokens.textScale.base,
           "flex flex-wrap items-center gap-2 text-muted-foreground",
         )}
       >

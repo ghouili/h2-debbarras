@@ -121,7 +121,7 @@ export default function IleDeFranceMap({
       <div className="flex h-full w-full items-center justify-center bg-muted/50">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-          <span className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+          <span className={cn(designTokens.textScale.base, "text-muted-foreground")}>
             Chargement de la carte...
           </span>
         </div>

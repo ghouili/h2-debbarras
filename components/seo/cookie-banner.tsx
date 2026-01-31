@@ -54,7 +54,7 @@ export function CookieBanner() {
           </div>
           <p
             className={cn(
-              designTokens.textScale.sm,
+              designTokens.textScale.base,
               "mb-4 text-pretty text-muted-foreground",
             )}
           >

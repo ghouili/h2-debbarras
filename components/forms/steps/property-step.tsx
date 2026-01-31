@@ -52,7 +52,7 @@ export function PropertyStep({ formData, updateFormData, nextStep, prevStep }: P
       </h2>
       <div className="space-y-6">
         <div>
-          <Label className={cn(designTokens.textScale.sm, "mb-3 block")}>
+          <Label className={cn(designTokens.textScale.base, "mb-3 block")}>
             Type de propriété *
           </Label>
           <RadioGroup value={formData.propertyType} onValueChange={(value) => updateFormData({ propertyType: value })}>
@@ -73,7 +73,7 @@ export function PropertyStep({ formData, updateFormData, nextStep, prevStep }: P
         </div>
 
         <div>
-          <Label className={cn(designTokens.textScale.sm, "mb-3 block")}>
+          <Label className={cn(designTokens.textScale.base, "mb-3 block")}>
             Nombre de pièces *
           </Label>
           <RadioGroup value={formData.rooms} onValueChange={(value) => updateFormData({ rooms: value })}>

@@ -53,7 +53,7 @@ export default function MerciPage() {
               </h2>
               <ol
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "space-y-2 text-left text-muted-foreground",
                 )}
               >
@@ -108,7 +108,7 @@ export default function MerciPage() {
               </Button>
             </div>
 
-            <p className={cn(designTokens.textScale.sm, "mt-6 text-muted-foreground")}>
+            <p className={cn(designTokens.textScale.base, "mt-6 text-muted-foreground")}>
               Besoin d'une réponse immédiate ? Appelez-nous au {siteConfig.contact.phone}
             </p>
           </CardContent>

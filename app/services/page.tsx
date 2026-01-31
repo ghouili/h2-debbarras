@@ -32,7 +32,8 @@ import { Section } from "@/components/layout/section";
 import { designTokens } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 
-const isDefined = <T,>(value: T | null | undefined): value is T => Boolean(value);
+const isDefined = <T,>(value: T | null | undefined): value is T =>
+  Boolean(value);
 
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState("professionnels");
@@ -134,7 +135,9 @@ export default function ServicesPage() {
           "Tri recyclable",
           "Prix compétitifs",
         ],
-        subservices: [particulierDebarrasById("cave-grenier")].filter(isDefined),
+        subservices: [particulierDebarrasById("cave-grenier")].filter(
+          isDefined,
+        ),
         ctaLink: "/devis?service=cave-grenier",
       },
       {
@@ -192,12 +195,15 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section with Tabs */}
-      <Section bleed className="border-b bg-linear-to-br from-primary-50 via-background to-primary-100/50">
+      <Section
+        bleed
+        className="border-b bg-linear-to-br from-primary-50 via-background to-primary-100/50"
+      >
         <div className="mx-auto max-w-3xl text-center">
           {/* Badge */}
           <div
             className={cn(
-              designTokens.textScale.xsSm,
+              designTokens.textScale.base,
               "mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 font-medium text-primary border border-primary/20 shadow-sm sm:px-4 sm:py-2",
             )}
           >
@@ -210,7 +216,7 @@ export default function ServicesPage() {
             />
             <span>Devis gratuit en 2 min</span>
           </div>
-          
+
           {/* H1 - Responsive typography */}
           <h1
             className={cn(
@@ -223,11 +229,12 @@ export default function ServicesPage() {
           </h1>
           <p
             className={cn(
-              designTokens.textScale.smBaseLg,
+              designTokens.textScale.baseLg,
               "mt-3 text-pretty text-muted-foreground",
             )}
           >
-            Solutions professionnelles et rapides en Île-de-France pour particuliers et entreprises
+            Solutions professionnelles et rapides en Île-de-France pour
+            particuliers et entreprises
           </p>
         </div>
 
@@ -255,12 +262,12 @@ export default function ServicesPage() {
                   onClick={() => setActiveTab(tab.id)}
                   onKeyDown={(event) => handleTabKeyDown(event, index)}
                   className={cn(
-                    designTokens.textScale.xsSmBase,
+                    designTokens.textScale.base,
                     "min-h-11 rounded-lg px-2 md:py-2.5 sm:font-medium transition-all sm:px-4",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                     isActive
                       ? "bg-primary text-primary-foreground shadow-md"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
                   )}
                 >
                   {tab.label}
@@ -305,7 +312,7 @@ export default function ServicesPage() {
                   </h2>
                   <p
                     className={cn(
-                      designTokens.textScale.xsBase,
+                      designTokens.textScale.base,
                       "mt-1 text-muted-foreground",
                     )}
                   >
@@ -320,28 +327,29 @@ export default function ServicesPage() {
                       <Card
                         key={category.id}
                         className={cn(
-                          "flex flex-col overflow-hidden",
-                          category.featured && "border-primary/50 ring-1 ring-primary/20 shadow-md",
-                          debarras.length === 1 && "md:col-span-2 md:max-w-2xl md:mx-auto"
+                          "relative flex flex-col overflow-hidden",
+                          category.featured &&
+                            "border-primary/50 ring-1 ring-primary/20 shadow-md",
+                          debarras.length === 1 &&
+                            "md:col-span-2 md:max-w-2xl md:mx-auto",
                         )}
                       >
-                        <CardHeader className="space-y-2.5 p-4 sm:p-6 sm:space-y-3">
-                          <div className="flex items-start gap-2.5 sm:gap-3">
+                        <div className="absolute right-2 top-1 md:top-2 ">
+                          {category.featured && (
+                            <Badge
+                              variant="default"
+                              className="font-light mb-1.5 sm:mb-2"
+                            >
+                              Recommandé
+                            </Badge>
+                          )}
+                        </div>
+                        <CardHeader className=" space-y-2.5 p-4 sm:p-6 sm:space-y-3 ">
+                          <div className=" flex items-start gap-2.5 sm:gap-3 ">
                             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 sm:h-12 sm:w-12">
                               <Icon className="h-4 w-4 text-primary sm:h-6 sm:w-6" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              {category.featured && (
-                                <Badge
-                                  variant="default"
-                                  className={cn(
-                                    designTokens.textScale.xs,
-                                    "mb-1.5 sm:mb-2",
-                                  )}
-                                >
-                                  Recommandé
-                                </Badge>
-                              )}
                               <CardTitle
                                 className={cn(
                                   designTokens.textScale.baseLgXl2xl,
@@ -352,9 +360,10 @@ export default function ServicesPage() {
                               </CardTitle>
                             </div>
                           </div>
+
                           <CardDescription
                             className={cn(
-                              designTokens.textScale.xsSmBase,
+                              designTokens.textScale.baseLg,
                               "leading-relaxed line-clamp-2",
                             )}
                           >
@@ -365,56 +374,68 @@ export default function ServicesPage() {
                           {/* Benefits Grid - single column on 320px, 2 cols on sm+ */}
                           <div
                             className={cn(
-                              designTokens.textScale.sm,
+                              designTokens.textScale.base,
                               "mb-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2 sm:gap-2 sm:mb-6",
                             )}
                           >
-                            {category.benefits.slice(0, 4).map((benefit, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-start gap-1.5 sm:gap-2"
-                              >
-                                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary sm:h-4 sm:w-4" />
-                                <span className={cn(designTokens.textScale.xsSm)}>
-                                  {benefit}
-                                </span>
-                              </div>
-                            ))}
+                            {category.benefits
+                              .slice(0, 4)
+                              .map((benefit, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-start gap-1.5 sm:gap-2"
+                                >
+                                  <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary sm:h-4 sm:w-4" />
+                                  <span
+                                    className={cn(designTokens.textScale.base, "font-medium ")}
+                                  >
+                                    {benefit}
+                                  </span>
+                                </div>
+                              ))}
                           </div>
-                          
+
                           {/* Service count + detail link */}
                           {category.subservices.length > 0 && (
                             <div className="mb-3 space-y-1 sm:mb-6 sm:space-y-1.5">
                               <p
                                 className={cn(
-                                  designTokens.textScale.xsSm,
+                                  designTokens.textScale.base,
                                   "font-medium text-foreground",
                                 )}
                               >
-                                {formatServiceCount(category.subservices.length)}
+                                {formatServiceCount(
+                                  category.subservices.length,
+                                )}
                               </p>
                               {detailSlug && (
                                 <Link
                                   href={`/services/${detailSlug}`}
                                   className={cn(
-                                    designTokens.textScale.xsSm,
+                                    designTokens.textScale.base,
                                     "inline-flex items-center text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded",
                                   )}
                                 >
                                   Voir le détail
-                                  <span className="sr-only"> — {category.title}</span>
-                                  <ArrowRight className="ml-1 h-3 w-3" aria-hidden="true" />
+                                  <span className="sr-only">
+                                    {" "}
+                                    — {category.title}
+                                  </span>
+                                  <ArrowRight
+                                    className="ml-1 h-3 w-3"
+                                    aria-hidden="true"
+                                  />
                                 </Link>
                               )}
                             </div>
                           )}
-                          
+
                           {/* CTAs - Stacked on mobile */}
                           <div className="flex flex-col gap-2 sm:flex-row">
                             <Button
                               asChild
                               className={cn(
-                                designTokens.textScale.xsSm,
+                                designTokens.textScale.base,
                                 "min-h-11 w-full sm:flex-1",
                               )}
                             >
@@ -427,7 +448,7 @@ export default function ServicesPage() {
                               variant="outline"
                               asChild
                               className={cn(
-                                designTokens.textScale.xsSm,
+                                designTokens.textScale.base,
                                 "min-h-11 w-full sm:w-auto",
                               )}
                             >
@@ -459,7 +480,7 @@ export default function ServicesPage() {
                   </h2>
                   <p
                     className={cn(
-                      designTokens.textScale.xsBase,
+                      designTokens.textScale.base,
                       "mt-1 text-muted-foreground",
                     )}
                   >
@@ -475,7 +496,8 @@ export default function ServicesPage() {
                         key={category.id}
                         className={cn(
                           "flex flex-col overflow-hidden",
-                          demenagement.length === 1 && "md:col-span-2 md:max-w-2xl md:mx-auto"
+                          demenagement.length === 1 &&
+                            "md:col-span-2 md:max-w-2xl md:mx-auto",
                         )}
                       >
                         <CardHeader className="space-y-2.5 p-4 sm:p-6 sm:space-y-3">
@@ -496,7 +518,7 @@ export default function ServicesPage() {
                           </div>
                           <CardDescription
                             className={cn(
-                              designTokens.textScale.xsSmBase,
+                              designTokens.textScale.base,
                               "leading-relaxed line-clamp-2",
                             )}
                           >
@@ -507,56 +529,68 @@ export default function ServicesPage() {
                           {/* Benefits Grid - single column on 320px, 2 cols on sm+ */}
                           <div
                             className={cn(
-                              designTokens.textScale.sm,
+                              designTokens.textScale.base,
                               "mb-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2 sm:gap-2 sm:mb-6",
                             )}
                           >
-                            {category.benefits.slice(0, 4).map((benefit, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-start gap-1.5 sm:gap-2"
-                              >
-                                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary sm:h-4 sm:w-4" />
-                                <span className={cn(designTokens.textScale.xsSm)}>
-                                  {benefit}
-                                </span>
-                              </div>
-                            ))}
+                            {category.benefits
+                              .slice(0, 4)
+                              .map((benefit, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-start gap-1.5 sm:gap-2"
+                                >
+                                  <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary sm:h-4 sm:w-4" />
+                                  <span
+                                    className={cn(designTokens.textScale.base)}
+                                  >
+                                    {benefit}
+                                  </span>
+                                </div>
+                              ))}
                           </div>
-                          
+
                           {/* Service count + detail link */}
                           {category.subservices.length > 0 && (
                             <div className="mb-3 space-y-1 sm:mb-6 sm:space-y-1.5">
                               <p
                                 className={cn(
-                                  designTokens.textScale.xsSm,
+                                  designTokens.textScale.base,
                                   "font-medium text-foreground",
                                 )}
                               >
-                                {formatServiceCount(category.subservices.length)}
+                                {formatServiceCount(
+                                  category.subservices.length,
+                                )}
                               </p>
                               {detailSlug && (
                                 <Link
                                   href={`/services/${detailSlug}`}
                                   className={cn(
-                                    designTokens.textScale.xsSm,
+                                    designTokens.textScale.base,
                                     "inline-flex items-center text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded",
                                   )}
                                 >
                                   Voir le détail
-                                  <span className="sr-only"> — {category.title}</span>
-                                  <ArrowRight className="ml-1 h-3 w-3" aria-hidden="true" />
+                                  <span className="sr-only">
+                                    {" "}
+                                    — {category.title}
+                                  </span>
+                                  <ArrowRight
+                                    className="ml-1 h-3 w-3"
+                                    aria-hidden="true"
+                                  />
                                 </Link>
                               )}
                             </div>
                           )}
-                          
+
                           {/* CTAs - Stacked on mobile */}
                           <div className="flex flex-col gap-2 sm:flex-row">
                             <Button
                               asChild
                               className={cn(
-                                designTokens.textScale.xsSm,
+                                designTokens.textScale.base,
                                 "min-h-11 w-full sm:flex-1",
                               )}
                             >
@@ -569,7 +603,7 @@ export default function ServicesPage() {
                               variant="outline"
                               asChild
                               className={cn(
-                                designTokens.textScale.xsSm,
+                                designTokens.textScale.base,
                                 "min-h-11 w-full sm:w-auto",
                               )}
                             >
@@ -601,7 +635,12 @@ export default function ServicesPage() {
           >
             Accès rapide aux services
           </h3>
-          <p className={cn(designTokens.textScale.sm, "mt-1 text-muted-foreground")}>
+          <p
+            className={cn(
+              designTokens.textScale.base,
+              "mt-1 text-muted-foreground",
+            )}
+          >
             Liens directs vers chaque service pour un choix immédiat.
           </p>
           <div className="mt-4 grid gap-6 sm:mt-6 sm:grid-cols-2">
@@ -629,7 +668,7 @@ export default function ServicesPage() {
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
                     <span
                       className={cn(
-                        designTokens.textScale.sm,
+                        designTokens.textScale.base,
                         "flex-1 font-medium text-foreground group-hover:text-primary",
                       )}
                     >
@@ -640,7 +679,7 @@ export default function ServicesPage() {
                 ))}
               </div>
             </div>
-            
+
             {/* Déménagement Quick Links */}
             <div className="rounded-xl border bg-card p-4 shadow-sm">
               <h4
@@ -665,7 +704,7 @@ export default function ServicesPage() {
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
                     <span
                       className={cn(
-                        designTokens.textScale.sm,
+                        designTokens.textScale.base,
                         "flex-1 font-medium text-foreground group-hover:text-primary",
                       )}
                     >
@@ -681,7 +720,10 @@ export default function ServicesPage() {
       </Section>
 
       {/* Why Choose Us Section */}
-      <Section bleed className="border-y bg-linear-to-b from-primary-50/50 via-background to-background">
+      <Section
+        bleed
+        className="border-y bg-linear-to-b from-primary-50/50 via-background to-background"
+      >
         <div>
           <h2
             className={cn(
@@ -694,7 +736,7 @@ export default function ServicesPage() {
               ? "Pourquoi les entreprises nous choisissent"
               : "Pourquoi nous choisir"}
           </h2>
-          
+
           {/* 2x2 grid on mobile, 4 columns on lg */}
           <div className="mx-auto grid max-w-4xl grid-cols-2 gap-2.5 sm:gap-6 lg:grid-cols-4">
             <div className="flex flex-col items-center rounded-xl border bg-card p-3 text-center shadow-sm sm:p-4">
@@ -703,7 +745,7 @@ export default function ServicesPage() {
               </div>
               <h3
                 className={cn(
-                  designTokens.textScale.xsBase,
+                  designTokens.textScale.base,
                   "mb-0.5 font-semibold sm:mb-1 font-heading",
                 )}
               >
@@ -711,7 +753,7 @@ export default function ServicesPage() {
               </h3>
               <p
                 className={cn(
-                  designTokens.textScale.fineSm,
+                  designTokens.textScale.xsSm,
                   "leading-tight text-muted-foreground",
                 )}
               >
@@ -724,7 +766,7 @@ export default function ServicesPage() {
               </div>
               <h3
                 className={cn(
-                  designTokens.textScale.xsBase,
+                  designTokens.textScale.base,
                   "mb-0.5 font-semibold sm:mb-1 font-heading",
                 )}
               >
@@ -732,7 +774,7 @@ export default function ServicesPage() {
               </h3>
               <p
                 className={cn(
-                  designTokens.textScale.fineSm,
+                  designTokens.textScale.xsSm,
                   "leading-tight text-muted-foreground",
                 )}
               >
@@ -745,7 +787,7 @@ export default function ServicesPage() {
               </div>
               <h3
                 className={cn(
-                  designTokens.textScale.xsBase,
+                  designTokens.textScale.base,
                   "mb-0.5 font-semibold sm:mb-1 font-heading",
                 )}
               >
@@ -753,7 +795,7 @@ export default function ServicesPage() {
               </h3>
               <p
                 className={cn(
-                  designTokens.textScale.fineSm,
+                  designTokens.textScale.xsSm,
                   "leading-tight text-muted-foreground",
                 )}
               >
@@ -766,7 +808,7 @@ export default function ServicesPage() {
               </div>
               <h3
                 className={cn(
-                  designTokens.textScale.xsBase,
+                  designTokens.textScale.base,
                   "mb-0.5 font-semibold sm:mb-1 font-heading",
                 )}
               >
@@ -774,7 +816,7 @@ export default function ServicesPage() {
               </h3>
               <p
                 className={cn(
-                  designTokens.textScale.fineSm,
+                  designTokens.textScale.xsSm,
                   "leading-tight text-muted-foreground",
                 )}
               >
@@ -794,7 +836,12 @@ export default function ServicesPage() {
               >
                 500+
               </div>
-              <div className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+              <div
+                className={cn(
+                  designTokens.textScale.xsSm,
+                  "text-muted-foreground",
+                )}
+              >
                 Missions/an
               </div>
             </div>
@@ -807,7 +854,12 @@ export default function ServicesPage() {
               >
                 4.8/5
               </div>
-              <div className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+              <div
+                className={cn(
+                  designTokens.textScale.xsSm,
+                  "text-muted-foreground",
+                )}
+              >
                 Note clients
               </div>
             </div>
@@ -820,7 +872,12 @@ export default function ServicesPage() {
               >
                 8 dép.
               </div>
-              <div className={cn(designTokens.textScale.fineSm, "text-muted-foreground")}>
+              <div
+                className={cn(
+                  designTokens.textScale.xsSm,
+                  "text-muted-foreground",
+                )}
+              >
                 Île-de-France
               </div>
             </div>
@@ -829,7 +886,10 @@ export default function ServicesPage() {
       </Section>
 
       {/* Bottom CTA Section - Matches home page style */}
-      <Section bleed className="bg-linear-to-b from-primary-100 via-primary-50/50 to-background">
+      <Section
+        bleed
+        className="bg-linear-to-b from-primary-100 via-primary-50/50 to-background"
+      >
         <div className="mx-auto max-w-3xl text-center">
           <h2
             className={cn(
@@ -844,21 +904,21 @@ export default function ServicesPage() {
           </h2>
           <p
             className={cn(
-              designTokens.textScale.xsBase,
+              designTokens.textScale.base,
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
             Réponse rapide • Sans engagement • Tarifs transparents
           </p>
-          
+
           {/* CTA Buttons - Stacked on mobile */}
           <div className="mt-5 flex flex-col items-center justify-center gap-2 sm:mt-6 sm:flex-row sm:gap-4">
             <Button
               size="lg"
               className={cn(
                 designTokens.button.primary,
-                designTokens.textScale.xsSm,
-                "min-h-11 h-10 sm:h-12 px-3 sm:px-8 font-semibold w-full sm:w-auto"
+                designTokens.textScale.base,
+                "min-h-11 h-10 sm:h-12 px-3 sm:px-8 font-semibold w-full sm:w-auto",
               )}
               asChild
             >
@@ -877,7 +937,10 @@ export default function ServicesPage() {
                   className="mr-1 h-3.5 w-3.5 sm:mr-2 sm:h-5 sm:w-5"
                 />
                 Devis gratuit
-                <ArrowRight className="ml-1 h-3.5 w-3.5 sm:ml-2 sm:h-5 sm:w-5" aria-hidden="true" />
+                <ArrowRight
+                  className="ml-1 h-3.5 w-3.5 sm:ml-2 sm:h-5 sm:w-5"
+                  aria-hidden="true"
+                />
               </Link>
             </Button>
             <Button
@@ -885,23 +948,24 @@ export default function ServicesPage() {
               variant="outline"
               className={cn(
                 designTokens.button.secondary,
-                designTokens.textScale.xsSm,
-                "min-h-11 h-10 sm:h-12 px-3 sm:px-6 w-full sm:w-auto"
+                designTokens.textScale.base,
+                "min-h-11 h-10 sm:h-12 px-3 sm:px-6 w-full sm:w-auto",
               )}
               asChild
             >
-              <a
-                href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-              >
-                <Phone className="mr-1 h-3.5 w-3.5 sm:mr-2 sm:h-5 sm:w-5" aria-hidden="true" />
+              <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>
+                <Phone
+                  className="mr-1 h-3.5 w-3.5 sm:mr-2 sm:h-5 sm:w-5"
+                  aria-hidden="true"
+                />
                 {siteConfig.contact.phone}
               </a>
             </Button>
           </div>
-          
+
           <p
             className={cn(
-              designTokens.textScale.fineSm,
+              designTokens.textScale.xsSm,
               "mt-4 text-muted-foreground sm:mt-5",
             )}
           >

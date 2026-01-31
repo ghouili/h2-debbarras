@@ -59,10 +59,10 @@ export function TestimonialsSection() {
                 <p className={cn(designTokens.textScale.base, "font-semibold")}>
                   {testimonial.name}
                 </p>
-                <p className={cn(designTokens.textScale.xsSm, "text-muted-foreground")}>
+                <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                   {testimonial.location}
                 </p>
-                <p className={cn(designTokens.textScale.xsSm, "mt-1 text-primary")}>
+                <p className={cn(designTokens.textScale.base, "mt-1 text-primary")}>
                   {testimonial.service}
                 </p>
               </footer>

@@ -61,7 +61,7 @@ export function VolumeStep({ formData, updateFormData, nextStep, prevStep }: Pro
                   <div className={cn(designTokens.textScale.base, "font-semibold")}>
                     {option.label}
                   </div>
-                  <div className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                  <div className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                     {option.description}
                   </div>
                 </div>

@@ -55,7 +55,7 @@ export function HeroSection() {
             {/* Floating badge */}
             <div
               className={cn(
-                designTokens.textScale.xsSm,
+                designTokens.textScale.base,
                 "inline-flex items-center gap-2 self-start rounded-full bg-primary/10 px-3 py-1.5 sm:px-4 sm:py-2 font-medium text-primary border border-primary/20 shadow-sm",
               )}
             >
@@ -116,7 +116,7 @@ export function HeroSection() {
                 size="lg"
                 className={cn(
                   designTokens.button.primary,
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "min-h-11 h-10 sm:h-12 px-3 sm:px-6 font-semibold w-full sm:w-auto whitespace-nowrap inline-flex items-center justify-center gap-1.5 sm:gap-2",
                 )}
                 asChild
@@ -135,7 +135,7 @@ export function HeroSection() {
                 size="lg"
                 className={cn(
                   designTokens.button.secondary,
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "min-h-11 h-10 sm:h-12 px-3 sm:px-6 bg-background w-full sm:w-auto whitespace-nowrap inline-flex items-center justify-center gap-1.5 sm:gap-2",
                 )}
                 asChild
@@ -215,7 +215,7 @@ export function HeroSection() {
                   aria-selected={imageToggle === "before"}
                   onClick={handleToggleBefore}
                   className={cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "px-4 sm:px-5 py-1 md:py-2 md:font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                     imageToggle === "before"
                       ? "bg-primary text-primary-foreground"
@@ -232,7 +232,7 @@ export function HeroSection() {
                   aria-selected={imageToggle === "after"}
                   onClick={handleToggleAfter}
                   className={cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "px-4 sm:px-5 py-1 md:py-2 md:font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                     imageToggle === "after"
                       ? "bg-primary text-primary-foreground"
@@ -287,7 +287,7 @@ export function HeroSection() {
                   <p className={cn(designTokens.textScale.xs, "font-medium text-muted-foreground")}>
                     Résultat
                   </p>
-                  <p className={cn(designTokens.textScale.smBase, "font-bold text-primary")}>
+                  <p className={cn(designTokens.textScale.baseBase, "font-bold text-primary")}>
                     Espace libéré
                   </p>
                 </div>
@@ -334,7 +334,7 @@ export function HeroSection() {
         {/* Trust strip */}
         <div
           className={cn(
-            designTokens.textScale.sm,
+            designTokens.textScale.base,
             "hidden lg:flex w-fit flex-wrap items-center justify-center gap-4 sm:gap-5 mt-4 border-t border-border/50 pt-4",
           )}
         >

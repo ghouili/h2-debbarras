@@ -112,7 +112,7 @@ export function ProServiceLanding() {
             </div>
 
             {/* Reassurance */}
-            <p className={cn(designTokens.textScale.sm, "mt-6 text-muted-foreground")}>
+            <p className={cn(designTokens.textScale.base, "mt-6 text-muted-foreground")}>
               <CheckCircle2 className="mr-1 inline h-4 w-4 text-primary" />
               Réponse rapide • Sans engagement
             </p>
@@ -129,7 +129,7 @@ export function ProServiceLanding() {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <div className="text-left">
-                      <div className={cn(designTokens.textScale.sm, "font-semibold")}>
+                      <div className={cn(designTokens.textScale.base, "font-semibold")}>
                         {point.text}
                       </div>
                       <div className={cn(designTokens.textScale.xs, "text-muted-foreground")}>
@@ -169,7 +169,7 @@ export function ProServiceLanding() {
                       <h3 className={cn(designTokens.typography.h4, "mb-1")}>
                         {item.title}
                       </h3>
-                      <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                      <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                         {item.desc}
                       </p>
                     </CardContent>
@@ -220,7 +220,7 @@ export function ProServiceLanding() {
                     >
                       {step.title}
                     </h3>
-                    <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                    <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                       {step.desc}
                     </p>
                   </div>
@@ -275,7 +275,7 @@ export function ProServiceLanding() {
                 <CardContent className="p-6 text-center">
                   <Recycle className="mx-auto mb-3 h-10 w-10 text-primary" />
                   <h3 className={cn(designTokens.typography.h4, "mb-2")}>Tri et recyclage</h3>
-                  <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                  <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                     Démarche éco-responsable avec tri sur place, valorisation maximale et certificats de destruction
                   </p>
                 </CardContent>
@@ -286,7 +286,7 @@ export function ProServiceLanding() {
                   <h3 className={cn(designTokens.typography.h4, "mb-2")}>
                     Intervention organisée
                   </h3>
-                  <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                  <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                     Planning flexible, hors heures ouvrées possible, coordination sans interruption d'activité
                   </p>
                 </CardContent>
@@ -297,7 +297,7 @@ export function ProServiceLanding() {
                   <h3 className={cn(designTokens.typography.h4, "mb-2")}>
                     Équipe professionnelle
                   </h3>
-                  <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+                  <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                     Personnel formé, équipé selon normes de sécurité, assuré et respectueux de vos locaux
                   </p>
                 </CardContent>

@@ -67,7 +67,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
         >
           Photos
         </h2>
-        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Ajoutez jusqu'à 6 photos pour un devis plus précis (optionnel)
         </p>
 
@@ -123,7 +123,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
                     )}
                   </div>
                   <div>
-                    <p className={cn(designTokens.textScale.sm, "font-medium")}>
+                    <p className={cn(designTokens.textScale.base, "font-medium")}>
                       {formData.photos.length > 0 
                         ? `${formData.photos.length}/6 photo(s) ajoutée(s)` 
                         : "Ajouter des photos"}
@@ -151,7 +151,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
         >
           Message
         </h2>
-        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Des détails spécifiques à nous communiquer ? (optionnel)
         </p>
 

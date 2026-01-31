@@ -172,7 +172,7 @@ export function ProQuoteFunnel() {
         <div className="mb-6">
           <div
             className={cn(
-              designTokens.textScale.sm,
+              designTokens.textScale.base,
               "mb-2 flex items-center justify-between",
             )}
           >
@@ -214,7 +214,7 @@ export function ProQuoteFunnel() {
                   className={errors.postalCode ? "border-destructive" : ""}
                 />
                 {errors.postalCode && (
-                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                     {errors.postalCode}
                   </p>
                 )}
@@ -232,7 +232,7 @@ export function ProQuoteFunnel() {
                   className={errors.city ? "border-destructive" : ""}
                 />
                 {errors.city && (
-                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                     {errors.city}
                   </p>
                 )}
@@ -259,7 +259,7 @@ export function ProQuoteFunnel() {
                 ))}
               </RadioGroup>
               {errors.localType && (
-                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                   {errors.localType}
                 </p>
               )}
@@ -289,7 +289,7 @@ export function ProQuoteFunnel() {
                 ))}
               </RadioGroup>
               {errors.timing && (
-                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                   {errors.timing}
                 </p>
               )}
@@ -302,7 +302,7 @@ export function ProQuoteFunnel() {
                 <div>
                   <Label
                     htmlFor="floor"
-                    className={cn(designTokens.textScale.sm, "text-muted-foreground")}
+                    className={cn(designTokens.textScale.base, "text-muted-foreground")}
                   >
                     Étage
                   </Label>
@@ -317,7 +317,7 @@ export function ProQuoteFunnel() {
                 <div>
                   <Label
                     htmlFor="surface"
-                    className={cn(designTokens.textScale.sm, "text-muted-foreground")}
+                    className={cn(designTokens.textScale.base, "text-muted-foreground")}
                   >
                     Surface (m²)
                   </Label>
@@ -338,7 +338,7 @@ export function ProQuoteFunnel() {
                 />
                 <Label
                   htmlFor="elevator"
-                  className={cn(designTokens.textScale.sm, "cursor-pointer font-normal")}
+                  className={cn(designTokens.textScale.base, "cursor-pointer font-normal")}
                 >
                   Ascenseur disponible
                 </Label>
@@ -351,7 +351,7 @@ export function ProQuoteFunnel() {
                 />
                 <Label
                   htmlFor="truckAccess"
-                  className={cn(designTokens.textScale.sm, "cursor-pointer font-normal")}
+                  className={cn(designTokens.textScale.base, "cursor-pointer font-normal")}
                 >
                   Accès camion possible
                 </Label>
@@ -384,7 +384,7 @@ export function ProQuoteFunnel() {
               <h3 className={cn(designTokens.textScale.xl, "mb-1 font-semibold font-heading")}>
                 Vos coordonnées
               </h3>
-              <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+              <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                 Pour recevoir votre devis gratuitement
               </p>
             </div>
@@ -402,7 +402,7 @@ export function ProQuoteFunnel() {
                   className={errors.firstName ? "border-destructive" : ""}
                 />
                 {errors.firstName && (
-                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                     {errors.firstName}
                   </p>
                 )}
@@ -419,7 +419,7 @@ export function ProQuoteFunnel() {
                   className={errors.lastName ? "border-destructive" : ""}
                 />
                 {errors.lastName && (
-                  <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                  <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                     {errors.lastName}
                   </p>
                 )}
@@ -438,7 +438,7 @@ export function ProQuoteFunnel() {
                 className={errors.email ? "border-destructive" : ""}
               />
               {errors.email && (
-                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                   {errors.email}
                 </p>
               )}
@@ -457,7 +457,7 @@ export function ProQuoteFunnel() {
                 className={errors.phone ? "border-destructive" : ""}
               />
               {errors.phone && (
-                <p className={cn(designTokens.textScale.sm, "mt-1 text-destructive")}>
+                <p className={cn(designTokens.textScale.base, "mt-1 text-destructive")}>
                   {errors.phone}
                 </p>
               )}
@@ -473,7 +473,7 @@ export function ProQuoteFunnel() {
                 >
                   <div className="text-center">
                     <Upload className="mx-auto h-8 w-8 text-muted-foreground" />
-                    <p className={cn(designTokens.textScale.sm, "mt-2 text-muted-foreground")}>
+                    <p className={cn(designTokens.textScale.base, "mt-2 text-muted-foreground")}>
                       {formData.photos.length > 0
                         ? `${formData.photos.length} photo(s) sélectionnée(s)`
                         : "Cliquez pour ajouter des photos"}
@@ -503,7 +503,7 @@ export function ProQuoteFunnel() {
               <Label
                 htmlFor="consent"
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "cursor-pointer font-normal leading-tight",
                 )}
               >
@@ -515,7 +515,7 @@ export function ProQuoteFunnel() {
               </Label>
             </div>
             {errors.consent && (
-              <p className={cn(designTokens.textScale.sm, "text-destructive")}>
+              <p className={cn(designTokens.textScale.base, "text-destructive")}>
                 {errors.consent}
               </p>
             )}

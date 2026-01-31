@@ -68,7 +68,7 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
         <div className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <Label htmlFor="firstName" className={designTokens.textScale.sm}>
+              <Label htmlFor="firstName" className={designTokens.textScale.base}>
                 Prénom *
               </Label>
               <Input
@@ -81,7 +81,7 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
               />
             </div>
             <div>
-              <Label htmlFor="lastName" className={designTokens.textScale.sm}>
+              <Label htmlFor="lastName" className={designTokens.textScale.base}>
                 Nom *
               </Label>
               <Input
@@ -96,7 +96,7 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
           </div>
 
           <div>
-            <Label htmlFor="email" className={designTokens.textScale.sm}>
+            <Label htmlFor="email" className={designTokens.textScale.base}>
               Email *
             </Label>
             <Input
@@ -110,7 +110,7 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
           </div>
 
           <div>
-            <Label htmlFor="phone" className={designTokens.textScale.sm}>
+            <Label htmlFor="phone" className={designTokens.textScale.base}>
               Téléphone *
             </Label>
             <Input
@@ -134,7 +134,7 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
             <Label
               htmlFor="consent"
               className={cn(
-                designTokens.textScale.sm,
+                designTokens.textScale.base,
                 "cursor-pointer leading-relaxed text-muted-foreground",
               )}
             >

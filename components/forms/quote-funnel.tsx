@@ -159,7 +159,7 @@ export function QuoteFunnel() {
         <div className="mb-5 sm:mb-6 w-full rounded-xl bg-primary/5 p-3 sm:p-4 text-center border border-primary/10">
           <p
             className={cn(
-              designTokens.textScale.xsSm,
+              designTokens.textScale.base,
               "font-medium text-foreground",
             )}
           >
@@ -207,7 +207,7 @@ export function QuoteFunnel() {
                         <Label
                           htmlFor={service.id}
                           className={cn(
-                            designTokens.textScale.xsSm,
+                            designTokens.textScale.base,
                             "cursor-pointer font-medium leading-tight flex-1",
                           )}
                         >
@@ -227,7 +227,7 @@ export function QuoteFunnel() {
               <Label
                 htmlFor="postalCode"
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "font-medium mb-1.5 block",
                 )}
               >
@@ -255,7 +255,7 @@ export function QuoteFunnel() {
               <Label
                 htmlFor="city"
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "font-medium mb-1.5 block",
                 )}
               >
@@ -290,7 +290,7 @@ export function QuoteFunnel() {
                 <Label
                   htmlFor="firstName"
                   className={cn(
-                    designTokens.textScale.sm,
+                    designTokens.textScale.base,
                     "font-medium mb-1.5 block",
                   )}
                 >
@@ -314,7 +314,7 @@ export function QuoteFunnel() {
                 <Label
                   htmlFor="lastName"
                   className={cn(
-                    designTokens.textScale.sm,
+                    designTokens.textScale.base,
                     "font-medium mb-1.5 block",
                   )}
                 >
@@ -338,7 +338,7 @@ export function QuoteFunnel() {
                 <Label
                   htmlFor="email"
                   className={cn(
-                    designTokens.textScale.sm,
+                    designTokens.textScale.base,
                     "font-medium mb-1.5 block",
                   )}
                 >
@@ -362,7 +362,7 @@ export function QuoteFunnel() {
                 <Label
                   htmlFor="phone"
                   className={cn(
-                    designTokens.textScale.sm,
+                    designTokens.textScale.base,
                     "font-medium mb-1.5 block",
                   )}
                 >
@@ -414,7 +414,7 @@ export function QuoteFunnel() {
               <div className="min-w-0 flex-1 space-y-2">
                 <p
                   className={cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "leading-relaxed text-muted-foreground",
                   )}
                 >
@@ -492,7 +492,7 @@ export function QuoteFunnel() {
         <div className="mt-5 sm:mt-6 w-full text-center border-t border-border pt-4 sm:pt-5">
           <p
             className={cn(
-              designTokens.textScale.sm,
+              designTokens.textScale.base,
               "text-muted-foreground mb-2",
             )}
           >

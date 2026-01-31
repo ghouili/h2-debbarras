@@ -32,7 +32,7 @@ export function SuccessState() {
           {/* Description */}
           <p
             className={cn(
-              designTokens.textScale.smBase,
+              designTokens.textScale.baseBase,
               "mb-5 sm:mb-6 max-w-md text-muted-foreground leading-relaxed",
             )}
           >
@@ -46,7 +46,7 @@ export function SuccessState() {
               <h3
                 className={cn(
                   designTokens.typography.h4,
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "mb-3 text-foreground",
                 )}
               >
@@ -54,7 +54,7 @@ export function SuccessState() {
               </h3>
               <ul
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "space-y-2.5 text-left text-muted-foreground",
                 )}
               >

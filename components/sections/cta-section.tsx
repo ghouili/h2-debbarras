@@ -73,7 +73,7 @@ export function CtaSection() {
           </Button>
         </div>
 
-        <p className={cn(designTokens.textScale.xsSm, "mt-5 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mt-5 text-muted-foreground")}>
           {copy.microcopy}
         </p>
       </div>

@@ -63,7 +63,7 @@ export default function TarifsPage() {
             </div>
 
             <div className="rounded-lg bg-primary/10 p-6 text-center">
-              <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+              <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                 Prix estimé
               </p>
               <p className={cn(designTokens.textScale["3xl4xl"], "font-bold text-primary")}>
@@ -98,7 +98,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
+                <ul className={cn(designTokens.textScale.base, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Studio</span>
                     <span className="font-semibold">150-250€</span>
@@ -125,7 +125,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
+                <ul className={cn(designTokens.textScale.base, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Petite maison</span>
                     <span className="font-semibold">600-1000€</span>
@@ -152,7 +152,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
+                <ul className={cn(designTokens.textScale.base, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Petit volume</span>
                     <span className="font-semibold">100-200€</span>
@@ -175,7 +175,7 @@ export default function TarifsPage() {
                 <CardDescription>À partir de</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className={cn(designTokens.textScale.sm, "space-y-2")}>
+                <ul className={cn(designTokens.textScale.base, "space-y-2")}>
                   <li className="flex justify-between">
                     <span>Appartement</span>
                     <span className="font-semibold">300-800€</span>
@@ -212,7 +212,7 @@ export default function TarifsPage() {
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
-                  <span className={cn(designTokens.textScale.sm)}>{item}</span>
+                  <span className={cn(designTokens.textScale.base)}>{item}</span>
                 </div>
               ))}
             </div>
@@ -225,7 +225,7 @@ export default function TarifsPage() {
             <CardTitle>Suppléments éventuels</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className={cn(designTokens.textScale.sm, "space-y-2 text-muted-foreground")}>
+            <ul className={cn(designTokens.textScale.base, "space-y-2 text-muted-foreground")}>
               <li>• Étage élevé sans ascenseur : +10-20% selon l'étage</li>
               <li>• Accès difficile (rue étroite, etc.) : selon situation</li>
               <li>• Intervention urgente (moins de 24h) : +20%</li>

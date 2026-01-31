@@ -139,7 +139,7 @@ function ContactSuccessState() {
           </h2>
           <p
             className={cn(
-              designTokens.textScale.smBase,
+              designTokens.textScale.baseBase,
               "mb-5 sm:mb-6 max-w-md text-green-700",
             )}
           >
@@ -152,7 +152,7 @@ function ContactSuccessState() {
               <h3
                 className={cn(
                   designTokens.typography.h4,
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "mb-3 text-foreground",
                 )}
               >
@@ -160,7 +160,7 @@ function ContactSuccessState() {
               </h3>
               <ul
                 className={cn(
-                  designTokens.textScale.sm,
+                  designTokens.textScale.base,
                   "space-y-2 text-left text-muted-foreground",
                 )}
               >
@@ -320,12 +320,17 @@ export default function ContactPageClient() {
 
     try {
       // Submit to API endpoint
-      const response = await fetch("/api/leads", {
+      const response = await fetch("/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           source: "contact_form",
-          ...formData,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          consent: formData.consent,
+          postalCode: formData.postalCode || null,
         }),
       });
 
@@ -379,7 +384,7 @@ export default function ContactPageClient() {
               </h1>
               <p
                 className={cn(
-                  designTokens.textScale.xsBase,
+                  designTokens.textScale.base,
                   "mx-auto mt-2 max-w-xl text-pretty text-muted-foreground sm:mt-3",
                 )}
               >
@@ -392,7 +397,7 @@ export default function ContactPageClient() {
                   size="lg"
                   asChild
                   className={cn(
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "min-h-11 h-11 w-full sm:w-auto gap-1.5 px-4 sm:gap-2 sm:px-6",
                     designTokens.button.primary,
                   )}
@@ -412,7 +417,7 @@ export default function ContactPageClient() {
                   size="lg"
                   className={cn(
                     designTokens.button.secondary,
-                    designTokens.textScale.xsSm,
+                    designTokens.textScale.base,
                     "min-h-11 h-11 w-full sm:w-auto gap-1.5 px-4 sm:gap-2 sm:px-6",
                   )}
                   asChild
@@ -433,7 +438,7 @@ export default function ContactPageClient() {
               {/* Trust line */}
               <p
                 className={cn(
-                  designTokens.textScale.fineSm,
+                  designTokens.textScale.xsSm,
                   "mt-3 text-muted-foreground sm:mt-4",
                 )}
               >
@@ -460,7 +465,7 @@ export default function ContactPageClient() {
                   <div>
                     <p
                       className={cn(
-                        designTokens.textScale.fineSm,
+                        designTokens.textScale.xsSm,
                         "font-medium text-foreground leading-tight",
                       )}
                     >
@@ -515,7 +520,7 @@ export default function ContactPageClient() {
                     </a>
                     <p
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "mt-1.5 sm:mt-2 text-muted-foreground",
                       )}
                     >
@@ -534,7 +539,7 @@ export default function ContactPageClient() {
                       <h3
                         className={cn(
                           designTokens.typography.h4,
-                          designTokens.textScale.smBase,
+                          designTokens.textScale.baseBase,
                           "mb-2",
                         )}
                       >
@@ -544,7 +549,7 @@ export default function ContactPageClient() {
                     <a
                       href={`mailto:${siteConfig.contact.email}`}
                       className={cn(
-                        designTokens.textScale.smBase,
+                        designTokens.textScale.baseBase,
                         "text-primary hover:underline",
                       )}
                       onClick={() => trackEvent("contact_email_click")}
@@ -573,7 +578,7 @@ export default function ContactPageClient() {
                         <h3
                           className={cn(
                             designTokens.typography.h4,
-                            designTokens.textScale.smBase,
+                            designTokens.textScale.baseBase,
                             "mb-2",
                           )}
                         >
@@ -583,7 +588,7 @@ export default function ContactPageClient() {
                     </div>
                     <div
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "space-y-0.5 sm:space-y-1 text-muted-foreground",
                       )}
                     >
@@ -619,7 +624,7 @@ export default function ContactPageClient() {
                       <h3
                         className={cn(
                           designTokens.typography.h4,
-                          designTokens.textScale.smBase,
+                          designTokens.textScale.baseBase,
                           "mb-2",
                         )}
                       >
@@ -628,7 +633,7 @@ export default function ContactPageClient() {
                     </div>
                     <p
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "mb-2 sm:mb-3 text-muted-foreground",
                       )}
                     >
@@ -650,7 +655,7 @@ export default function ContactPageClient() {
                     <Link
                       href="/zones"
                       className={cn(
-                        designTokens.textScale.xsSm,
+                        designTokens.textScale.base,
                         "mt-2 sm:mt-3 inline-flex items-center font-medium text-primary hover:underline min-h-8",
                       )}
                     >
@@ -681,7 +686,7 @@ export default function ContactPageClient() {
                           >
                             Message
                           </h2>
-                          <p className={cn(designTokens.textScale.xsSm, "text-muted-foreground")}>
+                          <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                             Réponse 2h
                           </p>
                         </div>
@@ -696,7 +701,7 @@ export default function ContactPageClient() {
                           <Label
                             htmlFor="name"
                             className={cn(
-                              designTokens.textScale.xsSm,
+                              designTokens.textScale.base,
                               "font-medium mb-1 sm:mb-1.5 block",
                             )}
                           >
@@ -726,7 +731,7 @@ export default function ContactPageClient() {
                               <p
                                 id="name-error"
                                   className={cn(
-                                    designTokens.textScale.sm,
+                                    designTokens.textScale.base,
                                     "mt-1 text-destructive",
                                   )}
                                 role="alert"
@@ -743,7 +748,7 @@ export default function ContactPageClient() {
                             <Label
                               htmlFor="email"
                               className={cn(
-                                designTokens.textScale.xsSm,
+                                designTokens.textScale.base,
                                 "font-medium mb-1 sm:mb-1.5 block",
                               )}
                             >
@@ -772,7 +777,7 @@ export default function ContactPageClient() {
                                 <p
                                   id="email-error"
                                   className={cn(
-                                    designTokens.textScale.sm,
+                                    designTokens.textScale.base,
                                     "mt-1 text-destructive",
                                   )}
                                   role="alert"
@@ -786,7 +791,7 @@ export default function ContactPageClient() {
                             <Label
                               htmlFor="phone"
                               className={cn(
-                                designTokens.textScale.xsSm,
+                                designTokens.textScale.base,
                                 "font-medium mb-1 sm:mb-1.5 block",
                               )}
                             >
@@ -816,7 +821,7 @@ export default function ContactPageClient() {
                                 <p
                                   id="phone-error"
                                   className={cn(
-                                    designTokens.textScale.sm,
+                                    designTokens.textScale.base,
                                     "mt-1 text-destructive",
                                   )}
                                   role="alert"
@@ -833,7 +838,7 @@ export default function ContactPageClient() {
                           <Label
                             htmlFor="postalCode"
                             className={cn(
-                              designTokens.textScale.xsSm,
+                              designTokens.textScale.base,
                               "font-medium mb-1 sm:mb-1.5 block",
                             )}
                           >
@@ -866,7 +871,7 @@ export default function ContactPageClient() {
                               <p
                                 id="postalCode-error"
                                   className={cn(
-                                    designTokens.textScale.sm,
+                                    designTokens.textScale.base,
                                     "mt-1 text-destructive",
                                   )}
                                 role="alert"
@@ -882,7 +887,7 @@ export default function ContactPageClient() {
                           <Label
                             htmlFor="requestType"
                             className={cn(
-                              designTokens.textScale.xsSm,
+                              designTokens.textScale.base,
                               "font-medium mb-1 sm:mb-1.5 block",
                             )}
                           >
@@ -912,7 +917,7 @@ export default function ContactPageClient() {
                           <Label
                             htmlFor="message"
                             className={cn(
-                              designTokens.textScale.xsSm,
+                              designTokens.textScale.base,
                               "font-medium mb-1 sm:mb-1.5 block",
                             )}
                           >
@@ -929,7 +934,7 @@ export default function ContactPageClient() {
                             onChange={(e) =>
                               handleChange("message", e.target.value)
                             }
-                            className={cn(designTokens.textScale.sm, "min-h-25")}
+                            className={cn(designTokens.textScale.base, "min-h-25")}
                           />
                         </div>
 
@@ -951,7 +956,7 @@ export default function ContactPageClient() {
                             <Label
                               htmlFor="consent"
                               className={cn(
-                                designTokens.textScale.xsSm,
+                                designTokens.textScale.base,
                                 "font-normal leading-relaxed text-muted-foreground cursor-pointer",
                               )}
                             >
@@ -969,7 +974,7 @@ export default function ContactPageClient() {
                                 <p
                                   id="consent-error"
                                   className={cn(
-                                    designTokens.textScale.sm,
+                                    designTokens.textScale.base,
                                     "mt-1 text-destructive",
                                   )}
                                   role="alert"
@@ -987,7 +992,7 @@ export default function ContactPageClient() {
                           type="submit"
                           size="lg"
                           className={cn(
-                            designTokens.textScale.xsSm,
+                            designTokens.textScale.base,
                             "w-full min-h-11 h-11",
                             designTokens.button.primary,
                           )}
@@ -1027,7 +1032,7 @@ export default function ContactPageClient() {
                       <h3
                         className={cn(
                           designTokens.typography.h4,
-                          designTokens.textScale.smBase,
+                          designTokens.textScale.baseBase,
                           "mb-3 sm:mb-4 flex items-center gap-1.5 sm:gap-2",
                         )}
                       >
@@ -1038,14 +1043,14 @@ export default function ContactPageClient() {
                         <div className="flex items-start gap-2 sm:gap-3">
                           <span
                             className={cn(
-                              designTokens.textScale.xsSm,
+                              designTokens.textScale.base,
                               "flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white",
                             )}
                           >
                             1
                           </span>
                           <div>
-                            <p className={cn(designTokens.textScale.xsSm, "font-medium")}>
+                            <p className={cn(designTokens.textScale.base, "font-medium")}>
                               Analyse
                             </p>
                             <p className={cn(designTokens.textScale.fine, "text-muted-foreground")}>
@@ -1056,14 +1061,14 @@ export default function ContactPageClient() {
                         <div className="flex items-start gap-2 sm:gap-3">
                           <span
                             className={cn(
-                              designTokens.textScale.xsSm,
+                              designTokens.textScale.base,
                               "flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white",
                             )}
                           >
                             2
                           </span>
                           <div>
-                            <p className={cn(designTokens.textScale.xsSm, "font-medium")}>
+                            <p className={cn(designTokens.textScale.base, "font-medium")}>
                               Rappel 2h
                             </p>
                             <p className={cn(designTokens.textScale.fine, "text-muted-foreground")}>
@@ -1074,14 +1079,14 @@ export default function ContactPageClient() {
                         <div className="flex items-start gap-2 sm:gap-3">
                           <span
                             className={cn(
-                              designTokens.textScale.xsSm,
+                              designTokens.textScale.base,
                               "flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white",
                             )}
                           >
                             3
                           </span>
                           <div>
-                            <p className={cn(designTokens.textScale.xsSm, "font-medium")}>
+                            <p className={cn(designTokens.textScale.base, "font-medium")}>
                               Devis
                             </p>
                             <p className={cn(designTokens.textScale.fine, "text-muted-foreground")}>
@@ -1112,7 +1117,7 @@ export default function ContactPageClient() {
               </h2>
               <p
                 className={cn(
-                  designTokens.textScale.xsBase,
+                  designTokens.textScale.base,
                   "mt-1.5 sm:mt-2 text-muted-foreground",
                 )}
               >
@@ -1125,7 +1130,7 @@ export default function ContactPageClient() {
                 <AccordionItem key={index} value={`faq-${index}`}>
                   <AccordionTrigger
                     className={cn(
-                      designTokens.textScale.xsBase,
+                      designTokens.textScale.base,
                       "text-left min-h-10 sm:min-h-11 py-2.5 sm:py-3 [&>svg]:h-3.5 [&>svg]:w-3.5 sm:[&>svg]:h-4 sm:[&>svg]:w-4 [&>svg]:shrink-0",
                     )}
                   >
@@ -1133,7 +1138,7 @@ export default function ContactPageClient() {
                   </AccordionTrigger>
                   <AccordionContent
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "text-pretty text-muted-foreground leading-relaxed",
                     )}
                   >
@@ -1146,7 +1151,7 @@ export default function ContactPageClient() {
             <div className="mt-4 sm:mt-6 text-center">
               <p
                 className={cn(
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "mb-2 sm:mb-3 text-muted-foreground",
                 )}
               >
@@ -1156,7 +1161,7 @@ export default function ContactPageClient() {
                 variant="outline"
                 asChild
                 className={cn(
-                  designTokens.textScale.xsSm,
+                  designTokens.textScale.base,
                   "min-h-10 sm:min-h-11",
                   designTokens.button.secondary,
                 )}
@@ -1180,7 +1185,7 @@ export default function ContactPageClient() {
               <CardContent className="relative p-4 sm:p-6 md:p-10 text-center">
                 <div
                   className={cn(
-                    designTokens.textScale.fineSm,
+                    designTokens.textScale.xsSm,
                     "mb-2.5 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/20 px-2.5 py-1 sm:px-4 sm:py-2 font-medium text-white",
                   )}
                 >
@@ -1199,7 +1204,7 @@ export default function ContactPageClient() {
                 </h2>
                 <p
                   className={cn(
-                    designTokens.textScale.xsBase,
+                    designTokens.textScale.base,
                     "mx-auto mt-1.5 sm:mt-2 max-w-xl text-white/90",
                   )}
                 >
@@ -1211,7 +1216,7 @@ export default function ContactPageClient() {
                     size="lg"
                     asChild
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "min-h-11 h-11 w-full sm:w-auto bg-white px-4 sm:px-7 font-semibold text-primary hover:bg-white/90 shadow-lg",
                     )}
                   >
@@ -1229,7 +1234,7 @@ export default function ContactPageClient() {
                   <a
                     href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "inline-flex items-center justify-center gap-1.5 min-h-11 px-3 font-medium text-white/90 hover:text-white transition-colors sm:gap-2 sm:px-4",
                     )}
                   >
@@ -1241,7 +1246,7 @@ export default function ContactPageClient() {
                 {/* Reassurance */}
                 <p
                   className={cn(
-                    designTokens.textScale.fineSm,
+                    designTokens.textScale.xsSm,
                     "mt-3 text-white/70 sm:mt-4",
                   )}
                 >

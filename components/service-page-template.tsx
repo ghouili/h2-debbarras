@@ -73,7 +73,7 @@ export function ServicePageTemplate({
               </Button>
             </div>
             {priceRange && (
-              <p className={cn(designTokens.textScale.sm, "mt-4 text-muted-foreground")}>
+              <p className={cn(designTokens.textScale.base, "mt-4 text-muted-foreground")}>
                 À partir de {priceRange}
               </p>
             )}

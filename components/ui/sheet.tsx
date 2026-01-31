@@ -122,7 +122,7 @@ function SheetDescription({
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"
-      className={cn(`text-muted-foreground ${designTokens.textScale.sm}`, className)}
+      className={cn(`text-muted-foreground ${designTokens.textScale.base}`, className)}
       {...props}
     />
   )

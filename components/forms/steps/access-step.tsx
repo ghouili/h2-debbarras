@@ -38,7 +38,7 @@ export function AccessStep({ formData, updateFormData, nextStep, prevStep }: Pro
       </h2>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="floor" className={designTokens.textScale.sm}>
+          <Label htmlFor="floor" className={designTokens.textScale.base}>
             Étage *
           </Label>
           <Input
@@ -52,10 +52,10 @@ export function AccessStep({ formData, updateFormData, nextStep, prevStep }: Pro
         </div>
         <div className="flex items-center justify-between rounded-lg border border-border p-4">
           <div>
-            <Label htmlFor="elevator" className={designTokens.textScale.sm}>
+            <Label htmlFor="elevator" className={designTokens.textScale.base}>
               Ascenseur disponible
             </Label>
-            <p className={cn(designTokens.textScale.sm, "text-muted-foreground")}>
+            <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
               Y a-t-il un ascenseur dans l'immeuble ?
             </p>
           </div>

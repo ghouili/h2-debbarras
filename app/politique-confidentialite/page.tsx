@@ -151,7 +151,7 @@ export default function PolitiqueConfidentialitePage() {
               Pour toute question, contactez-nous via la page <a href="/contact">Contact</a> ou par téléphone au {siteConfig.contact.phone}.
             </p>
 
-            <p className={cn(designTokens.textScale.sm, "mt-6 text-muted-foreground")}>
+            <p className={cn(designTokens.textScale.base, "mt-6 text-muted-foreground")}>
               Dernière mise à jour : 20 janvier 2026
             </p>
           </CardContent>

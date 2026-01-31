@@ -29,14 +29,14 @@ export default function DevisPage() {
           </h1>
           <p
             className={cn(
-              designTokens.textScale.smBase,
+              designTokens.textScale.baseBase,
               "mx-auto mt-2 max-w-xl text-pretty text-muted-foreground",
             )}
           >
             Débarras, Déménagement et Ménage en Île-de-France
           </p>
           {/* Trust line */}
-          <p className={cn(designTokens.textScale.xsSm, "mt-3 text-muted-foreground")}>
+          <p className={cn(designTokens.textScale.base, "mt-3 text-muted-foreground")}>
             <CheckCircle2 className="mr-1 inline h-3.5 w-3.5 text-green-600" />
             Réponse sous 2h • Intervention 24 à 48 h • Sans engagement
           </p>

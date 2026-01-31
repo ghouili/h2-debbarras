@@ -51,7 +51,7 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
         >
           Type de service
         </h2>
-        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Sélectionnez le type d'intervention
         </p>
         
@@ -76,7 +76,7 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
                     <Label
                       htmlFor={service.id}
                       className={cn(
-                        designTokens.textScale.sm,
+                        designTokens.textScale.base,
                         "min-w-0 flex-1 cursor-pointer font-medium leading-tight",
                       )}
                     >
@@ -100,13 +100,13 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
         >
           Localisation
         </h2>
-        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Où se situe le bien ?
         </p>
         
         <div className="grid w-full gap-4 sm:grid-cols-2">
           <div className="w-full min-w-0">
-            <Label htmlFor="postalCode" className={cn(designTokens.textScale.sm, "font-medium")}>
+            <Label htmlFor="postalCode" className={cn(designTokens.textScale.base, "font-medium")}>
               Code postal <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -122,7 +122,7 @@ export function Step1ServiceLocationTiming({ formData, updateFormData, nextStep 
             />
           </div>
           <div className="w-full min-w-0">
-            <Label htmlFor="city" className={cn(designTokens.textScale.sm, "font-medium")}>
+            <Label htmlFor="city" className={cn(designTokens.textScale.base, "font-medium")}>
               Ville
             </Label>
             <Input

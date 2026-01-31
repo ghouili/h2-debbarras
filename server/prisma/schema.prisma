@@ -53,7 +53,9 @@ model Contact {
   email     String?
   phone     String?
   source    String?
+  postalCode String?
   message   String?
+  consent   Boolean        @default(false)
   status    ContactStatus  @default(NEW)
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt

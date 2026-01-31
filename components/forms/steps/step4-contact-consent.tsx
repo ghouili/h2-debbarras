@@ -78,7 +78,7 @@ export function Step4ContactConsent({
         >
           Vos coordonnées
         </h2>
-        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Pour vous envoyer votre devis personnalisé
         </p>
 
@@ -86,7 +86,7 @@ export function Step4ContactConsent({
           {/* First Name + Last Name */}
           <div className="grid w-full gap-4 sm:grid-cols-2">
             <div className="w-full min-w-0">
-              <Label htmlFor="firstName" className={cn(designTokens.textScale.sm, "font-medium")}>
+              <Label htmlFor="firstName" className={cn(designTokens.textScale.base, "font-medium")}>
                 Prénom <span className="text-destructive">*</span>
               </Label>
               <Input
@@ -100,7 +100,7 @@ export function Step4ContactConsent({
               />
             </div>
             <div className="w-full min-w-0">
-              <Label htmlFor="lastName" className={cn(designTokens.textScale.sm, "font-medium")}>
+              <Label htmlFor="lastName" className={cn(designTokens.textScale.base, "font-medium")}>
                 Nom <span className="text-destructive">*</span>
               </Label>
               <Input
@@ -117,7 +117,7 @@ export function Step4ContactConsent({
 
           {/* Email */}
           <div className="w-full">
-            <Label htmlFor="email" className={cn(designTokens.textScale.sm, "font-medium")}>
+            <Label htmlFor="email" className={cn(designTokens.textScale.base, "font-medium")}>
               Email <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -133,7 +133,7 @@ export function Step4ContactConsent({
 
           {/* Phone */}
           <div className="w-full">
-            <Label htmlFor="phone" className={cn(designTokens.textScale.sm, "font-medium")}>
+            <Label htmlFor="phone" className={cn(designTokens.textScale.base, "font-medium")}>
               Téléphone <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -301,7 +301,7 @@ export function Step4ContactConsent({
           />
 
           <div className="min-w-0 flex-1 space-y-2">
-            <p className={cn(designTokens.textScale.sm, "leading-relaxed text-muted-foreground")}>
+            <p className={cn(designTokens.textScale.base, "leading-relaxed text-muted-foreground")}>
               J&apos;accepte d&apos;être contacté par Débarras Aurea
               concernant ma demande de devis et je consens au traitement de mes
               données personnelles conformément à la{" "}

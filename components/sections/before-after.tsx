@@ -152,7 +152,7 @@ export function BeforeAfter() {
                     aria-selected={imageToggle === "after"}
                     onClick={() => setImageToggle("after")}
                     className={cn(
-                      designTokens.textScale.xsSm,
+                      designTokens.textScale.base,
                       "px-4 sm:px-5 py-1 sm:py-1.5 sm:font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1",
                       imageToggle === "after"
                         ? "bg-primary text-primary-foreground"
@@ -222,7 +222,7 @@ export function BeforeAfter() {
                     <p className={cn(designTokens.textScale.xs, "font-medium text-muted-foreground")}>
                       Résultat
                     </p>
-                    <p className={cn(designTokens.textScale.sm, "font-bold text-primary")}>
+                    <p className={cn(designTokens.textScale.base, "font-bold text-primary")}>
                       Espace libéré
                     </p>
                   </div>
@@ -233,7 +233,7 @@ export function BeforeAfter() {
             {/* lg+: side-by-side (your original) */}
             <div className="hidden lg:grid gap-4 lg:grid-cols-2 mt-4">
               <div>
-                <p className={cn(designTokens.textScale.sm, "mb-2 text-center font-medium text-muted-foreground")}>
+                <p className={cn(designTokens.textScale.base, "mb-2 text-center font-medium text-muted-foreground")}>
                   Avant
                 </p>
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
@@ -250,7 +250,7 @@ export function BeforeAfter() {
                 </div>
               </div>
               <div>
-                <p className={cn(designTokens.textScale.sm, "mb-2 text-center font-medium text-muted-foreground")}>
+                <p className={cn(designTokens.textScale.base, "mb-2 text-center font-medium text-muted-foreground")}>
                   Après
                 </p>
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">

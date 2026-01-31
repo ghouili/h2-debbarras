@@ -47,7 +47,7 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
         >
           Type de bien
         </h2>
-        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Précisez la nature du lieu
         </p>
 
@@ -70,7 +70,7 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
                     <Label
                       htmlFor={type.value}
                       className={cn(
-                        designTokens.textScale.sm,
+                        designTokens.textScale.base,
                         "w-fit min-w-0 cursor-pointer text-center font-medium leading-tight",
                       )}
                     >
@@ -94,14 +94,14 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
         >
           Accès
         </h2>
-        <p className={cn(designTokens.textScale.sm, "mb-4 text-muted-foreground")}>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Informations pratiques pour l'intervention
         </p>
 
         <div className="grid w-full gap-4 sm:grid-cols-1">
           {/* Floor Input */}
           <div className="w-full min-w-0">
-            <Label htmlFor="floor" className={cn(designTokens.textScale.sm, "font-medium")}>
+            <Label htmlFor="floor" className={cn(designTokens.textScale.base, "font-medium")}>
               Étage
             </Label>
             <Input
@@ -119,7 +119,7 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
 
           {/* Elevator Toggle */}
           <div className="w-full min-w-0">
-            <Label className={cn(designTokens.textScale.sm, "mb-1.5 block font-medium")}>
+            <Label className={cn(designTokens.textScale.base, "mb-1.5 block font-medium")}>
               Ascenseur
             </Label>
             <Card className="w-full">
@@ -127,7 +127,7 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
                 <Label
                   htmlFor="elevator"
                   className={cn(
-                    designTokens.textScale.sm,
+                    designTokens.textScale.base,
                     "min-w-0 flex-1 cursor-pointer font-medium",
                   )}
                 >
