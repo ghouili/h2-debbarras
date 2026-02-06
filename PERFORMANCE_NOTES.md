@@ -65,27 +65,10 @@ Date: 2026-01-31
 - Speed Index: 2.38s
 - CLS: ~0.00002
 
-## Production Lighthouse (mobile, after browserslist baseline update)
-**Home (/)**
-- Performance: 82
-- LCP: 2.53s
-- FCP: 2.53s
-- TTI: 5.12s
-- Speed Index: 2.67s
-- CLS: 0.0048
-
-**Service (/services/debarras-maison-vide-maison)**
-- Performance: 88
-- LCP: 3.67s
-- FCP: 1.75s
-- TTI: 2.87s
-- Speed Index: 2.08s
-- CLS: ~0.00002
-
 ## Remaining Lighthouse insights (production)
 - Render blocking requests: CSS chunks from Next/Tailwind (est savings ~370ms). No safe CSS extraction identified without visual changes.
 - Image delivery: logo PNG still reported (est ~9KB). Reduced quality to 70 to minimize; consider SVG logo if acceptable.
-- Legacy JS: ~14KB in a Next chunk (`_next/static/chunks/023d923a37d494fc.js`) flagged for baseline features (Array.prototype.at/flat/flatMap, Object.fromEntries/hasOwn, String.trimStart/trimEnd).
+- Legacy JS: ~13KB in a Next chunk (`_next/static/chunks/e839334b1f313bf6.js`) flagged for baseline features.
 
 ## LCP element identification (from Lighthouse trace)
 **Home (/)**
@@ -131,11 +114,6 @@ Date: 2026-01-31
    - File: app/layout.tsx
    - Change: `Noto_Serif` weights reduced to 600/700 (used by `font-heading`).
    - Expected impact: smaller font payload and faster text LCP; Lighthouse shows mixed variance across runs.
-
-6) **Browserslist aligned to Next.js modern baseline**
-   - File: package.json
-   - Change: production targets set to Chrome/Edge/Firefox >= 111 and Safari >= 16.4.
-   - Expected impact: reduce legacy JS transforms while staying within Next.js baseline.
 
 ## Dynamic import verification
 - `LazyBeforeAfter` is a Client Component (`"use client"`) and can be code-split.
