@@ -48,7 +48,7 @@ jobs:
         run: |
           scp -P "$SSH_PORT" deploy.sh "$SSH_USERNAME@$SSH_HOST:/tmp/deploy.sh"
 
-      - name: Create env payload
+      - name: Create env file on server
         env:
           SMTP_HOST: ${{ vars.SMTP_HOST || secrets.SMTP_HOST }}
           SMTP_PORT: ${{ vars.SMTP_PORT || secrets.SMTP_PORT }}
@@ -56,20 +56,18 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS || vars.SMTP_PASS }}
           SMTP_FROM: ${{ vars.SMTP_FROM || secrets.SMTP_FROM }}
           SMTP_TO: ${{ vars.SMTP_TO || secrets.SMTP_TO }}
+          API_URL: ${{ vars.API_URL || secrets.API_URL }}
+          
         run: |
-          cat <<EOF > env.payload
+          ssh -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "cat > /tmp/debarras.env <<'EOF'
           SMTP_HOST=${SMTP_HOST}
           SMTP_PORT=${SMTP_PORT}
           SMTP_USER=${SMTP_USER}
           SMTP_PASS=${SMTP_PASS}
           SMTP_FROM=${SMTP_FROM}
           SMTP_TO=${SMTP_TO}
-          EOF
-
-      - name: Upload env payload
-        run: |
-          scp -P "$SSH_PORT" env.payload "$SSH_USERNAME@$SSH_HOST:/tmp/debarras.env"
-          rm env.payload
+          API_URL=${API_URL}
+          EOF"
 
       - name: Execute remote deployment
         run: |
