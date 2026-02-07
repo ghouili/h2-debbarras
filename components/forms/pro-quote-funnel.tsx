@@ -133,6 +133,11 @@ export function ProQuoteFunnel() {
     setIsSubmitting(true)
 
     try {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim()
+      const endpoint = apiBaseUrl
+        ? `${apiBaseUrl.replace(/\/$/, "")}/leads`
+        : "/api/leads"
+
       const formDataToSend = new FormData()
       Object.entries(formData).forEach(([key, value]) => {
         if (key === "photos") {
@@ -142,7 +147,7 @@ export function ProQuoteFunnel() {
         }
       })
 
-      const response = await fetch("/api/leads", {
+      const response = await fetch(endpoint, {
         method: "POST",
         body: formDataToSend,
       })

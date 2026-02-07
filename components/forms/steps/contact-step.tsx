@@ -33,7 +33,12 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/leads", {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim()
+      const endpoint = apiBaseUrl
+        ? `${apiBaseUrl.replace(/\/$/, "")}/leads`
+        : "/api/leads"
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
