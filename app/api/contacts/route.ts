@@ -69,9 +69,9 @@ export async function POST(request: Request) {
 
     const location = buildLocation(postalCode)
 
-    const contactsApiUrl = process.env.NEXT_PUBLIC_API_URL 
+    const contactsApiUrl = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL
     if (!contactsApiUrl) {
-      throw new Error("NEXT_PUBLIC_API_URL  is not configured")
+      throw new Error("API_URL is not configured")
     }
 
     const contactsEndpoint = `${contactsApiUrl.replace(/\/$/, "")}/contacts`

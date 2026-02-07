@@ -319,8 +319,13 @@ export default function ContactPageClient() {
     trackEvent("contact_form_submit", { request_type: formData.requestType });
 
     try {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim()
+      const endpoint = apiBaseUrl
+        ? `${apiBaseUrl.replace(/\/$/, "")}/contacts`
+        : "/api/contacts"
+
       // Submit to API endpoint
-      const response = await fetch("/api/contacts", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

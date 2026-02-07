@@ -13,9 +13,9 @@ export async function POST(request: Request) {
         : data.name
     const location = `${data.postalCode ?? ""} ${data.city ?? ""}`.trim()
 
-    const devisApiUrl = process.env.NEXT_PUBLIC_API_URL 
+    const devisApiUrl = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL
     if (!devisApiUrl) {
-      throw new Error("DEVIS_NEXT_PUBLIC_API_URL  (or NEXT_PUBLIC_API_URL ) is not configured")
+      throw new Error("API_URL is not configured")
     }
 
     const devisPayload = {
