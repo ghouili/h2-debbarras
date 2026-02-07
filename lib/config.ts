@@ -7,7 +7,7 @@ export const siteConfig = {
   url: "https://debarras-aurea.fr",
 
   contact: {
-    phone: "+33 7 69 60 83 00",
+    phone: "+33 7 63 69 98 49",
     email: "contact@debarras-aurea.fr",
     address: "Île-de-France",
   },
