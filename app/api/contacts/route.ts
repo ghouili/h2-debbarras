@@ -65,49 +65,15 @@ export async function POST(request: Request) {
       )
     }
 
-    const { source, name, email, phone, message, consent, postalCode, status } = parsed.data
+    const { source, name, email, phone, message, consent, postalCode } = parsed.data
 
     const location = buildLocation(postalCode)
 
     const contactsApiUrl = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL
     if (!contactsApiUrl) {
-      throw new Error("API_URL is not configured")
-    }
-
-    const contactsEndpoint = `${contactsApiUrl.replace(/\/$/, "")}/contacts`
-
-    const basePayload = {
-      source,
-      name,
-      email,
-      phone,
-      message,
-      consent,
-      postalCode: postalCode ?? null,
-      status: status ?? "new",
-      fullName: name,
-    }
-
-    const payloadForDb = {
-      ...basePayload,
-      body: basePayload,
-    }
-
-    console.log("[Contacts] DB payload", payloadForDb)
-
-    const dbResponse = await fetch(contactsEndpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payloadForDb),
-    })
-
-    if (!dbResponse.ok) {
-      const errorBody = await dbResponse.text()
-      throw new Error(
-        `Database save failed: ${dbResponse.status} ${dbResponse.statusText} ${errorBody}`,
-      )
+      console.warn("[Contacts] API_URL is not configured")
+    } else {
+      console.log("[Contacts] API_URL", contactsApiUrl)
     }
 
     const smtpHost = process.env.SMTP_HOST
@@ -123,6 +89,15 @@ export async function POST(request: Request) {
       throw new Error("SMTP configuration missing")
     }
 
+    console.log("[Contacts] SMTP config", {
+      host: smtpHost,
+      port: smtpPort,
+      user: Boolean(smtpUser),
+      pass: Boolean(smtpPass),
+      from: smtpFrom,
+      to: smtpTo,
+    })
+
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
@@ -131,7 +106,17 @@ export async function POST(request: Request) {
         user: smtpUser,
         pass: smtpPass,
       },
+      logger: true,
+      debug: true,
     })
+
+    try {
+      await transporter.verify()
+      console.log("[Contacts] SMTP verify ok")
+    } catch (verifyError) {
+      console.error("[Contacts] SMTP verify failed", verifyError)
+      throw verifyError
+    }
 
     const subject = "Nouveau message - Contact"
 
@@ -160,14 +145,23 @@ export async function POST(request: Request) {
       </div>
     `.trim()
 
-    await transporter.sendMail({
-      from: smtpFrom,
-      to: smtpTo,
-      subject,
-      text: textLines.join("\n"),
-      html,
-      replyTo: email,
-    })
+    try {
+      const sendResult = await transporter.sendMail({
+        from: smtpFrom,
+        to: smtpTo,
+        subject,
+        text: textLines.join("\n"),
+        html,
+        replyTo: email,
+      })
+      console.log("[Contacts] SMTP send ok", {
+        messageId: sendResult.messageId,
+        response: sendResult.response,
+      })
+    } catch (sendError) {
+      console.error("[Contacts] SMTP send failed", sendError)
+      throw sendError
+    }
 
     const confirmationSubject = "Votre message a bien été reçu"
 
@@ -235,14 +229,74 @@ export async function POST(request: Request) {
       </div>
     `.trim()
 
-    await transporter.sendMail({
-      from: smtpFrom,
-      to: email,
-      subject: confirmationSubject,
-      text: confirmationText,
-      html: confirmationHtml,
-      replyTo: siteConfig.contact.email,
+    try {
+      const confirmResult = await transporter.sendMail({
+        from: smtpFrom,
+        to: email,
+        subject: confirmationSubject,
+        text: confirmationText,
+        html: confirmationHtml,
+        replyTo: siteConfig.contact.email,
+      })
+      console.log("[Contacts] SMTP confirmation ok", {
+        messageId: confirmResult.messageId,
+        response: confirmResult.response,
+      })
+    } catch (sendError) {
+      console.error("[Contacts] SMTP confirmation failed", sendError)
+      throw sendError
+    }
+
+    /*
+    const contactsEndpoint = `${contactsApiUrl.replace(/\/$/, "")}/contacts`
+
+    const basePayload = {
+      source,
+      name,
+      email,
+      phone,
+      message,
+      consent,
+      postalCode: postalCode ?? null,
+      status: status ?? "new",
+      fullName: name,
+    }
+
+    const payloadForDb = {
+      ...basePayload,
+      body: basePayload,
+    }
+
+    console.log("[Contacts] DB payload", payloadForDb)
+    console.log("[Contacts] DB endpoint", contactsEndpoint)
+
+    let dbResponse: Response
+    try {
+      dbResponse = await fetch(contactsEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payloadForDb),
+      })
+    } catch (fetchError) {
+      console.error("[Contacts] DB fetch failed", fetchError)
+      const fetchMessage = fetchError instanceof Error ? fetchError.message : String(fetchError)
+      throw new Error(`Database save failed: ${fetchMessage}`)
+    }
+
+    if (!dbResponse.ok) {
+      const errorBody = await dbResponse.text()
+      throw new Error(
+        `Database save failed: ${dbResponse.status} ${dbResponse.statusText} ${errorBody}`,
+      )
+    }
+
+    console.log("[Contacts] DB save ok", {
+      status: dbResponse.status,
+      statusText: dbResponse.statusText,
     })
+    */
 
     return NextResponse.json(
       {
@@ -253,10 +307,12 @@ export async function POST(request: Request) {
     )
   } catch (error) {
     console.error("[Contacts] submission error:", error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
     return NextResponse.json(
       {
         success: false,
         message: "Erreur lors de l'envoi du message",
+        debug: errorMessage,
       },
       { status: 500 },
     )

@@ -3,7 +3,7 @@
 ```json
 {
   "promptType": "react-vite-ui-spec",
-  "sourceProject": "H2Debarras Next.js (contact + devis)",
+  "sourceProject": "Débarras Aurea Next.js (contact + devis)",
   "brand": "Débarras Aurea",
   "forms": [
     {
@@ -35,7 +35,7 @@
           "type": "tel",
           "placeholder": "06 12 34 56 78",
           "required": true,
-          "validation": "FR phone: /^(0[1-9]\\d{8}|\\+33[1-9]\\d{8})$/ after removing spaces",
+          "validation": "FR phone: /^(0[1-9]\\d{8}|\\[1-9]\\d{8})$/ after removing spaces",
           "errorMessage": "Numéro de téléphone invalide"
         },
         {

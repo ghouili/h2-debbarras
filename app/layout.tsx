@@ -2,6 +2,7 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Noto_Serif, Source_Code_Pro } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -50,7 +51,9 @@ export const metadata: Metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   openGraph: {
     type: "website",
@@ -84,7 +87,18 @@ export default function RootLayout({
           name="google-site-verification"
           content="OsCAUbqCBXdTlYGiG324nqiW2UONStmLcIWdcg2N8xM"
         />
-        
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17933962840"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'AW-17933962840');`}
+        </Script>
+
         <JsonLd type="organization" />
       </head>
       <body

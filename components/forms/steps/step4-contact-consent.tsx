@@ -40,15 +40,26 @@ export function Step4ContactConsent({
     setShowConsentError(false);
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim()
-      const endpoint = apiBaseUrl
-        ? `${apiBaseUrl.replace(/\/$/, "")}/leads`
-        : "/api/leads"
+      const endpoint = "/api/leads"
 
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+      });
+
+      const responseText = await response.text();
+      let responseBody: unknown = responseText;
+      try {
+        responseBody = responseText ? JSON.parse(responseText) : null;
+      } catch {
+        responseBody = responseText;
+      }
+
+      console.error("[Lead] API response", {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody,
       });
 
       if (response.ok) {

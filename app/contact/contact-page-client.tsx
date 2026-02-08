@@ -85,8 +85,8 @@ const requestTypes = [
 // Form validation helpers
 const validatePhone = (phone: string): boolean => {
   const cleaned = phone.replace(/\s/g, "");
-  // French phone: starts with 0 and has 10 digits, or starts with +33 and has 11-12 chars
-  return /^(0[1-9]\d{8}|\+33[1-9]\d{8})$/.test(cleaned);
+  // French phone: starts with 0 and has 10 digits, or starts with  and has 11-12 chars
+  return /^(0[1-9]\d{8}|\[1-9]\d{8})$/.test(cleaned);
 };
 
 const validateEmail = (email: string): boolean => {
@@ -319,10 +319,7 @@ export default function ContactPageClient() {
     trackEvent("contact_form_submit", { request_type: formData.requestType });
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim()
-      const endpoint = apiBaseUrl
-        ? `${apiBaseUrl.replace(/\/$/, "")}/contacts`
-        : "/api/contacts"
+      const endpoint = "/api/contacts"
 
       // Submit to API endpoint
       const response = await fetch(endpoint, {
@@ -339,9 +336,22 @@ export default function ContactPageClient() {
         }),
       });
 
+      const responseText = await response.text();
+      let responseBody: unknown = responseText;
+      try {
+        responseBody = responseText ? JSON.parse(responseText) : null;
+      } catch {
+        responseBody = responseText;
+      }
+
       if (response.ok) {
         setIsSuccess(true);
       } else {
+        console.error("[Contact] API response", {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseBody,
+        });
         throw new Error("Submission failed");
       }
     } catch (error) {
@@ -699,7 +709,7 @@ export default function ContactPageClient() {
 
                       <form
                         onSubmit={handleSubmit}
-                        className="space-y-4 sm:space-y-5"
+                        className="space-y-3 sm:space-y-5"
                       >
                         {/* Name */}
                         <div>
@@ -723,7 +733,7 @@ export default function ContactPageClient() {
                             }
                             onBlur={() => handleBlur("name")}
                             className={cn(
-                              "min-h-11 h-11",
+                              "min-h-12 h-12 sm:min-h-11 sm:h-11",
                               errors.name ? "border-destructive" : "",
                             )}
                             aria-describedby={
@@ -769,7 +779,7 @@ export default function ContactPageClient() {
                               }
                               onBlur={() => handleBlur("email")}
                               className={cn(
-                                "min-h-11 h-11",
+                                "min-h-12 h-12 sm:min-h-11 sm:h-11",
                                 errors.email ? "border-destructive" : "",
                               )}
                               aria-describedby={
@@ -813,7 +823,7 @@ export default function ContactPageClient() {
                               }
                               onBlur={() => handleBlur("phone")}
                               className={cn(
-                                "min-h-11 h-11",
+                                "min-h-12 h-12 sm:min-h-11 sm:h-11",
                                 errors.phone ? "border-destructive" : "",
                               )}
                               aria-describedby={
@@ -863,7 +873,7 @@ export default function ContactPageClient() {
                             }
                             onBlur={() => handleBlur("postalCode")}
                             className={cn(
-                              "min-h-11 h-11",
+                              "min-h-12 h-12 sm:min-h-11 sm:h-11",
                               errors.postalCode ? "border-destructive" : "",
                             )}
                             aria-describedby={
@@ -906,7 +916,7 @@ export default function ContactPageClient() {
                             }
                             className={cn(
                               designTokens.textScale.formField,
-                              "flex min-h-11 h-11 w-full rounded-md border border-input bg-background px-3 py-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                              "flex min-h-12 h-12 sm:min-h-11 sm:h-11 w-full rounded-md border border-input bg-background px-3 py-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                             )}
                           >
                             {requestTypes.map((type) => (
@@ -998,7 +1008,7 @@ export default function ContactPageClient() {
                           size="lg"
                           className={cn(
                             designTokens.textScale.base,
-                            "w-full min-h-11 h-11",
+                            "w-full min-h-12 h-12 sm:min-h-11 sm:h-11",
                             designTokens.button.primary,
                           )}
                           disabled={isSubmitting}

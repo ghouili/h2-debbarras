@@ -1,4 +1,4 @@
-# H2 Débarras Admin + API
+# Débarras Aurea Admin + API
 
 This repository is split into two projects:
 
@@ -42,8 +42,8 @@ This repository is split into two projects:
      1. Install Postgres for your OS.
      2. Create a database + user (example using psql):
 
-        - CREATE USER h2_admin WITH PASSWORD 'change_me';
-        - CREATE DATABASE h2debarras_admin OWNER h2_admin;
+      - CREATE USER aurea_admin WITH PASSWORD 'change_me';
+      - CREATE DATABASE debarras_aurea_admin OWNER aurea_admin;
 
      3. Set DATABASE_URL in .env.
 
@@ -86,7 +86,7 @@ API: http://localhost:4000
 
 Default seed credentials (override in .env):
 
-- Email: admin@h2debarras.local
+- Email: admin@debarras-aurea.local
 - Password: Admin123!
 
 ## Scripts (root)

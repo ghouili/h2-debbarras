@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 import { trackLeadSubmit, trackStartDevis } from "@/lib/analytics";
 import { SuccessState } from "./success-state";
 import { designTokens } from "@/lib/design-tokens";
@@ -85,12 +86,23 @@ const services = [
   },
 ];
 
+const validatePhone = (phone: string): boolean => {
+  const cleaned = phone.replace(/\s/g, "");
+  return /^(0[1-9]\d{8}|\[1-9]\d{8})$/.test(cleaned);
+};
+
+const validatePostalCode = (code: string): boolean => {
+  return /^(75|77|78|91|92|93|94|95)\d{3}$/.test(code.trim());
+};
+
 export function QuoteFunnel() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState<QuoteFormData>(initialFormData);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConsentError, setShowConsentError] = useState(false);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
+  const [postalCodeError, setPostalCodeError] = useState<string | null>(null);
 
   useEffect(() => {
     const serviceParam = searchParams.get("service");
@@ -107,6 +119,16 @@ export function QuoteFunnel() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!validatePhone(formData.phone)) {
+      setPhoneError("Numéro de téléphone invalide");
+      return;
+    }
+
+    if (!validatePostalCode(formData.postalCode)) {
+      setPostalCodeError("Code postal Île-de-France requis");
+      return;
+    }
+
     if (!formData.consent) {
       setShowConsentError(true);
       return;
@@ -116,10 +138,7 @@ export function QuoteFunnel() {
     setShowConsentError(false);
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim()
-      const endpoint = apiBaseUrl
-        ? `${apiBaseUrl.replace(/\/$/, "")}/leads`
-        : "/api/leads"
+      const endpoint = "/api/leads";
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -130,10 +149,23 @@ export function QuoteFunnel() {
         }),
       });
 
+      const responseText = await response.text();
+      let responseBody: unknown = responseText;
+      try {
+        responseBody = responseText ? JSON.parse(responseText) : null;
+      } catch {
+        responseBody = responseText;
+      }
+
       if (response.ok) {
         trackLeadSubmit();
         setIsSuccess(true);
       } else {
+        console.error("[Lead] API response", {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseBody,
+        });
         alert("Une erreur est survenue. Veuillez réessayer.");
       }
     } catch (error) {
@@ -147,10 +179,12 @@ export function QuoteFunnel() {
   const isFormValid =
     formData.service &&
     formData.postalCode &&
+    validatePostalCode(formData.postalCode) &&
     formData.firstName?.trim() &&
     formData.lastName?.trim() &&
     formData.email?.trim() &&
     formData.phone?.trim() &&
+    validatePhone(formData.phone) &&
     formData.consent;
 
   if (isSuccess) {
@@ -172,7 +206,7 @@ export function QuoteFunnel() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="w-full space-y-5 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="w-full space-y-4 sm:space-y-6">
           {/* Service Selection */}
           <div className="w-full">
             <h2
@@ -227,7 +261,7 @@ export function QuoteFunnel() {
           </div>
 
           {/* Location */}
-          <div className="grid w-full gap-4 md:grid-cols-2">
+          <div className="grid w-full gap-3 sm:gap-4 md:grid-cols-2">
             <div className="w-full">
               <Label
                 htmlFor="postalCode"
@@ -244,17 +278,47 @@ export function QuoteFunnel() {
                 inputMode="numeric"
                 placeholder="75001"
                 value={formData.postalCode}
-                onChange={(e) =>
-                  updateFormData({
-                    postalCode: e.target.value.replace(/\D/g, "").slice(0, 5),
-                  })
-                }
+                onChange={(e) => {
+                  const nextValue = e.target.value.replace(/\D/g, "").slice(0, 5);
+                  updateFormData({ postalCode: nextValue });
+                  if (postalCodeError) {
+                    setPostalCodeError(
+                      validatePostalCode(nextValue)
+                        ? null
+                        : "Code postal Île-de-France requis",
+                    );
+                  }
+                }}
+                onBlur={() => {
+                  setPostalCodeError(
+                    validatePostalCode(formData.postalCode)
+                      ? null
+                      : "Code postal Île-de-France requis",
+                  );
+                }}
                 maxLength={5}
                 required
-                className="min-h-11 h-11 w-full"
+                className={cn(
+                  "min-h-12 h-12 sm:min-h-11 sm:h-11 w-full",
+                  postalCodeError ? "border-destructive" : "",
+                )}
+                aria-invalid={!!postalCodeError}
+                aria-describedby={postalCodeError ? "postalCode-error" : undefined}
               />
               {/* Reserved space for eligibility feedback */}
-              <div className="min-h-5" />
+              <div className="min-h-5">
+                {postalCodeError && (
+                  <span
+                    id="postalCode-error"
+                    className={cn(
+                      designTokens.textScale.xs,
+                      "text-destructive",
+                    )}
+                  >
+                    {postalCodeError}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="w-full">
               <Label
@@ -273,7 +337,7 @@ export function QuoteFunnel() {
                 value={formData.city}
                 onChange={(e) => updateFormData({ city: e.target.value })}
                 autoComplete="address-level2"
-                className="min-h-11 h-11 w-full"
+                className="min-h-12 h-12 sm:min-h-11 sm:h-11 w-full"
               />
               <div className="min-h-5" />
             </div>
@@ -290,7 +354,7 @@ export function QuoteFunnel() {
               Vos coordonnées
             </h2>
 
-            <div className="grid w-full gap-4 md:grid-cols-2">
+            <div className="grid w-full gap-3 sm:gap-4 md:grid-cols-2">
               <div className="w-full">
                 <Label
                   htmlFor="firstName"
@@ -311,7 +375,7 @@ export function QuoteFunnel() {
                   }
                   autoComplete="given-name"
                   required
-                  className="min-h-11 h-11 w-full"
+                  className="min-h-12 h-12 sm:min-h-11 sm:h-11 w-full"
                 />
                 <div className="min-h-5" />
               </div>
@@ -333,12 +397,12 @@ export function QuoteFunnel() {
                   onChange={(e) => updateFormData({ lastName: e.target.value })}
                   autoComplete="family-name"
                   required
-                  className="min-h-11 h-11 w-full"
+                  className="min-h-12 h-12 sm:min-h-11 sm:h-11 w-full"
                 />
                 <div className="min-h-5" />
               </div>
             </div>
-            <div className="grid w-full gap-4 md:grid-cols-2">
+            <div className="grid w-full gap-3 sm:gap-4 md:grid-cols-2">
               <div className="w-full">
                 <Label
                   htmlFor="email"
@@ -358,7 +422,7 @@ export function QuoteFunnel() {
                   onChange={(e) => updateFormData({ email: e.target.value })}
                   autoComplete="email"
                   required
-                  className="min-h-11 h-11 w-full"
+                  className="min-h-12 h-12 sm:min-h-11 sm:h-11 w-full"
                 />
                 <div className="min-h-5" />
               </div>
@@ -379,14 +443,70 @@ export function QuoteFunnel() {
                   inputMode="tel"
                   placeholder="06 12 34 56 78"
                   value={formData.phone}
-                  onChange={(e) => updateFormData({ phone: e.target.value })}
+                  onChange={(e) => {
+                    const nextValue = e.target.value;
+                    updateFormData({ phone: nextValue });
+                    if (phoneError) {
+                      setPhoneError(
+                        validatePhone(nextValue)
+                          ? null
+                          : "Numéro de téléphone invalide",
+                      );
+                    }
+                  }}
+                  onBlur={() => {
+                    setPhoneError(
+                      validatePhone(formData.phone)
+                        ? null
+                        : "Numéro de téléphone invalide",
+                    );
+                  }}
                   autoComplete="tel"
                   required
-                  className="min-h-11 h-11 w-full"
+                  className={cn(
+                    "min-h-12 h-12 sm:min-h-11 sm:h-11 w-full",
+                    phoneError ? "border-destructive" : "",
+                  )}
+                  aria-invalid={!!phoneError}
+                  aria-describedby={phoneError ? "phone-error" : undefined}
                 />
-                <div className="min-h-5" />
+                <div className="min-h-5">
+                  {phoneError && (
+                    <span
+                      id="phone-error"
+                      className={cn(
+                        designTokens.textScale.xs,
+                        "text-destructive",
+                      )}
+                    >
+                      {phoneError}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Message */}
+          <div className="w-full">
+            <Label
+              htmlFor="message"
+              className={cn(
+                designTokens.textScale.base,
+                "font-medium mb-1.5 block",
+              )}
+            >
+              Message <span className="text-muted-foreground">(optionnel)</span>
+            </Label>
+            <Textarea
+              id="message"
+              placeholder="Ex: Accès difficile, objets encombrants, horaires préférés..."
+              value={formData.message}
+              onChange={(e) => updateFormData({ message: e.target.value })}
+              rows={4}
+              className="w-full resize-none"
+            />
+            <div className="min-h-5" />
           </div>
 
           {/* Consent */}
@@ -464,7 +584,10 @@ export function QuoteFunnel() {
           {/* Submit Button */}
           <Button
             type="submit"
-            className={cn("w-full min-h-11", designTokens.button.primary)}
+            className={cn(
+              "w-full min-h-12 sm:min-h-11",
+              designTokens.button.primary,
+            )}
             size="lg"
             disabled={!isFormValid || isSubmitting}
           >
@@ -475,8 +598,10 @@ export function QuoteFunnel() {
               </>
             ) : (
               <>
-                <Sparkles className="mr-2 h-4 w-4" />
-                Recevoir mon devis gratuit
+                <Sparkles className="hidden sm:block mr-2 h-4 w-4" />
+                <p className="text-sm sm:text-lg md:text-xl">
+                  Recevoir mon devis gratuit
+                </p>
               </>
             )}
           </Button>
@@ -508,7 +633,7 @@ export function QuoteFunnel() {
             variant="outline"
             size="lg"
             className={cn(
-              "min-h-11 w-full sm:w-auto gap-2",
+              "min-h-12 sm:min-h-11 w-full sm:w-auto gap-2",
               designTokens.button.secondary,
             )}
           >

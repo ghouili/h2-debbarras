@@ -133,10 +133,7 @@ export function ProQuoteFunnel() {
     setIsSubmitting(true)
 
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim()
-      const endpoint = apiBaseUrl
-        ? `${apiBaseUrl.replace(/\/$/, "")}/leads`
-        : "/api/leads"
+      const endpoint = "/api/leads"
 
       const formDataToSend = new FormData()
       Object.entries(formData).forEach(([key, value]) => {
@@ -152,7 +149,23 @@ export function ProQuoteFunnel() {
         body: formDataToSend,
       })
 
-      if (!response.ok) throw new Error("Submission failed")
+      const responseText = await response.text()
+      let responseBody: unknown = responseText
+      try {
+        responseBody = responseText ? JSON.parse(responseText) : null
+      } catch {
+        responseBody = responseText
+      }
+
+      console.error("[Lead] API response", {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody,
+      })
+
+      if (!response.ok) {
+        throw new Error("Submission failed")
+      }
 
       trackLeadSubmit()
       router.push("/merci")
@@ -456,7 +469,7 @@ export function ProQuoteFunnel() {
               <Input
                 id="phone"
                 type="tel"
-                placeholder="+33 6 12 34 56 78"
+                placeholder=" 6 12 34 56 78"
                 value={formData.phone}
                 onChange={(e) => updateFormData({ phone: e.target.value })}
                 className={errors.phone ? "border-destructive" : ""}

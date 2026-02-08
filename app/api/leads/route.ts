@@ -5,62 +5,32 @@ import { titleFromDelims } from "@/lib/utils"
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json()
+    const contentType = request.headers.get("content-type") ?? ""
+    let data: Record<string, unknown> = {}
+
+    if (contentType.includes("multipart/form-data")) {
+      const form = await request.formData()
+      form.forEach((value, key) => {
+        if (typeof value === "string") {
+          data[key] = value
+        }
+      })
+    } else {
+      data = await request.json()
+    }
+
+    const rawConsent = data.consent
+    const normalizedConsent =
+      typeof rawConsent === "string"
+        ? rawConsent === "true" || rawConsent === "on" || rawConsent === "1"
+        : Boolean(rawConsent)
+    data = { ...data, consent: normalizedConsent }
     const source = data.source ?? "devis_form"
     const contactName =
       data.firstName && data.lastName
         ? `${data.firstName} ${data.lastName}`
         : data.name
     const location = `${data.postalCode ?? ""} ${data.city ?? ""}`.trim()
-
-    const devisApiUrl = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL
-    if (!devisApiUrl) {
-      throw new Error("API_URL is not configured")
-    }
-
-    const devisPayload = {
-      source,
-      service: data.service ?? data.serviceType,
-      fullName: data.fullName ?? contactName ?? data.name,
-      email: data.email,
-      phone: data.phone,
-      consent: data.consent ?? false,
-      postalCode: data.postalCode ?? null,
-      city: data.city ?? null,
-      timing: data.timing ?? null,
-      localType: data.localType ?? null,
-      propertyType: data.propertyType ?? null,
-      rooms: data.rooms ?? null,
-      volume: data.volume ?? null,
-      volumeEstimate: data.volumeEstimate ?? null,
-      floor: data.floor ?? null,
-      elevator: data.elevator ?? null,
-      truckAccess: data.truckAccess ?? null,
-      surfaceArea: data.surfaceArea ?? null,
-      message: data.message ?? null,
-      status: data.status ?? "new",
-    }
-
-    const devisEndpoint = `${devisApiUrl.replace(/\/$/, "")}/devis`
-    const payloadForDb = {
-      ...devisPayload,
-      body: devisPayload,
-    }
-
-    const dbResponse = await fetch(devisEndpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payloadForDb),
-    })
-
-    if (!dbResponse.ok) {
-      const errorBody = await dbResponse.text()
-      throw new Error(
-        `Database save failed: ${dbResponse.status} ${dbResponse.statusText} ${errorBody}`,
-      )
-    }
 
     // Log the lead for demo purposes
     console.log(" New lead received:", {
@@ -90,6 +60,15 @@ export async function POST(request: Request) {
       throw new Error("SMTP configuration missing")
     }
 
+    console.log("[Leads] SMTP config", {
+      host: smtpHost,
+      port: smtpPort,
+      user: Boolean(smtpUser),
+      pass: Boolean(smtpPass),
+      from: smtpFrom,
+      to: smtpTo,
+    })
+
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: smtpPort,
@@ -98,7 +77,17 @@ export async function POST(request: Request) {
         user: smtpUser,
         pass: smtpPass,
       },
+      logger: true,
+      debug: true,
     })
+
+    try {
+      await transporter.verify()
+      console.log("[Leads] SMTP verify ok")
+    } catch (verifyError) {
+      console.error("[Leads] SMTP verify failed", verifyError)
+      throw verifyError
+    }
 
     const subject =
       source === "contact_form"
@@ -130,14 +119,23 @@ export async function POST(request: Request) {
       </div>
     `.trim()
 
-    await transporter.sendMail({
-      from: smtpFrom,
-      to: smtpTo,
-      subject,
-      text: textLines.join("\n"),
-      html,
-      replyTo: data.email || undefined,
-    })
+    try {
+      const sendResult = await transporter.sendMail({
+        from: smtpFrom,
+        to: smtpTo,
+        subject,
+        text: textLines.join("\n"),
+        html,
+        replyTo: data.email || undefined,
+      })
+      console.log("[Leads] SMTP send ok", {
+        messageId: sendResult.messageId,
+        response: sendResult.response,
+      })
+    } catch (sendError) {
+      console.error("[Leads] SMTP send failed", sendError)
+      throw sendError
+    }
 
     if (data.email) {
       const confirmationSubject =
@@ -212,15 +210,63 @@ export async function POST(request: Request) {
         </div>
       `.trim()
 
-      await transporter.sendMail({
-        from: smtpFrom,
-        to: data.email,
-        subject: confirmationSubject,
-        text: confirmationText,
-        html: confirmationHtml,
-        replyTo: siteConfig.contact.email,
-      })
+      try {
+        const confirmResult = await transporter.sendMail({
+          from: smtpFrom,
+          to: data.email,
+          subject: confirmationSubject,
+          text: confirmationText,
+          html: confirmationHtml,
+          replyTo: siteConfig.contact.email,
+        })
+        console.log("[Leads] SMTP confirmation ok", {
+          messageId: confirmResult.messageId,
+          response: confirmResult.response,
+        })
+      } catch (sendError) {
+        console.error("[Leads] SMTP confirmation failed", sendError)
+        throw sendError
+      }
     }
+
+      /*
+      const devisEndpoint = `${devisApiUrl.replace(/\/$/, "")}/devis`
+      const payloadForDb = {
+        ...devisPayload,
+        body: devisPayload,
+      }
+
+      console.log("[Leads] DB payload", payloadForDb)
+
+      console.log("[Leads] DB endpoint", devisEndpoint)
+
+      let dbResponse: Response
+      try {
+        dbResponse = await fetch(devisEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payloadForDb),
+        })
+      } catch (fetchError) {
+        console.error("[Leads] DB fetch failed", fetchError)
+        const fetchMessage = fetchError instanceof Error ? fetchError.message : String(fetchError)
+        throw new Error(`Database save failed: ${fetchMessage}`)
+      }
+
+      if (!dbResponse.ok) {
+        const errorBody = await dbResponse.text()
+        throw new Error(
+          `Database save failed: ${dbResponse.status} ${dbResponse.statusText} ${errorBody}`,
+        )
+      }
+
+      console.log("[Leads] DB save ok", {
+        status: dbResponse.status,
+        statusText: dbResponse.statusText,
+      })
+      */
 
     // Optional: small delay for UX consistency
     await new Promise((resolve) => setTimeout(resolve, 250))
@@ -235,10 +281,12 @@ export async function POST(request: Request) {
     )
   } catch (error) {
     console.error(" Lead submission error:", error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
     return NextResponse.json(
       {
         success: false,
         message: "Erreur lors de l'envoi de la demande",
+        debug: errorMessage,
       },
       { status: 500 },
     )

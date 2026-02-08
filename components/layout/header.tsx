@@ -7,7 +7,7 @@ import { Phone, Menu } from "lucide-react";
 import { useState, useCallback, useMemo } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { siteConfig } from "@/lib/config";
 import { trackClickCall, trackStartDevis } from "@/lib/analytics";
 import { designTokens } from "@/lib/design-tokens";
@@ -135,6 +135,9 @@ export function Header() {
             // showCloseButton={false}
             className={cn("h-dvh w-[92vw] max-w-[380px] p-0", "bg-background")}
           >
+            <SheetHeader className="sr-only">
+              <SheetTitle>Menu mobile</SheetTitle>
+            </SheetHeader>
             <div className="flex h-full flex-col">
               {/* Top bar */}
               <div className="px-5 pt-5 pb-4 border-b border-border/60">
