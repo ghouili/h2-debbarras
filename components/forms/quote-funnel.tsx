@@ -103,6 +103,7 @@ export function QuoteFunnel() {
   const [showConsentError, setShowConsentError] = useState(false);
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [postalCodeError, setPostalCodeError] = useState<string | null>(null);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
 
   useEffect(() => {
     const serviceParam = searchParams.get("service");
@@ -118,24 +119,36 @@ export function QuoteFunnel() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitAttempted(true);
 
-    if (!validatePhone(formData.phone)) {
-      setPhoneError("Numéro de téléphone invalide");
-      return;
-    }
+    const nextPhoneError = !formData.phone?.trim()
+      ? "Numéro de téléphone requis"
+      : validatePhone(formData.phone)
+        ? null
+        : "Numéro de téléphone invalide";
+    const nextPostalCodeError = !formData.postalCode?.trim()
+      ? "Code postal requis"
+      : validatePostalCode(formData.postalCode)
+        ? null
+        : "Code postal Île-de-France requis";
 
-    if (!validatePostalCode(formData.postalCode)) {
-      setPostalCodeError("Code postal Île-de-France requis");
-      return;
-    }
+    setPhoneError(nextPhoneError);
+    setPostalCodeError(nextPostalCodeError);
+    setShowConsentError(!formData.consent);
 
-    if (!formData.consent) {
-      setShowConsentError(true);
+    if (
+      !formData.service ||
+      !formData.firstName?.trim() ||
+      !formData.lastName?.trim() ||
+      !formData.email?.trim() ||
+      nextPhoneError ||
+      nextPostalCodeError ||
+      !formData.consent
+    ) {
       return;
     }
 
     setIsSubmitting(true);
-    setShowConsentError(false);
 
     try {
       const endpoint = "/api/leads";
@@ -187,6 +200,21 @@ export function QuoteFunnel() {
     validatePhone(formData.phone) &&
     formData.consent;
 
+  const serviceError =
+    submitAttempted && !formData.service
+      ? "Veuillez sélectionner un service"
+      : null;
+  const firstNameError =
+    submitAttempted && !formData.firstName?.trim()
+      ? "Le prénom est requis"
+      : null;
+  const lastNameError =
+    submitAttempted && !formData.lastName?.trim()
+      ? "Le nom est requis"
+      : null;
+  const emailError =
+    submitAttempted && !formData.email?.trim() ? "L'email est requis" : null;
+
   if (isSuccess) {
     return <SuccessState />;
   }
@@ -226,38 +254,50 @@ export function QuoteFunnel() {
                   const Icon = service.icon;
                   const isSelected = formData.service === service.id;
                   return (
-                    <Card
+                    <Label
                       key={service.id}
-                      className={cn(
-                        "w-full cursor-pointer transition-all min-h-11",
-                        isSelected
-                          ? "border-primary bg-primary/5 ring-2 ring-primary/20 shadow-md"
-                          : "hover:border-primary/50 hover:shadow-sm",
-                      )}
-                      onClick={() => updateFormData({ service: service.id })}
+                      htmlFor={service.id}
+                      className="block cursor-pointer"
                     >
-                      <CardContent className="flex w-full items-center gap-2.5 px-3 py-2.5 min-h-11">
-                        <RadioGroupItem
-                          value={service.id}
-                          id={service.id}
-                          className="shrink-0 h-4 w-4"
-                        />
-                        <Icon className="h-4 w-4 shrink-0 text-primary" />
-                        <Label
-                          htmlFor={service.id}
-                          className={cn(
-                            designTokens.textScale.base,
-                            "cursor-pointer font-medium leading-tight flex-1",
-                          )}
-                        >
-                          {service.label}
-                        </Label>
-                      </CardContent>
-                    </Card>
+                      <Card
+                        className={cn(
+                          "w-full transition-all min-h-11",
+                          isSelected
+                            ? "border-primary bg-primary/5 ring-2 ring-primary/20 shadow-md"
+                            : "hover:border-primary/50 hover:shadow-sm",
+                        )}
+                      >
+                        <CardContent className="flex w-full items-center gap-2.5 px-3 py-2.5 min-h-11">
+                          <RadioGroupItem
+                            value={service.id}
+                            id={service.id}
+                            className="shrink-0 h-4 w-4"
+                          />
+                          <Icon className="h-4 w-4 shrink-0 text-primary" />
+                          <span
+                            className={cn(
+                              designTokens.textScale.base,
+                              "font-medium leading-tight flex-1",
+                            )}
+                          >
+                            {service.label}
+                          </span>
+                        </CardContent>
+                      </Card>
+                    </Label>
                   );
                 })}
               </div>
             </RadioGroup>
+            <div className="min-h-5">
+              {serviceError && (
+                <span
+                  className={cn(designTokens.textScale.xs, "text-destructive")}
+                >
+                  {serviceError}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Location */}
@@ -375,9 +415,26 @@ export function QuoteFunnel() {
                   }
                   autoComplete="given-name"
                   required
-                  className="min-h-12 h-12 sm:min-h-11 sm:h-11 w-full"
+                  className={cn(
+                    "min-h-12 h-12 sm:min-h-11 sm:h-11 w-full",
+                    firstNameError ? "border-destructive" : "",
+                  )}
+                  aria-invalid={!!firstNameError}
+                  aria-describedby={firstNameError ? "firstName-error" : undefined}
                 />
-                <div className="min-h-5" />
+                <div className="min-h-5">
+                  {firstNameError && (
+                    <span
+                      id="firstName-error"
+                      className={cn(
+                        designTokens.textScale.xs,
+                        "text-destructive",
+                      )}
+                    >
+                      {firstNameError}
+                    </span>
+                  )}
+                </div>
               </div>
               <div className="w-full">
                 <Label
@@ -397,9 +454,26 @@ export function QuoteFunnel() {
                   onChange={(e) => updateFormData({ lastName: e.target.value })}
                   autoComplete="family-name"
                   required
-                  className="min-h-12 h-12 sm:min-h-11 sm:h-11 w-full"
+                  className={cn(
+                    "min-h-12 h-12 sm:min-h-11 sm:h-11 w-full",
+                    lastNameError ? "border-destructive" : "",
+                  )}
+                  aria-invalid={!!lastNameError}
+                  aria-describedby={lastNameError ? "lastName-error" : undefined}
                 />
-                <div className="min-h-5" />
+                <div className="min-h-5">
+                  {lastNameError && (
+                    <span
+                      id="lastName-error"
+                      className={cn(
+                        designTokens.textScale.xs,
+                        "text-destructive",
+                      )}
+                    >
+                      {lastNameError}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
             <div className="grid w-full gap-3 sm:gap-4 md:grid-cols-2">
@@ -422,9 +496,26 @@ export function QuoteFunnel() {
                   onChange={(e) => updateFormData({ email: e.target.value })}
                   autoComplete="email"
                   required
-                  className="min-h-12 h-12 sm:min-h-11 sm:h-11 w-full"
+                  className={cn(
+                    "min-h-12 h-12 sm:min-h-11 sm:h-11 w-full",
+                    emailError ? "border-destructive" : "",
+                  )}
+                  aria-invalid={!!emailError}
+                  aria-describedby={emailError ? "email-error" : undefined}
                 />
-                <div className="min-h-5" />
+                <div className="min-h-5">
+                  {emailError && (
+                    <span
+                      id="email-error"
+                      className={cn(
+                        designTokens.textScale.xs,
+                        "text-destructive",
+                      )}
+                    >
+                      {emailError}
+                    </span>
+                  )}
+                </div>
               </div>
 
               <div className="w-full">
@@ -589,7 +680,7 @@ export function QuoteFunnel() {
               designTokens.button.primary,
             )}
             size="lg"
-            disabled={!isFormValid || isSubmitting}
+            disabled={isSubmitting}
           >
             {isSubmitting ? (
               <>
