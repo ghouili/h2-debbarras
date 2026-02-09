@@ -87,8 +87,11 @@ const services = [
 ];
 
 const validatePhone = (phone: string): boolean => {
-  const cleaned = phone.replace(/\s/g, "");
-  return /^(0[1-9]\d{8}|\[1-9]\d{8})$/.test(cleaned);
+  let cleaned = phone.replace(/[\s().-]/g, "");
+  if (cleaned.startsWith("+330")) {
+    cleaned = `+33${cleaned.slice(4)}`;
+  }
+  return /^(0[1-9]\d{8}|\+33[1-9]\d{8})$/.test(cleaned);
 };
 
 const validatePostalCode = (code: string): boolean => {
@@ -188,17 +191,6 @@ export function QuoteFunnel() {
       setIsSubmitting(false);
     }
   };
-
-  const isFormValid =
-    formData.service &&
-    formData.postalCode &&
-    validatePostalCode(formData.postalCode) &&
-    formData.firstName?.trim() &&
-    formData.lastName?.trim() &&
-    formData.email?.trim() &&
-    formData.phone?.trim() &&
-    validatePhone(formData.phone) &&
-    formData.consent;
 
   const serviceError =
     submitAttempted && !formData.service

@@ -84,9 +84,12 @@ const requestTypes = [
 
 // Form validation helpers
 const validatePhone = (phone: string): boolean => {
-  const cleaned = phone.replace(/\s/g, "");
-  // French phone: starts with 0 and has 10 digits, or starts with  and has 11-12 chars
-  return /^(0[1-9]\d{8}|\[1-9]\d{8})$/.test(cleaned);
+  let cleaned = phone.replace(/[\s().-]/g, "");
+  if (cleaned.startsWith("+330")) {
+    cleaned = `+33${cleaned.slice(4)}`;
+  }
+  // French phone: 0X XX XX XX XX or +33 X XX XX XX XX, with optional (0) after +33.
+  return /^(0[1-9]\d{8}|\+33[1-9]\d{8})$/.test(cleaned);
 };
 
 const validateEmail = (email: string): boolean => {
