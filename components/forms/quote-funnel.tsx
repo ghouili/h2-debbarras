@@ -86,11 +86,19 @@ const services = [
   },
 ];
 
-const validatePhone = (phone: string): boolean => {
+const normalizePhone = (phone: string): string => {
   let cleaned = phone.replace(/[\s().-]/g, "");
+  if (cleaned.startsWith("00")) {
+    cleaned = `+${cleaned.slice(2)}`;
+  }
   if (cleaned.startsWith("+330")) {
     cleaned = `+33${cleaned.slice(4)}`;
   }
+  return cleaned;
+};
+
+const validatePhone = (phone: string): boolean => {
+  const cleaned = normalizePhone(phone);
   return /^(0[1-9]\d{8}|\+33[1-9]\d{8})$/.test(cleaned);
 };
 
@@ -162,6 +170,7 @@ export function QuoteFunnel() {
         body: JSON.stringify({
           source: "devis_form",
           ...formData,
+          phone: normalizePhone(formData.phone),
         }),
       });
 

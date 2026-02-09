@@ -7,6 +7,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { MobileBar } from "@/components/layout/mobile-bar";
+import { ScrollToTop } from "@/components/layout/scroll-to-top";
 import { CookieBanner } from "@/components/seo/cookie-banner.client";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
@@ -105,6 +106,7 @@ gtag('config', 'AW-17933962840');`}
         className={`${sourceCodePro.variable} ${notoSerif.variable} font-body antialiased text-foreground bg-background relative`}
         suppressHydrationWarning
       >
+        <ScrollToTop />
         <Header />
         <main className="min-h-screen w-full pt-16 md:pt-20 pb-20 md:pb-0">
           {children}

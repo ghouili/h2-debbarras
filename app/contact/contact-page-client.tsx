@@ -83,11 +83,19 @@ const requestTypes = [
 ];
 
 // Form validation helpers
-const validatePhone = (phone: string): boolean => {
+const normalizePhone = (phone: string): string => {
   let cleaned = phone.replace(/[\s().-]/g, "");
+  if (cleaned.startsWith("00")) {
+    cleaned = `+${cleaned.slice(2)}`;
+  }
   if (cleaned.startsWith("+330")) {
     cleaned = `+33${cleaned.slice(4)}`;
   }
+  return cleaned;
+};
+
+const validatePhone = (phone: string): boolean => {
+  const cleaned = normalizePhone(phone);
   // French phone: 0X XX XX XX XX or +33 X XX XX XX XX, with optional (0) after +33.
   return /^(0[1-9]\d{8}|\+33[1-9]\d{8})$/.test(cleaned);
 };
@@ -332,7 +340,7 @@ export default function ContactPageClient() {
           source: "contact_form",
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: normalizePhone(formData.phone),
           message: formData.message,
           consent: formData.consent,
           postalCode: formData.postalCode || null,
