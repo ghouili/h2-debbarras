@@ -5,6 +5,8 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    cssChunking: "strict",
+    optimizePackageImports: ["lucide-react"],
   },
   images: {
     formats: ["image/avif", "image/webp"],
