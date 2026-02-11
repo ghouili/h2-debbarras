@@ -7,6 +7,7 @@ import { designTokens } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
+import Script from "next/script"
 
 export const metadata: Metadata = {
   title: "Merci pour votre demande",
@@ -20,6 +21,38 @@ export const metadata: Metadata = {
 export default function MerciPage() {
   return (
     <Section>
+      <Script id="google-ads-conversion" strategy="afterInteractive">
+        {`(function () {
+  try {
+    if (typeof window === 'undefined') return;
+    if (typeof window.gtag !== 'function') return;
+
+    var alreadySent = false;
+    try {
+      alreadySent = window.sessionStorage && window.sessionStorage.getItem('google_ads_lead_conversion_sent') === '1';
+    } catch (e) {
+      alreadySent = false;
+    }
+
+    if (alreadySent) return;
+
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-17933962840/5NCfCMG-j_UbENicyudC',
+      'value': 1.0,
+      'currency': 'EUR'
+    });
+
+    try {
+      window.sessionStorage && window.sessionStorage.setItem('google_ads_lead_conversion_sent', '1');
+    } catch (e) {
+      // ignore
+    }
+  } catch (e) {
+    // ignore
+  }
+})();`}
+      </Script>
+
       <div className="mx-auto max-w-2xl">
         <Card>
           <CardContent className="p-8 text-center">

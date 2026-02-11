@@ -43,10 +43,16 @@ export const trackLeadSubmit = () => {
   const gtag = getGtag()
   if (gtag) {
     gtag("event", "conversion", {
-      send_to: "AW-CONVERSION_ID/CONVERSION_LABEL", // Replace with actual conversion ID
+      send_to: "AW-17933962840/5NCfCMG-j_UbENicyudC",
       value: 1.0,
       currency: "EUR",
     })
+
+    try {
+      window.sessionStorage?.setItem("google_ads_lead_conversion_sent", "1")
+    } catch {
+      // ignore
+    }
   }
 }
 
