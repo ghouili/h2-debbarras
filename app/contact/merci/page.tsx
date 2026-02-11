@@ -1,12 +1,13 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle2, Phone, Home } from "lucide-react"
-import { siteConfig } from "@/lib/config"
-import { designTokens } from "@/lib/design-tokens"
-import { cn } from "@/lib/utils"
-import type { Metadata } from "next"
-import { Section } from "@/components/layout/section"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle2, Phone, Home } from "lucide-react";
+import { siteConfig } from "@/lib/config";
+import { designTokens } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { Section } from "@/components/layout/section";
+import { GoogleAdsLeadConversion } from "@/components/analytics/google-ads-lead-conversion";
 
 export const metadata: Metadata = {
   title: "Merci pour votre message",
@@ -15,11 +16,15 @@ export const metadata: Metadata = {
     index: false,
     follow: true,
   },
-}
+};
 
 export default function ContactMerciPage() {
   return (
     <Section>
+      <GoogleAdsLeadConversion
+        form="devis"
+        sendTo="AW-17933962840/hUxOCOCyiPcbENicyudC"
+      />
       <div className="mx-auto max-w-2xl">
         <Card>
           <CardContent className="p-8 text-center">
@@ -43,7 +48,8 @@ export default function ContactMerciPage() {
                 "mb-8 text-pretty text-muted-foreground",
               )}
             >
-              Merci pour votre confiance. Nous avons bien recu votre message et nous vous contacterons dans les{" "}
+              Merci pour votre confiance. Nous avons bien recu votre message et
+              nous vous contacterons dans les{" "}
               <strong className="text-foreground">2 heures</strong>.
             </p>
 
@@ -108,12 +114,18 @@ export default function ContactMerciPage() {
               </Button>
             </div>
 
-            <p className={cn(designTokens.textScale.base, "mt-6 text-muted-foreground")}>
-              Besoin d'une reponse immediate ? Appelez-nous au {siteConfig.contact.phone}
+            <p
+              className={cn(
+                designTokens.textScale.base,
+                "mt-6 text-muted-foreground",
+              )}
+            >
+              Besoin d'une reponse immediate ? Appelez-nous au{" "}
+              {siteConfig.contact.phone}
             </p>
           </CardContent>
         </Card>
       </div>
     </Section>
-  )
+  );
 }
