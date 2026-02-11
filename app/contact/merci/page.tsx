@@ -7,7 +7,6 @@ import { designTokens } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
-import { GoogleAdsLeadConversion } from "@/components/analytics/google-ads-lead-conversion"
 
 export const metadata: Metadata = {
   title: "Merci pour votre message",
@@ -21,8 +20,6 @@ export const metadata: Metadata = {
 export default function ContactMerciPage() {
   return (
     <Section>
-      <GoogleAdsLeadConversion form="contact" />
-
       <div className="mx-auto max-w-2xl">
         <Card>
           <CardContent className="p-8 text-center">
