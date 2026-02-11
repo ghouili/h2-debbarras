@@ -21,7 +21,10 @@ export const metadata: Metadata = {
 export default function DevisMerciPage() {
   return (
     <Section>
-      <GoogleAdsLeadConversion form="devis" />
+      <GoogleAdsLeadConversion
+        form="devis"
+        sendTo="AW-17933962840/GAuOCLn4hvcbENicyudC"
+      />
 
       <div className="mx-auto max-w-2xl">
         <Card>

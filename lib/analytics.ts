@@ -42,13 +42,13 @@ export const trackLeadSubmit = () => {
   })
 }
 
-export const trackGoogleAdsLeadConversion = () => {
+export const trackGoogleAdsLeadConversion = (sendTo: string) => {
   if (typeof window === "undefined") return
   const gtag = (window as Window & { gtag?: Gtag }).gtag
   if (typeof gtag !== "function") return
 
   gtag("event", "conversion", {
-    send_to: "AW-17933962840/5NCfCMG-j_UbENicyudC",
+    send_to: sendTo,
     value: 1.0,
     currency: "EUR",
   })
