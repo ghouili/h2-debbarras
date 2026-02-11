@@ -24,6 +24,7 @@ export function Header() {
     () => [
       { name: "Services", href: "/services" },
       { name: "Zones", href: "/zones" },
+      { name: "Tarifs", href: "/tarifs" },
       { name: "Avis", href: "/avis" },
       { name: "FAQ", href: "/faq" },
       { name: "Contact", href: "/contact" },

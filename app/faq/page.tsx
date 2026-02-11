@@ -360,9 +360,9 @@ const StillNeedHelpCTA = memo(function StillNeedHelpCTA() {
 const EXPLORER_LINKS = [
   { href: "/services", label: "Nos services", icon: Package },
   { href: "/zones", label: "Zones d'intervention", icon: MapPin },
-  { href: "/services/demenagement", label: "Déménagement", icon: Truck },
-  { href: "/services/debarras-maison", label: "Débarras maison", icon: Home },
-  { href: "/services/debarras-appartement", label: "Débarras appartement", icon: Building2 },
+  { href: "/services/demenagement-particulier", label: "Déménagement", icon: Truck },
+  { href: "/services/debarras-maison-vide-maison", label: "Débarras maison", icon: Home },
+  { href: "/services/debarras-appartement-vide-appartement", label: "Débarras appartement", icon: Building2 },
 ];
 
 const ExplorerLinks = memo(function ExplorerLinks() {

@@ -23,7 +23,7 @@ export function JsonLd({ type, data }: JsonLdProps) {
     case "organization":
       jsonLd = {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
         name: siteConfig.name,
         description: siteConfig.description,
         url: siteConfig.url,

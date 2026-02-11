@@ -43,6 +43,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/devis" className="text-muted-foreground transition-colors hover:text-foreground">
+                  Devis gratuit
+                </Link>
+              </li>
+              <li>
                 <Link href="/zones" className="text-muted-foreground transition-colors hover:text-foreground">
                   Zones d'intervention
                 </Link>
@@ -55,6 +60,11 @@ export function Footer() {
               <li>
                 <Link href="/faq" className="text-muted-foreground transition-colors hover:text-foreground">
                   FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-muted-foreground transition-colors hover:text-foreground">
+                  Contact
                 </Link>
               </li>
             </ul>

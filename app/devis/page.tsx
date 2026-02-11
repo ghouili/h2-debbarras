@@ -2,6 +2,7 @@ import { QuoteFunnel } from "@/components/forms/quote-funnel"
 import { Section } from "@/components/layout/section"
 import { designTokens } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
+import { siteConfig } from "@/lib/config"
 import type { Metadata } from "next"
 import { Suspense } from "react"
 import { CheckCircle2 } from "lucide-react"
@@ -10,6 +11,16 @@ export const metadata: Metadata = {
   title: "Demande de devis gratuit - Débarras Aurea",
   description:
     "Obtenez votre devis gratuit pour un débarras ou un déménagement en Île-de-France. Réponse sous 2h, sans engagement. Professionnels et particuliers.",
+  alternates: {
+    canonical: `${siteConfig.url}/devis`,
+  },
+  openGraph: {
+    title: "Demande de devis gratuit - Débarras Aurea",
+    description:
+      "Obtenez votre devis gratuit pour un débarras ou un déménagement en Île-de-France. Réponse sous 2h, sans engagement.",
+    url: `${siteConfig.url}/devis`,
+    type: "website",
+  },
 }
 
 export default function DevisPage() {

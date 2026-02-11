@@ -59,6 +59,7 @@ import { Section } from "@/components/layout/section";
 import { designTokens } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 // Icon mapping for dynamic icons
 const iconMap: Record<string, LucideIcon> = {
@@ -117,6 +118,20 @@ export function ServiceLandingPage({
     debarras: "Débarras",
     demenagement: "Déménagement",
   };
+
+  const clientLabels = {
+    particulier: "Particuliers",
+    professionnel: "Professionnels",
+  };
+
+  const breadcrumbs = [
+    { label: "Services", href: "/services" },
+    {
+      label: `${categoryLabels[category]} ${clientLabels[clientType]}`,
+      href: "/services",
+    },
+    { label: service.title },
+  ];
 
   // Category-specific benefits
   const categoryBenefits = {
@@ -184,6 +199,10 @@ export function ServiceLandingPage({
         {/* Gradient orbs */}
         <div className="absolute -top-24 right-0 h-96 w-96 rounded-full bg-primary-600/15 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-primary-300/20 blur-3xl" />
+
+        <div className="relative z-10 mb-4">
+          <Breadcrumbs items={breadcrumbs} />
+        </div>
 
         <div className="relative grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           {/* Left: Content */}
