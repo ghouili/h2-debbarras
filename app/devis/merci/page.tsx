@@ -7,19 +7,22 @@ import { designTokens } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Section } from "@/components/layout/section"
+import { GoogleAdsLeadConversion } from "@/components/analytics/google-ads-lead-conversion"
 
 export const metadata: Metadata = {
   title: "Merci pour votre demande",
-  description: "Votre demande de devis a été reçue. Nous vous contactons sous 2 heures.",
+  description: "Votre demande de devis a ete recue. Nous vous contactons sous 2 heures.",
   robots: {
     index: false,
     follow: true,
   },
 }
 
-export default function MerciPage() {
+export default function DevisMerciPage() {
   return (
     <Section>
+      <GoogleAdsLeadConversion form="devis" />
+
       <div className="mx-auto max-w-2xl">
         <Card>
           <CardContent className="p-8 text-center">
@@ -34,7 +37,7 @@ export default function MerciPage() {
                 "mb-4",
               )}
             >
-              Demande envoyée avec succès !
+              Demande envoyee avec succes !
             </h1>
 
             <p
@@ -43,13 +46,13 @@ export default function MerciPage() {
                 "mb-8 text-pretty text-muted-foreground",
               )}
             >
-              Merci pour votre confiance. Nous avons bien reçu votre demande de devis et nous vous contacterons dans les{" "}
-              <strong className="text-foreground">2 heures</strong> pour vous fournir une estimation personnalisée.
+              Merci pour votre confiance. Nous avons bien recu votre demande de devis et nous vous contacterons dans les{" "}
+              <strong className="text-foreground">2 heures</strong> pour vous fournir une estimation personnalisee.
             </p>
 
             <div className="mb-8 space-y-4 rounded-lg border border-border bg-secondary p-6">
               <h2 className={cn(designTokens.typography.h4, "font-semibold")}>
-                Prochaines étapes :
+                Prochaines etapes :
               </h2>
               <ol
                 className={cn(
@@ -97,7 +100,7 @@ export default function MerciPage() {
               <Button size="lg" asChild>
                 <Link href="/">
                   <Home className="mr-2 h-5 w-5" />
-                  Retour à l'accueil
+                  Retour a l'accueil
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
@@ -109,7 +112,7 @@ export default function MerciPage() {
             </div>
 
             <p className={cn(designTokens.textScale.base, "mt-6 text-muted-foreground")}>
-              Besoin d'une réponse immédiate ? Appelez-nous au {siteConfig.contact.phone}
+              Besoin d'une reponse immediate ? Appelez-nous au {siteConfig.contact.phone}
             </p>
           </CardContent>
         </Card>

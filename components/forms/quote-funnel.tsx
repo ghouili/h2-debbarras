@@ -1,8 +1,8 @@
 "use client";
 
 import type React from "react";
-import { useState, useEffect, useCallback } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
-import { trackLeadSubmit, trackStartDevis } from "@/lib/analytics";
+import { trackStartDevis } from "@/lib/analytics";
 import { SuccessState } from "./success-state";
 import { designTokens } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
@@ -108,6 +108,7 @@ const validatePostalCode = (code: string): boolean => {
 
 export function QuoteFunnel() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [formData, setFormData] = useState<QuoteFormData>(initialFormData);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -115,6 +116,7 @@ export function QuoteFunnel() {
   const [phoneError, setPhoneError] = useState<string | null>(null);
   const [postalCodeError, setPostalCodeError] = useState<string | null>(null);
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const hasHandledSuccessRef = useRef(false);
 
   useEffect(() => {
     const serviceParam = searchParams.get("service");
@@ -183,8 +185,11 @@ export function QuoteFunnel() {
       }
 
       if (response.ok) {
-        trackLeadSubmit();
-        setIsSuccess(true);
+        if (!hasHandledSuccessRef.current) {
+          hasHandledSuccessRef.current = true;
+          setIsSuccess(true);
+          router.push("/devis/merci");
+        }
       } else {
         console.error("[Lead] API response", {
           status: response.status,

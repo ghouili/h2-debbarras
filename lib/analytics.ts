@@ -40,20 +40,18 @@ export const trackLeadSubmit = () => {
     event_label: "Quote Form Submitted",
     value: 1,
   })
-  const gtag = getGtag()
-  if (gtag) {
-    gtag("event", "conversion", {
-      send_to: "AW-17933962840/5NCfCMG-j_UbENicyudC",
-      value: 1.0,
-      currency: "EUR",
-    })
+}
 
-    try {
-      window.sessionStorage?.setItem("google_ads_lead_conversion_sent", "1")
-    } catch {
-      // ignore
-    }
-  }
+export const trackGoogleAdsLeadConversion = () => {
+  if (typeof window === "undefined") return
+  const gtag = (window as Window & { gtag?: Gtag }).gtag
+  if (typeof gtag !== "function") return
+
+  gtag("event", "conversion", {
+    send_to: "AW-17933962840/5NCfCMG-j_UbENicyudC",
+    value: 1.0,
+    currency: "EUR",
+  })
 }
 
 export const trackClickCall = () => {

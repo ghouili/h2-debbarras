@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,6 +37,7 @@ import {
 import Image from "next/image";
 import { designTokens } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 // Trust badges for the contact page
 const trustBadges = [
@@ -242,6 +243,8 @@ export default function ContactPageClient() {
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const hasHandledSuccessRef = useRef(false);
+  const router = useRouter();
   const [errors, setErrors] = useState<
     Partial<Record<keyof ContactFormData, string>>
   >({});
@@ -356,7 +359,11 @@ export default function ContactPageClient() {
       }
 
       if (response.ok) {
-        setIsSuccess(true);
+        if (!hasHandledSuccessRef.current) {
+          hasHandledSuccessRef.current = true;
+          setIsSuccess(true);
+          router.push("/contact/merci");
+        }
       } else {
         console.error("[Contact] API response", {
           status: response.status,
