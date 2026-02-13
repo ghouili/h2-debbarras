@@ -908,7 +908,7 @@ export default function ServicesPage() {
               "mt-2 text-pretty text-muted-foreground sm:mt-3",
             )}
           >
-            Réponse rapide • Sans engagement • Tarifs transparents
+            Réponse rapide • Sans engagement • Prix transparents
           </p>
 
           {/* CTA Buttons - Stacked on mobile */}

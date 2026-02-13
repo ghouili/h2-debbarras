@@ -14,7 +14,6 @@ import {
   HelpCircle,
   Search,
   Phone,
-  FileText,
   CheckCircle2,
   MapPin,
   Truck,
@@ -37,7 +36,6 @@ import Image from "next/image";
 
 const CATEGORY_ICONS: Record<string, React.ElementType> = {
   Général: HelpCircle,
-  Tarifs: FileText,
   Processus: Clock,
   Urgences: Sparkles,
 };

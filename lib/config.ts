@@ -178,19 +178,19 @@ export const siteConfig = {
           shortDescription: "Déménagement sous 24 à 48 h",
           features: ["24 à 48 h", "Disponibilité immédiate", "Organisation rapide", "Efficacité garantie"],
         },
-        {
-          id: "garde-meuble",
-          campaignGroup: "garde_meuble",
-          campaignKey: "garde_meuble",
-          intentKeywords: ["garde meuble", "stockage meubles", "box stockage", "garde meuble particulier"],
-          negativeKeywords: ["gratuit", "self storage"],
-          title: "Garde-Meuble",
-          slug: "garde-meuble",
-          icon: "archive",
-          description: "Stockage sécurisé de vos biens",
-          shortDescription: "Solution de stockage flexible",
-          features: ["Boxes sécurisés", "Accès 7j/7", "Toutes durées", "Surveillance 24h/24"],
-        },
+        // {
+        //   id: "garde-meuble",
+        //   campaignGroup: "garde_meuble",
+        //   campaignKey: "garde_meuble",
+        //   intentKeywords: ["garde meuble", "stockage meubles", "box stockage", "garde meuble particulier"],
+        //   negativeKeywords: ["gratuit", "self storage"],
+        //   title: "Garde-Meuble",
+        //   slug: "garde-meuble",
+        //   icon: "archive",
+        //   description: "Stockage sécurisé de vos biens",
+        //   shortDescription: "Solution de stockage flexible",
+        //   features: ["Boxes sécurisés", "Accès 7j/7", "Toutes durées", "Surveillance 24h/24"],
+        // },
       ],
     },
     professionnel: {
@@ -340,17 +340,8 @@ export const siteConfig = {
           a: "Le prix dépend du volume, de l'accessibilité et du type de biens à évacuer. Nous fournissons toujours un devis gratuit et détaillé après évaluation.",
         },
         {
-          q: "Que faites-vous des objets en bon état ?",
-          a: "Nous privilégions le don aux associations et le recyclage. Les objets valorisables sont triés et réemployés, seul le déchet ultime part en déchetterie.",
-        },
-      ],
-    },
-    {
-      category: "Tarifs",
-      questions: [
-        {
-          q: "Comment sont calculés vos tarifs ?",
-          a: "Nos tarifs dépendent de plusieurs facteurs : volume à débarrasser, accessibilité (étage, ascenseur), type de biens, urgence de l'intervention. Nous fournissons toujours un devis gratuit et détaillé après évaluation.",
+          q: "Comment sont calculés vos prix ?",
+          a: "Nos prix dépendent de plusieurs facteurs : volume à débarrasser, accessibilité (étage, ascenseur), type de biens, urgence de l'intervention. Nous fournissons toujours un devis gratuit et détaillé après évaluation.",
         },
         {
           q: "Y a-t-il des frais cachés ?",
@@ -363,6 +354,10 @@ export const siteConfig = {
         {
           q: "Puis-je obtenir un devis sans visite ?",
           a: "Pour les petits volumes, un devis peut être établi sur photos. Pour les débarras complets, nous recommandons une visite gratuite pour évaluer précisément le volume et l'accessibilité.",
+        },
+        {
+          q: "Que faites-vous des objets en bon état ?",
+          a: "Nous privilégions le don aux associations et le recyclage. Les objets valorisables sont triés et réemployés, seul le déchet ultime part en déchetterie.",
         },
       ],
     },
