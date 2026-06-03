@@ -125,8 +125,8 @@ See [`docs/ANALYTICS.md`](#) summary in the project notes. In short:
 
 - **Google Ads** conversion tracking is live (account `AW-17933962840`); conversions fire
   on `/devis/merci` and `/contact/merci`.
-- **GA4** and **GTM** are **not** installed (only an unconfigured `GA_MEASUREMENT_ID`
-  placeholder exists in `lib/analytics.ts`).
+- **GA4** is configured (Measurement ID `G-W68ZFT3E37`) via the same gtag.js load in
+  `app/layout.tsx`. **GTM** is not used.
 - Cookie banner stores consent but **does not gate** the tracking scripts yet.
 
 ## Related docs

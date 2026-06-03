@@ -97,7 +97,8 @@ export default function RootLayout({
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
-gtag('config', 'AW-17933962840');`}
+gtag('config', 'AW-17933962840');
+gtag('config', 'G-W68ZFT3E37');`}
         </Script>
 
         <JsonLd type="organization" />
