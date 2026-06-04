@@ -9,7 +9,29 @@ export const siteConfig = {
   contact: {
     phone: " 07 63 69 98 49",
     email: "contact@debarras-aurea.fr",
-    address: "Île-de-France",
+    address: "Tour Bologne, 84 Bd Masséna, 75013 Paris",
+    serviceArea: "Île-de-France",
+  },
+
+  // Informations légales de la société (RCS Paris)
+  legal: {
+    raisonSociale: "Débarras Aurea",
+    formeJuridique: "SARL, société à responsabilité limitée",
+    siren: "981 539 950",
+    siret: "981 539 950 00015",
+    tva: "FR77981539950",
+    rcs: "981 539 950 R.C.S. Paris",
+    greffe: "Paris",
+    dateImmatriculation: "04/01/2024",
+    // capitalSocial: "", // à compléter (valeur masquée sur l'extrait)
+    address: {
+      street: "Tour Bologne, 84 Bd Masséna",
+      postalCode: "75013",
+      city: "Paris",
+      region: "Île-de-France",
+      country: "FR",
+      full: "Tour Bologne, 84 Bd Masséna, 75013 Paris",
+    },
   },
 
   services: {

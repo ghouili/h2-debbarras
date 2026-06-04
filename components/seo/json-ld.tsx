@@ -33,8 +33,11 @@ export function JsonLd({ type, data }: JsonLdProps) {
         email: siteConfig.contact.email,
         address: {
           "@type": "PostalAddress",
-          addressRegion: "Île-de-France",
-          addressCountry: "FR",
+          streetAddress: siteConfig.legal.address.street,
+          postalCode: siteConfig.legal.address.postalCode,
+          addressLocality: siteConfig.legal.address.city,
+          addressRegion: siteConfig.legal.address.region,
+          addressCountry: siteConfig.legal.address.country,
         },
         geo: {
           "@type": "GeoCoordinates",

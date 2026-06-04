@@ -38,56 +38,60 @@ export default function MentionsLegalesPage() {
             </p>
             <ul>
               <li>
-                <strong>Raison sociale :</strong> {siteConfig.name}
+                <strong>Raison sociale :</strong> {siteConfig.legal.raisonSociale}
               </li>
               <li>
-                <strong>Forme juridique :</strong> -----------------------
+                <strong>Forme juridique :</strong> {siteConfig.legal.formeJuridique}
               </li>
               <li>
-                <strong>Siège social :</strong> -----------------------
+                <strong>Siège social :</strong> {siteConfig.legal.address.full}
               </li>
               <li>
-                <strong>SIRET :</strong> -----------------------
+                <strong>SIREN :</strong> {siteConfig.legal.siren}
               </li>
               <li>
-                <strong>RCS / RNE :</strong> -----------------------
+                <strong>SIRET (siège) :</strong> {siteConfig.legal.siret}
               </li>
               <li>
-                <strong>Capital social :</strong> -----------------------
+                <strong>RCS :</strong> {siteConfig.legal.rcs} (immatriculée le{" "}
+                {siteConfig.legal.dateImmatriculation})
               </li>
+              <li>
+                <strong>N° TVA intracommunautaire :</strong> {siteConfig.legal.tva}
+              </li>
+              {/* Capital social : à compléter
+              <li>
+                <strong>Capital social :</strong> {siteConfig.legal.capitalSocial}
+              </li>
+              */}
               <li>
                 <strong>Email :</strong> <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
               </li>
               <li>
                 <strong>Téléphone :</strong> {siteConfig.contact.phone}
               </li>
-              <li>
-                <strong>Adresse de contact :</strong> {siteConfig.contact.address}
-              </li>
             </ul>
 
+            {/* Directeur de publication : à compléter
             <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
-              2. Directeur de publication
+              Directeur de publication
             </h2>
-            <p>[TODO : nom et prénom du directeur de publication]</p>
+            <p>[nom et prénom du directeur de publication]</p>
+            */}
 
+            {/* Hébergeur : à compléter
             <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
-              3. Hébergeur
+              Hébergeur
             </h2>
             <p>
               Le site est hébergé par ---------------------- (hébergeur).
               <br />
-              340 S Lemon Ave #4133
-              <br />
-              Walnut, CA 91789, USA
-              <br />
-              <span className="text-muted-foreground">
-                [TODO : vérifier l'adresse et ajouter un contact téléphonique si requis]
-              </span>
+              [adresse de l'hébergeur]
             </p>
+            */}
 
             <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
-              4. Propriété intellectuelle
+              2. Propriété intellectuelle
             </h2>
             <p>
               L'ensemble du contenu de ce site (textes, images, logos) est la propriété exclusive de {siteConfig.name}
@@ -95,7 +99,7 @@ export default function MentionsLegalesPage() {
             </p>
 
             <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
-              5. Données personnelles
+              3. Données personnelles
             </h2>
             <p>
               Les informations collectées via ce site sont traitées pour répondre à vos demandes et assurer le suivi
@@ -103,7 +107,7 @@ export default function MentionsLegalesPage() {
             </p>
 
             <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
-              6. Responsabilité
+              4. Responsabilité
             </h2>
             <p>
               {siteConfig.name} s'efforce d'assurer l'exactitude des informations diffusées sur ce site. Toutefois, nous
@@ -112,7 +116,7 @@ export default function MentionsLegalesPage() {
             </p>
 
             <h2 className={cn(designTokens.typography.h3, designTokens.textScale["2xl"], "mt-6")}>
-              7. Contact
+              5. Contact
             </h2>
             <p>
               Pour toute question, vous pouvez nous contacter via la page <a href="/contact">Contact</a> ou par email
