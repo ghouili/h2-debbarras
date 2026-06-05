@@ -188,7 +188,7 @@ export function QuoteFunnel() {
         if (!hasHandledSuccessRef.current) {
           hasHandledSuccessRef.current = true;
           setIsSuccess(true);
-          router.push("/devis/merci");
+          router.push("/merci");
         }
       } else {
         console.error("[Lead] API response", {

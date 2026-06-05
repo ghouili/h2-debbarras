@@ -1,119 +1,72 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { CheckCircle2, Phone, Home } from "lucide-react"
-import { siteConfig } from "@/lib/config"
-import { designTokens } from "@/lib/design-tokens"
-import { cn } from "@/lib/utils"
-import type { Metadata } from "next"
-import { Section } from "@/components/layout/section"
+import Link from "next/link";
+import { CheckCircle2, Phone } from "lucide-react";
+import type { Metadata } from "next";
+
+import { LandingHeader } from "@/components/layout/landing-header";
+import { LandingFooter } from "@/components/layout/landing-footer";
+import { Card, CardContent } from "@/components/ui/card";
+import { siteConfig } from "@/lib/config";
+import { designTokens } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Merci pour votre demande",
-  description: "Votre demande de devis a été reçue. Nous vous contactons sous 2 heures.",
-  robots: {
-    index: false,
-    follow: true,
-  },
-}
+  description:
+    "Votre demande de devis a bien été envoyée. Notre équipe vous contacte sous 2h.",
+  robots: { index: false, follow: false },
+};
+
+const telHref = `tel:${siteConfig.contact.phone.replace(/\s/g, "")}`;
 
 export default function MerciPage() {
   return (
-    <Section>
-      <div className="mx-auto max-w-2xl">
-        <Card>
-          <CardContent className="p-8 text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <CheckCircle2 className="h-10 w-10 text-primary" />
-            </div>
+    <>
+      {/* Logo-only header */}
+      <LandingHeader minimal />
 
-            <h1
-              className={cn(
-                designTokens.typography.h1,
-                designTokens.textScale["3xl4xl"],
-                "mb-4",
-              )}
-            >
-              Demande envoyée avec succès !
-            </h1>
+      <main className="min-h-screen w-full bg-linear-to-b from-primary-50/60 via-background to-background py-12 sm:py-16">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6">
+          <Card>
+            <CardContent className="p-8 text-center">
+              {/* Green success icon */}
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+                <CheckCircle2 className="h-12 w-12 text-green-600" />
+              </div>
 
-            <p
-              className={cn(
-                designTokens.textScale.lg,
-                "mb-8 text-pretty text-muted-foreground",
-              )}
-            >
-              Merci pour votre confiance. Nous avons bien reçu votre demande de devis et nous vous contacterons dans les{" "}
-              <strong className="text-foreground">2 heures</strong> pour vous fournir une estimation personnalisée.
-            </p>
+              <h1 className={cn(designTokens.typography.h1, designTokens.textScale["3xl4xl"], "mb-4")}>
+                Votre demande a bien été envoyée !
+              </h1>
 
-            <div className="mb-8 space-y-4 rounded-lg border border-border bg-secondary p-6">
-              <h2 className={cn(designTokens.typography.h4, "font-semibold")}>
-                Prochaines étapes :
-              </h2>
-              <ol
-                className={cn(
-                  designTokens.textScale.base,
-                  "space-y-2 text-left text-muted-foreground",
-                )}
+              <p className={cn(designTokens.textScale.lg, "mb-8 text-pretty text-muted-foreground")}>
+                Merci pour votre message. Notre équipe vous contacte sous 2h pour discuter de votre projet et vous
+                envoyer un devis gratuit.
+              </p>
+
+              {/* Blue box */}
+              <a
+                href={telHref}
+                className="mx-auto flex max-w-md items-center justify-center gap-2 rounded-xl bg-primary/10 p-4 font-medium text-primary transition-colors hover:bg-primary/15"
               >
-                <li className="flex items-start gap-2">
-                  <span
-                    className={cn(
-                      designTokens.textScale.xs,
-                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground",
-                    )}
-                  >
-                    1
-                  </span>
-                  <span>Vous recevrez un email de confirmation</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span
-                    className={cn(
-                      designTokens.textScale.xs,
-                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground",
-                    )}
-                  >
-                    2
-                  </span>
-                  <span>Un conseiller vous contactera pour finaliser votre devis</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span
-                    className={cn(
-                      designTokens.textScale.xs,
-                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground",
-                    )}
-                  >
-                    3
-                  </span>
-                  <span>Nous planifierons ensemble votre intervention</span>
-                </li>
-              </ol>
-            </div>
+                <Phone className="h-5 w-5 shrink-0" />
+                <span>
+                  Besoin d&apos;une réponse immédiate ? Appelez-nous directement au {siteConfig.contact.phone}
+                </span>
+              </a>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <Button size="lg" asChild>
-                <Link href="/">
-                  <Home className="mr-2 h-5 w-5" />
-                  Retour à l'accueil
+              <div className="mt-8">
+                <Link
+                  href="/"
+                  className={cn(designTokens.textScale.base, "text-muted-foreground underline-offset-4 hover:underline")}
+                >
+                  ← Retour à l&apos;accueil
                 </Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <a href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}>
-                  <Phone className="mr-2 h-5 w-5" />
-                  Nous appeler
-                </a>
-              </Button>
-            </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </main>
 
-            <p className={cn(designTokens.textScale.base, "mt-6 text-muted-foreground")}>
-              Besoin d'une réponse immédiate ? Appelez-nous au {siteConfig.contact.phone}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-    </Section>
-  )
+      <LandingFooter />
+    </>
+  );
 }

@@ -4,11 +4,7 @@ import { Noto_Serif, Source_Code_Pro } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { MobileBar } from "@/components/layout/mobile-bar";
-import { ScrollToTop } from "@/components/layout/scroll-to-top";
-import { CookieBanner } from "@/components/seo/cookie-banner.client";
+import { SiteChrome } from "@/components/layout/site-chrome";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
@@ -130,14 +126,7 @@ gtag('config', 'G-W68ZFT3E37');`}
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-        <ScrollToTop />
-        <Header />
-        <main className="min-h-screen w-full pt-16 md:pt-20 pb-20 md:pb-0">
-          {children}
-        </main>
-        <Footer />
-        <MobileBar />
-        <CookieBanner />
+        <SiteChrome>{children}</SiteChrome>
         {process.env.NEXT_PUBLIC_VERCEL_ANALYTICS === "true" ? (
           <Analytics />
         ) : null}

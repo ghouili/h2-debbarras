@@ -362,7 +362,7 @@ export default function ContactPageClient() {
         if (!hasHandledSuccessRef.current) {
           hasHandledSuccessRef.current = true;
           setIsSuccess(true);
-          router.push("/contact/merci");
+          router.push("/merci");
         }
       } else {
         console.error("[Contact] API response", {

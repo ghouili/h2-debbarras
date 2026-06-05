@@ -58,7 +58,9 @@ jobs:
           SMTP_TO: ${{ vars.SMTP_TO || secrets.SMTP_TO }}
           API_URL: ${{ vars.API_URL || secrets.API_URL }}
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || secrets.NEXT_PUBLIC_API_URL }}
-          
+          # NEXT_PUBLIC_* is inlined at build time, so it must be in .env BEFORE `npm run build` runs on the server.
+          NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID || secrets.NEXT_PUBLIC_GTM_ID }}
+
         run: |
           ssh -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "cat > /tmp/debarras.env <<'EOF'
           SMTP_HOST=${SMTP_HOST}
@@ -69,6 +71,7 @@ jobs:
           SMTP_TO=${SMTP_TO}
           API_URL=${API_URL}
           NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+          NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
           EOF"
 
       - name: Execute remote deployment
