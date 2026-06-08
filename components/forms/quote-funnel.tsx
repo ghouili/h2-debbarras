@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -108,7 +108,6 @@ const validatePostalCode = (code: string): boolean => {
 
 export function QuoteFunnel() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [formData, setFormData] = useState<QuoteFormData>(initialFormData);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -188,7 +187,9 @@ export function QuoteFunnel() {
         if (!hasHandledSuccessRef.current) {
           hasHandledSuccessRef.current = true;
           setIsSuccess(true);
-          router.push("/merci");
+          // Full-page navigation so /merci does a real page load and GTM's
+          // `gtm.js` Page View conversion trigger fires (SPA push would not).
+          window.location.assign("/merci");
         }
       } else {
         console.error("[Lead] API response", {

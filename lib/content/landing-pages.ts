@@ -256,6 +256,15 @@ const lp2: LandingPageContent = {
       ],
     },
   },
+  process: {
+    heading: "Comment ça marche ?",
+    steps: [
+      { title: "Demande de devis", description: "Formulaire en ligne ou appel direct" },
+      { title: "Évaluation", description: "Devis gratuit envoyé sous 2h" },
+      { title: "Planification", description: "Date et heure selon vos disponibilités" },
+      { title: "Intervention", description: "Vidage complet, tri, évacuation" },
+    ],
+  },
   reviews: {
     heading: "Ils nous ont fait confiance",
     items: [
@@ -328,7 +337,7 @@ const lp3: LandingPageContent = {
       "Tri et recyclage inclus",
       "Prix compétitif, devis gratuit",
     ],
-    trustBar: "⭐ 4,9/5 · 500+ interventions · 8 départements IDF",
+    trustBar: "⭐ 4,8/5 · 500+ interventions · 8 départements IDF",
   },
   reassurance: {
     heading: "Pourquoi nous choisir ?",
@@ -364,6 +373,15 @@ const lp3: LandingPageContent = {
       "Recyclage des encombrants",
       "Évacuation complète des déchets",
       "Nettoyage de fin de chantier (sur option)",
+    ],
+  },
+  process: {
+    heading: "Comment ça marche ?",
+    steps: [
+      { title: "Demande de devis", description: "Formulaire en ligne ou appel direct" },
+      { title: "Évaluation", description: "Devis gratuit envoyé sous 2h" },
+      { title: "Planification", description: "Date et heure selon vos disponibilités" },
+      { title: "Intervention", description: "Vidage complet, tri, évacuation" },
     ],
   },
   reviews: {

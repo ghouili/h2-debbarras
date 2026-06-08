@@ -37,7 +37,6 @@ import {
 import Image from "next/image";
 import { designTokens } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 
 // Trust badges for the contact page
 const trustBadges = [
@@ -244,7 +243,6 @@ export default function ContactPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const hasHandledSuccessRef = useRef(false);
-  const router = useRouter();
   const [errors, setErrors] = useState<
     Partial<Record<keyof ContactFormData, string>>
   >({});
@@ -362,7 +360,9 @@ export default function ContactPageClient() {
         if (!hasHandledSuccessRef.current) {
           hasHandledSuccessRef.current = true;
           setIsSuccess(true);
-          router.push("/merci");
+          // Full-page navigation so /merci does a real page load and GTM's
+          // `gtm.js` Page View conversion trigger fires (SPA push would not).
+          window.location.assign("/merci");
         }
       } else {
         console.error("[Contact] API response", {

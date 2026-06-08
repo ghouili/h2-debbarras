@@ -50,6 +50,48 @@ function ReviewCard({ review }: { review: LandingReview }) {
   );
 }
 
+function ProcessSteps({
+  process,
+}: {
+  process: NonNullable<LandingPageContent["process"]>;
+}) {
+  return (
+    <Section bleed className="bg-secondary">
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className={cn(designTokens.typography.h2, designTokens.textScale["2xl3xl"], "text-balance")}>
+          {process.heading}
+        </h2>
+      </div>
+      <ol className="mt-8 sm:mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {process.steps.map((step, index) => (
+          <li key={`${step.title}-${index}`} className="relative">
+            {index < process.steps.length - 1 && (
+              <div className="absolute top-6 left-1/2 hidden h-0.5 w-full bg-border lg:block" aria-hidden="true" />
+            )}
+            <div className="relative flex flex-col items-center text-center">
+              <div
+                className={cn(
+                  designTokens.textScale.baseLg,
+                  "mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground sm:h-14 sm:w-14",
+                )}
+                aria-hidden="true"
+              >
+                {index + 1}
+              </div>
+              <h3 className={cn(designTokens.typography.h4, designTokens.textScale.baseLg, "mb-1.5")}>
+                {step.title}
+              </h3>
+              <p className={cn(designTokens.textScale.base, "text-pretty text-muted-foreground")}>
+                {step.description}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Section>
+  );
+}
+
 export function LandingPageTemplate({ content }: { content: LandingPageContent }) {
   const phone = siteConfig.contact.phone;
 
@@ -101,6 +143,9 @@ export function LandingPageTemplate({ content }: { content: LandingPageContent }
         </div>
       </Section>
 
+      {/* Process — same style as the service pages (between reassurance and reviews) */}
+      {content.process && <ProcessSteps process={content.process} />}
+
       {/* What's included */}
       {content.included && (
         <Section className="bg-secondary/40">
@@ -139,24 +184,6 @@ export function LandingPageTemplate({ content }: { content: LandingPageContent }
               </Card>
             ))}
           </div>
-        </Section>
-      )}
-
-      {/* Process */}
-      {content.process && (
-        <Section className="bg-background">
-          <h2 className={cn(designTokens.typography.h2, "mb-8 text-center")}>{content.process.heading}</h2>
-          <ol className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {content.process.steps.map((step, i) => (
-              <li key={step.title} className="flex flex-col gap-2">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground">
-                  {i + 1}
-                </span>
-                <h3 className={cn(designTokens.textScale.baseLg, "font-bold")}>{step.title}</h3>
-                <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>{step.description}</p>
-              </li>
-            ))}
-          </ol>
         </Section>
       )}
 

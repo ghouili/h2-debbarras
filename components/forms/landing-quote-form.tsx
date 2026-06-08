@@ -2,7 +2,6 @@
 
 import type React from "react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -50,8 +49,6 @@ type Props = {
 };
 
 export function LandingQuoteForm({ defaultService = "" }: Props) {
-  const router = useRouter();
-
   const [service, setService] = useState<string>(defaultService);
   const [department, setDepartment] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -66,7 +63,7 @@ export function LandingQuoteForm({ defaultService = "" }: Props) {
 
   const serviceError = attempted && !service ? "Veuillez sélectionner un type de bien" : null;
   const departmentError = attempted && !department ? "Veuillez sélectionner un département" : null;
-  const firstNameError = attempted && !firstName.trim() ? "Le prénom est requis" : null;
+  const firstNameError = attempted && !firstName.trim() ? "Le nom est requis" : null;
   const consentError = attempted && !consent;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -94,6 +91,7 @@ export function LandingQuoteForm({ defaultService = "" }: Props) {
           service,
           department,
           firstName,
+          name: firstName,
           phone: normalizePhone(phone),
           email,
           message,
@@ -103,8 +101,10 @@ export function LandingQuoteForm({ defaultService = "" }: Props) {
 
       if (response.ok) {
         trackLeadSubmit();
-        // Redirect to /merci — this is what triggers the GTM conversion tag.
-        router.push("/merci");
+        // Full-page navigation (NOT router.push) so /merci does a real page load.
+        // GTM's conversion trigger fires on the `gtm.js` Page View event, which only
+        // fires on a full load — a client-side SPA transition would not trigger it.
+        window.location.assign("/merci");
       } else {
         alert("Une erreur est survenue. Veuillez réessayer.");
         setIsSubmitting(false);
@@ -176,12 +176,12 @@ export function LandingQuoteForm({ defaultService = "" }: Props) {
       <div className="grid w-full gap-3 sm:gap-4 md:grid-cols-2">
         <div className="w-full">
           <Label htmlFor="lp-firstName" className={cn(designTokens.textScale.base, "font-medium mb-1.5 block")}>
-            Prénom <span className="text-destructive">*</span>
+            Nom <span className="text-destructive">*</span>
           </Label>
           <Input
             id="lp-firstName"
             type="text"
-            placeholder="Jean"
+            placeholder="Dupont"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             autoComplete="given-name"
