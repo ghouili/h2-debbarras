@@ -1,6 +1,7 @@
 import { CheckCircle2, Phone } from "lucide-react";
 
 import { Section } from "@/components/layout/section";
+import { HeroBeforeAfter } from "@/components/landing/hero-before-after";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -98,30 +99,40 @@ export function LandingPageTemplate({ content }: { content: LandingPageContent }
   return (
     <>
       {/* Hero */}
-      <Section className="bg-linear-to-b from-primary-50/60 via-background to-background">
-        <div className="mx-auto max-w-3xl">
-          <span
-            className={cn(
-              designTokens.textScale.xsSm,
-              "inline-block rounded-full bg-primary/10 px-3 py-1 font-medium text-primary",
-            )}
-          >
-            {content.hero.badge}
-          </span>
-          <h1 className={cn(designTokens.typography.h1, "mt-4 text-balance")}>{content.hero.h1}</h1>
-          <p className={cn(designTokens.textScale.lg, "mt-4 text-pretty text-muted-foreground")}>
-            {content.hero.subtitle}
-          </p>
-          <ul className="mt-6 space-y-2">
-            {content.hero.bullets.map((b) => (
-              <li key={b} className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
-                <span className={designTokens.textScale.base}>{b}</span>
-              </li>
-            ))}
-          </ul>
-          <HeroCtas phone={phone} />
-          <p className={cn(designTokens.textScale.base, "mt-5 text-muted-foreground")}>{content.hero.trustBar}</p>
+      <Section className="overflow-hidden bg-linear-to-b from-primary-50/60 via-background to-background">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          {/* Left: content */}
+          <div>
+            <span
+              className={cn(
+                designTokens.textScale.xsSm,
+                "inline-block rounded-full bg-primary/10 px-3 py-1 font-medium text-primary",
+              )}
+            >
+              {content.hero.badge}
+            </span>
+            <h1 className={cn(designTokens.typography.h1, "mt-4 text-balance")}>{content.hero.h1}</h1>
+            <p className={cn(designTokens.textScale.lg, "mt-4 text-pretty text-muted-foreground")}>
+              {content.hero.subtitle}
+            </p>
+            <ul className="mt-6 space-y-2">
+              {content.hero.bullets.map((b) => (
+                <li key={b} className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
+                  <span className={designTokens.textScale.base}>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <HeroCtas phone={phone} />
+            <p className={cn(designTokens.textScale.base, "mt-5 text-muted-foreground")}>{content.hero.trustBar}</p>
+          </div>
+
+          {/* Right: before/after toggle */}
+          <HeroBeforeAfter
+            before={content.hero.image.before}
+            after={content.hero.image.after}
+            review={content.hero.review}
+          />
         </div>
       </Section>
 

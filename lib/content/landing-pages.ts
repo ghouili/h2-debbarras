@@ -29,6 +29,11 @@ export type LandingPageContent = {
     subtitle: string;
     bullets: string[];
     trustBar: string;
+    image: {
+      before: { src: string; alt: string };
+      after: { src: string; alt: string };
+    };
+    review: { text: string; author: string };
   };
   reassurance: {
     heading: string;
@@ -100,6 +105,20 @@ const lp1: LandingPageContent = {
       "Notaires et mandataires bienvenus",
     ],
     trustBar: "⭐ 4,8/5 avis clients · 🏠 500+ interventions · 📍 8 départements IDF",
+    image: {
+      before: {
+        src: "/apres-decces-avant.png",
+        alt: "Logement encombré avant une intervention de débarras succession",
+      },
+      after: {
+        src: "/apres-decces-apres.png",
+        alt: "Logement entièrement vidé et nettoyé après une intervention de débarras succession",
+      },
+    },
+    review: {
+      text: "Équipe d'une grande délicatesse pour le débarras de l'appartement de ma mère après son décès. Travail rapide, soigné et respectueux. Je recommande vivement.",
+      author: "Sophie M. — Créteil (94)",
+    },
   },
   reassurance: {
     heading: "Pourquoi nous choisir ?",
@@ -209,6 +228,20 @@ const lp2: LandingPageContent = {
       "Devis gratuit sans déplacement",
     ],
     trustBar: "⭐ 4,8/5 · 500+ chantiers · 8 départements · Équipe assurée",
+    image: {
+      before: {
+        src: "/clean-empty-house-before-clearance.png",
+        alt: "Maison encombrée avant un débarras complet",
+      },
+      after: {
+        src: "/clean-empty-house-after-clearance.jpg",
+        alt: "Maison vidée et propre après un débarras complet par Débarras Aurea",
+      },
+    },
+    review: {
+      text: "Vide maison complet réalisé en une journée, sans aucun stress. Équipe ponctuelle, efficace et tarif transparent. Parfait pour notre vente, merci !",
+      author: "Thomas B. — Nanterre (92)",
+    },
   },
   reassurance: {
     heading: "Pourquoi nous choisir ?",
@@ -338,6 +371,20 @@ const lp3: LandingPageContent = {
       "Prix compétitif, devis gratuit",
     ],
     trustBar: "⭐ 4,8/5 · 500+ interventions · 8 départements IDF",
+    image: {
+      before: {
+        src: "/clean-empty-basement-before-clearance.png",
+        alt: "Cave encombrée avant une intervention de débarras",
+      },
+      after: {
+        src: "/clean-empty-basement-after-clearance.jpg",
+        alt: "Cave entièrement vidée et dégagée après une intervention de débarras",
+      },
+    },
+    review: {
+      text: "Cave débarrassée rapidement malgré un accès difficile sans ascenseur. Travail propre, équipe sérieuse et prix correct. Je recommande sans hésiter.",
+      author: "Jean-Pierre L. — Versailles (78)",
+    },
   },
   reassurance: {
     heading: "Pourquoi nous choisir ?",
