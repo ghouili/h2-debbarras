@@ -13,7 +13,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { trackStartDevis, trackQuoteStep, trackLeadSubmit } from "@/lib/analytics"
 import { ArrowRight, ArrowLeft, Upload, Loader2, CheckCircle2 } from "lucide-react"
-import { useRouter } from "next/navigation"
 import { designTokens } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
 
@@ -56,7 +55,6 @@ const initialFormData: ProQuoteFormData = {
 }
 
 export function ProQuoteFunnel() {
-  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState<ProQuoteFormData>(initialFormData)
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -167,8 +165,10 @@ export function ProQuoteFunnel() {
         throw new Error("Submission failed")
       }
 
-      trackLeadSubmit()
-      router.push("/merci")
+      trackLeadSubmit("devis_pro")
+      // Full-page navigation so /merci does a real page load and GTM's
+      // `gtm.js` Page View conversion trigger fires (SPA push would not).
+      window.location.assign("/merci")
     } catch {
       setErrors({ submit: "Une erreur est survenue. Veuillez réessayer." })
     } finally {

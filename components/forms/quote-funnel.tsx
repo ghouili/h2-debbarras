@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
-import { trackStartDevis } from "@/lib/analytics";
+import { trackStartDevis, trackLeadSubmit } from "@/lib/analytics";
 import { SuccessState } from "./success-state";
 import { designTokens } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
@@ -187,6 +187,7 @@ export function QuoteFunnel() {
         if (!hasHandledSuccessRef.current) {
           hasHandledSuccessRef.current = true;
           setIsSuccess(true);
+          trackLeadSubmit("devis");
           // Full-page navigation so /merci does a real page load and GTM's
           // `gtm.js` Page View conversion trigger fires (SPA push would not).
           window.location.assign("/merci");

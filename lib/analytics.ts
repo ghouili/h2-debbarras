@@ -34,10 +34,14 @@ export const trackStartDevis = () => {
   })
 }
 
-export const trackLeadSubmit = () => {
+// Which quote form produced the submission (sent to GA4 as the `form` param).
+export type LeadFormSource = "devis" | "devis_lp" | "devis_pro"
+
+export const trackLeadSubmit = (form: LeadFormSource) => {
   trackEvent("lead_submit", {
     event_category: "conversion",
     event_label: "Quote Form Submitted",
+    form,
     value: 1,
   })
 }

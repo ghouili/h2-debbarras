@@ -100,7 +100,7 @@ export function LandingQuoteForm({ defaultService = "" }: Props) {
       });
 
       if (response.ok) {
-        trackLeadSubmit();
+        trackLeadSubmit("devis_lp");
         // Full-page navigation (NOT router.push) so /merci does a real page load.
         // GTM's conversion trigger fires on the `gtm.js` Page View event, which only
         // fires on a full load — a client-side SPA transition would not trigger it.
