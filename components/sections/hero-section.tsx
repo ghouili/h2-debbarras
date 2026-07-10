@@ -50,14 +50,6 @@ export function HeroSection() {
       bleed
       className="relative overflow-hidden bg-linear-to-br from-primary-50 via-background to-primary-100/50"
     >
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.02]"
-        aria-hidden="true"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
       {/* Gradient orbs */}
       <div
         className="absolute -top-24 right-0 h-96 w-96 rounded-full bg-primary-600/15 blur-3xl"
@@ -281,7 +273,7 @@ export function HeroSection() {
                   src={HERO_AFTER_SRC}
                   alt="Espace libéré après intervention de débarras Aurea"
                   fill
-                  sizes="(max-width: 768px) 92vw, (max-width: 1024px) 50vw, 600px"
+                  sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 600px"
                   className={cn(
                     "object-cover transition-opacity duration-200",
                     imageToggle === "after" ? "opacity-100" : "opacity-0",
@@ -296,7 +288,7 @@ export function HeroSection() {
                     src={HERO_BEFORE_SRC}
                     alt="Espace encombré avant intervention de débarras"
                     fill
-                    sizes="(max-width: 768px) 92vw, (max-width: 1024px) 50vw, 600px"
+                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 600px"
                     className={cn(
                       "object-cover transition-opacity duration-200",
                       imageToggle === "before" ? "opacity-100" : "opacity-0",

@@ -11,14 +11,18 @@ import { siteConfig } from "@/lib/config";
 const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
+  // `optional` keeps the web font off the LCP critical path: text paints
+  // immediately in next/font's metric-matched fallback (CLS stays 0) and the
+  // real font applies once cached. The hero subtitle (the mobile LCP element)
+  // uses this font, so this is the main LCP lever.
+  display: "optional",
   variable: "--font-source-code-pro",
 });
 
 const notoSerif = Noto_Serif({
   subsets: ["latin"],
   weight: ["600", "700"],
-  display: "swap",
+  display: "optional",
   variable: "--font-noto-serif",
 });
 
