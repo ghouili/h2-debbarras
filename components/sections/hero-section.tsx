@@ -7,7 +7,7 @@ import { Phone, ArrowRight, CheckCircle2, Star } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { trackClickCall, trackStartDevis } from "@/lib/analytics";
 import { designTokens } from "@/lib/design-tokens";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { homeCopy } from "@/lib/content/home-copy";
 import { PageContainer } from "@/components/layout/page-container";
@@ -21,9 +21,29 @@ const HERO_BLUR_DATA_URL =
 export function HeroSection() {
   const heroCopy = homeCopy.hero;
   const [imageToggle, setImageToggle] = useState<"before" | "after">("after");
+  // Only the "after" image is shown initially (LCP path). Defer fetching the
+  // hidden "before" image until the browser is idle so it doesn't compete for
+  // bandwidth during the critical load — it's still ready by the time the user
+  // taps "Avant".
+  const [loadBefore, setLoadBefore] = useState(false);
 
-  const handleToggleBefore = useCallback(() => setImageToggle("before"), []);
+  const handleToggleBefore = useCallback(() => {
+    setLoadBefore(true);
+    setImageToggle("before");
+  }, []);
   const handleToggleAfter = useCallback(() => setImageToggle("after"), []);
+
+  useEffect(() => {
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void) => number;
+    };
+    if (typeof w.requestIdleCallback === "function") {
+      w.requestIdleCallback(() => setLoadBefore(true));
+    } else {
+      const t = setTimeout(() => setLoadBefore(true), 2000);
+      return () => clearTimeout(t);
+    }
+  }, []);
 
   return (
     <Section
@@ -271,20 +291,22 @@ export function HeroSection() {
                   placeholder="blur"
                   blurDataURL={HERO_BLUR_DATA_URL}
                 />
-                <Image
-                  src={HERO_BEFORE_SRC}
-                  alt="Espace encombré avant intervention de débarras"
-                  fill
-                  sizes="(max-width: 768px) 92vw, (max-width: 1024px) 50vw, 600px"
-                  className={cn(
-                    "object-cover transition-opacity duration-200",
-                    imageToggle === "before" ? "opacity-100" : "opacity-0",
-                  )}
-                  loading="lazy"
-                  fetchPriority="low"
-                  placeholder="blur"
-                  blurDataURL={HERO_BLUR_DATA_URL}
-                />
+                {loadBefore && (
+                  <Image
+                    src={HERO_BEFORE_SRC}
+                    alt="Espace encombré avant intervention de débarras"
+                    fill
+                    sizes="(max-width: 768px) 92vw, (max-width: 1024px) 50vw, 600px"
+                    className={cn(
+                      "object-cover transition-opacity duration-200",
+                      imageToggle === "before" ? "opacity-100" : "opacity-0",
+                    )}
+                    loading="lazy"
+                    fetchPriority="low"
+                    placeholder="blur"
+                    blurDataURL={HERO_BLUR_DATA_URL}
+                  />
+                )}
 
                 {/* Result badge - softer claim */}
                 <div className="hidden sm:absolute bottom-3 right-3 rounded-t-lg bg-white/95 backdrop-blur-sm px-3 py-1.5 shadow-lg border border-border/50">
