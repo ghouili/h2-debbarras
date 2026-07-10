@@ -123,6 +123,7 @@ export function HeroSection() {
                 asChild
                 onClick={() => trackStartDevis()}
               >
+                
                 <Link href="/devis">
                   {heroCopy.primaryCta}
                   <ArrowRight
