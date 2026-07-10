@@ -50,14 +50,23 @@ export function HeroSection() {
       bleed
       className="relative overflow-hidden bg-linear-to-br from-primary-50 via-background to-primary-100/50"
     >
-      {/* Gradient orbs */}
+      {/* Gradient orbs — cheap radial gradients instead of a blur filter
+          (the blurred solid divs were expensive to rasterize on mobile) */}
       <div
-        className="absolute -top-24 right-0 h-96 w-96 rounded-full bg-primary-600/15 blur-3xl"
+        className="absolute -top-24 right-0 h-96 w-96 rounded-full"
         aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(closest-side, color-mix(in oklch, var(--primary-600) 15%, transparent), transparent)",
+        }}
       />
       <div
-        className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-primary-300/20 blur-3xl"
+        className="absolute bottom-0 left-0 h-64 w-64 rounded-full"
         aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(closest-side, color-mix(in oklch, var(--primary-300) 20%, transparent), transparent)",
+        }}
       />
 
       <PageContainer className="relative ">
@@ -280,6 +289,7 @@ export function HeroSection() {
                   )}
                   priority
                   fetchPriority="high"
+                  quality={65}
                   placeholder="blur"
                   blurDataURL={HERO_BLUR_DATA_URL}
                 />
@@ -295,6 +305,7 @@ export function HeroSection() {
                     )}
                     loading="lazy"
                     fetchPriority="low"
+                    quality={65}
                     placeholder="blur"
                     blurDataURL={HERO_BLUR_DATA_URL}
                   />

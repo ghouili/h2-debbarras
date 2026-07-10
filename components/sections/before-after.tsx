@@ -192,7 +192,7 @@ export function BeforeAfter() {
                     src={current.after}
                     alt={current.altAfter}
                     fill
-                    sizes="(max-width: 768px) 100vw, 700px"
+                    sizes="(max-width: 768px) 90vw, 700px"
                     className={cn(
                       "object-cover transition-opacity duration-200",
                       imageToggle === "after" ? "opacity-100" : "opacity-0",
@@ -207,7 +207,7 @@ export function BeforeAfter() {
                     src={current.before}
                     alt={current.altBefore}
                     fill
-                    sizes="(max-width: 768px) 100vw, 700px"
+                    sizes="(max-width: 768px) 90vw, 700px"
                     className={cn(
                       "object-cover transition-opacity duration-200",
                       imageToggle === "before" ? "opacity-100" : "opacity-0",
