@@ -2,9 +2,9 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Noto_Serif, Source_Code_Pro } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import Script from "next/script";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/site-chrome";
+import { GoogleTags } from "@/components/analytics/google-tags";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
@@ -88,31 +88,14 @@ export default function RootLayout({
           name="google-site-verification"
           content="OsCAUbqCBXdTlYGiG324nqiW2UONStmLcIWdcg2N8xM"
         />
-        {/* Google Tag Manager */}
-        <Script
-          id="gtm-script"
-          strategy="lazyOnload"
+        {/* dataLayer + gtag stub — defined early so analytics events queue
+            (instead of dropping) until the Google tags are loaded on first
+            interaction by <GoogleTags />. Negligible cost, no main-thread work. */}
+        <script
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');`,
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`,
           }}
         />
-        {/* End Google Tag Manager */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17933962840"
-          strategy="lazyOnload"
-        />
-        <Script id="gtag-init" strategy="lazyOnload">
-          {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'AW-17933962840');
-gtag('config', 'G-W68ZFT3E37');`}
-        </Script>
 
         <JsonLd type="organization" />
       </head>
@@ -131,6 +114,7 @@ gtag('config', 'G-W68ZFT3E37');`}
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <SiteChrome>{children}</SiteChrome>
+        <GoogleTags />
         {process.env.NEXT_PUBLIC_VERCEL_ANALYTICS === "true" ? (
           <Analytics />
         ) : null}
