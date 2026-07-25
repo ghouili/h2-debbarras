@@ -9,7 +9,7 @@
 // import { siteConfig } from "@/lib/config";
 // import { cn } from "@/lib/utils";
 // import Image from "next/image";
-
+ 
 // export const metadata: Metadata = {
 //   title: "404 — Page introuvable | Débarras Auréa",
 //   robots: { index: false, follow: true },
