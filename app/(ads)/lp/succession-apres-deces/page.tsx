@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+
 import { LandingPageTemplate } from "@/components/landing/landing-page-template";
 import { landingPages } from "@/lib/content/landing-pages";
 
