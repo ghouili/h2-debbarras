@@ -7,7 +7,7 @@ export const siteConfig = {
   url: "https://debarras-aurea.fr",
 
   contact: {
-    phone: " 07 63 69 98 49",
+    phone: " 07 60 00 79 42",
     email: "contact@debarras-aurea.fr",
     address: "Tour Bologne, 84 Bd Masséna, 75013 Paris",
     serviceArea: "Île-de-France",
