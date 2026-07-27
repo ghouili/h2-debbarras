@@ -9,6 +9,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Card, CardContent } from "@/components/ui/card"
 import { Building2, Home, Store, Warehouse, HardHat, Truck } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 const services = [
   { id: "commerces-entrepots", label: "Commerce / Entrepôt", icon: Store, category: "pro" },
@@ -46,7 +48,14 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="mb-4 text-xl font-bold">Type de service</h2>
+        <h2
+          className={cn(
+            designTokens.textScale.xl,
+            "mb-4 font-bold font-heading",
+          )}
+        >
+          Type de service
+        </h2>
         <RadioGroup value={formData.service} onValueChange={(value) => updateFormData({ service: value })}>
           <div className="grid gap-3 sm:grid-cols-2">
             {services.map((service) => {
@@ -62,7 +71,13 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
                   <CardContent className="flex items-center gap-3 p-4">
                     <RadioGroupItem value={service.id} id={service.id} />
                     <Icon className="h-5 w-5 text-primary" />
-                    <Label htmlFor={service.id} className="flex-1 cursor-pointer text-sm font-medium">
+                    <Label
+                      htmlFor={service.id}
+                      className={cn(
+                        designTokens.textScale.base,
+                        "flex-1 cursor-pointer font-medium",
+                      )}
+                    >
                       {service.label}
                     </Label>
                   </CardContent>
@@ -75,7 +90,9 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <Label htmlFor="postalCode">Code postal *</Label>
+          <Label htmlFor="postalCode" className={designTokens.textScale.base}>
+            Code postal *
+          </Label>
           <Input
             id="postalCode"
             type="text"
@@ -88,7 +105,9 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
           />
         </div>
         <div>
-          <Label htmlFor="city">Ville</Label>
+          <Label htmlFor="city" className={designTokens.textScale.base}>
+            Ville
+          </Label>
           <Input
             id="city"
             type="text"
@@ -100,7 +119,9 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
       </div>
 
       <div>
-        <Label className="mb-3 block">Quand souhaitez-vous intervenir ? *</Label>
+        <Label className={cn(designTokens.textScale.base, "mb-3 block")}>
+          Quand souhaitez-vous intervenir ? *
+        </Label>
         <RadioGroup value={formData.timing} onValueChange={(value) => updateFormData({ timing: value })}>
           <div className="grid gap-2">
             {timingOptions.map((option) => (
@@ -113,7 +134,13 @@ export function ServiceLocationStep({ formData, updateFormData, nextStep }: Serv
               >
                 <CardContent className="flex items-center gap-3 p-3">
                   <RadioGroupItem value={option.value} id={option.value} />
-                  <Label htmlFor={option.value} className="flex-1 cursor-pointer font-medium">
+                  <Label
+                    htmlFor={option.value}
+                    className={cn(
+                      designTokens.textScale.base,
+                      "flex-1 cursor-pointer font-medium",
+                    )}
+                  >
                     {option.label}
                   </Label>
                 </CardContent>

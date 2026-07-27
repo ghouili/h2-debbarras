@@ -1,27 +1,58 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/sections/hero-section"
 import { TrustBadges } from "@/components/sections/trust-badges"
 import { ServicesGrid } from "@/components/sections/services-grid"
-import { HowItWorks } from "@/components/sections/how-it-works"
-import { BeforeAfter } from "@/components/sections/before-after"
-import { ZonesTeaser } from "@/components/sections/zones-teaser"
-import { TestimonialsSection } from "@/components/sections/testimonials-section"
-import { StatsSection } from "@/components/sections/stats-section"
-import { FaqSection } from "@/components/sections/faq-section"
-import { CtaSection } from "@/components/sections/cta-section"
 import { siteConfig } from "@/lib/config"
 
+const HowItWorks = dynamic(
+  () => import("@/components/sections/how-it-works").then((m) => m.HowItWorks),
+  { ssr: true },
+)
+const LazyBeforeAfter = dynamic(
+  () =>
+    import("@/components/sections/lazy-before-after").then(
+      (m) => m.LazyBeforeAfter,
+    ),
+  { ssr: true },
+)
+const StatsSection = dynamic(
+  () => import("@/components/sections/stats-section").then((m) => m.StatsSection),
+  { ssr: true },
+)
+const ZonesTeaser = dynamic(
+  () => import("@/components/sections/zones-teaser").then((m) => m.ZonesTeaser),
+  { ssr: true },
+)
+const TestimonialsSection = dynamic(
+  () =>
+    import("@/components/sections/testimonials-section").then(
+      (m) => m.TestimonialsSection,
+    ),
+  { ssr: true },
+)
+const FaqSection = dynamic(
+  () => import("@/components/sections/faq-section").then((m) => m.FaqSection),
+  { ssr: true },
+)
+const CtaSection = dynamic(
+  () => import("@/components/sections/cta-section").then((m) => m.CtaSection),
+  { ssr: true },
+)
+
 export const metadata: Metadata = {
-  title: "Débarras & Déménagement Île-de-France | H2 Débarras Maison",
+  title:
+    "Débarras & Déménagement en Île-de-France - Devis Gratuit 24-48h | Débarras Aurea",
   description:
-    "Service professionnel de débarras et déménagement en Île-de-France. Intervention rapide 24-48h, devis gratuit, tri éco-responsable. Paris et 8 départements.",
+    "Service professionnel de débarras maison, cave, succession et déménagement en Île-de-France. Intervention rapide sous 24 à 48 h, devis gratuit et tri éco-responsable. Contactez Débarras Aurea !",
   alternates: {
     canonical: siteConfig.url,
   },
   openGraph: {
-    title: "Débarras & Déménagement Île-de-France | H2 Débarras Maison",
+    title:
+      "Débarras & Déménagement en Île-de-France - Devis Gratuit 24-48h | Débarras Aurea",
     description:
-      "Service professionnel de débarras et déménagement en Île-de-France. Intervention 24-48h, devis gratuit.",
+      "Service professionnel de débarras maison, cave, succession et déménagement en Île-de-France. Intervention rapide sous 24 à 48 h, devis gratuit et tri éco-responsable.",
     url: siteConfig.url,
     type: "website",
     locale: "fr_FR",
@@ -29,9 +60,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Débarras & Déménagement Île-de-France",
+    title:
+      "Débarras & Déménagement en Île-de-France - Devis Gratuit 24-48h | Débarras Aurea",
     description:
-      "Service professionnel de débarras et déménagement. Intervention 24-48h, devis gratuit.",
+      "Service professionnel de débarras maison et déménagement en Île-de-France. Intervention rapide sous 24 à 48 h, devis gratuit.",
   },
 }
 
@@ -42,7 +74,7 @@ export default function HomePage() {
       <TrustBadges />
       <ServicesGrid />
       <HowItWorks />
-      <BeforeAfter />
+      <LazyBeforeAfter />
       <StatsSection />
       <ZonesTeaser />
       <TestimonialsSection />

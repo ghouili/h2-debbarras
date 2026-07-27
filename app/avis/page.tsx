@@ -6,12 +6,9 @@ import { Button } from "@/components/ui/button";
 import {
   Star,
   Phone,
-  FileText,
   MapPin,
   Clock,
-  Shield,
   CheckCircle2,
-  ChevronRight,
   Users,
   Building2,
   Award,
@@ -90,7 +87,7 @@ const SERVICES_FILTER = [
 const TRUST_STATS = [
   { icon: Users, value: "500+", label: "Clients satisfaits" },
   { icon: Building2, value: "8", label: "Départements couverts" },
-  { icon: Clock, value: "24-48h", label: "Intervention rapide" },
+  { icon: Clock, value: "24 à 48 h", label: "Intervention rapide" },
   { icon: Award, value: "4.8/5", label: "Note moyenne" },
 ];
 
@@ -141,11 +138,16 @@ const HeroSection = memo(function HeroSection({
         </div>
 
         {/* H1 - responsive */}
-        <h1 className="text-balance text-xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+        <h1
+          className={cn(
+            designTokens.typography.h1,
+            "text-balance text-xl sm:text-3xl md:text-4xl",
+          )}
+        >
           Avis Clients
         </h1>
-        <p className="text-balance text-xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-          Débarras & Déménagement
+        <p className={cn(designTokens.typography.h1, "text-balance text-xl sm:text-3xl md:text-4xl")}>
+          Débarras et Déménagement
         </p>
         <p className="mx-auto mt-2 max-w-xl text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base md:text-lg">
           Retours de nos clients en Île-de-France. {totalReviews}+ interventions
@@ -164,11 +166,11 @@ const HeroSection = memo(function HeroSection({
           >
             <Link href="/devis">
               <Image
-                src="/special-icon.png"
-                width={20}
-                height={20}
-                alt=""
-                className="h-4 w-4 shrink-0 sm:h-5 sm:w-5"
+                src="/optimized/icons/special-icon-w40.png"
+                width={40}
+                height={31}
+                alt="Icône plus de 500 interventions"
+                className="h-4 w-auto shrink-0 sm:h-5"
               />
               Devis gratuit
             </Link>
@@ -360,7 +362,12 @@ const FAQSection = memo(function FAQSection() {
     <Section className="bg-background">
       <div className="mx-auto max-w-3xl">
         <div className="mb-4 text-center sm:mb-6">
-          <h2 className="text-xl font-bold sm:text-2xl lg:text-3xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              "text-xl sm:text-2xl lg:text-3xl",
+            )}
+          >
             Questions sur nos avis
           </h2>
           <p className="mt-2 text-sm text-muted-foreground sm:text-base">
@@ -398,7 +405,12 @@ const BottomCTA = memo(function BottomCTA() {
           <div className="absolute -bottom-16 -left-16 h-40 w-40 sm:h-56 sm:w-56 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
           <CardContent className="relative p-5 sm:p-6 md:p-10 text-center">
-            <h2 className="text-xl font-bold text-white sm:text-2xl lg:text-3xl">
+            <h2
+              className={cn(
+                designTokens.typography.h2,
+                "text-xl text-white sm:text-2xl lg:text-3xl",
+              )}
+            >
               Rejoignez nos clients satisfaits
             </h2>
             <p className="mt-2 text-white/90 text-sm sm:text-base max-w-md mx-auto">
@@ -414,11 +426,11 @@ const BottomCTA = memo(function BottomCTA() {
               >
                 <Link href="/devis">
                   <Image
-                    src="/special-icon.png"
-                    width={20}
-                    height={20}
-                    alt=""
-                    className="mr-2"
+                    src="/optimized/icons/special-icon-w40.png"
+                    width={40}
+                    height={31}
+                    alt="Icône plus de 500 interventions"
+                    className="mr-2 h-4 w-auto sm:h-5"
                   />
                   <p className="hidden sm:block text-xs sm:text-sm md:text-base w-full ">Demander un devis gratuit</p>
                   <p className="block sm:hidden text-xs sm:text-sm md:text-base w-full ">Demander un devis</p>

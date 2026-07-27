@@ -17,25 +17,40 @@ export function CtaSection() {
       className="bg-linear-to-b from-primary-100 via-primary-50/50 to-background"
     >
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            designTokens.textScale["2xl3xl"],
+            "text-balance",
+          )}
+        >
           {copy.title}
         </h2>
-        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
+        <p
+          className={cn(
+            designTokens.textScale.baseLg,
+            "mt-3 text-pretty text-muted-foreground",
+          )}
+        >
           {copy.subtitle}
         </p>
 
         <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:gap-4">
           <Button
             size="lg"
-            className="min-h-11 h-10 sm:h-12 px-4 sm:px-8 text-xs sm:text-sm w-full sm:w-auto"
+            className={cn(
+              designTokens.textScale.base,
+              "min-h-11 h-10 sm:h-12 px-4 sm:px-8 w-full sm:w-auto",
+            )}
             asChild
           >
             <div className="flex flex-row items-center justify-center gap-1.5 sm:gap-2">
               <Image
-                src="/devis-icon-white.png"
+                src="/optimized/icons/devis-icon-white-w32.png"
                 width={16}
                 height={16}
-                alt=""
+                alt="Icône demande de devis gratuit"
+                sizes="16px"
                 className="mr-0.5 sm:mr-1 h-4 w-4 sm:h-5 sm:w-5"
               />
               <Link href="/devis">{copy.primaryCta}</Link>
@@ -47,7 +62,8 @@ export function CtaSection() {
             size="lg"
             className={cn(
               designTokens.button.secondary,
-              "min-h-11 h-10 sm:h-12 px-4 sm:px-6 text-xs sm:text-sm w-full sm:w-auto",
+              designTokens.textScale.base,
+              "min-h-11 h-10 sm:h-12 px-4 sm:px-6 w-full sm:w-auto",
             )}
             asChild
           >
@@ -58,7 +74,9 @@ export function CtaSection() {
           </Button>
         </div>
 
-        <p className="mt-5 text-sm text-muted-foreground">{copy.microcopy}</p>
+        <p className={cn(designTokens.textScale.base, "mt-5 text-muted-foreground")}>
+          {copy.microcopy}
+        </p>
       </div>
     </Section>
   );

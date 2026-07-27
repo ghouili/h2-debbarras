@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { ChevronLeft } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type Props = {
   formData: QuoteFormData
@@ -26,10 +28,19 @@ export function AccessStep({ formData, updateFormData, nextStep, prevStep }: Pro
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold">Accessibilité</h2>
+      <h2
+        className={cn(
+          designTokens.textScale["2xl"],
+          "mb-6 font-semibold font-heading",
+        )}
+      >
+        Accessibilité
+      </h2>
       <div className="space-y-4">
         <div>
-          <Label htmlFor="floor">Étage *</Label>
+          <Label htmlFor="floor" className={designTokens.textScale.base}>
+            Étage *
+          </Label>
           <Input
             id="floor"
             type="text"
@@ -41,10 +52,12 @@ export function AccessStep({ formData, updateFormData, nextStep, prevStep }: Pro
         </div>
         <div className="flex items-center justify-between rounded-lg border border-border p-4">
           <div>
-            <Label htmlFor="elevator" className="cursor-pointer">
+            <Label htmlFor="elevator" className={designTokens.textScale.base}>
               Ascenseur disponible
             </Label>
-            <p className="text-sm text-muted-foreground">Y a-t-il un ascenseur dans l'immeuble ?</p>
+            <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
+              Y a-t-il un ascenseur dans l'immeuble ?
+            </p>
           </div>
           <Switch
             id="elevator"

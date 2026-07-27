@@ -1,9 +1,9 @@
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable
 } from '@tanstack/react-table'
+import type { ColumnDef } from '@tanstack/react-table'
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from './ui/table'
 
 type DataTableProps<TData> = {
@@ -12,6 +12,7 @@ type DataTableProps<TData> = {
 }
 
 export const DataTable = <TData,>({ data, columns }: DataTableProps<TData>) => {
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

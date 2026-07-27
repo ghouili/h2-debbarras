@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { designTokens } from "@/lib/design-tokens"
 import { siteConfig } from "@/lib/config"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export function SuccessState() {
   return (
@@ -18,12 +19,23 @@ export function SuccessState() {
           </div>
 
           {/* Heading */}
-          <h2 className="mb-2 sm:mb-3 text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              designTokens.textScale.xl3xl4xl,
+              "mb-2 sm:mb-3 text-foreground",
+            )}
+          >
             Demande envoyée avec succès !
           </h2>
 
           {/* Description */}
-          <p className="mb-5 sm:mb-6 max-w-md text-sm sm:text-base text-muted-foreground leading-relaxed">
+          <p
+            className={cn(
+              designTokens.textScale.baseBase,
+              "mb-5 sm:mb-6 max-w-md text-muted-foreground leading-relaxed",
+            )}
+          >
             Nous avons bien reçu votre demande de devis. Notre équipe vous contactera dans les{" "}
             <span className="font-semibold text-foreground">2 prochaines heures</span> pour établir votre devis personnalisé.
           </p>
@@ -31,8 +43,21 @@ export function SuccessState() {
           {/* What's Next Card */}
           <Card className="mb-5 sm:mb-6 w-full max-w-md border-primary/20 bg-primary/5">
             <CardContent className="p-4 sm:p-5">
-              <h3 className="mb-3 text-sm font-semibold text-foreground">Que se passe-t-il maintenant ?</h3>
-              <ul className="space-y-2.5 text-left text-sm text-muted-foreground">
+              <h3
+                className={cn(
+                  designTokens.typography.h4,
+                  designTokens.textScale.base,
+                  "mb-3 text-foreground",
+                )}
+              >
+                Que se passe-t-il maintenant ?
+              </h3>
+              <ul
+                className={cn(
+                  designTokens.textScale.base,
+                  "space-y-2.5 text-left text-muted-foreground",
+                )}
+              >
                 <li className="flex items-start gap-2.5">
                   <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <span>Vérification de votre demande</span>
@@ -67,15 +92,15 @@ export function SuccessState() {
               size="lg"
               className={cn("min-h-11 w-full flex-1 gap-2", designTokens.button.secondary)}
             >
-              <a href="/">
+              <Link href="/">
                 <Home className="h-4 w-4" />
                 Retour à l'accueil
-              </a>
+              </Link>
             </Button>
           </div>
 
           {/* Availability note */}
-          <p className="mt-4 text-xs text-muted-foreground">
+          <p className={cn(designTokens.textScale.xs, "mt-4 text-muted-foreground")}>
             Disponible 7j/7 de 8h à 20h
           </p>
         </div>

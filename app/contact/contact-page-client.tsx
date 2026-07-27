@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,7 +28,6 @@ import {
   Loader2,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
   Truck,
   Recycle,
   Shield,
@@ -42,8 +41,8 @@ import { cn } from "@/lib/utils";
 // Trust badges for the contact page
 const trustBadges = [
   { icon: MapPin, label: "Île-de-France", subtext: "8 départements" },
-  { icon: Clock, label: "Intervention 24-48h", subtext: "selon urgence" },
-  { icon: Recycle, label: "Tri & recyclage", subtext: "écoresponsable" },
+  { icon: Clock, label: "Intervention 24 à 48 h", subtext: "selon urgence" },
+  { icon: Recycle, label: "Tri et recyclage", subtext: "éco-responsable" },
   { icon: Shield, label: "Devis gratuit", subtext: "sans engagement" },
 ];
 
@@ -84,10 +83,25 @@ const requestTypes = [
 ];
 
 // Form validation helpers
+const normalizePhone = (phone: string): string => {
+  let cleaned = phone.replace(/[\s().-]/g, "");
+  if (cleaned.startsWith("00")) {
+    cleaned = `+${cleaned.slice(2)}`;
+  }
+  if (cleaned.startsWith("+330")) {
+    cleaned = `+33${cleaned.slice(4)}`;
+  }
+  return cleaned;
+};
+
 const validatePhone = (phone: string): boolean => {
-  const cleaned = phone.replace(/\s/g, "");
-  // French phone: starts with 0 and has 10 digits, or starts with +33 and has 11-12 chars
+  const cleaned = normalizePhone(phone);
+  // French phone: 0X XX XX XX XX or +33 X XX XX XX XX, with optional (0) after +33.
   return /^(0[1-9]\d{8}|\+33[1-9]\d{8})$/.test(cleaned);
+};
+
+const validateEmail = (email: string): boolean => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 };
 
 const validatePostalCode = (code: string): boolean => {
@@ -98,6 +112,7 @@ const validatePostalCode = (code: string): boolean => {
 // Form state type
 type ContactFormData = {
   name: string;
+  email: string;
   phone: string;
   postalCode: string;
   requestType: string;
@@ -107,6 +122,7 @@ type ContactFormData = {
 
 const initialFormData: ContactFormData = {
   name: "",
+  email: "",
   phone: "",
   postalCode: "",
   requestType: "devis",
@@ -123,34 +139,71 @@ function ContactSuccessState() {
           <div className="mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-green-500">
             <CheckCircle2 className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
           </div>
-          <h2 className="mb-2 text-xl font-bold text-green-800 sm:text-2xl">
+          <h2
+            className={cn(
+              designTokens.typography.h2,
+              designTokens.textScale.xl2xl,
+              "mb-2 text-green-800",
+            )}
+          >
             Message envoyé !
           </h2>
-          <p className="mb-5 sm:mb-6 max-w-md text-sm text-green-700 sm:text-base">
+          <p
+            className={cn(
+              designTokens.textScale.baseBase,
+              "mb-5 sm:mb-6 max-w-md text-green-700",
+            )}
+          >
             Nous avons bien reçu votre message et vous répondrons sous{" "}
             <strong>2 heures</strong> maximum.
           </p>
 
           <Card className="mb-5 sm:mb-6 w-full max-w-md border-green-300 bg-white">
             <CardContent className="p-4">
-              <h3 className="mb-3 text-sm font-semibold text-foreground">
+              <h3
+                className={cn(
+                  designTokens.typography.h4,
+                  designTokens.textScale.base,
+                  "mb-3 text-foreground",
+                )}
+              >
                 Ce qui se passe ensuite
               </h3>
-              <ul className="space-y-2 text-left text-sm text-muted-foreground">
+              <ul
+                className={cn(
+                  designTokens.textScale.base,
+                  "space-y-2 text-left text-muted-foreground",
+                )}
+              >
                 <li className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
+                  <span
+                    className={cn(
+                      designTokens.textScale.xs,
+                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 font-bold text-green-700",
+                    )}
+                  >
                     1
                   </span>
                   <span>Nous analysons votre demande</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
+                  <span
+                    className={cn(
+                      designTokens.textScale.xs,
+                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 font-bold text-green-700",
+                    )}
+                  >
                     2
                   </span>
                   <span>Un conseiller vous rappelle sous 2h</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
+                  <span
+                    className={cn(
+                      designTokens.textScale.xs,
+                      "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-100 font-bold text-green-700",
+                    )}
+                  >
                     3
                   </span>
                   <span>Vous recevez votre devis gratuit</span>
@@ -189,6 +242,7 @@ export default function ContactPageClient() {
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const hasHandledSuccessRef = useRef(false);
   const [errors, setErrors] = useState<
     Partial<Record<keyof ContactFormData, string>>
   >({});
@@ -201,6 +255,10 @@ export default function ContactPageClient() {
           return typeof value === "string" && value.trim().length >= 2
             ? null
             : "Veuillez entrer votre nom";
+        case "email":
+          return typeof value === "string" && validateEmail(value)
+            ? null
+            : "Adresse email invalide";
         case "phone":
           return typeof value === "string" && validatePhone(value)
             ? null
@@ -251,6 +309,7 @@ export default function ContactPageClient() {
     // Validate all required fields
     const newErrors: Partial<Record<keyof ContactFormData, string>> = {};
     const nameError = validateField("name", formData.name);
+    const emailError = validateField("email", formData.email);
     const phoneError = validateField("phone", formData.phone);
     const consentError = validateField("consent", formData.consent);
     const postalCodeError = formData.postalCode
@@ -258,6 +317,7 @@ export default function ContactPageClient() {
       : null;
 
     if (nameError) newErrors.name = nameError;
+    if (emailError) newErrors.email = emailError;
     if (phoneError) newErrors.phone = phoneError;
     if (consentError) newErrors.consent = consentError;
     if (postalCodeError) newErrors.postalCode = postalCodeError;
@@ -271,19 +331,45 @@ export default function ContactPageClient() {
     trackEvent("contact_form_submit", { request_type: formData.requestType });
 
     try {
+      const endpoint = "/api/contacts"
+
       // Submit to API endpoint
-      const response = await fetch("/api/leads", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           source: "contact_form",
-          ...formData,
+          name: formData.name,
+          email: formData.email,
+          phone: normalizePhone(formData.phone),
+          message: formData.message,
+          consent: formData.consent,
+          postalCode: formData.postalCode || null,
         }),
       });
 
+      const responseText = await response.text();
+      let responseBody: unknown = responseText;
+      try {
+        responseBody = responseText ? JSON.parse(responseText) : null;
+      } catch {
+        responseBody = responseText;
+      }
+
       if (response.ok) {
-        setIsSuccess(true);
+        if (!hasHandledSuccessRef.current) {
+          hasHandledSuccessRef.current = true;
+          setIsSuccess(true);
+          // Full-page navigation so /merci does a real page load and GTM's
+          // `gtm.js` Page View conversion trigger fires (SPA push would not).
+          window.location.assign("/merci");
+        }
       } else {
+        console.error("[Contact] API response", {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseBody,
+        });
         throw new Error("Submission failed");
       }
     } catch (error) {
@@ -320,16 +406,22 @@ export default function ContactPageClient() {
             <Breadcrumbs items={breadcrumbItems} />
 
             <div className="mx-auto max-w-4xl text-center">
-              <h1 className="text-balance text-xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-                Contact
+              <h1
+                className={cn(
+                  designTokens.typography.h1,
+                  designTokens.textScale.xl3xl4xl,
+                  "text-balance",
+                )}
+              >
+                Contact rapide
               </h1>
-              <p className="text-balance text-xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-                Débarras & Déménagement
-              </p>
-              <p className="mx-auto mt-2 max-w-2xl text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base md:text-lg">
-                Notre équipe vous répond{" "}
-                <strong className="text-foreground">sous 2 heures</strong> en
-                semaine.
+              <p
+                className={cn(
+                  designTokens.textScale.base,
+                  "mx-auto mt-2 max-w-xl text-pretty text-muted-foreground sm:mt-3",
+                )}
+              >
+                Réponse sous 2h • Devis gratuit • Île-de-France
               </p>
 
               {/* Primary CTAs - Above the Fold */}
@@ -338,7 +430,8 @@ export default function ContactPageClient() {
                   size="lg"
                   asChild
                   className={cn(
-                    "min-h-11 h-11 w-full sm:w-auto gap-1.5 px-4 text-xs sm:gap-2 sm:px-6 sm:text-sm",
+                    designTokens.textScale.base,
+                    "min-h-11 h-11 w-full sm:w-auto gap-1.5 px-4 sm:gap-2 sm:px-6",
                     designTokens.button.primary,
                   )}
                 >
@@ -357,17 +450,18 @@ export default function ContactPageClient() {
                   size="lg"
                   className={cn(
                     designTokens.button.secondary,
-                    "min-h-11 h-11 w-full sm:w-auto gap-1.5 px-4 text-xs sm:gap-2 sm:px-6 sm:text-sm",
+                    designTokens.textScale.base,
+                    "min-h-11 h-11 w-full sm:w-auto gap-1.5 px-4 sm:gap-2 sm:px-6",
                   )}
                   asChild
                 >
                   <Link href="/devis">
                     <Image
-                      src="/special-icon.png"
-                      width={20}
-                      height={20}
-                      alt=""
-                      className="h-4 w-4 sm:h-5 sm:w-5"
+                      src="/optimized/icons/special-icon-w40.png"
+                      width={40}
+                      height={31}
+                      alt="Icône plus de 500 interventions"
+                      className="h-4 w-auto sm:h-5"
                     />
                     Devis gratuit
                   </Link>
@@ -375,9 +469,14 @@ export default function ContactPageClient() {
               </div>
 
               {/* Trust line */}
-              <p className="mt-3 text-[10px] text-muted-foreground sm:mt-4 sm:text-sm">
+              <p
+                className={cn(
+                  designTokens.textScale.xsSm,
+                  "mt-3 text-muted-foreground sm:mt-4",
+                )}
+              >
                 <CheckCircle2 className="mr-0.5 inline h-3 w-3 text-green-600 sm:mr-1 sm:h-3.5 sm:w-3.5" />
-                Devis gratuit • Réponse 2h • Intervention 24–48h
+                Simple, rapide, sans engagement
               </p>
             </div>
           </div>
@@ -397,10 +496,15 @@ export default function ContactPageClient() {
                     <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="text-[10px] sm:text-sm font-medium text-foreground leading-tight">
+                    <p
+                      className={cn(
+                        designTokens.textScale.xsSm,
+                        "font-medium text-foreground leading-tight",
+                      )}
+                    >
                       {badge.label}
                     </p>
-                    <p className="text-[8px] sm:text-xs text-muted-foreground">
+                    <p className={cn(designTokens.textScale.micro, "text-muted-foreground")}>
                       {badge.subtext}
                     </p>
                   </div>
@@ -423,11 +527,22 @@ export default function ContactPageClient() {
                       <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-primary shadow-lg shadow-primary/25">
                         <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
-                      <h2 className="mb-2 text-base sm:text-lg font-bold">Appelez-nous</h2>
+                      <h2
+                        className={cn(
+                          designTokens.typography.h4,
+                          designTokens.textScale.baseLg,
+                          "mb-2",
+                        )}
+                      >
+                        Appelez-nous
+                      </h2>
                     </div>
                     <a
                       href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-                      className="text-lg sm:text-xl font-semibold text-primary hover:underline"
+                      className={cn(
+                        designTokens.textScale.lgXl,
+                        "font-semibold text-primary hover:underline",
+                      )}
                       onClick={() =>
                         trackEvent("contact_call_click", {
                           source: "info_card",
@@ -436,7 +551,12 @@ export default function ContactPageClient() {
                     >
                       {siteConfig.contact.phone}
                     </a>
-                    <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-muted-foreground">
+                    <p
+                      className={cn(
+                        designTokens.textScale.base,
+                        "mt-1.5 sm:mt-2 text-muted-foreground",
+                      )}
+                    >
                       Réponse immédiate • Devis par téléphone
                     </p>
                   </CardContent>
@@ -449,16 +569,32 @@ export default function ContactPageClient() {
                       <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-md sm:rounded-lg bg-primary/10">
                         <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
-                      <h3 className="mb-2 text-sm sm:text-base font-semibold">Email</h3>
+                      <h3
+                        className={cn(
+                          designTokens.typography.h4,
+                          designTokens.textScale.baseBase,
+                          "mb-2",
+                        )}
+                      >
+                        Email
+                      </h3>
                     </div>
                     <a
                       href={`mailto:${siteConfig.contact.email}`}
-                      className="text-sm sm:text-base text-primary hover:underline"
+                      className={cn(
+                        designTokens.textScale.baseBase,
+                        "text-primary hover:underline",
+                      )}
                       onClick={() => trackEvent("contact_email_click")}
                     >
                       {siteConfig.contact.email}
                     </a>
-                    <p className="mt-1.5 sm:mt-2 text-[10px] sm:text-xs text-muted-foreground">
+                    <p
+                      className={cn(
+                        designTokens.textScale.fine,
+                        "mt-1.5 sm:mt-2 text-muted-foreground",
+                      )}
+                    >
                       Réponse sous 2h en semaine
                     </p>
                   </CardContent>
@@ -472,12 +608,23 @@ export default function ContactPageClient() {
                         <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-md sm:rounded-lg bg-primary/10">
                           <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                         </div>
-                        <h3 className="mb-2 text-sm sm:text-base font-semibold">
+                        <h3
+                          className={cn(
+                            designTokens.typography.h4,
+                            designTokens.textScale.baseBase,
+                            "mb-2",
+                          )}
+                        >
                           Horaires
                         </h3>
                       </div>
                     </div>
-                    <div className="space-y-0.5 sm:space-y-1 text-xs sm:text-sm text-muted-foreground">
+                    <div
+                      className={cn(
+                        designTokens.textScale.base,
+                        "space-y-0.5 sm:space-y-1 text-muted-foreground",
+                      )}
+                    >
                       <p>
                         <span className="font-medium text-foreground">
                           Lun - Ven :
@@ -507,18 +654,32 @@ export default function ContactPageClient() {
                       <div className="mb-3 sm:mb-4 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-md sm:rounded-lg bg-primary/10">
                         <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
-                      <h3 className="mb-2 text-sm sm:text-base font-semibold">
+                      <h3
+                        className={cn(
+                          designTokens.typography.h4,
+                          designTokens.textScale.baseBase,
+                          "mb-2",
+                        )}
+                      >
                         Zone d'intervention
                       </h3>
                     </div>
-                    <p className="mb-2 sm:mb-3 text-xs sm:text-sm text-muted-foreground">
+                    <p
+                      className={cn(
+                        designTokens.textScale.base,
+                        "mb-2 sm:mb-3 text-muted-foreground",
+                      )}
+                    >
                       Toute l'Île-de-France
                     </p>
                     <div className="flex flex-wrap gap-1 sm:gap-1.5">
                       {siteConfig.zones.departements.map((dept) => (
                         <span
                           key={dept.code}
-                          className="rounded bg-muted px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium text-muted-foreground"
+                          className={cn(
+                            designTokens.textScale.fine,
+                            "rounded bg-muted px-1.5 sm:px-2 py-0.5 font-medium text-muted-foreground",
+                          )}
                         >
                           {dept.code}
                         </span>
@@ -526,7 +687,10 @@ export default function ContactPageClient() {
                     </div>
                     <Link
                       href="/zones"
-                      className="mt-2 sm:mt-3 inline-flex items-center text-xs sm:text-sm font-medium text-primary hover:underline min-h-8"
+                      className={cn(
+                        designTokens.textScale.base,
+                        "mt-2 sm:mt-3 inline-flex items-center font-medium text-primary hover:underline min-h-8",
+                      )}
                     >
                       Voir zones
                       <ArrowRight className="ml-1 h-3.5 w-3.5 sm:h-4 sm:w-4" />
@@ -547,21 +711,32 @@ export default function ContactPageClient() {
                           <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                         </div>
                         <div>
-                          <h2 className="text-base sm:text-xl font-bold">
-                            Envoyez un message
+                          <h2
+                            className={cn(
+                              designTokens.typography.h3,
+                              designTokens.textScale.baseXl,
+                            )}
+                          >
+                            Message
                           </h2>
-                          <p className="text-xs sm:text-sm text-muted-foreground">
-                            Réponse sous 2 heures
+                          <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
+                            Réponse 2h
                           </p>
                         </div>
                       </div>
 
-                      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                      <form
+                        onSubmit={handleSubmit}
+                        className="space-y-3 sm:space-y-5"
+                      >
                         {/* Name */}
                         <div>
                           <Label
                             htmlFor="name"
-                            className="text-xs sm:text-sm font-medium mb-1 sm:mb-1.5 block"
+                            className={cn(
+                              designTokens.textScale.base,
+                              "font-medium mb-1 sm:mb-1.5 block",
+                            )}
                           >
                             Nom complet{" "}
                             <span className="text-destructive">*</span>
@@ -576,7 +751,7 @@ export default function ContactPageClient() {
                             }
                             onBlur={() => handleBlur("name")}
                             className={cn(
-                              "min-h-11 h-11",
+                              "min-h-12 h-12 sm:min-h-11 sm:h-11",
                               errors.name ? "border-destructive" : "",
                             )}
                             aria-describedby={
@@ -588,7 +763,10 @@ export default function ContactPageClient() {
                             {errors.name && (
                               <p
                                 id="name-error"
-                                className="mt-1 text-sm text-destructive"
+                                  className={cn(
+                                    designTokens.textScale.base,
+                                    "mt-1 text-destructive",
+                                  )}
                                 role="alert"
                               >
                                 {errors.name}
@@ -597,12 +775,58 @@ export default function ContactPageClient() {
                           </div>
                         </div>
 
-                        {/* Phone + Postal Code */}
+                        {/* Email + Phone */}
                         <div className="grid gap-3 sm:gap-4 md:grid-cols-2">
                           <div>
                             <Label
+                              htmlFor="email"
+                              className={cn(
+                                designTokens.textScale.base,
+                                "font-medium mb-1 sm:mb-1.5 block",
+                              )}
+                            >
+                              Email <span className="text-destructive">*</span>
+                            </Label>
+                            <Input
+                              id="email"
+                              type="email"
+                              placeholder="vous@email.com"
+                              value={formData.email}
+                              onChange={(e) =>
+                                handleChange("email", e.target.value)
+                              }
+                              onBlur={() => handleBlur("email")}
+                              className={cn(
+                                "min-h-12 h-12 sm:min-h-11 sm:h-11",
+                                errors.email ? "border-destructive" : "",
+                              )}
+                              aria-describedby={
+                                errors.email ? "email-error" : undefined
+                              }
+                              aria-invalid={!!errors.email}
+                            />
+                            <div className="min-h-5">
+                              {errors.email && (
+                                <p
+                                  id="email-error"
+                                  className={cn(
+                                    designTokens.textScale.base,
+                                    "mt-1 text-destructive",
+                                  )}
+                                  role="alert"
+                                >
+                                  {errors.email}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          <div>
+                            <Label
                               htmlFor="phone"
-                              className="text-xs sm:text-sm font-medium mb-1 sm:mb-1.5 block"
+                              className={cn(
+                                designTokens.textScale.base,
+                                "font-medium mb-1 sm:mb-1.5 block",
+                              )}
                             >
                               Téléphone{" "}
                               <span className="text-destructive">*</span>
@@ -617,7 +841,7 @@ export default function ContactPageClient() {
                               }
                               onBlur={() => handleBlur("phone")}
                               className={cn(
-                                "min-h-11 h-11",
+                                "min-h-12 h-12 sm:min-h-11 sm:h-11",
                                 errors.phone ? "border-destructive" : "",
                               )}
                               aria-describedby={
@@ -629,7 +853,10 @@ export default function ContactPageClient() {
                               {errors.phone && (
                                 <p
                                   id="phone-error"
-                                  className="mt-1 text-sm text-destructive"
+                                  className={cn(
+                                    designTokens.textScale.base,
+                                    "mt-1 text-destructive",
+                                  )}
                                   role="alert"
                                 >
                                   {errors.phone}
@@ -637,48 +864,54 @@ export default function ContactPageClient() {
                               )}
                             </div>
                           </div>
-                          <div>
-                            <Label
-                              htmlFor="postalCode"
-                              className="text-xs sm:text-sm font-medium mb-1 sm:mb-1.5 block"
-                            >
-                              Code postal
-                            </Label>
-                            <Input
-                              id="postalCode"
-                              type="text"
-                              placeholder="75001"
-                              maxLength={5}
-                              value={formData.postalCode}
-                              onChange={(e) =>
-                                handleChange(
-                                  "postalCode",
-                                  e.target.value.replace(/\D/g, "").slice(0, 5),
-                                )
-                              }
-                              onBlur={() => handleBlur("postalCode")}
-                              className={cn(
-                                "min-h-11 h-11",
-                                errors.postalCode ? "border-destructive" : "",
-                              )}
-                              aria-describedby={
-                                errors.postalCode
-                                  ? "postalCode-error"
-                                  : undefined
-                              }
-                              aria-invalid={!!errors.postalCode}
-                            />
-                            <div className="min-h-5">
-                              {errors.postalCode && (
-                                <p
-                                  id="postalCode-error"
-                                  className="mt-1 text-sm text-destructive"
-                                  role="alert"
-                                >
-                                  {errors.postalCode}
-                                </p>
-                              )}
-                            </div>
+                        </div>
+
+                        {/* Postal Code */}
+                        <div>
+                          <Label
+                            htmlFor="postalCode"
+                            className={cn(
+                              designTokens.textScale.base,
+                              "font-medium mb-1 sm:mb-1.5 block",
+                            )}
+                          >
+                            Code postal
+                          </Label>
+                          <Input
+                            id="postalCode"
+                            type="text"
+                            placeholder="75001"
+                            maxLength={5}
+                            value={formData.postalCode}
+                            onChange={(e) =>
+                              handleChange(
+                                "postalCode",
+                                e.target.value.replace(/\D/g, "").slice(0, 5),
+                              )
+                            }
+                            onBlur={() => handleBlur("postalCode")}
+                            className={cn(
+                              "min-h-12 h-12 sm:min-h-11 sm:h-11",
+                              errors.postalCode ? "border-destructive" : "",
+                            )}
+                            aria-describedby={
+                              errors.postalCode ? "postalCode-error" : undefined
+                            }
+                            aria-invalid={!!errors.postalCode}
+                          />
+                          <div className="min-h-5">
+                            {errors.postalCode && (
+                              <p
+                                id="postalCode-error"
+                                  className={cn(
+                                    designTokens.textScale.base,
+                                    "mt-1 text-destructive",
+                                  )}
+                                role="alert"
+                              >
+                                {errors.postalCode}
+                              </p>
+                            )}
                           </div>
                         </div>
 
@@ -686,7 +919,10 @@ export default function ContactPageClient() {
                         <div>
                           <Label
                             htmlFor="requestType"
-                            className="text-xs sm:text-sm font-medium mb-1 sm:mb-1.5 block"
+                            className={cn(
+                              designTokens.textScale.base,
+                              "font-medium mb-1 sm:mb-1.5 block",
+                            )}
                           >
                             Type de demande
                           </Label>
@@ -696,7 +932,10 @@ export default function ContactPageClient() {
                             onChange={(e) =>
                               handleChange("requestType", e.target.value)
                             }
-                            className="flex min-h-11 h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            className={cn(
+                              designTokens.textScale.formField,
+                              "flex min-h-12 h-12 sm:min-h-11 sm:h-11 w-full rounded-md border border-input bg-background px-3 py-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                            )}
                           >
                             {requestTypes.map((type) => (
                               <option key={type.value} value={type.value}>
@@ -710,10 +949,13 @@ export default function ContactPageClient() {
                         <div>
                           <Label
                             htmlFor="message"
-                            className="text-xs sm:text-sm font-medium mb-1 sm:mb-1.5 block"
+                            className={cn(
+                              designTokens.textScale.base,
+                              "font-medium mb-1 sm:mb-1.5 block",
+                            )}
                           >
                             Message{" "}
-                            <span className="text-muted-foreground text-[10px] sm:text-xs">
+                            <span className={cn(designTokens.textScale.fine, "text-muted-foreground")}>
                               (optionnel)
                             </span>
                           </Label>
@@ -725,7 +967,7 @@ export default function ContactPageClient() {
                             onChange={(e) =>
                               handleChange("message", e.target.value)
                             }
-                            className="min-h-25 text-sm"
+                            className={cn(designTokens.textScale.base, "min-h-25")}
                           />
                         </div>
 
@@ -746,7 +988,10 @@ export default function ContactPageClient() {
                           <div className="flex-1">
                             <Label
                               htmlFor="consent"
-                              className="text-xs sm:text-sm font-normal leading-relaxed text-muted-foreground cursor-pointer"
+                              className={cn(
+                                designTokens.textScale.base,
+                                "font-normal leading-relaxed text-muted-foreground cursor-pointer",
+                              )}
                             >
                               J'accepte d'être contacté(e) par {siteConfig.name}{" "}
                               pour ma demande.{" "}
@@ -761,7 +1006,10 @@ export default function ContactPageClient() {
                               {errors.consent && (
                                 <p
                                   id="consent-error"
-                                  className="mt-1 text-sm text-destructive"
+                                  className={cn(
+                                    designTokens.textScale.base,
+                                    "mt-1 text-destructive",
+                                  )}
                                   role="alert"
                                 >
                                   {errors.consent}
@@ -777,7 +1025,8 @@ export default function ContactPageClient() {
                           type="submit"
                           size="lg"
                           className={cn(
-                            "w-full min-h-11 h-11 text-xs sm:text-sm",
+                            designTokens.textScale.base,
+                            "w-full min-h-12 h-12 sm:min-h-11 sm:h-11",
                             designTokens.button.primary,
                           )}
                           disabled={isSubmitting}
@@ -796,7 +1045,12 @@ export default function ContactPageClient() {
                         </Button>
 
                         {/* Microcopy */}
-                        <p className="text-center text-[10px] text-muted-foreground sm:text-xs">
+                        <p
+                          className={cn(
+                            designTokens.textScale.fine,
+                            "text-center text-muted-foreground",
+                          )}
+                        >
                           Vos informations restent confidentielles.
                         </p>
                       </form>
@@ -808,43 +1062,68 @@ export default function ContactPageClient() {
                 {!isSuccess && (
                   <Card className="mt-4 sm:mt-6 border-primary/20 bg-primary/5">
                     <CardContent className="px-3 py-1 sm:px-5">
-                      <h3 className="mb-3 sm:mb-4 flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base font-semibold">
+                      <h3
+                        className={cn(
+                          designTokens.typography.h4,
+                          designTokens.textScale.baseBase,
+                          "mb-3 sm:mb-4 flex items-center gap-1.5 sm:gap-2",
+                        )}
+                      >
                         <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                        Ce qui se passe ensuite
+                        Suite
                       </h3>
                       <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
                         <div className="flex items-start gap-2 sm:gap-3">
-                          <span className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs sm:text-sm font-bold text-white">
+                          <span
+                            className={cn(
+                              designTokens.textScale.base,
+                              "flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white",
+                            )}
+                          >
                             1
                           </span>
                           <div>
-                            <p className="text-xs sm:text-sm font-medium">Analyse</p>
-                            <p className="text-[10px] sm:text-xs text-muted-foreground">
-                              Étude de votre demande
+                            <p className={cn(designTokens.textScale.base, "font-medium")}>
+                              Analyse
+                            </p>
+                            <p className={cn(designTokens.textScale.fine, "text-muted-foreground")}>
+                              Votre besoin
                             </p>
                           </div>
                         </div>
                         <div className="flex items-start gap-2 sm:gap-3">
-                          <span className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs sm:text-sm font-bold text-white">
+                          <span
+                            className={cn(
+                              designTokens.textScale.base,
+                              "flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white",
+                            )}
+                          >
                             2
                           </span>
                           <div>
-                            <p className="text-xs sm:text-sm font-medium">
+                            <p className={cn(designTokens.textScale.base, "font-medium")}>
                               Rappel 2h
                             </p>
-                            <p className="text-[10px] sm:text-xs text-muted-foreground">
-                              Conseiller vous contacte
+                            <p className={cn(designTokens.textScale.fine, "text-muted-foreground")}>
+                              Contact rapide
                             </p>
                           </div>
                         </div>
                         <div className="flex items-start gap-2 sm:gap-3">
-                          <span className="flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs sm:text-sm font-bold text-white">
+                          <span
+                            className={cn(
+                              designTokens.textScale.base,
+                              "flex h-6 w-6 sm:h-7 sm:w-7 shrink-0 items-center justify-center rounded-full bg-primary font-bold text-white",
+                            )}
+                          >
                             3
                           </span>
                           <div>
-                            <p className="text-xs sm:text-sm font-medium">Devis gratuit</p>
-                            <p className="text-[10px] sm:text-xs text-muted-foreground">
-                              Sans engagement
+                            <p className={cn(designTokens.textScale.base, "font-medium")}>
+                              Devis
+                            </p>
+                            <p className={cn(designTokens.textScale.fine, "text-muted-foreground")}>
+                              Gratuit
                             </p>
                           </div>
                         </div>
@@ -861,10 +1140,20 @@ export default function ContactPageClient() {
         <Section className="bg-muted/30">
           <div className="mx-auto max-w-3xl px-3 sm:px-6">
             <div className="mb-3 sm:mb-6 text-center">
-              <h2 className="text-lg font-bold sm:text-2xl md:text-3xl">
+              <h2
+                className={cn(
+                  designTokens.typography.h2,
+                  designTokens.textScale.lg2xl3xl,
+                )}
+              >
                 Questions fréquentes
               </h2>
-              <p className="mt-1.5 sm:mt-2 text-xs text-muted-foreground sm:text-base">
+              <p
+                className={cn(
+                  designTokens.textScale.base,
+                  "mt-1.5 sm:mt-2 text-muted-foreground",
+                )}
+              >
                 Ce qu'il faut savoir avant de nous contacter
               </p>
             </div>
@@ -872,10 +1161,20 @@ export default function ContactPageClient() {
             <Accordion type="single" collapsible className="w-full">
               {contactFaqs.map((faq, index) => (
                 <AccordionItem key={index} value={`faq-${index}`}>
-                  <AccordionTrigger className="text-left text-xs sm:text-base min-h-10 sm:min-h-11 py-2.5 sm:py-3 [&>svg]:h-3.5 [&>svg]:w-3.5 sm:[&>svg]:h-4 sm:[&>svg]:w-4 [&>svg]:shrink-0">
+                  <AccordionTrigger
+                    className={cn(
+                      designTokens.textScale.base,
+                      "text-left min-h-10 sm:min-h-11 py-2.5 sm:py-3 [&>svg]:h-3.5 [&>svg]:w-3.5 sm:[&>svg]:h-4 sm:[&>svg]:w-4 [&>svg]:shrink-0",
+                    )}
+                  >
                     {faq.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-pretty text-xs text-muted-foreground leading-relaxed sm:text-sm">
+                  <AccordionContent
+                    className={cn(
+                      designTokens.textScale.base,
+                      "text-pretty text-muted-foreground leading-relaxed",
+                    )}
+                  >
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -883,13 +1182,22 @@ export default function ContactPageClient() {
             </Accordion>
 
             <div className="mt-4 sm:mt-6 text-center">
-              <p className="mb-2 sm:mb-3 text-xs text-muted-foreground sm:text-sm">
+              <p
+                className={cn(
+                  designTokens.textScale.base,
+                  "mb-2 sm:mb-3 text-muted-foreground",
+                )}
+              >
                 D'autres questions ?
               </p>
               <Button
                 variant="outline"
                 asChild
-                className={cn("min-h-10 sm:min-h-11 text-xs sm:text-sm", designTokens.button.secondary)}
+                className={cn(
+                  designTokens.textScale.base,
+                  "min-h-10 sm:min-h-11",
+                  designTokens.button.secondary,
+                )}
               >
                 <Link href="/faq">
                   Voir toutes les questions
@@ -908,15 +1216,31 @@ export default function ContactPageClient() {
               <div className="absolute -bottom-16 -left-16 h-40 w-40 sm:h-56 sm:w-56 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
               <CardContent className="relative p-4 sm:p-6 md:p-10 text-center">
-                <div className="mb-2.5 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/20 px-2.5 py-1 sm:px-4 sm:py-2 text-[10px] sm:text-sm font-medium text-white">
+                <div
+                  className={cn(
+                    designTokens.textScale.xsSm,
+                    "mb-2.5 sm:mb-4 inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white/20 px-2.5 py-1 sm:px-4 sm:py-2 font-medium text-white",
+                  )}
+                >
                   <Truck className="h-3 w-3 sm:h-4 sm:w-4" />
-                  <span>Intervention 24-48h</span>
+                  <span>Intervention 24 à 48 h</span>
                 </div>
 
-                <h2 className="text-lg font-bold text-white sm:text-2xl lg:text-3xl">
+                <h2
+                  className={cn(
+                    designTokens.typography.h2,
+                    designTokens.textScale.lg2xl3xlLg,
+                    "text-white",
+                  )}
+                >
                   Prêt à débarrasser ?
                 </h2>
-                <p className="mx-auto mt-1.5 sm:mt-2 max-w-xl text-xs text-white/90 sm:text-base">
+                <p
+                  className={cn(
+                    designTokens.textScale.base,
+                    "mx-auto mt-1.5 sm:mt-2 max-w-xl text-white/90",
+                  )}
+                >
                   Devis précis et personnalisé.
                 </p>
 
@@ -924,22 +1248,28 @@ export default function ContactPageClient() {
                   <Button
                     size="lg"
                     asChild
-                    className="min-h-11 h-11 w-full sm:w-auto bg-white px-4 sm:px-7 text-xs sm:text-sm font-semibold text-primary hover:bg-white/90 shadow-lg"
+                    className={cn(
+                      designTokens.textScale.base,
+                      "min-h-11 h-11 w-full sm:w-auto bg-white px-4 sm:px-7 font-semibold text-primary hover:bg-white/90 shadow-lg",
+                    )}
                   >
                     <Link href="/devis">
                       <Image
-                        src="/special-icon.png"
-                        width={20}
-                        height={20}
-                        alt=""
-                        className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5"
+                        src="/optimized/icons/special-icon-w40.png"
+                        width={40}
+                        height={31}
+                        alt="Icône plus de 500 interventions"
+                        className="mr-1.5 h-4 w-auto sm:mr-2 sm:h-5"
                       />
                       Devis gratuit
                     </Link>
                   </Button>
                   <a
                     href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
-                    className="inline-flex items-center justify-center gap-1.5 min-h-11 px-3 text-xs font-medium text-white/90 hover:text-white transition-colors sm:gap-2 sm:px-4 sm:text-sm"
+                    className={cn(
+                      designTokens.textScale.base,
+                      "inline-flex items-center justify-center gap-1.5 min-h-11 px-3 font-medium text-white/90 hover:text-white transition-colors sm:gap-2 sm:px-4",
+                    )}
                   >
                     <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     <span>{siteConfig.contact.phone}</span>
@@ -947,7 +1277,12 @@ export default function ContactPageClient() {
                 </div>
 
                 {/* Reassurance */}
-                <p className="mt-3 text-[10px] text-white/70 sm:mt-4 sm:text-sm">
+                <p
+                  className={cn(
+                    designTokens.textScale.xsSm,
+                    "mt-3 text-white/70 sm:mt-4",
+                  )}
+                >
                   ✓ Sans engagement · ✓ Gratuit · ✓ Réponse 2h
                 </p>
               </CardContent>

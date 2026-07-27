@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ColumnDef } from '@tanstack/react-table'
+import type { ColumnDef } from '@tanstack/react-table'
 import { toast } from 'sonner'
-import type { QuoteRequest } from '../../../shared/schemas'
+import type { QuoteRequest, QuoteStatus, ServiceType } from '../../../shared/schemas'
 import {
   quoteRequestCreateSchema,
   quoteRequestUpdateSchema,
@@ -42,11 +42,11 @@ type QuoteFormValues = {
   postalCode: string
   departmentCode?: string | null
   city?: string | null
-  serviceType: string
+  serviceType: ServiceType
   volumeEstimate?: string | null
   accessNotes?: string | null
   preferredDate?: string | null
-  status: string
+  status: QuoteStatus
 }
 
 export const QuoteRequestsPage = () => {

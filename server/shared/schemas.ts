@@ -55,7 +55,9 @@ export const contactSchema = z.object({
   email: z.string().email().nullable(),
   phone: z.string().nullable(),
   source: z.string().nullable(),
+  postalCode: z.string().nullable(),
   message: z.string().nullable(),
+  consent: z.boolean(),
   status: contactStatusEnum,
   createdAt: z.string(),
   updatedAt: z.string()
@@ -67,7 +69,9 @@ export const contactCreateSchema = z
     email: z.string().email().nullable().optional(),
     phone: z.string().nullable().optional(),
     source: z.string().nullable().optional(),
+    postalCode: z.string().nullable().optional(),
     message: z.string().nullable().optional(),
+    consent: z.boolean().optional().default(false),
     status: contactStatusEnum.default('NEW')
   })
   .strict()
@@ -78,7 +82,9 @@ export const contactUpdateSchema = z
     email: z.string().email().nullable().optional(),
     phone: z.string().nullable().optional(),
     source: z.string().nullable().optional(),
+    postalCode: z.string().nullable().optional(),
     message: z.string().nullable().optional(),
+    consent: z.boolean().optional(),
     status: contactStatusEnum.optional()
   })
   .strict()

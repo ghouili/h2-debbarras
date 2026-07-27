@@ -2,6 +2,8 @@
 import { Building, Home, Warehouse, Briefcase } from "lucide-react"
 import { siteConfig } from "@/lib/config"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 const iconMap = {
   building: Building,
@@ -29,7 +31,14 @@ export function ServiceStep({ formData, updateFormData, nextStep }: Props) {
 
   return (
     <div>
-      <h2 className="mb-6 text-2xl font-semibold">Quel type de service souhaitez-vous ?</h2>
+      <h2
+        className={cn(
+          designTokens.textScale["2xl"],
+          "mb-6 font-semibold font-heading",
+        )}
+      >
+        Quel type de service souhaitez-vous ?
+      </h2>
       <div className="grid gap-4 md:grid-cols-2">
         {allServices.map((service) => {
           const Icon = iconMap[service.icon as keyof typeof iconMap] || Home
@@ -45,8 +54,10 @@ export function ServiceStep({ formData, updateFormData, nextStep }: Props) {
                 <Icon className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="font-semibold">{service.title}</h3>
-                <p className="text-pretty text-sm text-muted-foreground">{service.shortDescription}</p>
+                <h3 className="font-semibold font-heading">{service.title}</h3>
+                <p className={cn(designTokens.textScale.base, "text-pretty text-muted-foreground")}>
+                  {service.shortDescription}
+                </p>
               </div>
             </button>
           )

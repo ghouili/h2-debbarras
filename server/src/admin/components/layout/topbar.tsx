@@ -1,7 +1,7 @@
 import { Search } from 'lucide-react'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
-import type { User } from '../../../shared/schemas'
+import type { User } from '../../../../shared/schemas'
 
 type TopbarProps = {
   user: User | null

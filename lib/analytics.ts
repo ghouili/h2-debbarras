@@ -1,16 +1,26 @@
 // Analytics and tracking utilities for Google Ads conversion tracking
 
-export const trackEvent = (eventName: string, eventParams?: Record<string, any>) => {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    ;(window as any).gtag("event", eventName, eventParams)
+type GtagEventParams = Record<string, unknown>
+type Gtag = (...args: unknown[]) => void
+
+const getGtag = (): Gtag | undefined => {
+  if (typeof window === "undefined") return undefined
+  return (window as Window & { gtag?: Gtag }).gtag
+}
+
+export const trackEvent = (eventName: string, eventParams?: GtagEventParams) => {
+  const gtag = getGtag()
+  if (gtag) {
+    gtag("event", eventName, eventParams)
   }
   // For development: log to console
   console.log("[v0] Analytics Event:", eventName, eventParams)
 }
 
 export const trackPageView = (url: string) => {
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    ;(window as any).gtag("config", "GA_MEASUREMENT_ID", {
+  const gtag = getGtag()
+  if (gtag) {
+    gtag("config", "GA_MEASUREMENT_ID", {
       page_path: url,
     })
   }
@@ -24,19 +34,28 @@ export const trackStartDevis = () => {
   })
 }
 
-export const trackLeadSubmit = () => {
+// Which quote form produced the submission (sent to GA4 as the `form` param).
+export type LeadFormSource = "devis" | "devis_lp" | "devis_pro"
+
+export const trackLeadSubmit = (form: LeadFormSource) => {
   trackEvent("lead_submit", {
     event_category: "conversion",
     event_label: "Quote Form Submitted",
+    form,
     value: 1,
   })
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    ;(window as any).gtag("event", "conversion", {
-      send_to: "AW-CONVERSION_ID/CONVERSION_LABEL", // Replace with actual conversion ID
-      value: 1.0,
-      currency: "EUR",
-    })
-  }
+}
+
+export const trackGoogleAdsLeadConversion = (sendTo: string) => {
+  if (typeof window === "undefined") return
+  const gtag = (window as Window & { gtag?: Gtag }).gtag
+  if (typeof gtag !== "function") return
+
+  gtag("event", "conversion", {
+    send_to: sendTo,
+    value: 1.0,
+    currency: "EUR",
+  })
 }
 
 export const trackClickCall = () => {
@@ -44,8 +63,9 @@ export const trackClickCall = () => {
     event_category: "engagement",
     event_label: "Phone Number Clicked",
   })
-  if (typeof window !== "undefined" && (window as any).gtag) {
-    ;(window as any).gtag("event", "phone_call_click", {
+  const gtag = getGtag()
+  if (gtag) {
+    gtag("event", "phone_call_click", {
       event_category: "engagement",
       event_label: "Phone Click",
     })

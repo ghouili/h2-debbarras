@@ -11,6 +11,8 @@ import { Home, Warehouse, Heart, Truck } from "lucide-react";
 import { homeCopy } from "@/lib/content/home-copy";
 import { Section } from "@/components/layout/section";
 import Image from "next/image";
+import { designTokens } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
 
 const iconMap = {
   home: Home,
@@ -49,10 +51,21 @@ export function ServicesGrid() {
   return (
     <Section>
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            designTokens.textScale["2xl3xl"],
+            "text-balance",
+          )}
+        >
           {serviceCardsCopy.title}
         </h2>
-        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
+        <p
+          className={cn(
+            designTokens.textScale.baseLg,
+            "mt-3 text-pretty text-muted-foreground",
+          )}
+        >
           {serviceCardsCopy.subtitle}
         </p>
       </div>
@@ -70,10 +83,20 @@ export function ServicesGrid() {
                 <div className=" mb-0  flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
                   <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl">
+                <CardTitle
+                  className={cn(
+                    designTokens.typography.h4,
+                    designTokens.textScale.lgXl, " min-h-16 "
+                  )}
+                >
                   {copyCard?.title}
                 </CardTitle>
-                <CardDescription className="text-pretty text-sm sm:text-base">
+                <CardDescription
+                  className={cn(
+                    designTokens.textScale.base,
+                    "text-pretty",
+                  )}
+                >
                   {copyCard?.description}
                 </CardDescription>
               </CardHeader>
@@ -81,10 +104,16 @@ export function ServicesGrid() {
                 <Button
                   variant="ghost"
                   asChild
-                  className="group/btn w-full justify-between min-h-11 h-10 sm:h-11 text-xs sm:text-sm px-2 sm:px-4"
+                  className={cn(
+                    designTokens.textScale.base,
+                    "group/btn w-full justify-between min-h-11 h-10 sm:h-11 px-2 sm:px-4",
+                  )}
                 >
                   <Link href={`/services/${service.slug}`}>
                     {serviceCardsCopy.ctaLabel}
+                    <span className="sr-only">
+                      {copyCard?.title ? ` — ${copyCard.title}` : ""}
+                    </span>
                     <span
                       className="transition-transform group-hover/btn:translate-x-1"
                       aria-hidden="true"
@@ -100,13 +129,21 @@ export function ServicesGrid() {
       </div>
 
       <div className="mt-8 sm:mt-10 text-center">
-        <Button size="lg" className="min-h-11 h-10 sm:h-12 px-4 sm:px-8 text-xs sm:text-sm" asChild>
+        <Button
+          size="lg"
+          className={cn(
+            designTokens.textScale.base,
+            "min-h-11 h-10 sm:h-12 px-4 sm:px-8",
+          )}
+          asChild
+        >
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-4">
             <Image
-              src="/devis-icon-white.png"
+              src="/optimized/icons/devis-icon-white-w32.png"
               width={16}
               height={16}
-              alt=""
+              alt="Icône demande de devis gratuit"
+              sizes="16px"
               className="mr-0.5 h-4 w-4 sm:h-5 sm:w-5"
             />
             <Link href="/devis">{serviceCardsCopy.sectionCta}</Link>
