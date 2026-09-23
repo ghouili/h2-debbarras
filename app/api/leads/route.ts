@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { siteConfig } from "@/lib/config"
 import { titleFromDelims } from "@/lib/utils"
+import { syncLeadToHubSpot } from "@/lib/hubspot"
 
 export async function POST(request: Request) {
   try {
@@ -31,6 +32,32 @@ export async function POST(request: Request) {
         ? `${data.firstName} ${data.lastName}`
         : data.name
     const location = `${data.postalCode ?? ""} ${data.city ?? ""}`.trim()
+
+    // Push the lead to HubSpot CRM first so it is captured even if SMTP fails (never throws)
+    {
+      const knownKeys = new Set([
+        "source", "firstName", "lastName", "name", "email", "phone",
+        "postalCode", "city", "service", "message", "consent", "photos",
+      ])
+      const extra = Object.fromEntries(
+        Object.entries(data).filter(([key]) => !knownKeys.has(key)),
+      )
+      const str = (v: unknown) => (typeof v === "string" ? v : undefined)
+      await syncLeadToHubSpot({
+        source: String(source),
+        firstName: str(data.firstName),
+        lastName: str(data.lastName),
+        name: str(data.name),
+        email: str(data.email),
+        phone: str(data.phone),
+        postalCode: str(data.postalCode),
+        city: str(data.city),
+        service: str(data.service),
+        message: str(data.message),
+        consent: normalizedConsent,
+        extra,
+      })
+    }
 
     // Log the lead for demo purposes
     console.log(" New lead received:", {

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { z } from "zod"
 import { siteConfig } from "@/lib/config"
+import { syncLeadToHubSpot } from "@/lib/hubspot"
 
 const contactCreateSchema = z.object({
   source: z.string().min(1),
@@ -68,6 +69,17 @@ export async function POST(request: Request) {
     const { source, name, email, phone, message, consent, postalCode } = parsed.data
 
     const location = buildLocation(postalCode)
+
+    // Push the contact to HubSpot CRM (never throws)
+    await syncLeadToHubSpot({
+      source,
+      name,
+      email,
+      phone,
+      postalCode: postalCode ?? undefined,
+      message,
+      consent,
+    })
 
     const contactsApiUrl = process.env.API_URL ?? process.env.NEXT_PUBLIC_API_URL
     if (!contactsApiUrl) {

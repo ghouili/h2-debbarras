@@ -60,6 +60,8 @@ jobs:
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || secrets.NEXT_PUBLIC_API_URL }}
           # NEXT_PUBLIC_* is inlined at build time, so it must be in .env BEFORE `npm run build` runs on the server.
           NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID || secrets.NEXT_PUBLIC_GTM_ID }}
+          # HubSpot CRM (Service Key) — store as an Environment secret, never as a variable
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
 
         run: |
           ssh -p "$SSH_PORT" "$SSH_USERNAME@$SSH_HOST" "cat > /tmp/debarras.env <<'EOF'
@@ -72,6 +74,7 @@ jobs:
           API_URL=${API_URL}
           NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
           NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
+          HUBSPOT_ACCESS_TOKEN=${HUBSPOT_ACCESS_TOKEN}
           EOF"
 
       - name: Execute remote deployment
