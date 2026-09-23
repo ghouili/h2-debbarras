@@ -1,6 +1,8 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Noto_Serif, Source_Code_Pro } from "next/font/google";
+// Self-hosted (next/font/local): builds no longer depend on fetching Google Fonts,
+// which broke Turbopack builds ("next/font/google queries have exactly one entry").
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/site-chrome";
@@ -8,22 +10,26 @@ import { GoogleTags } from "@/components/analytics/google-tags";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
-const sourceCodePro = Source_Code_Pro({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+const sourceCodePro = localFont({
+  src: "./fonts/SourceCodePro-Variable-latin.woff2",
+  weight: "200 900",
+  style: "normal",
   // `optional` keeps the web font off the LCP critical path: text paints
   // immediately in next/font's metric-matched fallback (CLS stays 0) and the
   // real font applies once cached. The hero subtitle (the mobile LCP element)
   // uses this font, so this is the main LCP lever.
   display: "optional",
   variable: "--font-source-code-pro",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
 });
 
-const notoSerif = Noto_Serif({
-  subsets: ["latin"],
-  weight: ["600", "700"],
+const notoSerif = localFont({
+  src: "./fonts/NotoSerif-Variable-latin.woff2",
+  weight: "100 900",
+  style: "normal",
   display: "optional",
   variable: "--font-noto-serif",
+  fallback: ["Georgia", "Times New Roman", "serif"],
 });
 
 export const metadata: Metadata = {
