@@ -121,6 +121,16 @@ export default function RootLayout({
         {/* End Google Tag Manager (noscript) */}
         <SiteChrome>{children}</SiteChrome>
         <GoogleTags />
+        {/* HubSpot tracking code (portal 149390256, EU1). Rendered in the server
+            HTML — not interaction-delayed like <GoogleTags /> — so HubSpot's
+            installation validator detects it and bounce visits are tracked. */}
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js-eu1.hs-scripts.com/149390256.js"
+        />
         {process.env.NEXT_PUBLIC_VERCEL_ANALYTICS === "true" ? (
           <Analytics />
         ) : null}

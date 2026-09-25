@@ -21,7 +21,7 @@ tracking. Leads are captured by email (and, optionally, forwarded to the
 | Forms | react-hook-form + Zod |
 | Maps | Leaflet / react-leaflet (Île-de-France zones) |
 | Email | Nodemailer (SMTP) inside Route Handlers |
-| Analytics | GTM (`GTM-P7RGSS2S`), Google Ads + GA4 (gtag.js), optional Vercel Analytics |
+| Analytics | GTM (`GTM-P7RGSS2S`), Google Ads + GA4 (gtag.js), HubSpot tracking code, optional Vercel Analytics |
 | Process mgmt | PM2 (`ecosystem.config.js`) |
 
 ## Requirements
@@ -155,6 +155,9 @@ Three Ads-optimised landing pages live under the `(ads)` route group and are
 - **Conversions fire from GTM on `/merci`** (not from code). The old code-based
   `<GoogleAdsLeadConversion>` pixel has been removed from the thank-you pages; the component
   file remains but is unused.
+- **HubSpot tracking code** (portal `149390256`, EU1) is a plain `<script>` in `app/layout.tsx`,
+  rendered in the server HTML (not interaction-delayed) so HubSpot's installation validator
+  detects it.
 - Cookie banner stores consent but **does not gate** the tracking scripts yet.
 
 ### ⚠️ Required GTM dashboard setup (must be done before campaigns launch)
