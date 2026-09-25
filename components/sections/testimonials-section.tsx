@@ -3,6 +3,8 @@ import { Star } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 import { homeCopy } from "@/lib/content/home-copy";
 import { Section } from "@/components/layout/section";
+import { designTokens } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
 
 export function TestimonialsSection() {
   const copy = homeCopy.reviewsTeaser;
@@ -10,10 +12,21 @@ export function TestimonialsSection() {
   return (
     <Section bleed className="bg-secondary">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl font-bold tracking-tight sm:text-3xl">
+        <h2
+          className={cn(
+            designTokens.typography.h2,
+            designTokens.textScale["2xl3xl"],
+            "text-balance",
+          )}
+        >
           {copy.title}
         </h2>
-        <p className="mt-3 text-pretty text-base text-muted-foreground sm:text-lg">
+        <p
+          className={cn(
+            designTokens.textScale.baseLg,
+            "mt-3 text-pretty text-muted-foreground",
+          )}
+        >
           {copy.subtitle}
         </p>
       </div>
@@ -23,7 +36,8 @@ export function TestimonialsSection() {
           <Card key={index} className="w-full h-full">
             <CardContent className="px-5 sm:px-6 min-h-56 sm:min-h-64 flex flex-col justify-between">
               <div>
-                <div className="mb-3 flex gap-0.5" aria-label={`Note: ${testimonial.rating} sur 5`}>
+                <div className="mb-3 flex gap-0.5">
+                  <span className="sr-only">Note : {testimonial.rating} sur 5</span>
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star
                       key={i}
@@ -32,16 +46,23 @@ export function TestimonialsSection() {
                     />
                   ))}
                 </div>
-                <blockquote className="mb-4 text-pretty text-sm text-muted-foreground sm:text-base">
+                <blockquote
+                  className={cn(
+                    designTokens.textScale.base,
+                    "mb-4 text-pretty text-muted-foreground",
+                  )}
+                >
                   "{testimonial.text}"
                 </blockquote>
               </div>
               <footer className="border-t border-border pt-3 sm:pt-4">
-                <p className="font-semibold text-sm sm:text-base">{testimonial.name}</p>
-                <p className="text-xs text-muted-foreground sm:text-sm">
+                <p className={cn(designTokens.textScale.base, "font-semibold")}>
+                  {testimonial.name}
+                </p>
+                <p className={cn(designTokens.textScale.base, "text-muted-foreground")}>
                   {testimonial.location}
                 </p>
-                <p className="mt-1 text-xs text-primary">
+                <p className={cn(designTokens.textScale.base, "mt-1 text-primary")}>
                   {testimonial.service}
                 </p>
               </footer>

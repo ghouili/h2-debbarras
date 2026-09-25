@@ -1,17 +1,36 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
-import { MobileBar } from "@/components/layout/mobile-bar"
-import { CookieBanner } from "@/components/seo/cookie-banner"
-import { JsonLd } from "@/components/seo/json-ld"
-import { siteConfig } from "@/lib/config"
+import type React from "react";
+import type { Metadata } from "next";
+// Self-hosted (next/font/local): builds no longer depend on fetching Google Fonts,
+// which broke Turbopack builds ("next/font/google queries have exactly one entry").
+import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+import { SiteChrome } from "@/components/layout/site-chrome";
+import { GoogleTags } from "@/components/analytics/google-tags";
+import { JsonLd } from "@/components/seo/json-ld";
+import { siteConfig } from "@/lib/config";
 
-const geistSans = Geist({ subsets: ["latin"] })
-const geistMono = Geist_Mono({ subsets: ["latin"] })
+const sourceCodePro = localFont({
+  src: "./fonts/SourceCodePro-Variable-latin.woff2",
+  weight: "200 900",
+  style: "normal",
+  // `optional` keeps the web font off the LCP critical path: text paints
+  // immediately in next/font's metric-matched fallback (CLS stays 0) and the
+  // real font applies once cached. The hero subtitle (the mobile LCP element)
+  // uses this font, so this is the main LCP lever.
+  display: "optional",
+  variable: "--font-source-code-pro",
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "Consolas", "monospace"],
+});
+
+const notoSerif = localFont({
+  src: "./fonts/NotoSerif-Variable-latin.woff2",
+  weight: "100 900",
+  style: "normal",
+  display: "optional",
+  variable: "--font-noto-serif",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -32,6 +51,17 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -49,27 +79,62 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-    generator: 'v0.app'
-}
+  generator: "v0.app",
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        <meta
+          name="google-site-verification"
+          content="OsCAUbqCBXdTlYGiG324nqiW2UONStmLcIWdcg2N8xM"
+        />
+        {/* dataLayer + gtag stub — defined early so analytics events queue
+            (instead of dropping) until the Google tags are loaded on first
+            interaction by <GoogleTags />. Negligible cost, no main-thread work. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`,
+          }}
+        />
+
         <JsonLd type="organization" />
       </head>
-      <body className={`${geistSans.className} ${geistMono.className} font-sans antialiased relative`} suppressHydrationWarning>
-        <Header />
-        <main className="min-h-screen w-full pt-16 md:pt-20 pb-20 md:pb-0">{children}</main>
-        <Footer />
-        <MobileBar />
-        <CookieBanner />
-        <Analytics />
+      <body
+        className={`${sourceCodePro.variable} ${notoSerif.variable} font-body antialiased text-foreground bg-background relative`}
+        suppressHydrationWarning
+      >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
+        <SiteChrome>{children}</SiteChrome>
+        <GoogleTags />
+        {/* HubSpot tracking code (portal 149390256, EU1). Rendered in the server
+            HTML — not interaction-delayed like <GoogleTags /> — so HubSpot's
+            installation validator detects it and bounce visits are tracked. */}
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js-eu1.hs-scripts.com/149390256.js"
+        />
+        {process.env.NEXT_PUBLIC_VERCEL_ANALYTICS === "true" ? (
+          <Analytics />
+        ) : null}
       </body>
     </html>
-  )
+  );
 }

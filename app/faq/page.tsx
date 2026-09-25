@@ -14,9 +14,7 @@ import {
   HelpCircle,
   Search,
   Phone,
-  FileText,
   CheckCircle2,
-  ArrowRight,
   MapPin,
   Truck,
   Home,
@@ -38,7 +36,6 @@ import Image from "next/image";
 
 const CATEGORY_ICONS: Record<string, React.ElementType> = {
   Général: HelpCircle,
-  Tarifs: FileText,
   Processus: Clock,
   Urgences: Sparkles,
 };
@@ -90,7 +87,12 @@ const HeroSection = memo(function HeroSection() {
         </div>
 
         {/* H1 - responsive */}
-        <h1 className="text-balance text-xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+        <h1
+          className={cn(
+            designTokens.typography.h1,
+            "text-balance text-xl sm:text-3xl md:text-4xl",
+          )}
+        >
           Questions Fréquentes
         </h1>
         <p className="mx-auto mt-2 max-w-xl text-pretty text-xs text-muted-foreground sm:mt-3 sm:text-base md:text-lg">
@@ -109,11 +111,11 @@ const HeroSection = memo(function HeroSection() {
           >
             <Link href="/devis">
               <Image
-                src="/special-icon.png"
-                width={20}
-                height={20}
-                alt=""
-                className="h-4 w-4 shrink-0 sm:h-5 sm:w-5"
+                src="/optimized/icons/special-icon-w40.png"
+                width={40}
+                height={31}
+                alt="Icône plus de 500 interventions"
+                className="h-4 w-auto shrink-0 sm:h-5"
               />
               Devis gratuit
             </Link>
@@ -137,7 +139,7 @@ const HeroSection = memo(function HeroSection() {
         {/* Trust line */}
         <p className="mt-3 text-[10px] text-muted-foreground sm:mt-4 sm:text-sm">
           <CheckCircle2 className="mr-0.5 inline h-3 w-3 text-green-600 sm:mr-1 sm:h-3.5 sm:w-3.5" />
-          Devis gratuit • Réponse 2h • Intervention 24–48h
+          Devis gratuit • Réponse 2h • Intervention 24 à 48 h
         </p>
       </div>
     </Section>
@@ -216,12 +218,10 @@ const SearchAndCategories = memo(function SearchAndCategories({
 
 interface FAQAccordionListProps {
   faqs: FlatFAQ[];
-  searchQuery: string;
 }
 
 const FAQAccordionList = memo(function FAQAccordionList({
   faqs,
-  searchQuery,
 }: FAQAccordionListProps) {
   if (faqs.length === 0) {
     return (
@@ -264,7 +264,7 @@ const FAQAccordionList = memo(function FAQAccordionList({
               <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 sm:h-8 sm:w-8 sm:rounded-lg">
                 <Icon className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
               </div>
-              <h2 className="font-semibold text-foreground text-xs sm:text-base">
+              <h2 className={cn(designTokens.typography.h3, "text-xs text-foreground sm:text-base")}>
                 {category}
               </h2>
               <span className="ml-auto rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary sm:px-2 sm:text-xs">
@@ -309,7 +309,7 @@ const StillNeedHelpCTA = memo(function StillNeedHelpCTA() {
       <div className="absolute -bottom-16 -left-16 h-40 w-40 sm:h-56 sm:w-56 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
       <CardContent className="relative p-4 sm:p-6 md:p-10 text-center">
-        <h2 className="text-lg font-bold text-white sm:text-2xl lg:text-3xl">
+        <h2 className={cn(designTokens.typography.h2, "text-lg text-white sm:text-2xl lg:text-3xl")}>
           Pas trouvé votre réponse ?
         </h2>
         <p className="mt-1.5 text-white/90 text-xs sm:mt-2 sm:text-base max-w-md mx-auto">
@@ -324,11 +324,11 @@ const StillNeedHelpCTA = memo(function StillNeedHelpCTA() {
           >
             <Link href="/devis">
               <Image
-                src="/special-icon.png"
-                width={20}
-                height={20}
-                alt=""
-                className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5"
+                src="/optimized/icons/special-icon-w40.png"
+                width={40}
+                height={31}
+                alt="Icône plus de 500 interventions"
+                className="mr-1.5 h-4 w-auto sm:mr-2 sm:h-5"
               />
               Devis gratuit
             </Link>
@@ -358,15 +358,15 @@ const StillNeedHelpCTA = memo(function StillNeedHelpCTA() {
 const EXPLORER_LINKS = [
   { href: "/services", label: "Nos services", icon: Package },
   { href: "/zones", label: "Zones d'intervention", icon: MapPin },
-  { href: "/services/demenagement", label: "Déménagement", icon: Truck },
-  { href: "/services/debarras-maison", label: "Débarras maison", icon: Home },
-  { href: "/services/debarras-appartement", label: "Débarras appartement", icon: Building2 },
+  { href: "/services/demenagement-particulier", label: "Déménagement", icon: Truck },
+  { href: "/services/debarras-maison-vide-maison", label: "Débarras maison", icon: Home },
+  { href: "/services/debarras-appartement-vide-appartement", label: "Débarras appartement", icon: Building2 },
 ];
 
 const ExplorerLinks = memo(function ExplorerLinks() {
   return (
     <div className="mx-auto max-w-4xl px-3 sm:px-6">
-      <h2 className="mb-3 text-center text-base font-semibold sm:mb-4 sm:text-xl">
+      <h2 className={cn(designTokens.typography.h3, "mb-3 text-center text-base sm:mb-4 sm:text-xl")}>
         Explorer nos services
       </h2>
       <div className="flex flex-wrap justify-center gap-1.5 sm:gap-3">
@@ -446,7 +446,7 @@ export default function FaqPage() {
             onCategoryChange={handleCategoryChange}
             resultCount={filteredFaqs.length}
           />
-          <FAQAccordionList faqs={filteredFaqs} searchQuery={searchQuery} />
+          <FAQAccordionList faqs={filteredFaqs} />
         </div>
       </Section>
 

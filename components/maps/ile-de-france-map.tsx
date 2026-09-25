@@ -1,9 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { MapContainer, TileLayer, Marker, Popup, Polygon, useMap } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 // Fix for default marker icons in Next.js
 const createCustomIcon = (code: string, isActive: boolean, isParis: boolean) => {
@@ -77,14 +79,6 @@ const departments = [
   { code: "95", name: "Val-d'Oise", lat: 49.0333, lng: 2.0667 },
 ]
 
-// Île-de-France approximate boundary for visual reference
-const idfBoundary: [number, number][] = [
-  [49.2500, 1.4500],
-  [49.2500, 3.5500],
-  [48.1200, 3.5500],
-  [48.1200, 1.4500],
-]
-
 interface MapProps {
   view: "paris" | "idf"
   hoveredZone: string | null
@@ -118,6 +112,7 @@ export default function IleDeFranceMap({
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 
@@ -126,7 +121,9 @@ export default function IleDeFranceMap({
       <div className="flex h-full w-full items-center justify-center bg-muted/50">
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-          <span className="text-sm text-muted-foreground">Chargement de la carte...</span>
+          <span className={cn(designTokens.textScale.base, "text-muted-foreground")}>
+            Chargement de la carte...
+          </span>
         </div>
       </div>
     )
@@ -177,10 +174,12 @@ export default function IleDeFranceMap({
                 <Popup className="custom-popup">
                   <div className="text-center">
                     <strong className="text-primary">{arr.name}</strong>
-                    <p className="mt-1 text-xs text-muted-foreground">
+                    <p className={cn(designTokens.textScale.xs, "mt-1 text-muted-foreground")}>
                       Paris {arr.num}e arrondissement
                     </p>
-                    <p className="mt-1 text-xs font-medium text-green-600">✓ Zone couverte</p>
+                    <p className={cn(designTokens.textScale.xs, "mt-1 font-medium text-green-600")}>
+                      ✓ Zone couverte
+                    </p>
                   </div>
                 </Popup>
               </Marker>
@@ -206,8 +205,12 @@ export default function IleDeFranceMap({
                 <Popup className="custom-popup">
                   <div className="text-center">
                     <strong className="text-primary">{dept.name}</strong>
-                    <p className="mt-1 text-xs text-muted-foreground">Département {dept.code}</p>
-                    <p className="mt-1 text-xs font-medium text-green-600">✓ Intervention 24-48h</p>
+                    <p className={cn(designTokens.textScale.xs, "mt-1 text-muted-foreground")}>
+                      Département {dept.code}
+                    </p>
+                    <p className={cn(designTokens.textScale.xs, "mt-1 font-medium text-green-600")}>
+                      ✓ Intervention 24 à 48 h
+                    </p>
                   </div>
                 </Popup>
               </Marker>

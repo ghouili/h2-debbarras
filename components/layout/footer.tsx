@@ -2,6 +2,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Mail, Phone, MapPin } from "lucide-react"
 import { siteConfig } from "@/lib/config"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 import { PageContainer } from "./page-container"
 
 export function Footer() {
@@ -15,19 +17,34 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
-            <Image src="/logo.png" alt={siteConfig.name} width={140} height={35} className="h-12 sm:h-14 md:h-16 w-auto" />
-            <p className="text-pretty text-sm text-muted-foreground">
+            <Image
+              src="/logo.png"
+              alt={siteConfig.name}
+              width={140}
+              height={35}
+              sizes="(max-width: 768px) 192px, 256px"
+              quality={70}
+              className="h-12 sm:h-14 md:h-16 w-auto"
+            />
+            <p className={cn(designTokens.textScale.base, "text-pretty text-muted-foreground")}>
               Votre partenaire de confiance pour tous vos besoins de débarras en Île-de-France.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Liens rapides</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className={cn(designTokens.textScale.base, "mb-4 font-semibold")}>
+              Liens rapides
+            </h3>
+            <ul className={cn(designTokens.textScale.base, "space-y-2")}>
               <li>
                 <Link href="/services" className="text-muted-foreground transition-colors hover:text-foreground">
                   Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/devis" className="text-muted-foreground transition-colors hover:text-foreground">
+                  Devis gratuit
                 </Link>
               </li>
               <li>
@@ -36,13 +53,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/tarifs" className="text-muted-foreground transition-colors hover:text-foreground">
-                  Tarifs
+                <Link href="/faq" className="text-muted-foreground transition-colors hover:text-foreground">
+                  FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="text-muted-foreground transition-colors hover:text-foreground">
-                  FAQ
+                <Link href="/contact" className="text-muted-foreground transition-colors hover:text-foreground">
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -50,8 +67,10 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Nos services</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className={cn(designTokens.textScale.base, "mb-4 font-semibold")}>
+              Nos services
+            </h3>
+            <ul className={cn(designTokens.textScale.base, "space-y-2")}>
               {footerServices.map((service) => (
                 <li key={service.id}>
                   <Link
@@ -67,8 +86,10 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">Contact</h3>
-            <ul className="space-y-3 text-sm text-muted-foreground">
+            <h3 className={cn(designTokens.textScale.base, "mb-4 font-semibold")}>
+              Contact
+            </h3>
+            <ul className={cn(designTokens.textScale.base, "space-y-3 text-muted-foreground")}>
               <li className="flex items-start gap-2">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0" />
                 <a
@@ -93,7 +114,12 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t border-border pt-8">
-          <div className="flex flex-col md:items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
+          <div
+            className={cn(
+              designTokens.textScale.base,
+              "flex flex-col md:items-center justify-between gap-4 text-muted-foreground md:flex-row",
+            )}
+          >
             <p>
               © {currentYear} {siteConfig.name}. Tous droits réservés.
             </p>

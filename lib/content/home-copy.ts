@@ -63,10 +63,10 @@ export type HomeCopy = {
 export const homeCopy: HomeCopy = {
   hero: {
     badge: "Devis gratuit en 2 min",
-    title: "Débarras & Déménagement en",
+    title: "Débarras et Déménagement en",
     titleHighlight: "Île-de-France",
-    subtitle: "Service professionnel de débarras et déménagement. Intervention sous 24–48h, devis gratuit, tri éco-responsable.",
-    bullets: ["Intervention sous 24–48h", "Devis gratuit, sans engagement", "Tri & recyclage éco-responsable"],
+    subtitle: "Service professionnel de débarras et déménagement. Intervention sous 24 à 48 h, devis gratuit, tri éco-responsable.",
+    bullets: ["Intervention sous 24 à 48 h", "Devis gratuit, sans engagement", "Tri et recyclage éco-responsable"],
     primaryCta: "Demander un devis gratuit",
     secondaryCta: "Appeler maintenant",
     trust: {
@@ -77,7 +77,7 @@ export const homeCopy: HomeCopy = {
     },
   },
   benefitsRow: {
-    items: ["24–48h", "Assuré & pro", "Tri écoresponsable", "Équipe respectueuse"],
+    items: ["24 à 48 h", "Assuré et pro", "Tri éco-responsable", "Équipe respectueuse"],
   },
   serviceCards: {
     title: "Nos services",
@@ -85,9 +85,9 @@ export const homeCopy: HomeCopy = {
     ctaLabel: "En savoir plus",
     sectionCta: "Demander un devis gratuit",
     cards: [
-      { title: "Maisons & Appartements", description: "Débarras complet de votre logement, du tri à l'évacuation." },
-      { title: "Garages, Caves & Greniers", description: "Libérez vos espaces de stockage en toute simplicité." },
-      { title: "Après Décès & Succession", description: "Accompagnement discret et respectueux dans les moments difficiles." },
+      { title: "Maisons et Appartements", description: "Débarras complet de votre logement, du tri à l'évacuation." },
+      { title: "Garages, Caves et Greniers", description: "Libérez vos espaces de stockage en toute simplicité." },
+      { title: "Après Décès et Succession", description: "Accompagnement discret et respectueux dans les moments difficiles." },
       { title: "Déménagement", description: "Déménagement particuliers et professionnels, en Île-de-France et au national." },
     ],
   },
@@ -109,13 +109,13 @@ export const homeCopy: HomeCopy = {
   stats: {
     items: [
       { value: "4.8/5", label: "Avis clients" },
-      { value: "24–48h", label: "Délai d'intervention" },
+      { value: "24 à 48 h", label: "Délai d'intervention" },
       { value: "+500", label: "Interventions réalisées" },
       { value: "8", label: "Départements couverts" },
     ],
   },
   zones: {
-    title: "Débarras & déménagement dans toute l'Île-de-France",
+    title: "Débarras et déménagement dans toute l'Île-de-France",
     subtitle: "Paris, petite et grande couronne — 8 départements couverts",
     cta: "Voir nos zones d’intervention",
   },
@@ -130,7 +130,7 @@ export const homeCopy: HomeCopy = {
   },
   finalCta: {
     title: "Prêt à libérer de l’espace ?",
-    subtitle: "Obtenez votre devis gratuit en quelques minutes. Débarras ou déménagement, nous intervenons sous 24–48h.",
+    subtitle: "Obtenez votre devis gratuit en quelques minutes. Débarras ou déménagement, nous intervenons sous 24 à 48 h.",
     primaryCta: "Devis gratuit",
     secondaryCta: "Appeler maintenant",
     microcopy: "Sans engagement • Intervention rapide • Tri éco-responsable",

@@ -8,6 +8,8 @@ import { Switch } from "@/components/ui/switch"
 import { Card, CardContent } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 const localTypes = [
   { value: "boutique", label: "Boutique" },
@@ -37,8 +39,17 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Local Type */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Type de bien</h2>
-        <p className="mb-4 text-sm text-muted-foreground">Précisez la nature du lieu</p>
+        <h2
+          className={cn(
+            designTokens.textScale.lgXl,
+            "mb-1 font-bold text-foreground font-heading",
+          )}
+        >
+          Type de bien
+        </h2>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
+          Précisez la nature du lieu
+        </p>
 
         <RadioGroup value={formData.localType} onValueChange={(value) => updateFormData({ localType: value })}>
           <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4">
@@ -56,9 +67,12 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
                 >
                   <CardContent className="flex w-full min-w-0 items-center justify-center">
                     <RadioGroupItem value={type.value} id={type.value} className="sr-only" />
-                    <Label 
-                      htmlFor={type.value} 
-                      className="w-fit min-w-0 cursor-pointer text-center text-sm font-medium leading-tight"
+                    <Label
+                      htmlFor={type.value}
+                      className={cn(
+                        designTokens.textScale.base,
+                        "w-fit min-w-0 cursor-pointer text-center font-medium leading-tight",
+                      )}
                     >
                       {type.label}
                     </Label>
@@ -72,13 +86,22 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
 
       {/* Floor and Elevator */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Accès</h2>
-        <p className="mb-4 text-sm text-muted-foreground">Informations pratiques pour l'intervention</p>
+        <h2
+          className={cn(
+            designTokens.textScale.lgXl,
+            "mb-1 font-bold text-foreground font-heading",
+          )}
+        >
+          Accès
+        </h2>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
+          Informations pratiques pour l'intervention
+        </p>
 
         <div className="grid w-full gap-4 sm:grid-cols-1">
           {/* Floor Input */}
           <div className="w-full min-w-0">
-            <Label htmlFor="floor" className="text-sm font-medium">
+            <Label htmlFor="floor" className={cn(designTokens.textScale.base, "font-medium")}>
               Étage
             </Label>
             <Input
@@ -89,17 +112,25 @@ export function Step2PropertyDetails({ formData, updateFormData, nextStep, prevS
               onChange={(e) => updateFormData({ floor: e.target.value })}
               className="mt-1.5 w-full"
             />
-            <p className="mt-1 text-xs text-muted-foreground">Ex: RDC, 1er, 2ème</p>
+            <p className={cn(designTokens.textScale.xs, "mt-1 text-muted-foreground")}>
+              Ex: RDC, 1er, 2ème
+            </p>
           </div>
 
           {/* Elevator Toggle */}
           <div className="w-full min-w-0">
-            <Label className="mb-1.5 block text-sm font-medium">
+            <Label className={cn(designTokens.textScale.base, "mb-1.5 block font-medium")}>
               Ascenseur
             </Label>
             <Card className="w-full">
               <CardContent className="flex w-full min-w-0 items-center justify-between px-4">
-                <Label htmlFor="elevator" className="min-w-0 flex-1 cursor-pointer text-sm font-medium">
+                <Label
+                  htmlFor="elevator"
+                  className={cn(
+                    designTokens.textScale.base,
+                    "min-w-0 flex-1 cursor-pointer font-medium",
+                  )}
+                >
                   Ascenseur disponible
                 </Label>
                 <Switch

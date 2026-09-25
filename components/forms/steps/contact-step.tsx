@@ -9,6 +9,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Loader2 } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
 import { useRouter } from "next/navigation"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type Props = {
   formData: QuoteFormData
@@ -31,10 +33,26 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/leads", {
+      const endpoint = "/api/leads"
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+      })
+
+      const responseText = await response.text()
+      let responseBody: unknown = responseText
+      try {
+        responseBody = responseText ? JSON.parse(responseText) : null
+      } catch {
+        responseBody = responseText
+      }
+
+      console.error("[Lead] API response", {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody,
       })
 
       if (response.ok) {
@@ -54,12 +72,21 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="mb-4 text-xl font-bold">Vos coordonnées</h2>
+        <h2
+          className={cn(
+            designTokens.textScale.xl,
+            "mb-4 font-bold font-heading",
+          )}
+        >
+          Vos coordonnées
+        </h2>
 
         <div className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <Label htmlFor="firstName">Prénom *</Label>
+              <Label htmlFor="firstName" className={designTokens.textScale.base}>
+                Prénom *
+              </Label>
               <Input
                 id="firstName"
                 type="text"
@@ -70,7 +97,9 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
               />
             </div>
             <div>
-              <Label htmlFor="lastName">Nom *</Label>
+              <Label htmlFor="lastName" className={designTokens.textScale.base}>
+                Nom *
+              </Label>
               <Input
                 id="lastName"
                 type="text"
@@ -83,7 +112,9 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
           </div>
 
           <div>
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email" className={designTokens.textScale.base}>
+              Email *
+            </Label>
             <Input
               id="email"
               type="email"
@@ -95,7 +126,9 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
           </div>
 
           <div>
-            <Label htmlFor="phone">Téléphone *</Label>
+            <Label htmlFor="phone" className={designTokens.textScale.base}>
+              Téléphone *
+            </Label>
             <Input
               id="phone"
               type="tel"
@@ -114,8 +147,14 @@ export function ContactStep({ formData, updateFormData, prevStep, onSubmitSucces
               required
               className="mt-0.5"
             />
-            <Label htmlFor="consent" className="cursor-pointer text-sm leading-relaxed text-muted-foreground">
-              J'accepte d'être contacté par H2 Débarras Maison concernant ma demande de devis et je consens au
+            <Label
+              htmlFor="consent"
+              className={cn(
+                designTokens.textScale.base,
+                "cursor-pointer leading-relaxed text-muted-foreground",
+              )}
+            >
+              J'accepte d'être contacté par Débarras Aurea concernant ma demande de devis et je consens au
               traitement de mes données personnelles conformément à la{" "}
               <a
                 href="/politique-confidentialite"

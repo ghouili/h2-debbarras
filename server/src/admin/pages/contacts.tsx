@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ColumnDef } from '@tanstack/react-table'
+import type { ColumnDef } from '@tanstack/react-table'
 import { toast } from 'sonner'
-import type { Contact } from '../../../shared/schemas'
+import type { Contact, ContactStatus } from '../../../shared/schemas'
 import { contactCreateSchema, contactUpdateSchema, contactStatusEnum } from '../../../shared/schemas'
 import { contactsApi } from '../api/contacts'
 import { PageHeader } from '../components/page-header'
@@ -31,7 +31,7 @@ type ContactFormValues = {
   phone?: string | null
   source?: string | null
   message?: string | null
-  status: string
+  status: ContactStatus
 }
 
 export const ContactsPage = () => {

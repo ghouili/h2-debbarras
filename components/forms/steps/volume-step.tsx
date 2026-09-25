@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ChevronLeft } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 type Props = {
   formData: QuoteFormData
@@ -32,7 +34,14 @@ export function VolumeStep({ formData, updateFormData, nextStep, prevStep }: Pro
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="mb-6 text-2xl font-semibold">Volume à débarrasser</h2>
+      <h2
+        className={cn(
+          designTokens.textScale["2xl"],
+          "mb-6 font-semibold font-heading",
+        )}
+      >
+        Volume à débarrasser
+      </h2>
       <div className="space-y-3">
         <RadioGroup value={formData.volume} onValueChange={(value) => updateFormData({ volume: value })}>
           {volumeOptions.map((option) => (
@@ -40,14 +49,21 @@ export function VolumeStep({ formData, updateFormData, nextStep, prevStep }: Pro
               <RadioGroupItem value={option.value} id={option.value} className="peer sr-only" />
               <Label
                 htmlFor={option.value}
-                className="flex cursor-pointer items-start gap-4 rounded-lg border-2 border-border p-4 transition-all hover:border-primary peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
+                className={cn(
+                  designTokens.textScale.base,
+                  "flex cursor-pointer items-start gap-4 rounded-lg border-2 border-border p-4 transition-all hover:border-primary peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5",
+                )}
               >
                 <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-border peer-data-[state=checked]:border-primary">
                   <div className="h-2.5 w-2.5 rounded-full bg-primary opacity-0 peer-data-[state=checked]:opacity-100" />
                 </div>
                 <div>
-                  <div className="font-semibold">{option.label}</div>
-                  <div className="text-sm text-muted-foreground">{option.description}</div>
+                  <div className={cn(designTokens.textScale.base, "font-semibold")}>
+                    {option.label}
+                  </div>
+                  <div className={cn(designTokens.textScale.base, "text-muted-foreground")}>
+                    {option.description}
+                  </div>
                 </div>
               </Label>
             </div>

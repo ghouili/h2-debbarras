@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, AlertCircle } from "lucide-react";
 import type { QuoteFormData } from "../quote-funnel";
-import { useRouter } from "next/navigation";
+import { designTokens } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
 
 type Props = {
   formData: QuoteFormData;
@@ -26,7 +26,6 @@ export function Step4ContactConsent({
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConsentError, setShowConsentError] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,10 +40,26 @@ export function Step4ContactConsent({
     setShowConsentError(false);
 
     try {
-      const response = await fetch("/api/leads", {
+      const endpoint = "/api/leads"
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+      });
+
+      const responseText = await response.text();
+      let responseBody: unknown = responseText;
+      try {
+        responseBody = responseText ? JSON.parse(responseText) : null;
+      } catch {
+        responseBody = responseText;
+      }
+
+      console.error("[Lead] API response", {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody,
       });
 
       if (response.ok) {
@@ -71,10 +86,15 @@ export function Step4ContactConsent({
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Contact Info */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">
+        <h2
+          className={cn(
+            designTokens.textScale.lgXl,
+            "mb-1 font-bold text-foreground font-heading",
+          )}
+        >
           Vos coordonnées
         </h2>
-        <p className="mb-4 text-sm text-muted-foreground">
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Pour vous envoyer votre devis personnalisé
         </p>
 
@@ -82,7 +102,7 @@ export function Step4ContactConsent({
           {/* First Name + Last Name */}
           <div className="grid w-full gap-4 sm:grid-cols-2">
             <div className="w-full min-w-0">
-              <Label htmlFor="firstName" className="text-sm font-medium">
+              <Label htmlFor="firstName" className={cn(designTokens.textScale.base, "font-medium")}>
                 Prénom <span className="text-destructive">*</span>
               </Label>
               <Input
@@ -96,7 +116,7 @@ export function Step4ContactConsent({
               />
             </div>
             <div className="w-full min-w-0">
-              <Label htmlFor="lastName" className="text-sm font-medium">
+              <Label htmlFor="lastName" className={cn(designTokens.textScale.base, "font-medium")}>
                 Nom <span className="text-destructive">*</span>
               </Label>
               <Input
@@ -113,7 +133,7 @@ export function Step4ContactConsent({
 
           {/* Email */}
           <div className="w-full">
-            <Label htmlFor="email" className="text-sm font-medium">
+            <Label htmlFor="email" className={cn(designTokens.textScale.base, "font-medium")}>
               Email <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -129,7 +149,7 @@ export function Step4ContactConsent({
 
           {/* Phone */}
           <div className="w-full">
-            <Label htmlFor="phone" className="text-sm font-medium">
+            <Label htmlFor="phone" className={cn(designTokens.textScale.base, "font-medium")}>
               Téléphone <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -166,7 +186,7 @@ export function Step4ContactConsent({
                   htmlFor="consent" 
                   className="cursor-pointer text-sm leading-relaxed text-muted-foreground"
                 >
-                  J'accepte d'être contacté par H2 Débarras Maison concernant ma demande de devis et je consens au traitement de mes données personnelles conformément à la{" "}
+                  J'accepte d'être contacté par Débarras Aurea concernant ma demande de devis et je consens au traitement de mes données personnelles conformément à la{" "}
                   <a
                     href="/politique-confidentialite"
                     className="font-medium text-primary underline-offset-2 hover:underline"
@@ -239,7 +259,7 @@ export function Step4ContactConsent({
                   htmlFor="consent"
                   className="block cursor-pointer text-sm leading-relaxed text-foreground/80 text-pretty"
                 >
-                  J'accepte d'être contacté par H2 Débarras Maison concernant ma
+                  J'accepte d'être contacté par Débarras Aurea concernant ma
                   demande de devis et je consens au traitement de mes données
                   personnelles conformément à la{" "}
                   <a
@@ -297,8 +317,8 @@ export function Step4ContactConsent({
           />
 
           <div className="min-w-0 flex-1 space-y-2">
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              J&apos;accepte d&apos;être contacté par H2 Débarras Maison
+            <p className={cn(designTokens.textScale.base, "leading-relaxed text-muted-foreground")}>
+              J&apos;accepte d&apos;être contacté par Débarras Aurea
               concernant ma demande de devis et je consens au traitement de mes
               données personnelles conformément à la{" "}
               <a
@@ -316,7 +336,10 @@ export function Step4ContactConsent({
             {showConsentError && (
               <div
                 id="consent-error"
-                className="flex items-center gap-1.5 text-xs text-destructive"
+                className={cn(
+                  designTokens.textScale.xs,
+                  "flex items-center gap-1.5 text-destructive",
+                )}
                 role="alert"
               >
                 <AlertCircle className="h-3.5 w-3.5 shrink-0" />

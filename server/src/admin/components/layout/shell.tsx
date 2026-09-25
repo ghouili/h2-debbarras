@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Sidebar } from './sidebar'
 import { Topbar } from './topbar'
-import type { User } from '../../../shared/schemas'
+import type { User } from '../../../../shared/schemas'
 
 type ShellProps = {
   user: User | null

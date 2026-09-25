@@ -126,19 +126,23 @@ export async function generateMetadata({
     title: `${service.title} en Île-de-France | ${clientLabels[clientType]} | ${siteConfig.name}`,
     description: service.description,
     alternates: {
-      canonical: `/services/${service.slug}`,
+      canonical: `${siteConfig.url}/services/${service.slug}`,
     },
     openGraph: {
       title: `${service.title} - ${siteConfig.name}`,
       description: service.description,
       type: "website",
       locale: "fr_FR",
-      url: `/services/${service.slug}`,
+      url: `${siteConfig.url}/services/${service.slug}`,
     },
     twitter: {
       card: "summary_large_image",
       title: service.title,
       description: service.shortDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   }
 }
@@ -181,7 +185,7 @@ export default async function ServicePage({
           title: service.title,
           description: service.description,
           url: `${siteConfig.url}/services/${service.slug}`,
-          category: categoryLabel,
+          category: categoryLabel, 
           audience: clientLabel,
         }}
       />

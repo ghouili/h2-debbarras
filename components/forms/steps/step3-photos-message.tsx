@@ -3,11 +3,13 @@
 import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Upload, X, Image as ImageIcon } from "lucide-react"
 import type { QuoteFormData } from "../quote-funnel"
+import Image from "next/image"
+import { designTokens } from "@/lib/design-tokens"
+import { cn } from "@/lib/utils"
 
 interface Step3Props {
   formData: QuoteFormData
@@ -57,8 +59,15 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
     <form onSubmit={handleSubmit} className="w-full space-y-8">
       {/* Photo Upload */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Photos</h2>
-        <p className="mb-4 text-sm text-muted-foreground">
+        <h2
+          className={cn(
+            designTokens.textScale.lgXl,
+            "mb-1 font-bold text-foreground font-heading",
+          )}
+        >
+          Photos
+        </h2>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Ajoutez jusqu'à 6 photos pour un devis plus précis (optionnel)
         </p>
 
@@ -67,11 +76,14 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
           <div className="mb-4 grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
             {previews.map((preview, index) => (
               <div key={index} className="group relative w-full overflow-hidden rounded-lg border bg-muted">
-                <div className="aspect-square w-full">
-                  <img
+                <div className="relative aspect-square w-full">
+                  <Image
                     src={preview}
                     alt={`Aperçu ${index + 1}`}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(max-width: 640px) 50vw, 33vw"
+                    className="object-cover"
+                    unoptimized
                   />
                 </div>
                 <button
@@ -80,7 +92,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
                   className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-destructive text-destructive-foreground opacity-0 transition-opacity hover:bg-destructive/90 group-hover:opacity-100"
                   aria-label="Supprimer la photo"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-4 w-4" aria-hidden="true" />
                 </button>
               </div>
             ))}
@@ -96,10 +108,11 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
               accept="image/*"
               multiple
               max={6 - formData.photos.length}
+              aria-label="Ajouter des photos"
               className="sr-only"
               onChange={handlePhotoUpload}
             />
-            <label htmlFor="photos" className="block w-full">
+            <label htmlFor="photos" className="block w-full" aria-label="Ajouter des photos">
               <Card className="w-full cursor-pointer border-2 border-dashed transition-colors hover:border-primary/50">
                 <CardContent className="flex w-full flex-col items-center justify-center gap-2 p-8 text-center">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
@@ -110,12 +123,12 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
                     )}
                   </div>
                   <div>
-                    <p className="text-sm font-medium">
+                    <p className={cn(designTokens.textScale.base, "font-medium")}>
                       {formData.photos.length > 0 
                         ? `${formData.photos.length}/6 photo(s) ajoutée(s)` 
                         : "Ajouter des photos"}
                     </p>
-                    <p className="mt-1 text-xs text-muted-foreground">
+                    <p className={cn(designTokens.textScale.xs, "mt-1 text-muted-foreground")}>
                       {canAddMore 
                         ? `Encore ${6 - formData.photos.length} photo(s) possible(s)` 
                         : "Maximum atteint"}
@@ -130,8 +143,15 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
 
       {/* Message */}
       <div className="w-full">
-        <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Message</h2>
-        <p className="mb-4 text-sm text-muted-foreground">
+        <h2
+          className={cn(
+            designTokens.textScale.lgXl,
+            "mb-1 font-bold text-foreground font-heading",
+          )}
+        >
+          Message
+        </h2>
+        <p className={cn(designTokens.textScale.base, "mb-4 text-muted-foreground")}>
           Des détails spécifiques à nous communiquer ? (optionnel)
         </p>
 
@@ -143,7 +163,7 @@ export function Step3PhotosMessage({ formData, updateFormData, nextStep, prevSte
           rows={4}
           className="w-full resize-none"
         />
-        <p className="mt-1.5 text-xs text-muted-foreground">
+        <p className={cn(designTokens.textScale.xs, "mt-1.5 text-muted-foreground")}>
           Ces informations nous aideront à mieux préparer notre intervention
         </p>
       </div>
